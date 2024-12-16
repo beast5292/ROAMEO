@@ -1,5 +1,5 @@
 import { Text, View } from "react-native";
-import Home from "../components/Home"; // Correct import for default export
+import Home from "../components/Home"; 
 
 export default function Index() {
   return (

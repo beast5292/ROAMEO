@@ -1,14 +1,14 @@
 import React from 'react';
 import { View} from 'react-native';
 
-import Group68 from './quote';
+import Quote from './quote';
 
 const Home = () => {
   return (
 
      <View>
 
-      <Group68/>
+      <Quote/>
 
      </View>
   );

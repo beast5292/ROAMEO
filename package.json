@@ -1,0 +1,16 @@
+{
+  "name": "reactnative_project",
+  "version": "1.0.0",
+  "description": "- \"npm install\"\r - \"npx expo start\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "expo": "^52.0.19",
+    "expo-router": "^4.0.13"
+  }
+}

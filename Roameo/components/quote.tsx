@@ -1,11 +1,10 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
-import { Ionicons } from "@expo/vector-icons"; // Make sure to install @expo/vector-icons
+import { Ionicons } from "@expo/vector-icons"; 
 
 const Quote = () => {
   return (
     <View style={styles.container}>
-      {/* Header Section */}
       <View style={styles.header}>
         <Text style={styles.hiSaman}>Hi Saman,</Text>
         <Image
@@ -14,7 +13,6 @@ const Quote = () => {
         />
       </View>
 
-      {/* Quote Section */}
       <View style={styles.quoteContainer}>
         <Text style={styles.quoteText}>
           <Text style={styles.start}>Start</Text>
@@ -26,14 +24,13 @@ const Quote = () => {
         </Text>
       </View>
 
-      {/* Earth Image */}
       <Image
         style={styles.earthImage}
-        source={require("../assets/images/earth_img.jpeg")}
+        source={require("../assets/images/earth.jpg")}
       />
 
-      {/* Mood Buttons */}
       <View style={styles.moodButtons}>
+        <Ionicons name="search" size={24} color="white" style={styles.searchIcon} />
         <TouchableOpacity style={styles.moodButton}>
           <Text style={styles.moodText}>Happy</Text>
         </TouchableOpacity>
@@ -45,7 +42,6 @@ const Quote = () => {
         </TouchableOpacity>
       </View>
 
-      {/* Travel Cards */}
       <View style={styles.travelSection}>
         <View style={styles.travelCard}>
           <Image
@@ -62,13 +58,20 @@ const Quote = () => {
         </View>
       </View>
 
-      {/* Navigation Bar */}
       <View style={styles.navBar}>
-        <Ionicons name="home-outline" size={28} color="white" />
-        <Ionicons name="camera-outline" size={28} color="white" />
-        <Ionicons name="add-circle" size={28} color="white" />
-        <Ionicons name="chatbubble-outline" size={28} color="white" />
-        <Ionicons name="globe-outline" size={28} color="white" />
+        <View style={styles.navBarIcon}>
+          <Ionicons name="home-outline" size={28} color="white" />
+        </View>
+        <View style={styles.navBarIcon}>
+          <Ionicons name="chatbubble-outline" size={28} color="white" />
+        </View>
+        <View style={styles.circle} />
+        <View style={styles.navBarIcon}>
+          <Ionicons name="compass-outline" size={28} color="white" />
+        </View>
+        <View style={styles.navBarIcon}>
+          <Ionicons name="globe-outline" size={28} color="white" />
+        </View>
       </View>
     </View>
   );
@@ -143,7 +146,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   moodButton: {
-    backgroundColor: "#2E2E2E",
+    backgroundColor: "#444",
     paddingHorizontal: 15,
     paddingVertical: 8,
     borderRadius: 20,
@@ -202,6 +205,22 @@ const styles = StyleSheet.create({
     bottom: 0,
     width: "100%",
     paddingVertical: 15,
+  },
+  navBarIcon: {
+    flex: 1,
+    alignItems: "center",
+  },
+  searchIcon: {
+    marginRight: 10, 
+    backgroundColor: "#444",
+    padding: 10,
+    borderRadius: 30,
+  },
+  circle: {
+    width: 40, 
+    height: 40, 
+    borderRadius: 20, 
+    backgroundColor: "#44cae9", 
   },
 });
 

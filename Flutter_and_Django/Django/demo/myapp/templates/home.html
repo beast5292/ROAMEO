@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Hello, {{ user.name }}!</h2>
+    <p>Here are your favorite items:</p>
+    
+    <ul>
+        {% for item in user.favorite_items %}
+            <li>{{ item }}</li>
+        {% empty %}
+            <li>No favorite items listed.</li>
+        {% endfor %}
+    </ul>
+
+    <p>Current date and time: {{ current_time }}</p>
+{% endblock %}

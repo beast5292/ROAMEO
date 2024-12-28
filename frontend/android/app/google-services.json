@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "230900685679",
+    "project_id": "roameo-a1746",
+    "storage_bucket": "roameo-a1746.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:230900685679:android:f298e6a0255e142d83e69a",
+        "android_client_info": {
+          "package_name": "roameo.a1746"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUOdccaYeWko6gtq3pWl4_DEyQ96DfZVM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

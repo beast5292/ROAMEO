@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gcm_defaultSenderId" translatable="false">230900685679</string>
+    <string name="google_api_key" translatable="false">AIzaSyAUOdccaYeWko6gtq3pWl4_DEyQ96DfZVM</string>
+    <string name="google_app_id" translatable="false">1:230900685679:android:f298e6a0255e142d83e69a</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAUOdccaYeWko6gtq3pWl4_DEyQ96DfZVM</string>
+    <string name="google_storage_bucket" translatable="false">roameo-a1746.firebasestorage.app</string>
+    <string name="project_id" translatable="false">roameo-a1746</string>
+</resources>

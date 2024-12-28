@@ -38,7 +38,7 @@ class _LearnFlutterPageState extends State<LearnFlutterPage> {
                 height: 10,
               ),
               const Divider(
-                color: Colors.white,
+                color: Color.fromRGBO(255, 255, 255, 1)
               ),
               Container(
                 margin: const EdgeInsets.all(10.0),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_flu/camera_page.dart';
 import 'package:new_flu/firebase_options.dart';
 import 'package:new_flu/home_page.dart';
 import 'package:new_flu/profile_page.dart';
@@ -14,6 +15,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+
   const MyApp({Key? key}) : super(key: key);
 
   @override
@@ -32,6 +34,7 @@ class MyApp extends StatelessWidget {
 }
 
 class RootPage extends StatefulWidget {
+
   const RootPage({Key? key}) : super(key: key);
 
   @override
@@ -40,7 +43,7 @@ class RootPage extends StatefulWidget {
 
 class _RootPageState extends State<RootPage> {
   int currentPage = 0;
-  List<Widget> pages = const [HomePage(), ProfilePage()];
+  List<Widget> pages = [HomePage(), ProfilePage(),CameraPage()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +60,8 @@ class _RootPageState extends State<RootPage> {
       bottomNavigationBar: NavigationBar(
         destinations: const [
           NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
-          NavigationDestination(icon: Icon(Icons.person), label: 'Profile')
+          NavigationDestination(icon: Icon(Icons.person), label: 'Profile'),
+          NavigationDestination(icon: Icon(Icons.camera), label: 'Camera')
         ],
         onDestinationSelected: (int index) {
           setState(() {

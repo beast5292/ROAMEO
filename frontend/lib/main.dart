@@ -25,7 +25,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   bool isPillSwitchOn = false; // State for the pill switch
   int _selectedIndex = 0; // To keep track of selected icon
-  int _clickedIndex = -1; // To keep track of the clicked index (initially none)
 
   // Method to get greeting based on the time of day
   String getGreeting() {
@@ -43,13 +42,9 @@ class _HomePageState extends State<HomePage> {
   // Handle tap on a navigation icon
   void _onNavBarItemTapped(int index) {
     setState(() {
-      if (_clickedIndex == index) {
-        _clickedIndex = -1; // Reset if clicked twice
-      } else {
-        _clickedIndex = index; // Set clicked index
-      }
-      _selectedIndex = index; // Update selected index
+      _selectedIndex = index;
     });
+    print("Navigation icon $index tapped");
   }
 
   @override
@@ -63,15 +58,17 @@ class _HomePageState extends State<HomePage> {
             Positioned.fill(
               child: Align(
                 alignment: Alignment.center,
-                child: Container(
-                  width: 350, // Adjust the size for visible portion
-                  height: 350,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      image:
-                          AssetImage('assets/images/world.png'), // Globe image
-                      fit: BoxFit.cover,
+                child: GestureDetector(
+                  onTap: () => print("World image tapped"),
+                  child: Container(
+                    width: 360,
+                    height: 370,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/world.png'),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
@@ -84,14 +81,14 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Greeting Section (Fixed)
+                  // Greeting Section
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(height: 15),
+                          SizedBox(height: 23),
                           Text(
                             getGreeting(),
                             style: TextStyle(
@@ -153,43 +150,39 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ],
                       ),
-                      CircleAvatar(
-                        radius: 40,
-                        backgroundImage: AssetImage(
-                            'assets/images/profile.jpg'), // Replace with your image
+                      GestureDetector(
+                        onTap: () => print("Profile picture tapped"),
+                        child: CircleAvatar(
+                          radius: 40,
+                          backgroundImage:
+                              AssetImage('assets/images/profile.jpg'),
+                        ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 250),
+                  SizedBox(height: 220),
 
-                  // Categories Section with Search Button
+                  // Categories Section with Glassmorphism
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      // Search button
-                      CircleAvatar(
-                        radius: 20, // Larger and rounded search button
-                        backgroundColor:
-                            const Color(0xFF676676), // Light blue color
-                        child: Icon(Icons.search, color: Colors.white),
-                      ),
+                      _buildGlassSearchIcon(),
                       SizedBox(width: 7),
                       Expanded(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            _buildRoundedCategoryChip("Happy"),
-                            _buildRoundedCategoryChip("Excited"),
-                            _buildRoundedCategoryChip("Adventurous"),
+                            _buildGlassCategoryChip("Happy"),
+                            _buildGlassCategoryChip("Excited"),
+                            _buildGlassCategoryChip("Adventurous"),
                           ],
                         ),
                       ),
-                      SizedBox(height: 10),
                     ],
                   ),
-                  SizedBox(height: 1),
+                  SizedBox(height: 8),
 
-                  // Grid Section with Custom Heights for Each Card
+                  // Grid Section
                   Row(
                     children: [
                       // Left card
@@ -198,30 +191,30 @@ class _HomePageState extends State<HomePage> {
                           "Ella",
                           "assets/images/longrectangle.png",
                           height: 250,
-                          textSize: 24, // Larger text size for the title
+                          textSize: 24,
+                          onTap: () => print("Ella card tapped"),
                         ),
                       ),
-                      SizedBox(width: 15), // Space between the cards
+                      SizedBox(width: 8),
 
-                      // Right side container with the two smaller cards
+                      // Right side container with two smaller cards
                       Column(
                         children: [
-                          // Nine Arch Bridge card with pill switch
                           _buildGridCard(
-                            "Nine Arch Bridge\nETA: 3:45PM\n\n\n",
+                            "ETA: 3:45PM\n\n\n\nNine Arch Bridge",
                             "assets/images/rectangle 25.png",
-                            height: 115,
-                            includeSwitch: true, // Pass this as a parameter
-                            textSize: 13,
+                            height: 128,
+                            includeSwitch: true,
+                            textSize: 14,
+                            onTap: () => print("Nine Arch Bridge card tapped"),
                           ),
-                          SizedBox(height: 7), // Space between the cards
-
-                          // Hotel Onrock card
+                          SizedBox(height: 7),
                           _buildGridCard(
                             "Hotel Onrock\n\n\n\n20h43mins",
                             "assets/images/rectangle 24.png",
                             height: 115,
                             textSize: 12,
+                            onTap: () => print("Hotel Onrock card tapped"),
                           ),
                         ],
                       ),
@@ -233,17 +226,13 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      // Custom Navigation Bar
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(bottom: 15.0),
+        padding: const EdgeInsets.only(bottom: 26.0),
         child: Container(
           height: 60,
-          decoration: BoxDecoration(
-            color: Colors.transparent,
-          ),
+          color: Colors.transparent,
           child: Row(
-            mainAxisAlignment:
-                MainAxisAlignment.spaceEvenly, // Ensures even spacing
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               _buildNavIconWithImage(
                   'assets/icons/Icon1onclick.png', 'assets/icons/icon1.png', 0),
@@ -262,19 +251,52 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  // Helper function for rounded category chips
-  Widget _buildRoundedCategoryChip(String label) {
+  Widget _buildGlassSearchIcon() {
     return GestureDetector(
-      onTap: () {
-        // Add your desired action here, for example:
-        print('$label tapped');
-        // You can change the state or navigate, depending on your use case
-      },
+      onTap: () => print("Search button tapped"),
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 17, vertical: 8),
+        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 9),
         decoration: BoxDecoration(
-          color: const Color(0xFF676676), // Light blue color
-          borderRadius: BorderRadius.circular(18.7), // More rounded corners
+          color:
+              Color.fromARGB(192, 103, 102, 118), // Apply transparency (18.5%)
+          borderRadius: BorderRadius.circular(90),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.3),
+              blurRadius: 10,
+              spreadRadius: 5,
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            Icon(Icons.search, color: Colors.white),
+            Text(
+              "",
+              style: TextStyle(color: Colors.white),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildGlassCategoryChip(String label) {
+    return GestureDetector(
+      onTap: () => print("$label chip tapped"),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 9),
+        decoration: BoxDecoration(
+          color:
+              Color.fromARGB(192, 103, 102, 118), // Apply transparency (18.5%)
+          borderRadius: BorderRadius.circular(18.7),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.3),
+              blurRadius: 10,
+              spreadRadius: 5,
+            ),
+          ],
         ),
         child: Text(
           label,
@@ -284,80 +306,107 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  // Helper function for Grid Cards
   Widget _buildGridCard(
     String title,
     String imagePath, {
     double height = 100,
     bool includeSwitch = false,
-    double textSize = 16, // New parameter for text size
-    Alignment textAlign =
-        Alignment.bottomLeft, // Optional parameter to change text alignment
+    double textSize = 16,
+    Alignment textAlign = Alignment.bottomLeft,
+    VoidCallback? onTap,
   }) {
-    return Container(
-      width: 180, // Control the width to match your design needs
-      height: height, // Control the height dynamically
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        image: DecorationImage(
-          image: AssetImage(imagePath),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Stack(
-        children: [
-          // Title with customizable text alignment and size
-          Align(
-            alignment: textAlign, // Dynamic alignment
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Text(
-                title,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w900,
-                  fontSize: textSize, // Dynamic text size
-                  shadows: [Shadow(blurRadius: 4, color: Colors.black)],
-                ),
-              ),
-            ),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 180,
+        height: height,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          image: DecorationImage(
+            image: AssetImage(imagePath),
+            fit: BoxFit.cover,
           ),
-
-          // Pill Switch (conditionally displayed)
-          if (includeSwitch)
-            Positioned(
-              top: 4.2,
-              right: -3,
-              child: Transform.scale(
-                scale: 0.7, // Adjust size of the switch
-                child: Switch(
-                  value: isPillSwitchOn,
-                  onChanged: (value) {
-                    setState(() {
-                      isPillSwitchOn = value;
-                    });
-                  },
-                  activeColor: Color(0xFF6B8292),
-                  activeTrackColor: Color(0xFF253745),
-                  inactiveThumbColor: Color(0xFF253745),
-                  inactiveTrackColor: Color.fromARGB(255, 151, 153, 165),
+        ),
+        child: Stack(
+          children: [
+            Align(
+              alignment: textAlign,
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Text(
+                  title,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w900,
+                    fontSize: textSize,
+                    shadows: [Shadow(blurRadius: 4, color: Colors.black)],
+                  ),
                 ),
               ),
             ),
-        ],
+            if (includeSwitch)
+              Positioned(
+                top: 10,
+                right: 10,
+                child: Row(
+                  children: [
+                    // Rotating Compass Image Icon
+                    SizedBox(width: 20),
+                    // Custom Switch Thumb with GestureDetector
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          isPillSwitchOn = !isPillSwitchOn;
+                        });
+                        print("Switch toggled: $isPillSwitchOn");
+                      },
+                      child: Container(
+                        width: 50,
+                        height: 29,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: isPillSwitchOn
+                              ? Color(0xFF253745)
+                              : Color(0xFF676676),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Align(
+                            alignment: isPillSwitchOn
+                                ? Alignment.centerRight
+                                : Alignment.centerLeft,
+                            child: AnimatedRotation(
+                              turns: isPillSwitchOn
+                                  ? 0.5
+                                  : 0, // Rotate 180 degrees (0.5 turn)
+                              duration: Duration(milliseconds: 300),
+                              child: Image.asset(
+                                'assets/icons/compass.png', // Custom thumb icon
+                                width: 20,
+                                height: 20,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }
 
-  // Function to build each nav icon with active/inactive states
   Widget _buildNavIconWithImage(String iconPath, String activePath, int index) {
     bool isSelected = _selectedIndex == index;
-    double iconSize = (index == 2) ? 60 : 38; // Larger size for AI icon
+    double iconSize = (index == 2) ? 60 : 35; // AI orb icon larger size
     return GestureDetector(
       onTap: () => _onNavBarItemTapped(index),
       child: AnimatedScale(
         scale: isSelected ? 1.3 : 1,
-        duration: Duration(milliseconds: 200),
+        duration: Duration(milliseconds: 100),
         child: Image.asset(
           isSelected ? activePath : iconPath,
           width: iconSize,

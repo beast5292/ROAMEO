@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:homepage/Sightseeingmode/Sightseeing_mode_page.dart";
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -44,7 +45,13 @@ class _HomePageState extends State<HomePage> {
               child: Align(
                 alignment: Alignment.center,
                 child: GestureDetector(
-                  onTap: () => print("World image tapped"),
+                  onTap: () {
+                    // Navigate to SsmPage when the world image is tapped
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SsmPage()),
+                    );
+                  },
                   child: Container(
                     width: 360,
                     height: 370,

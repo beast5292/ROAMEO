@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:new_flu/camera_page.dart';
-import 'package:new_flu/firebase_options.dart';
-import 'package:new_flu/home_page.dart';
-import 'package:new_flu/profile_page.dart';
+import 'package:new_flu/Camera/camera_page.dart';
+import 'package:new_flu/Camera/firebase_options.dart';
+import 'package:new_flu/Camera/home_page.dart';
+import 'package:new_flu/Camera/profile_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {

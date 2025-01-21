@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:new_flu/learn_flutter.dart';
+import 'package:new_flu/Camera/learn_flutter.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);

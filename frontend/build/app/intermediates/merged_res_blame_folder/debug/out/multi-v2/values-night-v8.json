@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.homepage.app-mergeDebugResources-28:/values-night-v8/values-night-v8.xml",
+            "outputFile": "com.example.homepage.app-mergeDebugResources-4:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\sulai\\Desktop\\roameogit\\ROAMEO\\frontend\\android\\app\\src\\main\\res\\values-night\\styles.xml",
+                    "source": "C:\\IIT\\2nd year\\SDGP\\Project\\ROAMEO Sulaiman\\ROAMEO\\frontend\\android\\app\\src\\main\\res\\values-night\\styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:homepage/Sightseeingmode/Sightseeing_locationAdd.dart';
 import 'package:homepage/Sightseeingmode/camera_page.dart';
-import 'package:homepage/location_search_screen.dart';
+import 'package:homepage/Sightseeingmode/autoComplete/location_search_screen.dart';
 
 
 class SightMenu extends StatefulWidget {

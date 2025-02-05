@@ -7,7 +7,7 @@ import 'package:homepage/models/place_auto_complate_response.dart';
 import 'constants.dart';
 
 class SearchLocationScreen extends StatefulWidget {
-  const SearchLocationScreen({Key? key}) : super(key: key);
+  const SearchLocationScreen({super.key});
 
   @override
   State<SearchLocationScreen> createState() => _SearchLocationScreenState();
@@ -121,18 +121,15 @@ class _SearchLocationScreenState extends State<SearchLocationScreen> {
             thickness: 4,
             color: secondaryColor5LightTheme,
           ),
-
           Expanded(
             child: ListView.builder(
-            
               itemCount: placePredictions.length,
               itemBuilder: (context, index) => LocationListTile(
-              press: () {},
-              location: placePredictions[index].description!, 
+                press: () {},
+                location: placePredictions[index].description!,
               ),
             ),
           )
-          
         ],
       ),
     );

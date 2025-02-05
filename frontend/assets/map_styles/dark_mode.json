@@ -1,0 +1,28 @@
+[
+    {
+      "elementType": "geometry",
+      "stylers": [
+        { "color": "#212121" }
+      ]
+    },
+    {
+      "elementType": "labels.text.fill",
+      "stylers": [
+        { "color": "#ffffff" }
+      ]
+    },
+    {
+      "elementType": "labels.text.stroke",
+      "stylers": [
+        { "color": "#000000" }
+      ]
+    },
+    {
+      "featureType": "water",
+      "elementType": "geometry",
+      "stylers": [
+        { "color": "#000000" }
+      ]
+    }
+  ]
+  

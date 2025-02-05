@@ -4,14 +4,13 @@ import 'package:geolocator/geolocator.dart';
 import 'dart:io';
 
 class CameraPage extends StatefulWidget {
+  const CameraPage({super.key});
 
   @override
   _CameraPageState createState() => _CameraPageState();
-
 }
 
 class _CameraPageState extends State<CameraPage> {
-
   //Store key-value pairs (photo and location)
   final List<Map<String, dynamic>> _photosWithLocations = [];
   final ImagePicker _picker = ImagePicker();
@@ -41,7 +40,7 @@ class _CameraPageState extends State<CameraPage> {
     return await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
   }
-  
+
   //function to open the camera and get the picture
   Future<void> _openCamera() async {
     final XFile? pickedImage =

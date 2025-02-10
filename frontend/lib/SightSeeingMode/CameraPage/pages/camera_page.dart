@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:practice/SightSeeingMode/CameraPage/providers/Image_provider.dart';
+import 'package:practice/SightSeeingMode/Menu.dart';
 import 'package:provider/provider.dart';
 import 'dart:io';
 
@@ -35,7 +36,6 @@ class _CameraPageState extends State<CameraPage> {
           'photo': File(pickedImage.path),
           'location': position,
         };
-
 
         //add the image data object to the temp Images array
         setState(() {
@@ -161,6 +161,11 @@ class _CameraPageState extends State<CameraPage> {
                 setState(() {
                   tempImages.clear();
                 });
+
+                Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => SightMenu()),
+                        );
               }
             },
             backgroundColor: Colors.green,

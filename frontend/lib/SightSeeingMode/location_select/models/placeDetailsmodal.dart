@@ -1,9 +1,11 @@
+import 'dart:ffi';
 
 class PlaceDetails {
   final String name;
   final double latitude;
   final double longitude;
   final String address;
+  final List<String> images; 
 
   //constructor
   PlaceDetails({
@@ -11,16 +13,27 @@ class PlaceDetails {
     required this.latitude,
     required this.longitude,
     required this.address,
+    required this.images
   });
 
   //factory constructor parsing json data
   factory PlaceDetails.fromJson(Map<String, dynamic> json) {
     final location = json['result']['geometry']['location'];
+
+    // Extracting only the photo references (if needed)
+    List<String> imageUrls = [];
+
+    if (json['result']['photos'] != null) {
+      for (var photo in json['result']['photos']) {
+        imageUrls.add(photo['photo_reference']);
+      }
+    }
     return PlaceDetails(
       name: json['result']['name'],
       latitude: location['lat'],
       longitude: location['lng'],
       address: json['result']['formatted_address'] ?? '',
+      images: imageUrls,
     );
   }
 }

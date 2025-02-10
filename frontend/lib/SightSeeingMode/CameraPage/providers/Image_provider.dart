@@ -11,8 +11,9 @@ class SelectedImageProvider with ChangeNotifier {
   
   //add Trip method to add a temp images array as tripData to the array
   void addTrip(List<Map<String, dynamic>> tripData) {
+
+     print(tripData);
     _selectedTrips.add(tripData);
-    print(_selectedTrips);
     notifyListeners();
   }
   

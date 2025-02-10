@@ -4,6 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:practice/SightSeeingMode/location_select/models/autoCmodal.dart';
 import 'package:practice/SightSeeingMode/location_select/models/location_info.dart';
+import 'package:practice/SightSeeingMode/Menu.dart';
 import 'package:practice/SightSeeingMode/location_select/services/autoCService.dart';
 import 'package:practice/SightSeeingMode/location_select/providers/selected_place_provider.dart';
 import 'package:provider/provider.dart';
@@ -36,8 +37,6 @@ class PlacesAutoCompleteField extends StatefulWidget {
 }
 
 class _PlacesAutoCompleteFieldState extends State<PlacesAutoCompleteField> {
-  var SelectedPlace;
-
   //to get the search bar text
   final TextEditingController _controller = TextEditingController();
 
@@ -60,6 +59,7 @@ class _PlacesAutoCompleteFieldState extends State<PlacesAutoCompleteField> {
   //track checkmark status
   bool _showCheckmark = false;
 
+  //hold the selected place
   var _selectedPlace;
 
   //instantiating the class by making a new ServiceObject
@@ -115,6 +115,9 @@ class _PlacesAutoCompleteFieldState extends State<PlacesAutoCompleteField> {
     //creating location info object
     final locationinfo =
         LocationInfo(prediction: prediction, placeDetails: placeDetails);
+
+    //Assigning the selected location object to selectedPlace
+    _selectedPlace = locationinfo;
 
     // Update text field with full description
     _controller.text = prediction.description;
@@ -199,10 +202,15 @@ class _PlacesAutoCompleteFieldState extends State<PlacesAutoCompleteField> {
                             Provider.of<SelectedPlaceProvider>(context,
                                 listen: false);
                         placeProvider.addLocationInfo(_selectedPlace);
-                        print(_selectedPlace.toString);
+                        print(_selectedPlace.toString());
                         setState(() {
-                          _showCheckmark = false; 
+                          _showCheckmark = false;
                         });
+
+                        Navigator.push(
+                           context,
+                           MaterialPageRoute(builder: (context) => SightMenu()),
+                         );
                       },
                       child: Icon(Icons.check),
                     ),

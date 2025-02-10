@@ -201,7 +201,7 @@ class _PlacesAutoCompleteFieldState extends State<PlacesAutoCompleteField> {
                         placeProvider.addLocationInfo(_selectedPlace);
                         print(_selectedPlace.toString);
                         setState(() {
-                          _showCheckmark = false;
+                          _showCheckmark = false; 
                         });
                       },
                       child: Icon(Icons.check),

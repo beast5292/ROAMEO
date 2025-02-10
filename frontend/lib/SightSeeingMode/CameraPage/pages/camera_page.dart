@@ -36,6 +36,7 @@ class _CameraPageState extends State<CameraPage> {
           'location': position,
         };
 
+
         //add the image data object to the temp Images array
         setState(() {
           tempImages.add(imageData);

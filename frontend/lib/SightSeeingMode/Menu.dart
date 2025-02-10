@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:practice/SightSeeingMode/CameraPage/pages/camera_page.dart';
 import 'package:practice/SightSeeingMode/location_select/pages/autoCwidget.dart';
-
+import 'package:practice/SightSeeingMode/CameraPage/providers/Image_provider.dart';
+import 'package:practice/SightSeeingMode/location_select/providers/selected_place_provider.dart';
+import 'package:provider/provider.dart';
+import 'dart:io';  // Make sure to import dart:io for File handling
 
 class SightMenu extends StatefulWidget {
   const SightMenu({super.key});
@@ -11,48 +14,127 @@ class SightMenu extends StatefulWidget {
 }
 
 class _SightMenuState extends State<SightMenu> {
+  bool showLocations = true; // Toggle switch state
 
   @override
   Widget build(BuildContext context) {
+    final selectedPlaceProvider = Provider.of<SelectedPlaceProvider>(context);
+    final selectedImageProvider = Provider.of<SelectedImageProvider>(context);
+
     return Scaffold(
-      body: Stack(
-        children: [
-          SafeArea(
-            child: Column(
+      body: SafeArea(
+        child: Column(
+          children: [
+            Text("Create your own sightseeing mode", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            SizedBox(height: 10),
+
+            // Toggle switch
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Create your own sightseeing mode"),
+                Text("Locations", style: TextStyle(fontSize: 16)),
+                Switch(
+                  value: showLocations,
+                  onChanged: (value) {
+                    setState(() {
+                      showLocations = value;
+                    });
+                  },
+                ),
+                Text("Images", style: TextStyle(fontSize: 16)),
               ],
             ),
+
+            Expanded(
+              child: showLocations
+                  ? ListView.builder(
+                      itemCount: selectedPlaceProvider.selectedLocations.length,
+                      itemBuilder: (context, index) {
+                        final location = selectedPlaceProvider.selectedLocations[index];
+
+                        // Get the first image URL from the Images list
+                        final firstImageUrl = location.imageUrls.isNotEmpty ? location.imageUrls[0] : null;
+
+                        return ListTile(
+                          leading: firstImageUrl != null
+                              ? Image.network(firstImageUrl, width: 40, height: 40, fit: BoxFit.cover) // Smaller image size
+                              : Icon(Icons.location_on, color: Colors.blue), // Fallback icon if no image is available
+                          title: Text(location.prediction.mainText ?? "Unknown Place", 
+                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                          subtitle: Text(location.prediction.secondaryText ?? "No details available"),
+                        );
+                      },
+                    )
+                  : selectedImageProvider.selectedTrips.isEmpty
+                      ? Center(child: Text("No images added yet", style: TextStyle(fontSize: 16, color: Colors.grey)))
+                      : ListView.builder(
+                          itemCount: selectedImageProvider.selectedTrips.length,
+                          itemBuilder: (context, index) {
+                            final tripData = selectedImageProvider.selectedTrips[index];
+
+                            if (tripData.isEmpty) {
+                              return SizedBox.shrink();
+                            }
+
+                            final imageDataList = tripData;
+
+                            return ListTile(
+                              title: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: imageDataList.map<Widget>((imageData) {
+                                      return Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Image.file(
+                                          File(imageData['photo']),
+                                          width: 150, // Smaller image size
+                                          height: 150,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      );
+                                    }).toList(),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+            ),
+          ],
+        ),
+      ),
+
+      // Floating buttons
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            heroTag: 'locationButton',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Scaffold(
+                    body: PlacesAutoCompleteField(
+                      apiKey: "AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0",
+                    ),
+                  ),
+                ),
+              );
+            },
+            child: Icon(Icons.map),
           ),
-          Positioned(
-            top: 600,
-            right: 10,
-            child: FloatingActionButton(
-                heroTag: 'locationButton',
-                onPressed: () {
-                  Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Scaffold(
-                            body: PlacesAutoCompleteField(apiKey: "AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0"),
-                          ),
-                       ),
-                  );
-                },
-                child: Icon(Icons.map)),
-          ),
-          Positioned(
-            top: 700,
-            right: 10,
-            child: FloatingActionButton(
-                heroTag: 'cameraButton',
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => CameraPage()),
-                  );
-                },
-                child: Icon(Icons.camera)),
+          SizedBox(height: 10),
+          FloatingActionButton(
+            heroTag: 'cameraButton',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CameraPage()),
+              );
+            },
+            child: Icon(Icons.camera),
           ),
         ],
       ),

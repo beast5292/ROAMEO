@@ -100,11 +100,21 @@ class _PlacesAutoCompleteFieldState extends State<PlacesAutoCompleteField> {
   }
 
   void _onPlaceSelected(PlacePrediction prediction) async {
+
     var placeDetails;
+
+    List<String> imageUrls = [];
+
     //fetch the place details for the selected prediction
     try {
       placeDetails = await Placedetailservice(apiKey: widget.apiKey)
           .getPlaceDetails(prediction.placeId);
+
+      // Fetch the image URLs
+      imageUrls = LocationInfo.getImageUrlsFromPhotos(
+      placeDetails.images,
+      widget.apiKey,
+    );
 
       print(
           'Place Details: ${placeDetails.name}, ${placeDetails.latitude}, ${placeDetails.longitude}, ${placeDetails.address}');
@@ -114,7 +124,7 @@ class _PlacesAutoCompleteFieldState extends State<PlacesAutoCompleteField> {
 
     //creating location info object
     final locationinfo =
-        LocationInfo(prediction: prediction, placeDetails: placeDetails);
+        LocationInfo(prediction: prediction, placeDetails: placeDetails,imageUrls: imageUrls);
 
     //Assigning the selected location object to selectedPlace
     _selectedPlace = locationinfo;
@@ -208,13 +218,28 @@ class _PlacesAutoCompleteFieldState extends State<PlacesAutoCompleteField> {
                         });
 
                         Navigator.push(
-                           context,
-                           MaterialPageRoute(builder: (context) => SightMenu()),
-                         );
+                          context,
+                          MaterialPageRoute(builder: (context) => SightMenu()),
+                        );
                       },
                       child: Icon(Icons.check),
                     ),
                   ),
+                // Displaying images below the map
+            if (_selectedPlace != null)
+              Positioned(
+                bottom: 100,
+                left: 20,
+                right: 20,
+                child: Column(
+                    children: (_selectedPlace.imageUrls as List<String>).map((imageUrl) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: Image.network(imageUrl, fit: BoxFit.cover),
+                      );
+                    }).toList(),
+                ),
+              )
               ],
             ),
           ),

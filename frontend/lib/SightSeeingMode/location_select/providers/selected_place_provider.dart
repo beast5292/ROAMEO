@@ -10,13 +10,11 @@ class SelectedPlaceProvider with ChangeNotifier {
 
   //set the combined object
   void addLocationInfo(LocationInfo locationInfo) {
+    
+    locationInfo.toString();
 
     _selectedLocations.add(locationInfo);
 
     notifyListeners();
-
   }
-  
 }
-
-

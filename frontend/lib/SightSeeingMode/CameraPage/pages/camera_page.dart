@@ -33,7 +33,7 @@ class _CameraPageState extends State<CameraPage> {
 
         //image Data object combining the picture file and the location
         var imageData = {
-          'photo': File(pickedImage.path),
+          'photo': pickedImage.path,
           'location': position,
         };
 
@@ -110,7 +110,7 @@ class _CameraPageState extends State<CameraPage> {
                     return Column(
                       children: [
                         Image.file(
-                          image['photo'],
+                          File(image['photo']),
                           fit: BoxFit.cover,
                           height: 100,
                           width: 100,

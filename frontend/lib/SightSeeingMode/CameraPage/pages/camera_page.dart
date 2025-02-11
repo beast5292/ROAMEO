@@ -35,6 +35,7 @@ class _CameraPageState extends State<CameraPage> {
         var imageData = {
           'photo': pickedImage.path,
           'location': position,
+          'name': "dummy name"
         };
 
         //add the image data object to the temp Images array

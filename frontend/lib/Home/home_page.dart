@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:practice/SightSeeingMode/location_select/pages/Sightseeing_mode_page.dart";
+import "package:practice/SightSeeingMode/Sightseeing_mode_page.dart";
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

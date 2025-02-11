@@ -12,7 +12,6 @@ class CameraPage extends StatefulWidget {
 }
 
 class _CameraPageState extends State<CameraPage> {
-
   final ImagePicker _picker = ImagePicker();
 
   //Array to store the temporary images taken per session
@@ -34,9 +33,12 @@ class _CameraPageState extends State<CameraPage> {
         //image Data object combining the picture file and the location
         var imageData = {
           'photo': pickedImage.path,
-          'location': position,
+          'latitude': position.latitude,
+          'longitude': position.longitude,
           'name': "dummy name"
         };
+
+        print(imageData);
 
         //add the image data object to the temp Images array
         setState(() {
@@ -77,13 +79,12 @@ class _CameraPageState extends State<CameraPage> {
     //return a position object using getCurrentPosition, contains lan and long co-ordinates
     return await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
-    
+
     //returning object structure
     // {
     //   latitude: value
     //   longitude: value
     // }
-  
   }
 
   @override
@@ -104,7 +105,6 @@ class _CameraPageState extends State<CameraPage> {
                   ),
                   itemCount: tempImages.length,
                   itemBuilder: (context, index) {
-
                     //single image object
                     var image = tempImages[index];
 
@@ -117,8 +117,8 @@ class _CameraPageState extends State<CameraPage> {
                           width: 100,
                         ),
                         Text(
-                          'Lat: ${image['location'].latitude.toStringAsFixed(2)}\n'
-                          'Lon: ${image['location'].longitude.toStringAsFixed(2)}',
+                          'Lat: ${image['latitude'].toStringAsFixed(2)}\n'
+                          'Lon: ${image['longitude'].toStringAsFixed(2)}',
                           style: const TextStyle(fontSize: 12),
                           textAlign: TextAlign.center,
                         ),
@@ -139,7 +139,7 @@ class _CameraPageState extends State<CameraPage> {
         },
       ),
 
-       // Floating action button to open the camera
+      // Floating action button to open the camera
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -153,7 +153,6 @@ class _CameraPageState extends State<CameraPage> {
           FloatingActionButton(
             onPressed: () {
               if (tempImages.isNotEmpty) {
-
                 //adds the temp images array to the provider as an array object
                 Provider.of<SelectedImageProvider>(context, listen: false)
                     .addTrip(List.from(tempImages));
@@ -164,9 +163,9 @@ class _CameraPageState extends State<CameraPage> {
                 });
 
                 Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => SightMenu()),
-                        );
+                  context,
+                  MaterialPageRoute(builder: (context) => SightMenu()),
+                );
               }
             },
             backgroundColor: Colors.green,
@@ -174,7 +173,6 @@ class _CameraPageState extends State<CameraPage> {
           ),
         ],
       ),
-      
     );
   }
 }

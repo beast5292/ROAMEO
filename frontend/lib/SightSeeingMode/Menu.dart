@@ -16,6 +16,7 @@ class SightMenu extends StatefulWidget {
 }
 
 class _SightMenuState extends State<SightMenu> {
+
   bool showLocations = true; // Toggle switch state
 
   onSightSave() {
@@ -48,44 +49,54 @@ class _SightMenuState extends State<SightMenu> {
         long: location.placeDetails.longitude,
         imageUrls: location.imageUrls.isNotEmpty ? location.imageUrls : [],
       );
-
-      sight.toString();
+      
+      print(sight.toString());
 
       Sights.add(sight);
     }
 
-    //iterate through selected images and create Sight objects
     for (var tripData in selectedImageProvider.selectedTrips) {
-      if (tripData.isNotEmpty) {
-        List<String> imagePaths =
-            tripData.map<String>((imageData) => imageData['photo']).toList();
+   
+          // Extracting image URLs
+          List<String> imagePaths = tripData
+              .where((imageData) => imageData.containsKey('photo') && imageData['photo'] != null)
+              .map<String>((imageData) => imageData['photo'] as String)
+              .toList();
 
-        //Accessing lat and long from first image
-        double? lat = tripData.first['location']?.latitude;
-        double? long = tripData.first['location']?.longitude;
+          // Extract lat and long from the first image in the trip
+          var firstImage = tripData.first;
 
-        Sight sight = Sight(
-          id: DateTime.now()
-              .millisecondsSinceEpoch
-              .toString(), // Generate a unique ID
-          name: "Captured Image",
-          description: "Sightseeing image",
-          tags: ["dummy tag1", "dummy tag2"],
-          lat: lat,
-          long: long,
-          imageUrls: imagePaths,
-        );
+          double? lat;
+          double? long;
 
-        sight.toString();
+          if (firstImage.containsKey('latitude') && firstImage.containsKey('longitude')) {
+            lat = firstImage['latitude'] as double?;
+            long = firstImage['longitude'] as double?;
+          }
 
-        Sights.add(sight);
-      }
+          Sight sight = Sight(
+            id: DateTime.now().millisecondsSinceEpoch.toString(),
+            name: "Captured Image",
+            description: "Sightseeing image",
+            tags: ["dummy tag1", "dummy tag2"],
+            lat: lat,
+            long: long,
+            imageUrls: imagePaths,
+          );
+
+          print(sight.toString());
+
+          Sights.add(sight);
+        }
+
+        //Print the entire Sights array after adding all objects
+        print("Sights Array: $Sights");
+       
+       
     }
 
-    // Print the entire Sights list for debugging
-    print("Sights Array: ${Sights.map((sight) => sight.toString()).toList()}");
-  }
-
+  
+  
   @override
   Widget build(BuildContext context) {
     final selectedPlaceProvider = Provider.of<SelectedPlaceProvider>(context);

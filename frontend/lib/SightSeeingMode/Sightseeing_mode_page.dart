@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:practice/SightSeeingMode/Feed/SightFeed.dart';
 import 'package:practice/SightSeeingMode/Menu.dart';
 import 'package:google_maps_webservice/places.dart';
 
@@ -42,6 +43,18 @@ class _SsmPageState extends State<SsmPage> {
                   );
                 },
                 child: Icon(Icons.create)),
+          ),
+          Positioned(
+            top: 600,
+            right: 20,
+            child: FloatingActionButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SightFeed()),
+                  );
+                },
+                child: Icon(Icons.search)),
           )
         ]));
   }

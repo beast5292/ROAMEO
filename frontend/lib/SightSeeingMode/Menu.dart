@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practice/SightSeeingMode/CameraPage/pages/camera_page.dart';
+import 'package:practice/SightSeeingMode/Services/SightsSend.dart';
 import 'package:practice/SightSeeingMode/Sightseeing_mode_page.dart';
 import 'package:practice/SightSeeingMode/location_select/pages/autoCwidget.dart';
 import 'package:practice/SightSeeingMode/CameraPage/providers/Image_provider.dart';
@@ -89,8 +90,11 @@ class _SightMenuState extends State<SightMenu> {
           Sights.add(sight);
         }
 
-        //Print the entire Sights array after adding all objects
-        print("Sights Array: $Sights");
+      //Print the entire Sights array after adding all objects
+      print("Sights Array: $Sights");
+
+      // After creating the Sights array
+      sendSights(Sights);
        
        
     }

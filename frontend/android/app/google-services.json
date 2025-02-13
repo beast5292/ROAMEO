@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "56002505752",
+    "project_id": "roameo-fb268",
+    "storage_bucket": "roameo-fb268.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:56002505752:android:c253e8330164c3ff08676d",
+        "android_client_info": {
+          "package_name": "com.example.homepage"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9JzIfn4cMtht2CifTTuCshVBVC-jHDuw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

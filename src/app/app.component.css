@@ -1,0 +1,10 @@
+/* Flexbox layout to push footer to the bottom */
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure the container takes at least the full viewport height */
+  }
+  
+  .content-wrapper {
+    flex: 1; /* Allow the content to grow and push the footer to the bottom */
+  }

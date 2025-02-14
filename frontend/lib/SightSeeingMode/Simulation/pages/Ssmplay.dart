@@ -20,8 +20,11 @@ class SsmPlayState extends State<SsmPlay> {
   List<LatLng> polylineCoordinates = [];
   LocationData? currentLocation;
 
-  void getCurrentLocation() {
-    
+  BitmapDescriptor sourceIcon = BitmapDescriptor.defaultMarker;
+  BitmapDescriptor destinationIcon = BitmapDescriptor.defaultMarker;
+  BitmapDescriptor currentLocationIcon = BitmapDescriptor.defaultMarker;
+
+  void getCurrentLocation() async {
     Location location = Location();
 
     location.getLocation().then(
@@ -32,14 +35,16 @@ class SsmPlayState extends State<SsmPlay> {
       },
     );
 
-    location.onLocationChanged.listen(
-      (newLoc) {
+    GoogleMapController googleMapController = await _controller.future;
 
+    location.onLocationChanged.listen((newLoc) {
       currentLocation = newLoc;
 
-      setState(() {
+      googleMapController.animateCamera(CameraUpdate.newCameraPosition(
+        CameraPosition(target: LatLng(newLoc.latitude!, newLoc.longitude!)),
+      ));
 
-      });
+      setState(() {});
     });
   }
 
@@ -60,9 +65,36 @@ class SsmPlayState extends State<SsmPlay> {
     }
   }
 
+  void setCustomMarkerIcon() {
+    BitmapDescriptor.fromAssetImage(
+            ImageConfiguration.empty, "assets/images/profile.jpg")
+        .then(
+      (icon) {
+        sourceIcon = icon;
+      },
+    );
+
+    BitmapDescriptor.fromAssetImage(
+            ImageConfiguration.empty, "assets/images/profile.jpg")
+        .then(
+      (icon) {
+        sourceIcon = icon;
+      },
+    );
+
+    BitmapDescriptor.fromAssetImage(
+            ImageConfiguration.empty, "assets/images/profile.jpg")
+        .then(
+      (icon) {
+        sourceIcon = icon;
+      },
+    );
+  }
+
   @override
   void initState() {
     getCurrentLocation();
+    setCustomMarkerIcon();
     getPolyPoints();
     super.initState();
   }
@@ -95,6 +127,7 @@ class SsmPlayState extends State<SsmPlay> {
               markers: {
                 Marker(
                     markerId: const MarkerId("currentLocation"),
+                    icon: currentLocationIcon,
                     position: LatLng(currentLocation!.latitude!,
                         currentLocation!.longitude!)),
                 const Marker(
@@ -105,6 +138,9 @@ class SsmPlayState extends State<SsmPlay> {
                   markerId: MarkerId("destination"),
                   position: destination,
                 )
+              },
+              onMapCreated: (mapController) {
+                _controller.complete(mapController);
               },
             ),
     );

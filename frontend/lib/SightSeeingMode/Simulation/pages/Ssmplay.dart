@@ -31,6 +31,16 @@ class SsmPlayState extends State<SsmPlay> {
         });
       },
     );
+
+    location.onLocationChanged.listen(
+      (newLoc) {
+
+      currentLocation = newLoc;
+
+      setState(() {
+
+      });
+    });
   }
 
   void getPolyPoints() async {

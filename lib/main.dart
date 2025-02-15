@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'screens/splash_screen.dart';
+import 'screens/blogPage.dart';
 
 void main() {
   runApp(const MyApp());
 }
+
+//correct function to be used on the app with with splash screen and blog page
+
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -29,10 +33,31 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Main App Screen'),
-      ),
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: blogPage(),
+
     );
   }
 }
+// temporary function used to work only on blog page
+/*
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Blog',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const HomeScreen(),
+
+
+    );
+  }
+}
+
+ */

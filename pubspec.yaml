@@ -56,6 +56,9 @@ flutter:
     - assets/images/left_part.png
     - assets/images/right_part.png
     - assets/images/text.png
+    - assets/images/cars5.png
+    
+
 
 
   # The following line ensures that the Material Icons font is
@@ -107,3 +110,5 @@ flutter:
           weight: 800
         - asset: assets/fonts/Inter-Black.woff
           weight: 900
+
+

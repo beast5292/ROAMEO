@@ -39,6 +39,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  cupertino_icons: ^1.0.8
+  image_picker: ^0.8.4+3
+
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -52,12 +55,10 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
   assets:
-    - assets/images/top_part.png
-    - assets/images/left_part.png
-    - assets/images/right_part.png
-    - assets/images/text.png
-    - assets/images/cars5.png
-    
+    - assets/images/
+    - lib/assets/images/
+    - lib/assets/icons
+
 
 
 

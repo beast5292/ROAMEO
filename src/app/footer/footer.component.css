@@ -1,20 +1,67 @@
 footer {
-  background-color: #0A1F3A; /* Dark blue */
-  color: #FFFFFF; /* White */
-  padding: 1rem;
-  text-align: center;
-  font-family: 'Roboto', sans-serif; 
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
   position: relative;
-  bottom: 0;
-  width: 100%;
+  background-color: rgb(0, 5, 7);
+  color: rgb(189, 202, 255);
+  padding: 40px 20px;
+  border: none;
+  border-radius: 40px;
+  width: 1000px;
+  align-content: center;
+  justify-content: center;
+
+    /* Pink radial gradient on the left side */
+    /*background: radial-gradient(circle at left, rgba(255, 0, 75, 0.4), transparent 40%) #000;*/
 }
 
-footer a {
-  color: #1E90FF; /* Light blue */
+.footer-container {
+  display: flex;
+  flex-wrap: wrap; /*Wrap to smaller sections*/
+  justify-content: space-between;
+  gap: 50px;
+  margin-bottom: 30px;
+}
+
+/*Each clumn style*/
+.footer-column {
+  flex: 1 1 200px;
+  min-width: 200px;
+}
+
+.footer-column h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.footer-column p,
+.footer-column li,
+.footer-column a {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* For quick links list */
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column li {
+  margin: 5px 0;
+}
+
+.footer-column li a {
+  color: #ffffff;
   text-decoration: none;
-  margin: 0 0.5rem;
+  transition: color 0.2s ease;
 }
 
-footer a:hover {
-  text-decoration: underline;
+.footer-column li a:hover {
+  color: #00227e;
 }

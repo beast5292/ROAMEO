@@ -1,42 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Roboto:ital,wght@0,400;0,500;0,700;1,500&display=swap');
 @import url("https://use.typekit.net/ihx8dwh.css");
-
-/* Header */
 nav {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Center items */
     align-items: center;
-    padding: 10px 50px;
-    background-color: rgba(255, 255, 255, 0.95);
+    padding: 10px 30px;
+    background-color: #041540;
     z-index: 100;
     font-family: 'Roboto', sans-serif;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 nav .logo img {
-    image-rendering: auto;
-    height: auto;
-    width: 150px; /* Adjust logo size */
-    max-width: 100%; /* Ensure the logo scales down on smaller screens */
-    object-fit: contain; /* Maintain aspect ratio of the logo */
+    width: 120px; /* Decrease logo size */
+    max-width: 100%;
+    object-fit: contain;
+    margin-right: 20px; /* Add spacing between logo and menu */
 }
 
 nav ul {
     list-style: none;
     display: flex;
-    gap: 40px;
+    gap: 20px; /* Reduce gap between items */
 }
 
 nav ul li a {
     text-decoration: none;
-    color: #333;
-    font-size: 18px;
+    color: #fff;
+    font-size: 14px; /* Reduce font size */
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     transition: color 0.3s ease;
 }
 

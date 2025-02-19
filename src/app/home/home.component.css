@@ -66,9 +66,9 @@
 
 /* Background Image Section BELOW earth */
 .image-section {
-    width: 100vw;
+    width: 90vw;
     height: 80vh;
-    /*background: url('../../assets/bg.jpg') no-repeat center center/cover;*/
+    /*background: url('/assets/bg.jpg') no-repeat center center/cover;*/
     display: flex;
     align-items: center;
     justify-content: center;
@@ -89,4 +89,34 @@
 
 .prototype-section {
     color: #ccc;
+    max-width: 1200px;
+    margin: auto;
+    padding: 50px 20px;
+    text-align: left;
+}
+
+/*Grid design*/
+.img-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+/*Individual Cards*/
+.pt-card {
+    position: relative;
+    border-radius: 40px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.pt-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.pt-card:hover img {
+    transform: scale(1.05);
 }

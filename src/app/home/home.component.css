@@ -10,13 +10,14 @@
 
 /* Fullscreen Background Image */
 .earth {
-    width: 100vw;
+    width: auto;
     height: 100vh;
     position: relative;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 100px;
 }
 
 .earth video {
@@ -41,7 +42,7 @@
 
 .overlay h1 {
     font-size: 3rem;
-    font-weight: 700;
+    font-weight:900;
 }
 
 .overlay p {

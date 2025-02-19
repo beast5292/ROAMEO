@@ -30,7 +30,7 @@ nav .logo img {
 nav ul {
     list-style: none;
     display: flex;
-    gap: 20px; /* Reduce gap between items */
+    gap: 30px; /* Reduce gap between items */
 }
 
 nav ul li a {

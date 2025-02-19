@@ -8,13 +8,13 @@
 /* Fullscreen Background Image */
 .earth {
     width: auto;
-    height: 100vh;
+    height: 150vh;
     position: relative;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 100px;
+    margin-top: auto;
 }
 
 .earth video {
@@ -40,15 +40,16 @@
 .overlay h1 {
     font-size: 5rem;
     font-weight:900;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: -4px;
 
     /*Top to bottom gradient*/
     background: linear-gradient(
         to bottom,
-        #fff 0%, /*Whiter at top*/
-        #ccc 50%,
-        #0b0b0b 100% /*Darker in bottom*/
+        #ffffff 0%, /*Whiter at top*/
+        #c7c8c9 50%,
+        #585858 100% /*Darker in bottom*/
     );
 
     /*Clip gradient to text*/
@@ -56,6 +57,7 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     color: transparent;
+    height: auto;
 }
 
 .overlay p {

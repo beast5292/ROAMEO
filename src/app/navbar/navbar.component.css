@@ -3,21 +3,23 @@ nav {
     top: 0;
     left: 0;
     width: 100%;
-    display: flex;
-    justify-content: center; /* Center items */
+    display: flex;  
+    justify-content: flex-start; /* Center items */
     align-items: center;
-    padding: 10px 30px;
-    background-color: #010613;
+    padding: 20px 30px;
+    background-color: #000000;
     z-index: 100;
     font-family: 'Roboto', sans-serif;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    opacity: 0.6;
+    opacity: 0.9;
+
+    
 }
 
 nav .logo {
     position: absolute;
-    left: 140px;
-    top: 50%;
+    left: 80px;
+    top: 35%;
     transform: translate(-50%);
 }
 
@@ -30,6 +32,7 @@ nav .logo img {
 nav ul {
     list-style: none;
     display: flex;
+    margin-left: 640px;
     gap: 30px; /* Reduce gap between items */
 }
 
@@ -43,5 +46,5 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #036567;
+    color: #00a2ff;
 }

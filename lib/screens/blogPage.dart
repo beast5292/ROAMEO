@@ -11,34 +11,29 @@ class BlogPage extends StatefulWidget {
 
 class _BlogPageState extends State<BlogPage> {
   int _selectedIndex = 0;
-
+  bool _isSearching = false; // Track if search is active
+  TextEditingController _searchController = TextEditingController();
   List<Blog> blogs = [
     Blog(
       title: "Helloooooooooo oooohhhh",
-      content: "ahhhhh jcndwbcewkcw cwkanlifkv ef evken hevc bvcjksnvks,b jhebfrv euvbejbvuv",
-      imagePath: ('lib/assets/images/cars5.png'),
+      content: "eabsvyeb wervbe vherv e vehver verveer erve",
+      imagePath: 'lib/assets/images/cars5.png',
     ),
-
     Blog(
       title: "heeeeee heeeeeee",
-      content: "ahhhhh jcndwbcewkcw cwkanlifkv ef evken hevc bvcjksnvks,b jhebfrv euvbejbvuv",
-      imagePath: ('lib/assets/images/cars1.jpg'),
+      content: "Sevew ewverwv ewvewv eev",
+      imagePath: 'lib/assets/images/cars1.jpg',
     ),
-
     Blog(
       title: "content without image",
-      content: "ahhhhh jcndwbcewkcw cwkanlifkv ef evken hevc bvcjksnvks,b jhebfrv euvbejbvuv",
-
+      content: "Somerwvewv ewvreve wvwv wev we",
     ),
     Blog(
       title: "hoooooooooooo oooooooooooh",
-      content: "ahhhhh jcndwbcewkcw cwkanlifkv ef evken hevc bvcjksnvks,b jhebfrv euvbejbvuv",
-      imagePath: ('lib/assets/images/Logo.png'),
+      content: "Some conewvw ddz zdvzs  szevew",
+      imagePath: 'lib/assets/images/Logo.png',
     ),
-  ]; // Declare the blogs list
-
-
-
+  ];
 
   void _onNavBarItemTapped(int index) {
     setState(() {
@@ -64,12 +59,68 @@ class _BlogPageState extends State<BlogPage> {
     );
   }
 
+  List<Blog> filteredBlogs = []; // Stores filtered blogs
+  Map<int, int> likeCounts = {};
+  Map<int, int> dislikeCounts = {};
+  String userName = "User Name";
+  String userProfileImage = 'lib/assets/images/cars5.png';
+
+  @override
+  void initState() {
+    super.initState();
+    filteredBlogs = blogs;
+    _searchController.addListener(_filterBlogs);
+  }
+
+  void _filterBlogs() {
+    setState(() {
+      String query = _searchController.text.toLowerCase();
+      filteredBlogs = blogs.where((blog) {
+        return blog.title.toLowerCase().contains(query) ||
+            blog.content.toLowerCase().contains(query);
+      }).toList();
+    });
+  }
+
+  void _toggleSearch() {
+    setState(() {
+      _isSearching = !_isSearching;
+      if (!_isSearching) {
+        _searchController.clear();
+        filteredBlogs = blogs;
+      }
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
+        title: _isSearching
+            ? Row(
+          children: [
+            IconButton(
+              icon: Icon(Icons.arrow_back, color: Colors.white),
+              onPressed: _toggleSearch,
+            ),
+            Expanded(
+              child: TextField(
+                controller: _searchController,
+                autofocus: true,
+                decoration: InputDecoration(
+                  hintText: 'Search blogs...',
+                  border: InputBorder.none,
+                  hintStyle: TextStyle(color: Colors.white54),
+                ),
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ],
+        )
+
+
+            : Row(
           children: [
             Image.asset(
               'lib/assets/images/Logo.png',
@@ -77,19 +128,19 @@ class _BlogPageState extends State<BlogPage> {
               height: 50,
               fit: BoxFit.contain,
             ),
-            const SizedBox(width: 10), // Small spacing between logo and title/icons
-            Expanded( // Key change: Use Expanded
-              child: Row( // Row for the icons and avatar
-                mainAxisAlignment: MainAxisAlignment.end, // Align to the right
+            const SizedBox(width: 10),
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.search, color: Colors.white, size: 28),
-                    onPressed: () {
-                      // Add search functionality here
-                    },
+                    icon: const Icon(Icons.search,
+                        color: Colors.white, size: 28),
+                    onPressed: _toggleSearch,
                   ),
                   IconButton(
-                    icon: const Icon(Icons.add_rounded, color: Colors.white, size: 28),
+                    icon: const Icon(Icons.add_rounded,
+                        color: Colors.white, size: 28),
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -101,141 +152,25 @@ class _BlogPageState extends State<BlogPage> {
                     },
                   ),
                   IconButton(
-                    icon: const Icon(Icons.notifications_none, color: Colors.white, size: 28),
+                    icon: const Icon(Icons.notifications_none,
+                        color: Colors.white, size: 28),
                     onPressed: () {},
                   ),
                   const CircleAvatar(
-                    backgroundImage: AssetImage('lib/assets/images/cars5.png'),
+                    backgroundImage:
+                    AssetImage('lib/assets/images/cars5.png'),
                     radius: 16,
                   ),
                 ],
               ),
-
             ),
           ],
         ),
         backgroundColor: Colors.black,
-        iconTheme: const IconThemeData(
-            color: Colors.white
-          // ... rest of your AppBar code
-        ),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
-      backgroundColor: Colors.black,
-      // Sidebar (Drawer)
-      drawer: SizedBox(
-        width: 260,
 
-        child: Drawer(
-
-
-          child: Container(
-            color: Colors.black,
-
-            child: ListView(
-              padding: EdgeInsets.zero,
-              children: [
-
-                SizedBox(height: 40),
-                const Divider(color: Colors.white24,),
-                // First Header Section
-                ListTile(
-                  title: const Text(
-                    'Recently Visited',
-                    style: TextStyle(fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-
-                  ),
-                ),
-                ListTile(
-                  leading: const Icon(
-                    Icons.circle_outlined, color: Colors.white, size: 22,),
-                  title: const Text('r/Cars',
-                    style: TextStyle(fontSize: 14, color: Colors.white),),
-
-                  onTap: () {
-                    Navigator.pop(context);
-                    // Navigate to Home
-                  },
-                ),
-                ListTile(
-                  leading: const Icon(
-                    Icons.circle_outlined, color: Colors.white, size: 22,),
-                  title: const Text('r/Music',
-                      style: TextStyle(fontSize: 14, color: Colors.white)),
-                  onTap: () {
-                    Navigator.pop(context);
-                    // Navigate to Profile
-                  },
-                ),
-                ListTile(
-                  leading: const Icon(
-                    Icons.circle_outlined, color: Colors.white, size: 22,),
-                  title: const Text('r/Cricket',
-                      style: TextStyle(fontSize: 14, color: Colors.white,)),
-                  onTap: () {
-                    Navigator.pop(context);
-                    // Navigate to Settings
-                  },
-                ),
-                // Second Header Section
-                const Divider(color: Colors.white24,),
-                ListTile(
-                  title: const Text(
-                    'Your Communities',
-                    style: TextStyle(fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
-                ),
-                ListTile(
-                  leading: const Icon(
-                    Icons.circle_outlined, color: Colors.white, size: 22,),
-                  title: const Text('r/StockMarket',
-                      style: TextStyle(fontSize: 14, color: Colors.white,)),
-                  onTap: () {
-                    Navigator.pop(context);
-                    // Navigate to Notifications
-                  },
-                ),
-                ListTile(
-                  leading: const Icon(
-                    Icons.circle_outlined, color: Colors.white, size: 22,),
-                  title: const Text('r/Bitcoin',
-                      style: TextStyle(fontSize: 14, color: Colors.white,)),
-                  onTap: () {
-                    Navigator.pop(context);
-                    // Navigate to Help
-                  },
-                ),
-                ListTile(
-                  leading: const Icon(
-                    Icons.circle_outlined, color: Colors.white, size: 22,),
-                  title: const Text('r/formula1',
-                      style: TextStyle(fontSize: 14, color: Colors.white,)),
-                  onTap: () {
-                    Navigator.pop(context);
-                    // Log out
-                  },
-                ),
-                const Divider(color: Colors.white24,),
-                ListTile(
-                  leading: const Icon(
-                    Icons.blur_circular_outlined, color: Colors.white,
-                    size: 22,),
-                  title: const Text('All',
-                      style: TextStyle(fontSize: 15, color: Colors.white)),
-                  onTap: () {
-                    Navigator.pop(context);
-                    // Navigate to Help
-                  },
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-/*
+      /*
       body: blogs.isEmpty
           ? Center(child: Text('No blogs available', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20)))
           : ListView.builder(
@@ -271,49 +206,120 @@ class _BlogPageState extends State<BlogPage> {
       ),
 
  */
-      body: blogs.isEmpty
-          ? Center(child: Text('No blogs available', style: TextStyle(color: Colors.white)))
+
+
+      backgroundColor: Colors.black,
+      body: filteredBlogs.isEmpty
+          ? Center(
+        child: Text(
+          'No blogs available',
+          style: TextStyle(color: Colors.white),
+        ),
+      )
           : ListView.builder(
-        itemCount: blogs.length,
+        itemCount: filteredBlogs.length,
         itemBuilder: (context, index) {
-          final blog = blogs[index];
+          final blog = filteredBlogs[index];
           return Card(
             color: Colors.black,
-            child: ListTile(
-              title: Text(blog.title, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),),
-              subtitle: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  if (blog.imagePath != null)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 12.0, bottom: 12.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20), // Adjust the radius as needed
-                        child: Image.asset(
-                          blog.imagePath!,
-                          height: 200,
-                          width: 500,
-                          fit: BoxFit.cover,
-                        ),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      CircleAvatar(
+                        backgroundImage: AssetImage(userProfileImage),
+                        radius: 20,
                       ),
-                    ),
-                  Text(blog.content, style: TextStyle(color: Colors.white, fontSize: 15)),
-
-                  // Divider (line at the end of the card)
-                  Divider(
-                    color: Colors.white24, // Line color
-                    thickness: 1, // Line thickness
+                      const SizedBox(width: 8),
+                      Text(userName,
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold)),
+                    ],
                   ),
-                ],
-              ),
+                ),
+                ListTile(
+                  title: Text(blog.title,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20)),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (blog.imagePath != null)
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 12.0, bottom: 12.0),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              blog.imagePath!,
+                              height: 200,
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      Text(blog.content,
+                          style: TextStyle(
+                              color: Colors.white, fontSize: 15)),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.arrow_upward,
+                                color: Colors.white),
+                            onPressed: () {
+                              setState(() {
+                                likeCounts[index] =
+                                    (likeCounts[index] ?? 0) + 1;
+                              });
+                            },
+                          ),
+                          Text('${likeCounts[index] ?? 0}',
+                              style: TextStyle(color: Colors.white)),
+                          IconButton(
+                            icon: Icon(Icons.arrow_downward,
+                                color: Colors.white),
+                            onPressed: () {
+                              setState(() {
+                                dislikeCounts[index] =
+                                    (dislikeCounts[index] ?? 0) + 1;
+                              });
+                            },
+                          ),
+                          Text('${dislikeCounts[index] ?? 0}',
+                              style: TextStyle(color: Colors.white)),
+                          IconButton(
+                            icon: Icon(Icons.message_outlined,
+                                color: Colors.white),
+                            onPressed: () {},
+                          ),
+                          const SizedBox(width: 100),
+                          IconButton(
+                            icon:
+                            const Icon(Icons.share, color: Colors.white),
+                            onPressed: () {},
+                          ),
+
+                        ],
+                      ),
+                      // Divider (line at the end of the card)
+                      Divider(
+                        color: Colors.white24, // Line color
+                        thickness: 1, // Line thickness
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           );
         },
       ),
-
-
-
-
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(bottom: 26.0),
         child: Container(
@@ -339,4 +345,3 @@ class _BlogPageState extends State<BlogPage> {
     );
   }
 }
-

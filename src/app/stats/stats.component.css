@@ -13,7 +13,8 @@
     flex: 1;
     max-width: 200px;
     text-align: center;
-    margin-right: 20px;
+    margin-right: 40px;
+    padding: 0 40px;
     border-right: 1px solid #878787;
 }
 
@@ -36,12 +37,12 @@
 
 /*Heading and paragraph tags*/
 .stats-column h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
+    font-size: 4rem;
+    font-weight: 900;
     margin-bottom: 10px;
   }
   .stats-column p {
-    font-size: 1rem;
+    font-size: 1.5rem;
     opacity: 0.7;
     margin: 0;
   }

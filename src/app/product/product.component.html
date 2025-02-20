@@ -1,9 +1,69 @@
-<div>
-    <p>I think we should remove product section.</p>
-    <p>The sections should be</p>
-    <ul>
-        <li>Home (description, demo video, products)</li>
-        <li>About us</li>
-        <li>Contact Us</li>
-    </ul>
+<div class="features-container">
+  <h1>Our Features</h1>
 </div>
+
+<div class="features-table">
+<div *ngFor="let feature of features">
+  <div class="feature-row">
+    <div class="feature-text">
+      <h3>{{ feature.name }}</h3>
+      <p class="brief">{{ feature.briefDescription }}</p>
+    </div>
+    <div class="feature-toggle">
+      <button (click)="toggleFeature(feature)">
+        {{ feature.expanded ? '−' : '+' }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Detailed description appears directly below the brief description -->
+  <div *ngIf="feature.expanded" class="feature-details">
+    <p>{{ feature.detailedDescription }}</p>
+  </div>
+</div>
+</div>
+
+<!-- Reviews Section -->
+<div class="reviews-container">
+<button class="arrow left" (click)="scrollReviews('back')">&lt;</button>
+
+<div class="reviews-wrapper">
+  <div class="review-card" *ngFor="let review of reviews; let i = index"
+       [class.active]="i === currentIndex">
+    <p class="review-text">{{ review.text }}</p>
+    <p class="review-author">- {{ review.person }}</p>
+  </div>
+</div>
+
+<button class="arrow right" (click)="scrollReviews('forward')">&gt;</button>
+</div>
+
+<!-- FAQ Section -->
+<div class="faq-container">
+<!-- Left Side: Heading & Subheading -->
+<div class="faq-heading">
+  <h1>FAQ</h1>
+  <p>Here's a few of your most frequently asked questions!</p>
+</div>
+
+<!-- Right Side: Questions with Toggle -->
+<div class="faq-list">
+  <div class="faq-item" *ngFor="let faq of faqs">
+    <!-- Question Row -->
+    <div class="faq-question" (click)="toggleFAQ(faq)">
+      <p>{{ faq.question }}</p>
+      <button>{{ faq.expanded ? '−' : '+' }}</button>
+    </div>
+
+    <!-- Answer (Only visible when expanded) -->
+    <div class="faq-answer" *ngIf="faq.expanded">
+      <p>{{ faq.answer }}</p>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+

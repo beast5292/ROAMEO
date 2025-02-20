@@ -2,5 +2,258 @@
 @import url("https://use.typekit.net/ihx8dwh.css");
 
 * {
-    font-family: 'Roboto', sans-serif; ;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Features Section */
+.features-container {
+    margin-top: 170px;
+    text-align: center;
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.features-table {
+    margin-top: 50px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.feature-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin-bottom: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.feature-row:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.feature-text {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    gap: 20px; /* Keeps spacing uniform */
+}
+
+.feature-text h3 {
+    margin: 0;
+    font-size: 20px;
+    color: white;
+    flex-shrink: 0; /* Prevents shrinking */
+    width: 280px; /* Ensures all feature names take up the same space */
+    text-align: left; /* Aligns feature names properly */
+}
+
+.feature-text .brief {
+    margin: 0;
+    color: #ccc;
+    flex-grow: 1; /* Allows all brief descriptions to align properly */
+    text-align: left;
+    padding-left: 142px; /* Small right shift */
+}
+
+
+.feature-toggle button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.feature-toggle button:hover {
+    transform: scale(1.2);
+}
+
+/* Ensure detailed description appears below brief description */
+.feature-details {
+    padding: 10px 30px;
+    margin-top: 5px;
+    color: #ddd;
+    font-size: 17px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 5px;
+    width: 80%; /* Adjust as needed */
+    max-width: 600px; /* Keeps it contained */
+    margin-left: auto; /* Pushes it to the right */
+    margin-right: 120px; /* Adds extra space to shift it further right */
+    text-align: justify; /* Aligns text inside to the right */
+}
+
+
+/* Fixing space between Features and Reviews */
+.features-table {
+    margin-bottom: 120px; /* Pushes review section down */
+}
+
+/* Reviews Section */
+.reviews-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 85vh;
+    max-width: 1400px;
+    max-height: 800px;
+    margin: 0 auto;
+    position: relative;
+    padding: 40px 0;
+}
+
+.reviews-wrapper {
+    display: flex;
+    width: 80%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Review Cards */
+.review-card {
+    width: 90%; /* Reduce width slightly for better fit */
+    height: auto; /* Adjust height dynamically */
+    max-width: 600px; /* Prevents excessive stretching */
+    flex-shrink: 0;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px 30px; /* Reduce padding for better fit */
+    border-radius: 15px;
+    color: white;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.review-card.active {
+    opacity: 1;
+}
+
+/* Text inside review cards */
+.review-text {
+    font-size: 28px;
+}
+
+.review-author {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 15px;
+    color: #ddd;
+}
+
+/* Navigation Buttons */
+.arrow {
+    background: none;
+    border: none;
+    font-size: 64px;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    position: absolute;
+    z-index: 2;
+}
+
+.arrow.left {
+    left: 50px;
+}
+
+.arrow.right {
+    right: 50px;
+}
+
+.arrow:hover {
+    transform: scale(1.1);
+}
+
+/* FAQ Section */
+.faq-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 80%;
+    margin: 100px auto;
+}
+
+/* Left Side: FAQ Heading */
+.faq-heading {
+    flex: 1;
+    text-align: left;
+    color: white;
+}
+
+.faq-heading h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.faq-heading p {
+    font-size: 18px;
+    color: #ccc;
+}
+
+/* Right Side: FAQ List */
+.faq-list {
+    flex: 2;
+}
+
+/* Individual Question Block */
+.faq-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+/* Question Row */
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Toggle Button */
+.faq-question button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Answer Section (Initially hidden) */
+.faq-answer {
+    margin-top: 10px;
+    color: #ddd;
+    font-size: 16px;
+    display: block;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out, max-height 0.3s ease-in-out;
+}
+
+/* Hide answer when collapsed */
+.faq-answer.ng-leave {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
 }

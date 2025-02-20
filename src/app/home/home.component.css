@@ -14,7 +14,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: auto;
+    margin-top: -50px;
 }
 
 .earth video {
@@ -22,12 +22,13 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    min-width: 100%;
-    min-height: 100%;
+    min-width: 90%;
+    min-height: 90%;
     object-fit: cover;
     z-index: -1;
 }
 
+/*Starting overlay text styling*/
 /* Overlay to improve text readability */
 .overlay {
     position: relative;
@@ -66,70 +67,54 @@
     margin-top: 1rem;
 }
 
-.projects-section {
-    color: #ccc;
-    max-width: 1200px;
-    margin: auto;
-    padding: 50px 20px;
-    text-align: left;
-}
-
-.projects-section h2 {
+/*Button styling*/
+.signup-btn {
     font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-
-}
-
-/*Container for stats row*/
-.stats-row {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    color: #fff;
-    padding: 60px 20px;
-    position: relative;
-
-    /*Fade from left to right*/
-    opacity: 0;
-    transform: translate(-50px);
-    animation: statsFadeIn 1s forwards ease;
-}
-
-/*Each column*/
-.stats-column {
-    flex: 1;
-    text-align: center;
-    padding: 0 10px;
-    position: relative;
-    border-right: 1px solid #878787;
-}
-
-/*Remove last right border*/
-.stats-column:last-child {
-    border-right: none;
-}
-
-/* Headings for the stats */
-.stats-column h2 {
-    font-size: 3rem;
+    background-color: #b5b5b5;
+    color: #6a30f8;
+    font-size: 24px;
     font-weight: 700;
-    margin-bottom: 10px;
-  }
+    border: none;
+    padding: 15px 30px;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-/* Subheadings for the stats */
-.stats-column p {
-    font-size: 1rem;
-    opacity: 0.7;
-    margin: 0;
-  }
+.signup-btn .arrow {
+    font-size: 30px;
+    font-weight: 900;
+    display: inline-block;
+    transition: transform 0.3s ease-in-out;
+}
+  
+  .signup-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+}
 
-  @keyframes statsFadeIn {
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
+.signup-btn:hover .arrow {
+    transform: rotate(45deg);
+}
 
-  /*Prototype flash cards*/
+/* Centering the button below the text */
+.overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+  
+  .signup-btn {
+    margin-top: 40px; /* Adjust spacing*/
+}
+
+  
+
+/*Prototype flash cards*/
 .prototype-section {
     color: #ccc;
     max-width: 1200px;
@@ -146,7 +131,7 @@
 /*Grid design*/
 .img-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 2fr);
     gap: 20px;
 }
 

@@ -45,21 +45,27 @@
     display: flex;
     align-items: center;
     width: 100%;
-    gap: 20px;
+    justify-content: space-between;
+    gap: 20px; /* Keeps spacing uniform */
 }
 
 .feature-text h3 {
     margin: 0;
     font-size: 20px;
     color: white;
-    white-space: nowrap;
+    flex-shrink: 0; /* Prevents shrinking */
+    width: 280px; /* Ensures all feature names take up the same space */
+    text-align: left; /* Aligns feature names properly */
 }
 
 .feature-text .brief {
     margin: 0;
     color: #ccc;
-    flex-grow: 1;
+    flex-grow: 1; /* Allows all brief descriptions to align properly */
+    text-align: left;
+    padding-left: 142px; /* Small right shift */
 }
+
 
 .feature-toggle button {
     background: none;
@@ -76,13 +82,19 @@
 
 /* Ensure detailed description appears below brief description */
 .feature-details {
-    padding-left: 100px;
+    padding: 10px 30px;
     margin-top: 5px;
     color: #ddd;
-    font-size: 14px;
+    font-size: 17px;
     background-color: rgba(255, 255, 255, 0.05);
     border-radius: 5px;
+    width: 80%; /* Adjust as needed */
+    max-width: 600px; /* Keeps it contained */
+    margin-left: auto; /* Pushes it to the right */
+    margin-right: 120px; /* Adds extra space to shift it further right */
+    text-align: justify; /* Aligns text inside to the right */
 }
+
 
 /* Fixing space between Features and Reviews */
 .features-table {

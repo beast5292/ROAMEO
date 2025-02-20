@@ -1,0 +1,52 @@
+.stats-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: flex-start;  /*Offsetting columns so it form a diagonal*/
+  color: rgb(255, 255, 255);
+  padding: 100px 20px;
+  position: relative;
+}
+
+/*Each column*/
+.stats-column {
+    flex: 1;
+    max-width: 200px;
+    text-align: center;
+    margin-right: 20px;
+    border-right: 1px solid #878787;
+}
+
+/*
+    Each column is moved down extra 30px 
+    to appear them diagonally when visible
+*/
+.stats-column:nth-child(1) {
+    margin-top: 0;
+}
+.stats-column:nth-child(2) {
+    margin-top: 50px;
+}
+.stats-column:nth-child(3) {
+    margin-top: 100px;
+}
+.stats-column:nth-child(4) {
+    margin-top: 150px;
+}
+
+/*Heading and paragraph tags*/
+.stats-column h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .stats-column p {
+    font-size: 1rem;
+    opacity: 0.7;
+    margin: 0;
+  }
+
+/*Remove last right border*/
+.stats-column:last-child {
+  border-right: none;
+}

@@ -125,9 +125,15 @@
 
 .prototype-section h2 {
     font-size: 4rem;
-    font-weight: 300;
+    font-weight: 500;
     margin-bottom: 40px;
-    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; text-align: left;
+
+    /*Colour gradient*/
+    background: linear-gradient(to right, rgb(124, 244, 255), rgb(0, 0, 0)); /* Blue to purple gradient */
+    -webkit-background-clip: text; /* Applies the gradient to the text */
+    color: transparent; /* Makes text color transparent to show the gradient */
+    
 }
 
 /*Grid design*/

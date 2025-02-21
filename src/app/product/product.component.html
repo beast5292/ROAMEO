@@ -23,20 +23,19 @@
 </div>
 </div>
 
+
 <!-- Reviews Section -->
 <div class="reviews-container">
-<button class="arrow left" (click)="scrollReviews('back')">&lt;</button>
-
-<div class="reviews-wrapper">
-  <div class="review-card" *ngFor="let review of reviews; let i = index"
-       [class.active]="i === currentIndex">
-    <p class="review-text">{{ review.text }}</p>
-    <p class="review-author">- {{ review.person }}</p>
+  <div class="reviews-wrapper">
+    <div class="review-card" *ngFor="let review of reviews; let i = index"
+         [class.active]="i === currentIndex">
+      <p class="review-text">{{ review.text }}</p>
+      <p class="review-author">- {{ review.person }}</p>
+    </div>
   </div>
 </div>
 
-<button class="arrow right" (click)="scrollReviews('forward')">&gt;</button>
-</div>
+
 
 <!-- FAQ Section -->
 <div class="faq-container">

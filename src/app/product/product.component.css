@@ -2,6 +2,8 @@
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
 }
 
+
+
 /* Features Section */
 .features-container {
     margin-top: 100px;
@@ -71,8 +73,8 @@
     flex-grow: 1; /* Allows all brief descriptions to align properly */
     text-align: center;
     padding-left: 142px; /* Small right shift */
-}
 
+}
 
 .feature-toggle button {
     background: none;
@@ -83,6 +85,12 @@
     transition: transform 0.2s;
 }
 
+/* Rotate the button when clicked */
+.feature-toggle button.rotate {
+    transform: rotate(180deg); /* Rotates the button */
+}
+
+/* Hover effect for button */
 .feature-toggle button:hover {
     transform: scale(1.2);
 }
@@ -103,11 +111,13 @@
     justify-content: center;
 }
 
-
 /* Fixing space between Features and Reviews */
 .features-table {
     margin-bottom: 120px; /* Pushes review section down */
 }
+
+
+
 
 /* Reviews Section */
 .reviews-container {
@@ -125,13 +135,15 @@
 
 .reviews-wrapper {
     display: flex;
-    width: 80%;
-    height: 100%;
+    border-radius: 20px;
+    width: 60%;
+    height: 50%;
     justify-content: center;
     align-items: center;
     position: relative;
     overflow: hidden;
-    background-color: #ddd;
+    background-color: #45daff4b;
+    box-shadow: 5px 5px 20px rgba(255, 255, 255, 0.1);
 }
 
 /* Review Cards */
@@ -144,17 +156,51 @@
     background: transparent;
     padding: 20px 30px; /* Reduce padding for better fit */
     border-radius: 15px;
-    color: rgb(0, 0, 0);
+    color: rgba(255, 255, 255, 0.43);
     text-align: center;
     opacity: 0;
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    transition: transform 2s ease-in-out;
 }
 
+/* Active state for the current review */
 .review-card.active {
     opacity: 1;
+    transform: translateX(0); /* Keeps the active review in place */
+}
+
+/* Inactive state for other reviews (slide out to left) */
+.review-card.inactive {
+    opacity: 0;
+    transform: translateX(-100%); /* Move to the left when inactive */
+}
+
+/* Sliding animation */
+@keyframes slideReview {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    10% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    90% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+/* Apply the animation to the review cards */
+.reviews-wrapper {
+    animation: slideReview 20s infinite; /* Change 10s to control the speed */
 }
 
 /* Text inside review cards */
@@ -169,36 +215,30 @@
     color: #ddd;
 }
 
-/* Navigation Buttons */
-.arrow {
-    background: none;
-    border: none;
-    font-size: 64px;
-    color: white;
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out;
-    position: absolute;
-    z-index: 2;
+/* Optional: Add a fade-in effect to the reviews */
+.review-card.active {
+    animation: fadeIn 0.9s ease-in-out;
 }
 
-.arrow.left {
-    left: 50px;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
-.arrow.right {
-    right: 50px;
-}
 
-.arrow:hover {
-    transform: scale(1.1);
-}
+
+
 
 /* FAQ Section */
 .faq-container {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    width: 80%;
+    width: 70%;
     margin: 100px auto;
 }
 
@@ -206,16 +246,19 @@
 .faq-heading {
     flex: 1;
     text-align: left;
-    color: white;
+    background: linear-gradient(to right, rgb(43, 255, 244), rgb(3, 26, 80)); /* Blue to purple gradient */
+    -webkit-background-clip: text; /* Applies the gradient to the text */
+    color: transparent; /* Makes text color transparent to show the gradient */
 }
 
 .faq-heading h1 {
-    font-size: 48px;
+    font-size: 5rem;
+    font-weight: 900;
     margin-bottom: 10px;
 }
 
 .faq-heading p {
-    font-size: 18px;
+    font-size: 1.15rem;
     color: #ccc;
 }
 
@@ -234,6 +277,9 @@
 
 /* Question Row */
 .faq-question {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -253,8 +299,8 @@
 /* Answer Section (Initially hidden) */
 .faq-answer {
     margin-top: 10px;
-    color: #ddd;
-    font-size: 16px;
+    color: #dddddd92;
+    font-size: 1.1rem;
     display: block;
     opacity: 1;
     transition: opacity 0.3s ease-in-out, max-height 0.3s ease-in-out;

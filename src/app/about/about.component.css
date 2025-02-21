@@ -1,68 +1,73 @@
+/* General Styles */
+:host {
+  display: block;
+  background-color: black;
+  color: white;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+/* Main Container */
 .about-container {
-    padding: 50px;
-    background-color: #f4f4f4;
-    color: #333;
-  }
-  
-  .about-header {
-    text-align: center;
-    margin-bottom: 40px;
-  }
-  
-  .about-header h1 {
-    font-size: 3rem;
-    color: #0a1f3a;
-  }
-  
-  .about-header p {
-    font-size: 1.5rem;
-  }
-  
-  .about-team {
-    margin-top: 40px;
-  }
-  
-  .about-team h2 {
-    font-size: 2rem;
-    color: #0a1f3a;
-  }
-  
-  .team-member {
-    display: flex;
-    align-items: center;
-    margin-bottom: 30px;
-  }
-  
-  .team-member img {
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    margin-right: 20px;
-  }
-  
-  .member-info h3 {
-    font-size: 1.5rem;
-    color: #0a1f3a;
-  }
-  
-  .member-info p {
-    font-size: 1.2rem;
-    color: #666;
-  }
-  
-  .about-mission {
-    margin-top: 40px;
-    text-align: center;
-  }
-  
-  .about-mission h2 {
-    font-size: 2rem;
-    color: #0a1f3a;
-  }
-  
-  .about-mission p {
-    font-size: 1.3rem;
-    color: #666;
-    margin-top: 10px;
-  }
-  
+  display: flex;
+  height: 100vh;
+  align-items: flex-start;
+}
+
+/* Left Column  */
+.about-left {
+  width: 30%;
+  padding: 50px;
+  background-color: black;
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  height: auto;
+  max-height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* About Us Section */
+.about-content {
+  margin-top: 200px;
+  max-width: 80%; /* You can adjust this width */
+  margin: auto;
+  text-align: center;
+  padding: 20px;
+  margin-left: 20px;
+}
+
+/* Right Column */
+.about-right {
+  width: 70%;
+  padding: 50px;
+  height: 100vh;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+/* Right Column Sections Wrapper (Independent Sizing) */
+.section-content {
+  max-width: 80%; /* You can adjust this width */
+  margin: auto;
+  text-align: justify;
+}
+
+/* Sections inside the Right Column */
+.about-right section {
+  margin-bottom: 60px; /* Spacing between sections */
+}
+
+.about-right h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.about-right p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  opacity: 0.9;
+}

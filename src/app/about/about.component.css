@@ -1,73 +1,171 @@
 /* General Styles */
 :host {
-  display: block;
+  display: flex;
+  justify-content: center; /* Centers the content horizontally */
+  align-items: center; /* Centers the content vertically (if height allows) */
   background-color: black;
   color: white;
-  height: 100vh;
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
+  padding: 50px 5vw;
+  min-height: 100vh;
 }
 
-/* Main Container */
+/* Fade-In Effect on Load */
 .about-container {
   display: flex;
-  height: 100vh;
+  max-width: 1100px; /* Ensures the content is not stretched */
+  width: 100%;
+  gap: 50px; /* Space between left and right sections */
   align-items: flex-start;
+  min-height: 150vh;
+  margin: 0 auto; /* Ensures horizontal centering */  
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 1s ease-out forwards;
 }
 
-/* Left Column  */
+/* Left Column (About Us) */
 .about-left {
-  width: 30%;
+  width: 35%; /* Slightly wider to balance layout */
+  background-color: #121212;
   padding: 50px;
-  background-color: black;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
   position: sticky;
-  top: 0;
+  top: 20px;
   align-self: flex-start;
-  height: auto;
-  max-height: 100vh;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Hover Effect for About Us */
+.about-left:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 15px rgba(255, 255, 255, 0.2);
+}
+
+/* Right Column (Normal Scrolling) */
+.about-right {
+  width: 70%;
+  padding: 30px;
+  background-color: #1a1a1a;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Right Column Sections */
+.about-right section {
+  padding: 30px;
+  margin-bottom: 50px;
+  background-color: #222;
+  border-radius: 12px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+/* Scroll Reveal Effect */
+.about-right section.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover Effect for Sections */
+.about-right section:hover {
+  transform: scale(1.02);
+  background-color: #292929;
+}
+
+/* Titles */
+.about-right h2 {
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #f8f8f8;
+}
+
+/* Text */
+.about-right p {
+  font-size: 1.3rem;
+  line-height: 1.8;
+  opacity: 0.9;
+  text-align: justify;
+  color: #ddd;
 }
 
 /* About Us Section */
 .about-content {
-  margin-top: 200px;
-  max-width: 80%; /* You can adjust this width */
+  max-width: 85%;
   margin: auto;
   text-align: center;
-  padding: 20px;
-  margin-left: 20px;
 }
 
-/* Right Column */
-.about-right {
-  width: 70%;
-  padding: 50px;
-  height: 100vh;
-  overflow-y: auto;
-  scroll-behavior: smooth;
-}
-
-/* Right Column Sections Wrapper (Independent Sizing) */
-.section-content {
-  max-width: 80%; /* You can adjust this width */
-  margin: auto;
-  text-align: justify;
-}
-
-/* Sections inside the Right Column */
-.about-right section {
-  margin-bottom: 60px; /* Spacing between sections */
-}
-
-.about-right h2 {
-  font-size: 2rem;
+/* Increase Font Size in About Us Section */
+.about-content h1 {
+  font-size: 2.5rem; /* Larger heading */
   margin-bottom: 15px;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: textReveal 1s ease-out 0.3s forwards;
 }
 
-.about-right p {
-  font-size: 1.2rem;
-  line-height: 1.8;
-  opacity: 0.9;
+.about-content p {
+  font-size: 1.3rem; /* Larger text */
+  line-height: 2;
+  opacity: 0;
+  animation: textFade 1s ease-out 0.6s forwards;
+}
+
+/* Smooth Scrolling */
+.about-right::-webkit-scrollbar {
+  width: 8px;
+}
+
+.about-right::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+
+.about-right::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-left {
+    position: relative; /* Removes sticky on mobile */
+    width: 100%;
+    height: auto;
+    padding: 30px;
+  }
+
+  .about-right {
+    width: 100%;
+  }
+}
+
+/* Keyframes for Animations */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes textReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes textFade {
+  to {
+    opacity: 1;
+  }
 }

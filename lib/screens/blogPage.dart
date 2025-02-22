@@ -14,25 +14,8 @@ class _BlogPageState extends State<BlogPage> {
   bool _isSearching = false; // Track if search is active
   TextEditingController _searchController = TextEditingController();
   List<Blog> blogs = [
-    Blog(
-      title: "Helloooooooooo oooohhhh",
-      content: "eabsvyeb wervbe vherv e vehver verveer erve",
-      imagePath: 'lib/assets/images/cars5.png',
-    ),
-    Blog(
-      title: "heeeeee heeeeeee",
-      content: "Sevew ewverwv ewvewv eev",
-      imagePath: 'lib/assets/images/cars1.jpg',
-    ),
-    Blog(
-      title: "content without image",
-      content: "Somerwvewv ewvreve wvwv wev we",
-    ),
-    Blog(
-      title: "hoooooooooooo oooooooooooh",
-      content: "Some conewvw ddz zdvzs  szevew",
-      imagePath: 'lib/assets/images/Logo.png',
-    ),
+    
+    
   ];
 
   void _onNavBarItemTapped(int index) {

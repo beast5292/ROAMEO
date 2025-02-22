@@ -24,8 +24,8 @@ class _ZoomingSplashContentState extends State<ZoomingSplashContent>
   late Animation<double> _zoomRightAnimation;
   late Animation<double> _fadeImagesAnimation;
   late Animation<double> _fadeTextAnimation;
-  late Animation<Offset> _bounceLeftAnimation;
-  late Animation<Offset> _bounceRightAnimation;
+  //late Animation<Offset> _bounceLeftAnimation;
+  //late Animation<Offset> _bounceRightAnimation;
   late Animation<Offset> _bounceTopAnimation;
 
   @override
@@ -82,7 +82,7 @@ class _ZoomingSplashContentState extends State<ZoomingSplashContent>
 
     _slideTopAnimation = Tween<Offset>(
       begin: const Offset(0.0, -2.0),
-      end: const Offset(0.0, -0.01),
+      end: const Offset(0.0, -0.02),
     ).animate(CurvedAnimation(
       parent: _controllerCombine,
       curve: Curves.easeOut,
@@ -90,7 +90,7 @@ class _ZoomingSplashContentState extends State<ZoomingSplashContent>
 
     _slideLeftAnimation = Tween<Offset>(
         begin: const Offset(-2.0, 0.0),
-        end: const Offset(-0.02, 0.0)
+        end: const Offset(-0.075, 0.0)
     ).animate(CurvedAnimation(
       parent: _controllerCombine,
       curve: Curves.easeOut,
@@ -98,7 +98,7 @@ class _ZoomingSplashContentState extends State<ZoomingSplashContent>
 
     _slideRightAnimation = Tween<Offset>(
         begin: const Offset(2.0, 0.0),
-        end: const Offset(0.02, 0.0)
+        end: const Offset(0.076, 0.0)
     ).animate(CurvedAnimation(
       parent: _controllerCombine,
       curve: Curves.easeOut,
@@ -106,13 +106,12 @@ class _ZoomingSplashContentState extends State<ZoomingSplashContent>
 
     _bounceTopAnimation = Tween<Offset>(
       begin: const Offset(0.0, -0.04),
-      end: const Offset(0.0, -0.055),
+      end: const Offset(0.0, -0.049),
     ).animate(CurvedAnimation(
       parent: _controllerBounce,
       curve: Curves.easeOut,
     ));
-
-    _bounceLeftAnimation = Tween<Offset>(
+/*    _bounceLeftAnimation = Tween<Offset>(
         begin: const Offset(-0.048, 0.0),
         end: const Offset(-0.07, 0.0)
     ).animate(CurvedAnimation(
@@ -127,7 +126,7 @@ class _ZoomingSplashContentState extends State<ZoomingSplashContent>
       parent: _controllerBounce,
       curve: Curves.easeInOut,
     ));
-
+*/
     _zoomLeftAnimation = Tween<double>(
       begin: 1.0,
       end: 50.0,
@@ -222,41 +221,35 @@ class _ZoomingSplashContentState extends State<ZoomingSplashContent>
               // Left image
               SlideTransition(
                 position: _slideLeftAnimation,
-                child: SlideTransition(  // Apply SlideTransition for bounce (side movement) first
-                  position: _bounceLeftAnimation,
-                  child: ScaleTransition(
-                    scale: _zoomLeftAnimation,
-                    alignment: Alignment(0.2, 0.0),
-                    child: Center(
-                      child: Image.asset(
-                        'assets/images/left_part.png',
-                        width: 200,
-                        height: 400,
-                      ),
+                child: ScaleTransition(
+                  scale: _zoomLeftAnimation,
+                  alignment: Alignment(0.2, 0.0),
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/left_part.png',
+                      width: 200,
+                      height: 400,
                     ),
                   ),
                 ),
               ),
-
 
               // Right image
               SlideTransition(
                 position: _slideRightAnimation,
-                child: SlideTransition(  // Apply SlideTransition for bounce (side movement) first
-                  position: _bounceRightAnimation,
-                  child: ScaleTransition(
-                    scale: _zoomRightAnimation,
-                    alignment: Alignment(-0.2, 0.0),
-                    child: Center(
-                      child: Image.asset(
-                        'assets/images/right_part.png',
-                        width: 200,
-                        height: 400,
-                      ),
+                child: ScaleTransition(
+                  scale: _zoomRightAnimation,
+                  alignment: Alignment(-0.2, 0.0),
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/right_part.png',
+                      width: 200,
+                      height: 400,
                     ),
                   ),
                 ),
               ),
+
 
 
             ],

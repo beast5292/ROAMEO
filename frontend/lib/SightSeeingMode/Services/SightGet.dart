@@ -13,14 +13,14 @@ Future<List<dynamic>> fetchSights() async {
   }
 }
 
-
 //fetch sight by index
-Future<List<dynamic>> fetchSightMode(int index) async {
+Future<Map<String,dynamic>> fetchSightMode(int index) async {
+  
   final response = await http.get(Uri.parse('http://10.0.2.2:8000/sights/$index'));
 
   if (response.statusCode == 200) {
     final data = json.decode(response.body);
-    return data['sight_mode'];  // List of sights for the mode
+    return data['sights'][index];  //get the specific sight
   } else {
     throw Exception('Failed to load sight mode');
   }

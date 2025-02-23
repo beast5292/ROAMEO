@@ -7,7 +7,9 @@ import 'package:practice/SightSeeingMode/CameraPage/providers/Image_provider.dar
 import 'package:practice/SightSeeingMode/location_select/providers/selected_place_provider.dart';
 import 'package:practice/SightSeeingMode/models/sight.dart';
 import 'package:provider/provider.dart';
-import 'dart:io'; // Make sure to import dart:io for File handling
+import 'dart:io'; 
+
+//Make sure to import dart:io for File handling
 
 class SightMenu extends StatefulWidget {
   const SightMenu({super.key});

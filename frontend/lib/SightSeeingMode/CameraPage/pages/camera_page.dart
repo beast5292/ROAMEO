@@ -125,7 +125,7 @@ class _CameraPageState extends State<CameraPage> {
                         IconButton(
                           icon: const Icon(Icons.delete),
 
-                          //remove image from tempImages array by insex on the delete icon press
+                          //remove image from tempImages array by index on the delete icon press
                           onPressed: () {
                             setState(() {
                               tempImages.removeAt(index);
@@ -161,7 +161,7 @@ class _CameraPageState extends State<CameraPage> {
                 setState(() {
                   tempImages.clear();
                 });
-
+          
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => SightMenu()),

@@ -79,7 +79,7 @@ class _SightFeedState extends State<SightFeed> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => SsmPlay()),
+                                  builder: (context) => SsmPlay(index:index)),
                             );
                           },
                           child: const Text("Play"),

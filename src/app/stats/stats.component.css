@@ -1,53 +1,101 @@
 .stats-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  align-items: flex-start;  /*Offsetting columns so it form a diagonal*/
+  justify-content: center;
+  align-items: center;
   color: rgb(255, 255, 255);
   padding: 100px 20px;
   position: relative;
+  flex-wrap: wrap; /* Ensures proper responsiveness */
 }
 
-/*Each column*/
+/* Each column */
 .stats-column {
-    flex: 1;
-    max-width: 200px;
-    text-align: center;
-    margin-right: 40px;
-    padding: 0 40px;
-    border-right: 1px solid #878787;
+  flex: 1;
+  min-width: 150px; /* Ensures proper scaling on smaller screens */
+  max-width: 200px;
+  text-align: center;
+  padding: 20px;
+  border-right: 1px solid #878787;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-/*
-    Each column is moved down extra 30px 
-    to appear them diagonally when visible
-*/
+/* Each column is moved down extra 30px to appear diagonally */
 .stats-column:nth-child(1) {
-    margin-top: 0;
+  margin-top: 0;
 }
 .stats-column:nth-child(2) {
-    margin-top: 50px;
+  margin-top: 50px;
 }
 .stats-column:nth-child(3) {
-    margin-top: 100px;
+  margin-top: 100px;
 }
 .stats-column:nth-child(4) {
-    margin-top: 150px;
+  margin-top: 150px;
 }
 
-/*Heading and paragraph tags*/
+/* Heading and paragraph styling */
 .stats-column h2 {
-    font-size: 4rem;
-    font-weight: 900;
-    margin-bottom: 10px;
-  }
-  .stats-column p {
-    font-size: 1.5rem;
-    opacity: 0.7;
-    margin: 0;
-  }
+  font-size: 4rem;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+.stats-column p {
+  font-size: 1.5rem;
+  opacity: 0.7;
+  margin: 0;
+}
 
-/*Remove last right border*/
+/* Remove last right border */
 .stats-column:last-child {
   border-right: none;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .stats-column h2 {
+    font-size: 3rem;
+  }
+  .stats-column p {
+    font-size: 1.2rem;
+  }
+  .stats-container {
+    padding: 50px 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .stats-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 10px;
+  }
+  .stats-column {
+    border-right: none;
+    border-bottom: 1px solid #878787;
+    max-width: 100%;
+  }
+  .stats-column:nth-child(2),
+  .stats-column:nth-child(3),
+  .stats-column:nth-child(4) {
+    margin-top: 30px; /* Reducing margin for smaller screens */
+  }
+  .stats-column h2 {
+    font-size: 2.5rem;
+  }
+  .stats-column p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-column h2 {
+    font-size: 2rem;
+  }
+  .stats-column p {
+    font-size: 0.9rem;
+  }
 }

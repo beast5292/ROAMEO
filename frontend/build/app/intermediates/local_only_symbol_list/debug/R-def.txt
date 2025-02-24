@@ -7,6 +7,7 @@ string google_api_key
 string google_app_id
 string google_crash_reporting_api_key
 string google_storage_bucket
+string pk.eyJ1IjoibWFoaWlyaiIsImEiOiJjbTdqZmF0emkwNjVyMmtzZGx4aDZzdzA1In0.Nv0r2tE031cLt0tI1aBFDQ
 string project_id
 style LaunchTheme
 style NormalTheme

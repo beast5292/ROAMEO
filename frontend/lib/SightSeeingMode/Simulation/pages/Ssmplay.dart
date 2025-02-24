@@ -7,6 +7,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:http/http.dart' as http;
 import 'package:practice/SightSeeingMode/Services/SightGet.dart';
+import 'package:practice/SightSeeingMode/Simulation/pages/mapbox.dart';
 import 'package:practice/SightSeeingMode/Simulation/services/Haversine_formula.dart';
 
 class SsmPlay extends StatefulWidget {
@@ -356,6 +357,7 @@ class SsmPlayState extends State<SsmPlay> {
                   onMapCreated: (mapController) {
                     _controller.complete(mapController);
                   },
+                
                 ),
           Positioned(
             bottom: 20,
@@ -377,7 +379,18 @@ class SsmPlayState extends State<SsmPlay> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("Distance: $distance", style: TextStyle(fontSize: 16)),
-                  Text("Duration: $duration", style: TextStyle(fontSize: 16)),
+                  Text("Duration: $duration", style: TextStyle(fontSize: 16))
+                  // ElevatedButton(
+                  //   onPressed:(){ 
+                  //    // Navigate to MapboxPage when button is pressed
+                  //     Navigator.push(
+                  //       context,
+                  //       MaterialPageRoute(builder: (context) => MapboxMapWidget()),
+                  //     );
+                  // },
+                  // child:  Text("Go to Mapbox Page"),
+                // )
+                  
                 ],
               ),
             ),

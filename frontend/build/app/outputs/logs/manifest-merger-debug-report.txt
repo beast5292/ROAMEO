@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 application
-INJECTED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:11:5-48:19
+INJECTED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:12:5-54:19
 INJECTED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\debug\AndroidManifest.xml
 MERGED from [:cloud_firestore] C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-13:19
 MERGED from [:cloud_firestore] C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-13:19
@@ -53,8 +53,8 @@ MERGED from [com.google.maps.android:android-maps-utils:3.6.0] C:\Users\user\.gr
 	android:name
 		INJECTED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml
 manifest
-ADDED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:1:1-57:12
-MERGED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:1:1-57:12
+ADDED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:1:1-63:12
+MERGED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:1:1-63:12
 INJECTED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 INJECTED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 INJECTED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\debug\AndroidManifest.xml:1:1-7:12
@@ -136,26 +136,36 @@ uses-permission#android.permission.ACCESS_BACKGROUND_LOCATION
 ADDED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:8:5-84
 	android:name
 		ADDED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:8:22-82
-uses-feature#android.hardware.location.gps
-ADDED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:9:5-89
-	android:required
-		ADDED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:9:64-87
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:9:5-79
+MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\user\.gradle\caches\transforms-3\de18619a132c9ddf4962602b266879b8\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:23:5-79
+MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\user\.gradle\caches\transforms-3\de18619a132c9ddf4962602b266879b8\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:23:5-79
+MERGED from [com.google.firebase:firebase-firestore:25.1.1] C:\Users\user\.gradle\caches\transforms-3\5bbf61e3d2b49ee62f26243d01dfff0f\transformed\jetified-firebase-firestore-25.1.1\AndroidManifest.xml:10:5-79
+MERGED from [com.google.firebase:firebase-firestore:25.1.1] C:\Users\user\.gradle\caches\transforms-3\5bbf61e3d2b49ee62f26243d01dfff0f\transformed\jetified-firebase-firestore-25.1.1\AndroidManifest.xml:10:5-79
+MERGED from [io.grpc:grpc-android:1.62.2] C:\Users\user\.gradle\caches\transforms-3\fc039b69e661a1f4c13b553ff1f03e88\transformed\jetified-grpc-android-1.62.2\AndroidManifest.xml:7:5-79
+MERGED from [io.grpc:grpc-android:1.62.2] C:\Users\user\.gradle\caches\transforms-3\fc039b69e661a1f4c13b553ff1f03e88\transformed\jetified-grpc-android-1.62.2\AndroidManifest.xml:7:5-79
 	android:name
-		ADDED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:9:19-63
+		ADDED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:9:22-76
+uses-feature#android.hardware.location.gps
+ADDED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:10:5-89
+	android:required
+		ADDED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:10:64-87
+	android:name
+		ADDED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:10:19-63
 queries
-ADDED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:51:5-56:15
+ADDED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:57:5-62:15
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\user\.gradle\caches\transforms-3\de18619a132c9ddf4962602b266879b8\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:30:5-34:15
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\user\.gradle\caches\transforms-3\de18619a132c9ddf4962602b266879b8\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:30:5-34:15
 intent#action:name:android.intent.action.PROCESS_TEXT+data:mimeType:text/plain
-ADDED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:52:9-55:18
+ADDED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:58:9-61:18
 action#android.intent.action.PROCESS_TEXT
-ADDED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:53:13-73
+ADDED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:59:13-73
 	android:name
-		ADDED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:53:21-70
+		ADDED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:59:21-70
 data
-ADDED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:54:13-51
+ADDED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:60:13-51
 	android:mimeType
-		ADDED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:54:19-48
+		ADDED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:60:19-48
 uses-permission#android.permission.INTERNET
 ADDED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\debug\AndroidManifest.xml:6:5-66
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\user\.gradle\caches\transforms-3\de18619a132c9ddf4962602b266879b8\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:24:5-67
@@ -358,14 +368,6 @@ ADDED from [:location] C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\front
 		ADDED from [:location] C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\build\location\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-53
 	android:name
 		ADDED from [:location] C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\build\location\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-71
-uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\user\.gradle\caches\transforms-3\de18619a132c9ddf4962602b266879b8\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:23:5-79
-MERGED from [com.google.firebase:firebase-firestore:25.1.1] C:\Users\user\.gradle\caches\transforms-3\5bbf61e3d2b49ee62f26243d01dfff0f\transformed\jetified-firebase-firestore-25.1.1\AndroidManifest.xml:10:5-79
-MERGED from [com.google.firebase:firebase-firestore:25.1.1] C:\Users\user\.gradle\caches\transforms-3\5bbf61e3d2b49ee62f26243d01dfff0f\transformed\jetified-firebase-firestore-25.1.1\AndroidManifest.xml:10:5-79
-MERGED from [io.grpc:grpc-android:1.62.2] C:\Users\user\.gradle\caches\transforms-3\fc039b69e661a1f4c13b553ff1f03e88\transformed\jetified-grpc-android-1.62.2\AndroidManifest.xml:7:5-79
-MERGED from [io.grpc:grpc-android:1.62.2] C:\Users\user\.gradle\caches\transforms-3\fc039b69e661a1f4c13b553ff1f03e88\transformed\jetified-grpc-android-1.62.2\AndroidManifest.xml:7:5-79
-	android:name
-		ADDED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\user\.gradle\caches\transforms-3\de18619a132c9ddf4962602b266879b8\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:23:22-76
 uses-feature#0x00020000
 ADDED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\user\.gradle\caches\transforms-3\de18619a132c9ddf4962602b266879b8\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:26:5-28:35
 	android:glEsVersion

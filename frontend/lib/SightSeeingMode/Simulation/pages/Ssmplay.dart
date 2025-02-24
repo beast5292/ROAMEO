@@ -9,7 +9,6 @@ import 'package:http/http.dart' as http;
 import 'package:practice/SightSeeingMode/Services/SightGet.dart';
 import 'package:practice/SightSeeingMode/Simulation/services/Haversine_formula.dart';
 
-
 class SsmPlay extends StatefulWidget {
   final int index;
 
@@ -19,10 +18,15 @@ class SsmPlay extends StatefulWidget {
   State<SsmPlay> createState() => SsmPlayState();
 }
 
-
 class SsmPlayState extends State<SsmPlay> {
   //store the recieved sight
   Map<String, dynamic>? sightMode;
+
+  // Store reached near waypoints to avoid duplicate alerts
+  Set<LatLng> reachedNearWaypoints = {};
+
+  // Store reached waypoints to avoid duplicate alerts
+  Set<LatLng> reachedWaypoints = {};
 
   //Google map instance as a completer
   final Completer<GoogleMapController> _controller = Completer();
@@ -94,13 +98,49 @@ class SsmPlayState extends State<SsmPlay> {
   // Check if the user is within 200 meters of the destination and show an alert dialog if true
   void checkProximityAndNotify() {
     if (currentLocation == null) return;
-    double distanceToWaypoint = calculateDistance(
+
+    List<LatLng> waypoints = [
+      LatLng(6.928684, 79.878155), // Example waypoint 1
+    ];
+
+    bool alertShown = false; // Prevent multiple stacked dialogs
+
+    for (LatLng waypoint in waypoints) {
+      double distanceToWaypoint = calculateDistance(
+        LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
+        waypoint,
+      );
+
+      if (distanceToWaypoint <= 200 &&
+          !reachedNearWaypoints.contains(waypoint)) {
+        showAlertDialog("You are near a waypoint!");
+        reachedWaypoints.add(waypoint); // Mark waypoint as notified
+        alertShown = true;
+      }
+
+      if (distanceToWaypoint <= 50 && !reachedWaypoints.contains(waypoint)) {
+        showAlertDialog("You have arrived at a waypoint!");
+        reachedWaypoints.add(waypoint);
+        
+        //redraw polylines without the arrived waypoints
+        getPolyPoints();
+        alertShown = true;
+      }
+
+      if (alertShown) return; // Exit loop after showing an alert
+    }
+
+    double distanceToDestination = calculateDistance(
       LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
-      destination, // you can also compare with a waypoint if needed
+      destination,
     );
 
-    if (distanceToWaypoint <= 200) {
-      showAlertDialog("You are within 200 meters of your destination!");
+    if (distanceToDestination <= 50) {
+      showAlertDialog("You have arrived at your destination!");
+    }
+
+    if (distanceToDestination <= 200) {
+      showAlertDialog("You are near the destination!");
     }
   }
 
@@ -128,7 +168,6 @@ class SsmPlayState extends State<SsmPlay> {
     );
   }
 
-
   //function to get the polypoints
   void getPolyPoints() async {
     if (currentLocation == null) return;
@@ -139,17 +178,25 @@ class SsmPlayState extends State<SsmPlay> {
     //clear exsiting polylines
     polylineCoordinates.clear();
 
+    // Define waypoints excluding reached ones
+    List<PolylineWayPoint> activeWaypoints = [
+      PolylineWayPoint(
+          location: "${sourceLocation.latitude},${sourceLocation.longitude}")
+    ].where((wp) {
+      LatLng wpLatLng = LatLng(
+        double.parse(wp.location.split(',')[0]),
+        double.parse(wp.location.split(',')[1]),
+      );
+      return !reachedWaypoints.contains(wpLatLng);
+    }).toList();
+
     //receieve polylines using getRoutebetween function of directions api
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-      'AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0',
-      PointLatLng(currentLocation!.latitude!, currentLocation!.longitude!),
-      PointLatLng(destination.latitude, destination.longitude),
-      travelMode: TravelMode.driving,
-      wayPoints: [
-        PolylineWayPoint(
-            location: "${sourceLocation.latitude},${sourceLocation.longitude}")
-      ],
-    );
+        'AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0',
+        PointLatLng(currentLocation!.latitude!, currentLocation!.longitude!),
+        PointLatLng(destination.latitude, destination.longitude),
+        travelMode: TravelMode.driving,
+        wayPoints: activeWaypoints);
 
     //if the results are not empty add the co-ordinates to the polylineCoordinates array containing lat and lang points
 

@@ -2,7 +2,8 @@ import 'dart:math';
 import 'package:google_maps_flutter_platform_interface/src/types/location.dart';
 
 double calculateDistance(LatLng start, LatLng end) {
-  const double radius = 6371; //Radius of the Earth in kilometers
+  
+  const double radius = 6371; 
   double lat1 = start.latitude;
   double lon1 = start.longitude;
   double lat2 = end.latitude;
@@ -18,7 +19,7 @@ double calculateDistance(LatLng start, LatLng end) {
           sin(dLon / 2);
   double c = 2 * atan2(sqrt(a), sqrt(1 - a));
 
-  return radius * c * 1000; //Return distance in meters
+  return radius * c * 1000; 
 }
 
 double _toRadians(double degree) {

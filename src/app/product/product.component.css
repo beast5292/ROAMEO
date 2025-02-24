@@ -154,7 +154,7 @@
     flex-shrink: 0;
     position: absolute;
     background: transparent;
-    padding: 20px 30px; /* Reduce padding for better fit */
+    padding: 30px 40px; /* Reduce padding for better fit */
     border-radius: 15px;
     color: rgba(255, 255, 255, 0.43);
     text-align: center;

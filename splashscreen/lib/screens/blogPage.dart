@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/blog_model.dart';
 import 'create_blog_page.dart';
+import 'notifications_page.dart';
 
 class BlogPage extends StatefulWidget {
   const BlogPage({Key? key}) : super(key: key);
@@ -11,40 +12,16 @@ class BlogPage extends StatefulWidget {
 
 class _BlogPageState extends State<BlogPage> {
   int _selectedIndex = 0;
-  bool _isSearching = false; // Track if search is active
+  bool _isSearching = false;
   TextEditingController _searchController = TextEditingController();
   List<Blog> blogs = [
-    
-    
+
   ];
 
-  void _onNavBarItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-    print("Navigation icon $index tapped");
-  }
-
-  Widget _buildNavIconWithImage(String iconPath, String activePath, int index) {
-    bool isSelected = _selectedIndex == index;
-    double iconSize = (index == 2) ? 60 : 35; // AI orb icon larger size
-    return GestureDetector(
-      onTap: () => _onNavBarItemTapped(index),
-      child: AnimatedScale(
-        scale: isSelected ? 1.3 : 1,
-        duration: Duration(milliseconds: 100),
-        child: Image.asset(
-          isSelected ? activePath : iconPath,
-          width: iconSize,
-          height: iconSize,
-        ),
-      ),
-    );
-  }
-
-  List<Blog> filteredBlogs = []; // Stores filtered blogs
+  List<Blog> filteredBlogs = [];
   Map<int, int> likeCounts = {};
   Map<int, int> dislikeCounts = {};
+  Map<int, String?> userActions = {}; // Track user actions (like/dislike)
   String userName = "User Name";
   String userProfileImage = 'lib/assets/images/cars5.png';
 
@@ -65,16 +42,35 @@ class _BlogPageState extends State<BlogPage> {
     });
   }
 
-  void _toggleSearch() {
+  void _toggleLike(int index) {
     setState(() {
-      _isSearching = !_isSearching;
-      if (!_isSearching) {
-        _searchController.clear();
-        filteredBlogs = blogs;
+      if (userActions[index] == 'like') {
+        likeCounts[index] = (likeCounts[index] ?? 0) - 1;
+        userActions[index] = null;
+      } else {
+        if (userActions[index] == 'dislike') {
+          dislikeCounts[index] = (dislikeCounts[index] ?? 0) - 1;
+        }
+        likeCounts[index] = (likeCounts[index] ?? 0) + 1;
+        userActions[index] = 'like';
       }
     });
   }
 
+  void _toggleDislike(int index) {
+    setState(() {
+      if (userActions[index] == 'dislike') {
+        dislikeCounts[index] = (dislikeCounts[index] ?? 0) - 1;
+        userActions[index] = null;
+      } else {
+        if (userActions[index] == 'like') {
+          likeCounts[index] = (likeCounts[index] ?? 0) - 1;
+        }
+        dislikeCounts[index] = (dislikeCounts[index] ?? 0) + 1;
+        userActions[index] = 'dislike';
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +81,11 @@ class _BlogPageState extends State<BlogPage> {
           children: [
             IconButton(
               icon: Icon(Icons.arrow_back, color: Colors.white),
-              onPressed: _toggleSearch,
+              onPressed: () => setState(() {
+                _isSearching = false;
+                _searchController.clear();
+                filteredBlogs = blogs;
+              }),
             ),
             Expanded(
               child: TextField(
@@ -101,8 +101,6 @@ class _BlogPageState extends State<BlogPage> {
             ),
           ],
         )
-
-
             : Row(
           children: [
             Image.asset(
@@ -117,31 +115,39 @@ class _BlogPageState extends State<BlogPage> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.search,
-                        color: Colors.white, size: 28),
-                    onPressed: _toggleSearch,
+                    icon: const Icon(Icons.search, color: Colors.white),
+                    onPressed: () => setState(() => _isSearching = true),
                   ),
                   IconButton(
-                    icon: const Icon(Icons.add_rounded,
-                        color: Colors.white, size: 28),
+                    icon: const Icon(Icons.add_rounded, color: Colors.white),
                     onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => CreateBlogPage(
-                              onSubmit: (Blog blog) {},
-                            )),
+                          builder: (context) => CreateBlogPage(
+                            onSubmit: (Blog blog) {
+                              setState(() {
+                                blogs.add(blog);
+                                filteredBlogs = blogs; // Update filteredBlogs list as well
+                              });
+                            },
+                          ),
+                        ),
                       );
                     },
                   ),
+
                   IconButton(
-                    icon: const Icon(Icons.notifications_none,
-                        color: Colors.white, size: 28),
-                    onPressed: () {},
+                    icon: const Icon(Icons.notifications_none, color: Colors.white),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => NotificationsPage()),
+                      );
+                    },
                   ),
                   const CircleAvatar(
-                    backgroundImage:
-                    AssetImage('lib/assets/images/cars5.png'),
+                    backgroundImage: AssetImage('lib/assets/images/cars5.png'),
                     radius: 16,
                   ),
                 ],
@@ -152,53 +158,9 @@ class _BlogPageState extends State<BlogPage> {
         backgroundColor: Colors.black,
         iconTheme: const IconThemeData(color: Colors.white),
       ),
-
-      /*
-      body: blogs.isEmpty
-          ? Center(child: Text('No blogs available', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20)))
-          : ListView.builder(
-        itemCount: blogs.length,
-        itemBuilder: (context, index) {
-          final blog = blogs[index];
-          return Card(
-            color: Colors.grey[900],
-            child: ListTile(
-              title: Text(blog.title, style: TextStyle(color: Colors.white)),
-              subtitle: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                 if (blog.imagePath != null)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20), // Adjust the radius as needed
-                        child: Image.asset(
-                          blog.imagePath!,
-                          height: 200,
-                          width: 500,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  Text(blog.content, style: TextStyle(color: Colors.white70, fontSize: 15)),
-                ],
-              ),
-            ),
-          );
-        },
-      ),
-
- */
-
-
       backgroundColor: Colors.black,
       body: filteredBlogs.isEmpty
-          ? Center(
-        child: Text(
-          'No blogs available',
-          style: TextStyle(color: Colors.white),
-        ),
-      )
+          ? Center(child: Text('No blogs available', style: TextStyle(color: Colors.white)))
           : ListView.builder(
         itemCount: filteredBlogs.length,
         itemBuilder: (context, index) {
@@ -216,85 +178,42 @@ class _BlogPageState extends State<BlogPage> {
                         radius: 20,
                       ),
                       const SizedBox(width: 8),
-                      Text(userName,
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold)),
+                      Text(userName, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
                     ],
                   ),
                 ),
                 ListTile(
-                  title: Text(blog.title,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20)),
+                  title: Text(blog.title, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20)),
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       if (blog.imagePath != null)
                         Padding(
-                          padding: const EdgeInsets.only(
-                              top: 12.0, bottom: 12.0),
+                          padding: const EdgeInsets.symmetric(vertical: 12.0),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(20),
-                            child: Image.asset(
-                              blog.imagePath!,
-                              height: 200,
-                              width: double.infinity,
-                              fit: BoxFit.cover,
-                            ),
+                            child: Image.asset(blog.imagePath!, height: 200, width: double.infinity, fit: BoxFit.cover),
                           ),
                         ),
-                      Text(blog.content,
-                          style: TextStyle(
-                              color: Colors.white, fontSize: 15)),
+                      Text(blog.content, style: TextStyle(color: Colors.white, fontSize: 15)),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           IconButton(
-                            icon: Icon(Icons.arrow_upward,
-                                color: Colors.white),
-                            onPressed: () {
-                              setState(() {
-                                likeCounts[index] =
-                                    (likeCounts[index] ?? 0) + 1;
-                              });
-                            },
+                            icon: Icon(Icons.arrow_upward, color: userActions[index] == 'like' ? Colors.green : Colors.white),
+                            onPressed: () => _toggleLike(index),
                           ),
-                          Text('${likeCounts[index] ?? 0}',
-                              style: TextStyle(color: Colors.white)),
+                          Text('${likeCounts[index] ?? 0}', style: TextStyle(color: Colors.white)),
                           IconButton(
-                            icon: Icon(Icons.arrow_downward,
-                                color: Colors.white),
-                            onPressed: () {
-                              setState(() {
-                                dislikeCounts[index] =
-                                    (dislikeCounts[index] ?? 0) + 1;
-                              });
-                            },
+                            icon: Icon(Icons.arrow_downward, color: userActions[index] == 'dislike' ? Colors.red : Colors.white),
+                            onPressed: () => _toggleDislike(index),
                           ),
-                          Text('${dislikeCounts[index] ?? 0}',
-                              style: TextStyle(color: Colors.white)),
-                          IconButton(
-                            icon: Icon(Icons.message_outlined,
-                                color: Colors.white),
-                            onPressed: () {},
-                          ),
-                          const SizedBox(width: 100),
-                          IconButton(
-                            icon:
-                            const Icon(Icons.share, color: Colors.white),
-                            onPressed: () {},
-                          ),
-
+                          Text('${dislikeCounts[index] ?? 0}', style: TextStyle(color: Colors.white)),
+                          IconButton(icon: Icon(Icons.message_outlined, color: Colors.white), onPressed: () {}),
+                          Spacer(),
+                          IconButton(icon: Icon(Icons.share, color: Colors.white), onPressed: () {}),
                         ],
                       ),
-                      // Divider (line at the end of the card)
-                      Divider(
-                        color: Colors.white24, // Line color
-                        thickness: 1, // Line thickness
-                      ),
+                      Divider(color: Colors.white24, thickness: 1),
                     ],
                   ),
                 ),
@@ -302,28 +221,6 @@ class _BlogPageState extends State<BlogPage> {
             ),
           );
         },
-      ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(bottom: 26.0),
-        child: Container(
-          height: 60,
-          color: Colors.transparent,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              _buildNavIconWithImage(
-                  'lib/assets/icons/Icon1onclick.png', 'lib/assets/icons/icon1.png', 0),
-              _buildNavIconWithImage(
-                  'lib/assets/icons/icon2.png', 'lib/assets/icons/icon2.png', 1),
-              _buildNavIconWithImage(
-                  'lib/assets/icons/aiicon.png', 'lib/assets/icons/aiicon.png', 2),
-              _buildNavIconWithImage('lib/assets/icons/exploreicon.png',
-                  'lib/assets/icons/exploreonclick.png', 3),
-              _buildNavIconWithImage('lib/assets/icons/feedicon.png',
-                  'lib/assets/icons/feedonclick.png', 4),
-            ],
-          ),
-        ),
       ),
     );
   }

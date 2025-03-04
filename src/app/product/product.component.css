@@ -1,11 +1,6 @@
-* {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
-}
-
-
-
-/* Features Section */
-.features-container {
+ 
+  /* Features Section */
+  .features-container {
     margin-top: 100px;
     text-align: center;
     color: white;
@@ -15,112 +10,101 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.features-container h1 {
-    font-size: 4rem; 
+  }
+  
+  .features-container h1 {
+    font-size: 4rem;
     font-weight: 900;
     margin-bottom: 15px;
     text-align: left;
-    background: linear-gradient(to right, rgb(43, 255, 244), rgb(3, 26, 80)); /* Blue to purple gradient */
+    background: linear-gradient(to right, #37aae0, #01a5fe); /* Blue to purple gradient */
     -webkit-background-clip: text; /* Applies the gradient to the text */
     color: transparent; /* Makes text color transparent to show the gradient */
-}
-
-.features-table {
+  }
+  
+  .features-table {
     margin-top: 50px;
-    width: 80%;
+    width: 90%;
     margin-left: auto;
     margin-right: auto;
-}
-
-.feature-row {
+  }
+  
+  /* Feature Row (entire rectangle is clickable) */
+  .feature-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 15px;
     background-color: rgba(255, 255, 255, 0.1);
-    margin-bottom: 5px;
-    border-radius: 10px;
+    box-shadow: 0 4px 17px -2px #01a5fe;
+    margin-bottom: 19px;
+    border-radius: 15px;
     cursor: pointer;
-}
+    transition: background-color 0.3s ease;
+  }
 
-.feature-row:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-.feature-text {
+  .feature-row:hover {
+    background-color: rgba(255, 255, 255, 0.145);
+  }
+  
+  .feature-text {
     display: flex;
     align-items: center;
     width: 100%;
     justify-content: space-between;
     gap: 20px; /* Keeps spacing uniform */
     padding: 20px;
-}
-
-.feature-text h3 {
+  }
+  
+  .feature-text h3 {
     margin: 0;
     font-size: 20px;
     color: white;
     flex-shrink: 0; /* Prevents shrinking */
     width: 280px; /* Ensures all feature names take up the same space */
     text-align: left; /* Aligns feature names properly */
-}
-
-.feature-text .brief {
+  }
+  
+  .feature-text .brief {
     margin: 0;
     color: #ccc;
     flex-grow: 1; /* Allows all brief descriptions to align properly */
     text-align: center;
     padding-left: 142px; /* Small right shift */
-
-}
-
-.feature-toggle button {
+  }
+  
+  .feature-toggle button {
     background: none;
     border: none;
     font-size: 24px;
     color: white;
     cursor: pointer;
     transition: transform 0.2s;
-}
-
-/* Rotate the button when clicked */
-.feature-toggle button.rotate {
-    transform: rotate(180deg); /* Rotates the button */
-}
-
-/* Hover effect for button */
-.feature-toggle button:hover {
-    transform: scale(1.2);
-}
-
-/* Ensure detailed description appears below brief description */
-.feature-details {
+  }
+  
+  /* No need for rotation since the entire rectangle is clickable */
+  .feature-details {
     padding: 20px 30px;
     margin: 10px;
     color: #ddd;
     font-size: 17px;
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 20px;
     width: 80%;
-    margin-right: 120px; /* Adds extra space to shift it further right */
-    margin-left: 120px;
-    text-align: justify; /* Aligns text inside to the right */
-    align-items: center;
-    justify-content: center;
-}
-
-/* Fixing space between Features and Reviews */
-.features-table {
+    /* margin-right: 120px; Adds extra space to shift it further right */
+    margin-left: 249px;
+    text-align: left; /* Aligns text inside to the right */
+    align-items: left;
+    justify-content: left;
+  }
+  
+  /* Fixing space between Features and Reviews */
+  .features-table {
     margin-bottom: 120px; /* Pushes review section down */
-}
-
-
-
-
-/* Reviews Section */
-.reviews-container {
+  }
+  
+  /* Reviews Section */
+  .reviews-container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -131,23 +115,23 @@
     margin: 0 auto;
     position: relative;
     padding: 40px 0;
-}
-
-.reviews-wrapper {
+  }
+  
+  .reviews-wrapper {
     display: flex;
-    border-radius: 20px;
+    border-radius: 40px;
     width: 60%;
-    height: 50%;
+    height: 60%;
     justify-content: center;
     align-items: center;
     position: relative;
     overflow: hidden;
-    background-color: #45daff4b;
-    box-shadow: 5px 5px 20px rgba(255, 255, 255, 0.1);
-}
-
-/* Review Cards */
-.review-card {
+    background-color: rgba(49, 53, 60, 0.356);
+    box-shadow: 7px 7px 40px #01a5fe;
+  }
+  
+  /* Review Cards */
+  .review-card {
     width: 90%; /* Reduce width slightly for better fit */
     height: auto; /* Adjust height dynamically */
     max-width: 600px; /* Prevents excessive stretching */
@@ -164,119 +148,117 @@
     flex-direction: column;
     justify-content: center;
     transition: transform 2s ease-in-out;
-}
-
-/* Active state for the current review */
-.review-card.active {
+  }
+  
+  /* Active state for the current review */
+  .review-card.active {
     opacity: 1;
     transform: translateX(0); /* Keeps the active review in place */
-}
-
-/* Inactive state for other reviews (slide out to left) */
-.review-card.inactive {
+  }
+  
+  /* Inactive state for other reviews (slide out to left) */
+  .review-card.inactive {
     opacity: 0;
     transform: translateX(-100%); /* Move to the left when inactive */
-}
-
-/* Sliding animation */
-@keyframes slideReview {
+  }
+  
+  /* Sliding animation */
+  @keyframes slideReview {
     0% {
-        transform: translateX(100%);
-        opacity: 0;
+      transform: translateX(100%);
+      opacity: 0;
     }
     10% {
-        transform: translateX(0);
-        opacity: 1;
+      transform: translateX(0);
+      opacity: 1;
     }
     90% {
-        transform: translateX(0);
-        opacity: 1;
+      transform: translateX(0);
+      opacity: 1;
     }
     100% {
-        transform: translateX(-100%);
-        opacity: 0;
+      transform: translateX(-100%);
+      opacity: 0;
     }
-}
-
-/* Apply the animation to the review cards */
-.reviews-wrapper {
+  }
+  
+  /* Apply the animation to the review cards */
+  .reviews-wrapper {
     animation: slideReview 20s infinite; /* Change 10s to control the speed */
-}
-
-/* Text inside review cards */
-.review-text {
+  }
+  
+  /* Text inside review cards */
+  .review-text {
     font-size: 28px;
-}
-
-.review-author {
+  }
+  
+  .review-author {
     font-size: 20px;
     font-weight: bold;
     margin-top: 15px;
     color: #ddd;
-}
-
-/* Optional: Add a fade-in effect to the reviews */
-.review-card.active {
+  }
+  
+  /* Optional: Add a fade-in effect to the reviews */
+  .review-card.active {
     animation: fadeIn 0.9s ease-in-out;
-}
-
-@keyframes fadeIn {
+  }
+  
+  @keyframes fadeIn {
     from {
-        opacity: 0;
+      opacity: 0;
     }
     to {
-        opacity: 1;
+      opacity: 1;
     }
-}
-
-
-
-
-
-/* FAQ Section */
-.faq-container {
+  }
+  
+  /* FAQ Section */
+  .faq-container {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    width: 70%;
+    width: 90%;
     margin: 100px auto;
-}
-
-/* Left Side: FAQ Heading */
-.faq-heading {
-    flex: 1;
+  }
+  
+  /* Left Side: FAQ Heading */
+  .faq-heading {
+    flex: 1.5;
     text-align: left;
-    background: linear-gradient(to right, rgb(43, 255, 244), rgb(3, 26, 80)); /* Blue to purple gradient */
+    background: linear-gradient(to right, #37aae0, rgb(1, 165, 254)); /* Blue to purple gradient */
     -webkit-background-clip: text; /* Applies the gradient to the text */
     color: transparent; /* Makes text color transparent to show the gradient */
-}
-
-.faq-heading h1 {
+  }
+  
+  .faq-heading h1 {
     font-size: 5rem;
     font-weight: 900;
     margin-bottom: 10px;
-}
-
-.faq-heading p {
+  }
+  
+  .faq-heading p {
     font-size: 1.15rem;
     color: #ccc;
-}
-
-/* Right Side: FAQ List */
-.faq-list {
-    flex: 2;
-}
-
-/* Individual Question Block */
-.faq-item {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 10px;
-}
-
-/* Question Row */
-.faq-question {
+  }
+  
+  /* Right Side: FAQ List */
+  .faq-list {
+    flex: 3;
+  }
+  
+  /* Individual Question Block */
+  .faq-item {
+    background: rgba(49, 53, 60, 0.356);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px -2px #01a5fe;
+    opacity: 1; /* Make sections fully visible immediately */
+  }
+  
+  /* Question Row */
+  .faq-question {
     font-size: 1.2rem;
     font-weight: 700;
     color: rgb(255, 255, 255);
@@ -284,31 +266,32 @@
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-}
-
-/* Toggle Button */
-.faq-question button {
+  }
+  
+  /* Toggle Button */
+  .faq-question button {
     background: none;
     border: none;
     font-size: 24px;
     color: white;
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
-}
-
-/* Answer Section (Initially hidden) */
-.faq-answer {
+  }
+  
+  /* Answer Section (Initially hidden) */
+  .faq-answer {
     margin-top: 10px;
     color: #dddddd92;
     font-size: 1.1rem;
     display: block;
     opacity: 1;
     transition: opacity 0.3s ease-in-out, max-height 0.3s ease-in-out;
-}
-
-/* Hide answer when collapsed */
-.faq-answer.ng-leave {
+  }
+  
+  /* Hide answer when collapsed */
+  .faq-answer.ng-leave {
     opacity: 0;
     max-height: 0;
     overflow: hidden;
-}
+  }
+  

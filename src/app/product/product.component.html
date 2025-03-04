@@ -3,24 +3,25 @@
 </div>
 
 <div class="features-table">
-<div *ngFor="let feature of features">
-  <div class="feature-row">
-    <div class="feature-text">
-      <h3>{{ feature.name }}</h3>
-      <p class="brief">{{ feature.briefDescription }}</p>
+  <div *ngFor="let feature of features">
+    <!-- Updated feature-row to make the entire area clickable -->
+    <div class="feature-row" (click)="toggleFeature(feature)">
+      <div class="feature-text">
+        <h3>{{ feature.name }}</h3>
+        <p class="brief">{{ feature.briefDescription }}</p>
+      </div>
+      <div class="feature-toggle">
+        <button>
+          <!-- No need for the + button as the whole row is clickable now -->
+        </button>
+      </div>
     </div>
-    <div class="feature-toggle">
-      <button (click)="toggleFeature(feature)">
-        {{ feature.expanded ? '−' : '+' }}
-      </button>
-    </div>
-  </div>
 
-  <!-- Detailed description appears directly below the brief description -->
-  <div *ngIf="feature.expanded" class="feature-details">
-    <p>{{ feature.detailedDescription }}</p>
+    <!-- Detailed description appears directly below the brief description -->
+    <div *ngIf="feature.expanded" class="feature-details">
+      <p>{{ feature.detailedDescription }}</p>
+    </div>
   </div>
-</div>
 </div>
 
 
@@ -36,28 +37,27 @@
 </div>
 
 
-
 <!-- FAQ Section -->
 <div class="faq-container">
-<!-- Left Side: Heading & Subheading -->
-<div class="faq-heading">
-  <h1>FAQ</h1>
-  <p>Here's a few of your most frequently asked questions!</p>
-</div>
+  <!-- Left Side: Heading & Subheading -->
+  <div class="faq-heading">
+    <h1>FAQ</h1>
+    <p>Here's a few of your most frequently asked questions!</p>
+  </div>
 
-<!-- Right Side: Questions with Toggle -->
-<div class="faq-list">
-  <div class="faq-item" *ngFor="let faq of faqs">
-    <!-- Question Row -->
-    <div class="faq-question" (click)="toggleFAQ(faq)">
-      <p>{{ faq.question }}</p>
-      <button>{{ faq.expanded ? '-' : '+' }}</button>
-    </div>
+  <!-- Right Side: Questions with Toggle -->
+  <div class="faq-list">
+    <div class="faq-item" *ngFor="let faq of faqs">
+      <!-- Question Row -->
+      <div class="faq-question" (click)="toggleFAQ(faq)">
+        <p>{{ faq.question }}</p>
+        <button>{{ faq.expanded ? '-' : '+' }}</button>
+      </div>
 
-    <!-- Answer (Only visible when expanded) -->
-    <div class="faq-answer" *ngIf="faq.expanded">
-      <p>{{ faq.answer }}</p>
+      <!-- Answer (Only visible when expanded) -->
+      <div class="faq-answer" *ngIf="faq.expanded">
+        <p>{{ faq.answer }}</p>
+      </div>
     </div>
   </div>
-</div>
 </div>

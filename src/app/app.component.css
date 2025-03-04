@@ -1,10 +1,82 @@
-/* Flexbox layout to push footer to the bottom */
-.page-container {
-    display: flex;
+/* Default styles for desktop */
+h1 {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 2rem;
+}
+
+
+.app-content {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Media Queries */
+
+/* Tablets (1024px and below) */
+@media (max-width: 1024px) {
+  h1 {
+    font-size: 1.75rem; /* Slightly smaller font size */
+  }
+
+  .container {
+    padding: 15px; /* Reduce padding */
+  }
+
+  .app-content {
+    padding: 15px; /* Reduce padding */
+  }
+}
+
+/* Mobile (768px and below) */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem; /* Smaller font size */
+  }
+  .nav-links {
     flex-direction: column;
-    min-height: 100vh; /* Ensure the container takes at least the full viewport height */
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    text-align: center;
+    padding: 15px 0;
+    display: none;
   }
-  
-  .content-wrapper {
-    flex: 1; /* Allow the content to grow and push the footer to the bottom */
+
+  .nav-links.open {
+    display: flex;
   }
+
+  .nav-links ul {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .menu-btn {
+    display: block;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+}
+  .container {
+    padding: 10px; /* Reduce padding */
+  }
+
+  .app-content {
+    padding: 10px; /* Reduce padding */
+    flex-direction: column; /* Stack content vertically */
+  }
+

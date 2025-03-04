@@ -1,11 +1,19 @@
 <nav>
-  <!--Logo on the Left-->
+  <!-- Logo on the Left -->
   <div class="logo">
-    <img src="/assets/images/Logo&motto.png" alt="Logo">
+    <img src="/assets/images/Logo.png" alt="Logo">
   </div>
 
-  <!--Navigation Links & Sign Up Button-->
-  <div class="nav-links">
+  <!-- Hamburger Menu (Mobile Only) -->
+  <button class="hamburger" (click)="toggleMenu()">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+
+  <!-- Navigation Links & Sign Up Button -->
+  <div class="nav-links" [class.show]="isMenuOpen">
+    <!-- ... existing nav links and button ... -->
     <ul>
       <li><a routerLink="/">Home</a></li>
       <li><a routerLink="/about">About</a></li>

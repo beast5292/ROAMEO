@@ -1,4 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+
+
 /* avbar Styling*/
+
 nav {
     position: fixed;
     top: 0;
@@ -12,7 +16,7 @@ nav {
     backdrop-filter: blur(10px); /*Blurred background*/
     -webkit-backdrop-filter: blur(10px);
     z-index: 100;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Montseratt', sans-serif;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -23,17 +27,17 @@ nav .logo {
 }
 
 nav .logo img {
-    width: 120px; 
+    width: 200px; 
     max-width: 100%;
     object-fit: contain;
 }
 
-/*Navbar Items(Fully Right)*/
+/* Navbar Items (Centered) */
 .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 50px;
-    margin-left: auto; /*everything to the right*/
+  display: flex;
+  align-items: left; /* Vertical centering */
+  justify-content: left; /* Horizontal centering */
+   gap: 400px; /*Adjust spacing as needed */
 }
 
 /*Navbar Links*/
@@ -41,12 +45,13 @@ nav .logo img {
     list-style: none;
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 50px;
     padding: 0;
     margin: 0;
 }
 
 .nav-links ul li a {
+    font-weight: 800; /* Adjust weight as needed */
     text-decoration: none;
     color: #fff;
     font-size: 16px;
@@ -55,20 +60,21 @@ nav .logo img {
 }
 
 .nav-links ul li a:hover {
-    color: #00a2ff;
+    color: #44CAE9;
 }
 
 /*Sign Up Button*/
 .signup-btn {
+    font-weight: 800;
     background-color: rgba(255, 255, 255, 0.1);
     color: #75d4ee;
     font-size: 16px;
-    border: 1px solid #fff;
+    border: 1px solid #fff; 
     padding: 8px 16px;
     border-radius: 40px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 7px;
     margin-left: auto;
     margin-right: 50px;
     cursor: pointer;
@@ -84,36 +90,116 @@ nav .logo img {
   
 .signup-btn:hover {
     transform: scale(1.05);
-    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 4px 30px rgba(36, 84, 139, 0.823);
 }
 
 .signup-btn:hover .arrow {
     transform: rotate(45deg);
 }
 
-/*Responsive Navbar*/
-@media (max-width: 1024px) { /*Tablets & smaller laptops*/
-    .nav-links {
-        gap: 20px;
-        margin-right: 10px;
-    }
+/* Media Queries */
+
+/* Hamburger Icon animation */
+.hamburger {
+  
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 40px;
+  height: 40px;
+  z-index: 110;
+  transition: transform 0.3s ease;
 }
 
-@media (max-width: 768px) { /*Mobile screens*/
-    .nav-links {
-        flex-direction: column;
-        position: absolute;
-        top: 70px;
-        right: 0;
-        background: rgba(0, 0, 0, 0.8); /*Transparent black background*/
-        width: 100%;
-        padding: 15px;
-        gap: 15px;
-        text-align: center;
-        display: none; /*Hide by default*/
-    }
+.hamburger .bar {
+  display: block;
+  width: 25px;
+  height: 2px;
+  margin: 5px ;
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+}
 
-    .nav-links.show { /*Show when menu is toggled*/
-        display: flex;
-    }
+.hamburger.active .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Tablets (1024px and below) */
+@media (max-width: 1024px) {
+  .nav-links {
+    gap: 30px; /* Reduce gap between links */
+  }
+
+  .nav-links ul {
+    gap: 30px; /* Reduce gap between list items */
+  }
+
+  .signup-btn {
+    margin-right: 90px; /* Adjust button margin */
+  }
+}
+/* Mobile menu transition */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block; 
+    margin-left: auto;
+    margin-bottom: 20px;
+  }
+  .nav-links ul li a {
+    font-weight: 900; /* Adjust weight as needed */
+    text-decoration: none;
+    color: #fff;
+    font-size: 12px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+
+  .nav-links {
+    position: fixed;
+    top: 115px;
+    right: -100%;
+    height: 60%;
+    width: 110%;
+    padding: 9px;
+    gap: 35px;
+    scale: 0.7;
+    background-color: rgb(0, 0, 0);
+    transition: right 0.4s ease;
+  }
+  nav .logo img {
+    width: 100px; 
+    max-width: 100%;
+    object-fit: contain;
+}
+/*Sign Up Button*/
+.signup-btn {
+  font-weight: 800;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #75d4ee;
+  font-size: 14px;
+  border: 1px solid #fff; 
+  padding: 4px 6px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+  margin-right: 50px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+  .nav-links.show {
+    right: 0;
+  }
 }

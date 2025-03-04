@@ -26,8 +26,8 @@ export class StatsComponent implements AfterViewInit {
       gsap.fromTo(
         col,
         {
-          x: -100,       // Start a bit left
-          opacity: 0
+          x: -400,       // Start a bit left
+          opacity: -1
         },
         {
           x: 0,
@@ -35,8 +35,8 @@ export class StatsComponent implements AfterViewInit {
           duration: 0.6,
           scrollTrigger: {
             trigger: col,
-            start: 'top 80%',   // Start anim when top of col hits 80% of viewport
-            end: 'top 30%',     // End anim when top of col hits 30% of viewport
+            start: 'top 100%',   // Start anim when top of col hits 80% of viewport
+            end: 'top 10%',     // End anim when top of col hits 30% of viewport
             scrub: true,        // Smoothly animate with scroll
             // markers: true,   // Uncomment for debugging
             onEnter: () => console.log(`Entering column ${index + 1}`),

@@ -2,4 +2,28 @@
 body {
     background-color: #000000;
   }
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
+  * {
+    font-family: 'Montserrat', sans-serif !important;
+  }
+
+/* html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
+
+/* src/styles.css */
+html, body {
+  font-size: 100%; /* Default for desktop */
+}
+
+@media (max-width: 1024px) {
+  html, body {
+    font-size: 75%; /* Tablet scaling */
+  }
+}
+
+@media (max-width: 768px) {
+  html, body {
+    font-size: 50%; /* Mobile scaling */
+  }
+}

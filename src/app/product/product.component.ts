@@ -69,24 +69,29 @@ export class ProductComponent implements OnInit, OnDestroy {
     { text: '"As someone who works remotely, finding the right work-friendly spots while traveling is crucial. Roameo suggested coworking cafés, peaceful accommodations, and even great networking events. It’s like the app knew exactly what I needed!"', person: 'Person 8' }
   ];
 
+
+  changeReview(index: number): void {
+    this.currentIndex = index;
+  }
+
   ngOnInit(): void {
     this.startReviewCarousel();
   }
 
   ngOnDestroy(): void {
     if (this.carouselInterval) {
-      clearInterval(this.carouselInterval); // Clear the interval when the component is destroyed
+      clearInterval(this.carouselInterval); 
     }
   }
 
-  // Start the automatic review carousel (every 4 seconds)
   carouselInterval: any;
   startReviewCarousel() {
     this.carouselInterval = setInterval(() => {
-      this.currentIndex = (this.currentIndex + 1) % this.reviews.length; // Reset to the first review after the last
-    }, 4000); // Change every 4 seconds
+      this.currentIndex = (this.currentIndex + 1) % this.reviews.length; 
+    }, 4000); 
   }
 
+ 
   // FAQ Section
   faqs: FAQ[] = [
     { question: 'What is Roameo?', answer: 'Roameo is a travel app that helps you plan personalized journeys, offering features like AI-generated itineraries, sightseeing suggestions, and easy bookings.', expanded: false },
@@ -100,3 +105,4 @@ export class ProductComponent implements OnInit, OnDestroy {
     faq.expanded = !faq.expanded;
   }
 }
+ 

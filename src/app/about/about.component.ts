@@ -29,7 +29,7 @@ export class AboutComponent implements AfterViewInit {
       const sectionTop = section.getBoundingClientRect().top;
       if (sectionTop < triggerHeight) {
         section.classList.add('reveal');
-      }
-    });
-  }
+      }
+    });
+  }
 }

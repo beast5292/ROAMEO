@@ -15,33 +15,7 @@ class NotificationsPage extends StatelessWidget {
         backgroundColor: Colors.black,
       ),
       backgroundColor: Colors.black,
-      body: ListView.builder(
-        itemCount: notifications.length,
-        itemBuilder: (context, index) {
-          final notification = notifications[index];
-          return ListTile(
-            leading: CircleAvatar(
-              backgroundImage: AssetImage(notification["image"]!),
-            ),
-            title: RichText(
-              text: TextSpan(
-                style: TextStyle(color: Colors.white),
-                children: [
-                  TextSpan(text: notification["user"], style: TextStyle(fontWeight: FontWeight.bold)),
-                  TextSpan(text: " ${notification["message"]}"),
-                ],
-              ),
-            ),
-            trailing: notification["type"] == "follow"
-                ? ElevatedButton(
-              onPressed: () {},
-              child: Text("Follow Back"),
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
-            )
-                : null,
-          );
-        },
-      ),
+
     );
   }
 }

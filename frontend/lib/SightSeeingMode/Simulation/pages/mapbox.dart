@@ -1,63 +1,56 @@
 // import 'package:flutter/material.dart';
-// import 'package:flutter_mapbox_navigation/flutter_mapbox_navigation.dart';
 // import 'package:mapbox_gl/mapbox_gl.dart';
+// import 'package:path_provider/path_provider.dart';
+// import 'dart:io';
 
-// class MapboxMapWidget extends StatefulWidget {
+// class OfflineMap extends StatefulWidget {
 //   @override
-//   _MapboxMapWidgetState createState() => _MapboxMapWidgetState();
+//   _OfflineMapState createState() => _OfflineMapState();
 // }
 
-// class _MapboxMapWidgetState extends State<MapboxMapWidget> {
-//   @override
-//   void initState() {
-//     super.initState();
-//     _setDefaultMapOptions();
-//   }
+// class _OfflineMapState extends State<OfflineMap> {
+//   late MapboxMapController mapController;
 
-//   void _setDefaultMapOptions() {
-//     MapBoxNavigation.instance.setDefaultOptions(MapBoxOptions(
-//       initialLatitude: 36.1175275,
-//       initialLongitude: -115.1839524,
-//       zoom: 13.0,
-//       tilt: 0.0,
-//       bearing: 0.0,
-//       enableRefresh: false,
-//       alternatives: true,
-//       voiceInstructionsEnabled: false,
-//       bannerInstructionsEnabled: false,
-//       allowsUTurnAtWayPoints: true,
-//       mode: MapBoxNavigationMode.drivingWithTraffic,
-//       mapStyleUrlDay: "https://url_to_day_style", // Customize styles
-//       mapStyleUrlNight: "https://url_to_night_style",
-//       units: VoiceUnits.imperial,
-//       simulateRoute: false,
-//       language: "en",
-//     ));
-//   }
+//   final String accessToken = "pk.eyJ1IjoibWFoaWlyaiIsImEiOiJjbTdqZmF0emkwNjVyMmtzZGx4aDZzdzA1In0.Nv0r2tE031cLt0tI1aBFDQ";
+//   final LatLng initialPosition = LatLng(6.9271, 79.8612); // Colombo, Sri Lanka
 
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Mapbox Map Interface'),
+//       appBar: AppBar(title: Text("Offline Mapbox")),
+//       body: MapboxMap(
+//         accessToken: accessToken,
+//         onMapCreated: _onMapCreated,
+//         initialCameraPosition: CameraPosition(target: initialPosition, zoom: 12),
+//         styleString: MapboxStyles.MAPBOX_STREETS, // Can change to offline style
 //       ),
-//       body: Center(
-//         child: Container(
-//           height: MediaQuery.of(context).size.height,
-//           child: MapboxMap(
-//             styleString: "mapbox://styles/mapbox/streets-v11", // Example Mapbox style
-//             initialCameraPosition: CameraPosition(
-//               target: LatLng(36.1175275, -115.1839524),
-//               zoom: 13.0,
-//             ),
-//           ),
-//         ),
+//       floatingActionButton: FloatingActionButton(
+//         onPressed: _downloadOfflineRegion,
+//         child: Icon(Icons.download),
 //       ),
 //     );
 //   }
 
-//   @override
-//   void dispose() {
-//     super.dispose();
+//   void _onMapCreated(MapboxMapController controller) {
+//     mapController = controller;
+//   }
+
+//   Future<void> _downloadOfflineRegion() async {
+//     Directory dir = await getApplicationDocumentsDirectory();
+//     String path = "${dir.path}/mapbox_offline";
+//     await mapController.downloadOfflineRegion(
+//       bounds: LatLngBounds(
+//         southwest: LatLng(6.9250, 79.8600),
+//         northeast: LatLng(6.9300, 79.8700),
+//       ),
+//       mapStyleUrl: MapboxStyles.MAPBOX_STREETS,
+//       minZoom: 10,
+//       maxZoom: 14,
+//       regionName: "ColomboOffline",
+//     );
+
+//     ScaffoldMessenger.of(context).showSnackBar(
+//       SnackBar(content: Text("Offline map downloaded!")),
+//     );
 //   }
 // }

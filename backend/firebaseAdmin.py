@@ -1,11 +1,10 @@
 import firebase_admin
-from firebase_admin import credentials, firestore, storage
+from firebase_admin import credentials, firestore, storage, initialize_app
 
 # Initialize Firebase Admin SDK with your credentials
-cred = credentials.Certificate('path/to/your/serviceAccountKey.json')  # Download the credentials JSON from Firebase Console
-firebase_admin.initialize_app(cred, {
-    'storageBucket': 'your-project-id.appspot.com'  # Replace with your Firebase Storage bucket URL
-})
+cred = credentials.Certificate('C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\backend\private key\roameo-f3ab0-firebase-adminsdk-ss40k-04eb540eda.json') #Download the credentials JSON from Firebase Console
+
+initialize_app(cred)
 
 db = firestore.client()  # Get Firestore client
-bucket = storage.bucket()  # Get Firebase Storage bucket
+

@@ -16,14 +16,14 @@ class LocationInfo {
     required this.imageUrls,
   });
 
-  // Method to fetch image URLs from photo references
+  //Method to fetch image URLs from photo references
   static List<String> getImageUrlsFromPhotos(List<String> photos, String apiKey) {
     return photos.map((photoReference) {
       return 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=$photoReference&key=$apiKey';
     }).toList();
   }
 
-  // Override the toString method to customize the print format
+  //Override the toString method to customize the print format
   @override
   String toString() {
     return 'Location Info: {'

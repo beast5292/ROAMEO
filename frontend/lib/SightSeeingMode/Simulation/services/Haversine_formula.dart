@@ -1,6 +1,8 @@
 import 'dart:math';
 import 'package:google_maps_flutter_platform_interface/src/types/location.dart';
 
+
+//Haversine calcualtion to calculate the distance (for offline purposes)
 double calculateDistance(LatLng start, LatLng end) {
   
   const double radius = 6371; 
@@ -23,5 +25,6 @@ double calculateDistance(LatLng start, LatLng end) {
 }
 
 double _toRadians(double degree) {
+
   return degree * pi / 180.0;
 }

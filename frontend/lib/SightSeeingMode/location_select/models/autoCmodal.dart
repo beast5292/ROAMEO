@@ -1,4 +1,5 @@
 class PlacePrediction {
+  
   //instance variables to hold the output
   final String placeId;
   final String description;
@@ -14,7 +15,6 @@ class PlacePrediction {
     required this.mainText,
     required this.secondaryText,
     required this.types,
-
   });
 
   //factory constructor to convert the json response to an object and return a placeprediction object

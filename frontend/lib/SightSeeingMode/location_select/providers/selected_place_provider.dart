@@ -17,4 +17,5 @@ class SelectedPlaceProvider with ChangeNotifier {
 
     notifyListeners();
   }
+  
 }

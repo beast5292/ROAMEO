@@ -12,6 +12,7 @@ class CameraPage extends StatefulWidget {
 }
 
 class _CameraPageState extends State<CameraPage> {
+
   final ImagePicker _picker = ImagePicker();
 
   //Array to store the temporary images taken per session
@@ -19,6 +20,7 @@ class _CameraPageState extends State<CameraPage> {
 
   //open camera function
   Future<void> _openCamera() async {
+    
     //store the picked image file by source reference using image picker
     final XFile? pickedImage =
         await _picker.pickImage(source: ImageSource.camera);

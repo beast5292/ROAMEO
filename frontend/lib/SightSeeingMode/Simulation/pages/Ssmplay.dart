@@ -7,10 +7,13 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:http/http.dart' as http;
 import 'package:practice/SightSeeingMode/Services/SightGet.dart';
+import 'package:practice/SightSeeingMode/Simulation/pages/Navigation.dart';
 import 'package:practice/SightSeeingMode/Simulation/pages/mapbox.dart';
 import 'package:practice/SightSeeingMode/Simulation/services/Haversine_formula.dart';
 
 class SsmPlay extends StatefulWidget {
+
+  //widget takes the index as a parameter to figure out the sightseeing mode id
   final int index;
 
   const SsmPlay({Key? key, required this.index}) : super(key: key);
@@ -20,13 +23,14 @@ class SsmPlay extends StatefulWidget {
 }
 
 class SsmPlayState extends State<SsmPlay> {
-  //store the recieved sight
+
+  //store the recieved sightseeing data in a Map
   Map<String, dynamic>? sightMode;
 
-  // Store reached near waypoints to avoid duplicate alerts
+  //Store reached near waypoints to avoid duplicate alerts (when you are near a waypoint)
   Set<LatLng> reachedNearWaypoints = {};
 
-  // Store reached waypoints to avoid duplicate alerts
+  //Store reached waypoints to avoid duplicate alerts (when you reached a waypoint)
   Set<LatLng> reachedWaypoints = {};
 
   //Google map instance as a completer
@@ -53,17 +57,19 @@ class SsmPlayState extends State<SsmPlay> {
 
   //function to get the current location (using the location package)
   void getCurrentLocation() async {
+
     //hold the current location
     Location location = Location();
 
-    //get the current location using getlocation and uses then to handle the result
+    //get the current location using getlocation and uses then to handle the result (Location package)
     location.getLocation().then(
       (location) {
         setState(() {
           //set the current location to the obtained location
           currentLocation = location;
         });
-
+        
+        //call getPolyPoints after a obtaining the current location
         getPolyPoints();
       },
     );
@@ -71,16 +77,18 @@ class SsmPlayState extends State<SsmPlay> {
     //waits for the google map controller to be available
     GoogleMapController googleMapController = await _controller.future;
 
-    //listens to the stream function onLocationChanged and a callback function everytime location changes
+    //listens to the stream function onLocationChanged in location package and a callback function everytime location changes
     location.onLocationChanged.listen((newLoc) {
+
       //current Location changes to newLocation
       setState(() {
         currentLocation = newLoc;
       });
-
+      
+      //checks the proximity everytime the location changes 
       checkProximityAndNotify();
 
-      // Recalculate the polyline with updated location
+      //Recalculate the polyline with updated location
       getPolyPoints();
 
       //change the animate Camera of the controller to the new location
@@ -98,48 +106,74 @@ class SsmPlayState extends State<SsmPlay> {
 
   // Check if the user is within 200 meters of the destination and show an alert dialog if true
   void checkProximityAndNotify() {
+
+    //if the currentLocation has no location value return
     if (currentLocation == null) return;
-
+    
+    //List of LatLng objects containing coordinates of the waypoints (dummy)
     List<LatLng> waypoints = [
-      LatLng(6.928684, 79.878155), // Example waypoint 1
+      LatLng(6.928684, 79.878155), 
     ];
-
-    bool alertShown = false; // Prevent multiple stacked dialogs
-
+    
+    //boolean value to store if the alert is shown
+    bool alertShown = false;
+    
+    //for every waypoint in all the waypoints
     for (LatLng waypoint in waypoints) {
+
+      //calculate distance to a waypoint from the current location using the haverSince calculation
       double distanceToWaypoint = calculateDistance(
         LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
         waypoint,
       );
-
+      
+      //if the obtained distance to the waypoint from current location is less than 200
       if (distanceToWaypoint <= 200 &&
           !reachedNearWaypoints.contains(waypoint)) {
+
+        //show that you are near a waypoint
         showAlertDialog("You are near a waypoint!");
-        reachedWaypoints.add(waypoint); // Mark waypoint as notified
+
+        //mark the waypoint as a reached near one to avoid duplication
+        reachedNearWaypoints.add(waypoint); 
+
+        //alert will show up 
         alertShown = true;
       }
-
+      
+       //if the obtained distance to the waypoint from current location is less than 50
       if (distanceToWaypoint <= 50 && !reachedWaypoints.contains(waypoint)) {
+
+        //show that you have arrived at a waypoint
         showAlertDialog("You have arrived at a waypoint!");
+
+        //add it to rezched waypoints to avoid duplication
         reachedWaypoints.add(waypoint);
         
         //redraw polylines without the arrived waypoints
         getPolyPoints();
+
+        //alert will show up
         alertShown = true;
       }
-
-      if (alertShown) return; // Exit loop after showing an alert
+      
+      //exit the loop if one of the alerts return true
+      if (alertShown) return; 
     }
-
+    
+    //calculate the distance to destination using the haveersine calculation
     double distanceToDestination = calculateDistance(
+
       LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
       destination,
     );
-
+     
+     //if the distance is less than 50 meteres display you have arrived
     if (distanceToDestination <= 50) {
       showAlertDialog("You have arrived at your destination!");
     }
-
+    
+    //if the distance is less than 200 display you are near the destination
     if (distanceToDestination <= 200) {
       showAlertDialog("You are near the destination!");
     }
@@ -169,8 +203,11 @@ class SsmPlayState extends State<SsmPlay> {
     );
   }
 
+
   //function to get the polypoints
   void getPolyPoints() async {
+
+    //if current location is null return
     if (currentLocation == null) return;
 
     //new polyline object (polyline)
@@ -179,7 +216,7 @@ class SsmPlayState extends State<SsmPlay> {
     //clear exsiting polylines
     polylineCoordinates.clear();
 
-    // Define waypoints excluding reached ones
+    //Define waypoints excluding reached ones
     List<PolylineWayPoint> activeWaypoints = [
       PolylineWayPoint(
           location: "${sourceLocation.latitude},${sourceLocation.longitude}")
@@ -207,17 +244,18 @@ class SsmPlayState extends State<SsmPlay> {
         routePoints.add(LatLng(point.latitude, point.longitude));
       });
 
-      // Snap the route coordinates to the nearest road
+      //Snap the route coordinates to the nearest road
       await snapToRoads(routePoints);
     }
-    //call set state
+
+    //call set state which has many functions
     setState(() {});
   }
 
   //Use google ROADS API to snap polyline coorindates to the nearest road
-
-  // Use Google Roads API to snap polyline coordinates to the nearest road
   Future<void> snapToRoads(List<LatLng> routePoints) async {
+    
+    //get the path of all the coordinates of the path and snap it to the nearest road
     String waypoints = routePoints
         .map((LatLng point) => '${point.latitude},${point.longitude}')
         .join('|');
@@ -236,7 +274,8 @@ class SsmPlayState extends State<SsmPlay> {
         double lng = snappedPoint['location']['longitude'];
         snappedCoordinates.add(LatLng(lat, lng));
       }
-
+       
+      //set the polyline coordinates to snapped coordinates
       setState(() {
         polylineCoordinates = snappedCoordinates;
       });
@@ -247,7 +286,9 @@ class SsmPlayState extends State<SsmPlay> {
 
   //distance matrix api request
   Future<void> getDistanceAndDuration() async {
+
     //url with location coorindates
+    //get distancea and duration between the current location and the destination
     String url =
         'https://maps.googleapis.com/maps/api/distancematrix/json?origins=${currentLocation!.latitude!},${currentLocation!.longitude!}&destinations=${destination.latitude},${destination.longitude}&key=AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0';
 
@@ -294,6 +335,7 @@ class SsmPlayState extends State<SsmPlay> {
       },
     );
   }
+  
 
   //init state
   @override
@@ -379,13 +421,13 @@ class SsmPlayState extends State<SsmPlay> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("Distance: $distance", style: TextStyle(fontSize: 16)),
-                  Text("Duration: $duration", style: TextStyle(fontSize: 16))
+                  Text("Duration: $duration", style: TextStyle(fontSize: 16)),
                   // ElevatedButton(
                   //   onPressed:(){ 
                   //    // Navigate to MapboxPage when button is pressed
                   //     Navigator.push(
                   //       context,
-                  //       MaterialPageRoute(builder: (context) => MapboxMapWidget()),
+                  //       MaterialPageRoute(builder: (context) => NavigationSample()),
                   //     );
                   // },
                   // child:  Text("Go to Mapbox Page"),

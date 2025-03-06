@@ -37,7 +37,7 @@
     padding: 15px;
     background-color: rgba(255, 255, 255, 0.1);
     box-shadow: 0 4px 17px -2px #01a5fe;
-    margin-bottom: 19px;
+    margin-bottom: 20px;
     border-radius: 15px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -84,7 +84,7 @@
   
   /* No need for rotation since the entire rectangle is clickable */
   .feature-details {
-    padding: 20px 30px;
+    padding: 20px 5px;
     margin: 10px;
     color: #ddd;
     font-size: 17px;
@@ -295,3 +295,87 @@
     overflow: hidden;
   }
   
+/* Product Component Responsive Styles */
+
+/* Mobile (480px) */
+@media (max-width: 768px) {
+  /* Features Section */
+  .features-container h1 {
+    font-size: 2.5rem;
+  }
+
+  .feature-row {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .feature-text {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .feature-text h3 {
+    width: 100%;
+    font-size: 1.5rem;
+  }
+
+  .feature-text .brief {
+    padding-left: 0;
+    text-align: left;
+    width: 100%;
+  }
+
+  .feature-details {
+    margin-left: 0px;
+    width: 90%;
+    font-size: 1.1rem;
+    padding: 10px;
+  }
+
+  /* Reviews Section */
+  .reviews-container {
+    height: 0vh;
+  }
+
+  .reviews-wrapper {
+    width: 90%;
+    height: 80%;
+  }
+
+  .review-text {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .review-author {
+    font-size: 0.9rem;
+  }
+
+  /* FAQ Section */
+  .faq-container {
+    flex-direction: column;
+  }
+
+  .faq-heading {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .faq-heading h1 {
+    font-size: 2.8rem;
+  }
+
+  .faq-item {
+    padding: 15px;
+  }
+
+  .faq-question p {
+    font-size: 1rem;
+    margin-right: 15px;
+  }
+
+  .faq-question button {
+    font-size: 1.2rem;
+  }
+}

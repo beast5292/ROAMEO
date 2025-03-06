@@ -32,7 +32,9 @@
   text-align: center;
   box-shadow: 0 4px 30px rgba(10, 83, 178, 0.656);
   position: sticky;
-  top: 20px;
+  top: 10px;
+  bottom: 20px;
+  right:30px;
   align-self: flex-start;
   transition: transform 0.3s ease-in-out;
 }
@@ -136,26 +138,57 @@
 .about-right::-webkit-scrollbar-track {
   background: transparent;
 }
-
 /* Responsive Design */
 @media (max-width: 768px) {
+  :host {
+    padding: 30px 20px; /* Reduced vertical padding for mobile */
+  }
+
   .about-container {
     flex-direction: column;
     align-items: center;
+    gap: 30px; /* Reduced gap for mobile */
+    min-height: auto; /* Remove fixed height */
+    padding: 0; /* Remove container padding */
   }
 
-  .about-left {
-    position: relative; /* Removes sticky on mobile */
-    width: 100%;
-    height: auto;
-    padding: 30px;
-  }
-
+  .about-left,  /* Add comma here */
   .about-right {
-    width: 100%;
+    width: 80% !important;
+    padding: 25px;
+    margin: 10px;
+    position: relative; /* Add this to disable sticky */
+    top: 90px;
+    right: auto;
+    bottom: auto;
+  }
+
+
+  .about-right section {
+    margin-bottom: 10px; /* Reduced spacing between sections */
+    padding: 20px; /* Adjusted section padding */
+  }
+
+  /* Adjust font sizes for mobile */
+  .about-right h2 {
+    font-size: 1.8rem;
+  }
+
+  .about-right p,
+  .about-left p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .about-content h1 {
+    font-size: 2rem; /* Adjusted main heading size */
+  }
+
+  /* Reset hover effects for mobile */
+  .about-left:hover {
+    transform: none;
   }
 }
-
 /* Keyframes for Animations */
 @keyframes fadeIn {
   to {

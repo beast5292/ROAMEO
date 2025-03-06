@@ -1,3 +1,5 @@
+
+
 .area {
   z-index: 0;
   position: relative;
@@ -24,12 +26,13 @@ footer {
   position: relative;
   margin: 0 auto;
   top: 0;
+  
   left: 50%;
   transform: translateX(-50%);
   background-color: rgb(0, 14, 20);
   color: rgb(189, 202, 255);
   padding: 2vw;
-  border-radius: 40px;
+  border-radius: 30px;
   width: 80vw;
   max-width: 1000px;
   opacity: 0.9;
@@ -50,6 +53,7 @@ footer {
   flex: 1;
   min-width: 200px;
   text-align: center;
+  
 }
 
 .footer-column h2 {
@@ -79,6 +83,7 @@ footer {
 
 /*Social Media Icon Styling*/
 .footer-bottom {
+  
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -88,18 +93,26 @@ footer {
 }
 
 .footer-bottom p {
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   margin: 0;
 }
 
 /*Social Media Icons*/
 .social-icons a {
-  display: inline-block;
   color: #ffffff;
   text-decoration: none;
-  margin-left: 15px;
-  font-size: 1rem;
+  margin-left: 20px;
+  font-size: 1.2rem;
   transition: color 0.3s ease;
+}
+
+.social-icons i,
+.footer-column p i {
+  display: inline-block;
+
+}
+.fab {
+  font-family: "Font Awesome 5 Brands" !important;
 }
 
 .social-icons a:hover {
@@ -108,7 +121,7 @@ footer {
 
 
 footer .footer-column img {
-  width: 50px;
+  width: 60px;
   height: auto;
   margin-bottom: 15px;
   align-content: center;
@@ -129,7 +142,7 @@ footer .footer-column img {
   }
 
   .footer-column {
-    min-width: 150px;
+    min-width: 100px;
   }
 
   .footer-column h2 {
@@ -139,7 +152,7 @@ footer .footer-column img {
   .footer-column p,
   .footer-column li,
   .footer-column a {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 }
 
@@ -147,7 +160,7 @@ footer .footer-column img {
   .footer-container {
     display: flex;
     justify-content: space-between;
-    gap: 5px;
+    gap: 0px;
     flex-wrap: nowrap; /*Forces items to stay in a line*/
   }
 
@@ -156,13 +169,13 @@ footer .footer-column img {
   }
 
   .footer-column h2 {
-    font-size: 1.2rem;
+    font-size: 2rem;
   }
 
   .footer-column p,
   .footer-column li,
-  .footer-column a {
-    font-size: 0.8rem;
+  .footer-column a{
+    font-size: 1.3rem;
   }
 }
 
@@ -191,3 +204,4 @@ footer .footer-column img {
     font-size: 0.7rem;
   }
 }
+

@@ -5,7 +5,9 @@
   </div>
 
   <!-- Hamburger Menu (Mobile Only) -->
-  <button class="hamburger" (click)="toggleMenu()">
+  <button class="hamburger" 
+          [class.active]="isMenuOpen" 
+          (click)="toggleMenu()">
     <span class="bar"></span>
     <span class="bar"></span>
     <span class="bar"></span>
@@ -13,15 +15,14 @@
 
   <!-- Navigation Links & Sign Up Button -->
   <div class="nav-links" [class.show]="isMenuOpen">
-    <!-- ... existing nav links and button ... -->
     <ul>
-      <li><a routerLink="/">Home</a></li>
-      <li><a routerLink="/about">About</a></li>
-      <li><a routerLink="/product">Our Services</a></li>
+      <li><a routerLink="/" (click)="closeMenu()">Home</a></li>
+      <li><a routerLink="/about" (click)="closeMenu()">About</a></li>
+      <li><a routerLink="/product" (click)="closeMenu()">Our Services</a></li>
     </ul>
 
-    <!--Sign Up Button-->
-    <button class="signup-btn">
+    <!-- Sign Up Button -->
+    <button class="signup-btn" (click)="closeMenu()">
       DOWNLOAD <span class="arrow">↗</span>
     </button>
   </div>

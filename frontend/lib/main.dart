@@ -9,8 +9,10 @@ import 'package:practice/SightSeeingMode/location_select/providers/selected_plac
 import 'package:provider/provider.dart';
 
 void main() async {
-
-
+  
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  
   //providers
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => SelectedImageProvider()),

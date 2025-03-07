@@ -7,7 +7,8 @@ import 'package:practice/SightSeeingMode/CameraPage/providers/Image_provider.dar
 import 'package:practice/SightSeeingMode/location_select/providers/selected_place_provider.dart';
 import 'package:practice/SightSeeingMode/models/sight.dart';
 import 'package:provider/provider.dart';
-import 'dart:io'; 
+import 'package:firebase_storage/firebase_storage.dart';
+import 'dart:io';
 
 //Make sure to import dart:io for File handling
 
@@ -19,10 +20,24 @@ class SightMenu extends StatefulWidget {
 }
 
 class _SightMenuState extends State<SightMenu> {
+  //Toggle switch state
+  bool showLocations = true;
 
-  bool showLocations = true; // Toggle switch state
+  Future<String> uploadImage(String filePath) async {
+    File file = File(filePath);
+    try {
+      String fileName = filePath.split('/').last;
+      Reference ref = FirebaseStorage.instance.ref().child('images/$fileName');
+      await ref.putFile(file);
+      return await ref.getDownloadURL();
+    } catch (e) {
+      print("Error uploading image: $e");
+      //Return local path if upload fails
+      return filePath;
+    }
+  }
 
-  onSightSave() {
+  onSightSave() async {
     final selectedPlaceProvider =
         Provider.of<SelectedPlaceProvider>(context, listen: false);
 
@@ -52,57 +67,68 @@ class _SightMenuState extends State<SightMenu> {
         long: location.placeDetails.longitude,
         imageUrls: location.imageUrls.isNotEmpty ? location.imageUrls : [],
       );
-      
+
       print(sight.toString());
 
       Sights.add(sight);
     }
 
     for (var tripData in selectedImageProvider.selectedTrips) {
-   
-          // Extracting image URLs
-          List<String> imagePaths = tripData
-              .where((imageData) => imageData.containsKey('photo') && imageData['photo'] != null)
-              .map<String>((imageData) => imageData['photo'] as String)
-              .toList();
+      //Extracting image URLs
+      List<String> imagePaths = tripData
+          .where((imageData) =>
+              imageData.containsKey('photo') && imageData['photo'] != null)
+          .map<String>((imageData) => imageData['photo'] as String)
+          .toList();
 
-          // Extract lat and long from the first image in the trip
-          var firstImage = tripData.first;
+    
 
-          double? lat;
-          double? long;
+      //store the uploaded Urls (jpgs uploaded to the firestorage and google map links)
+      List<String> uploadedUrls = [];
+      for (String path in imagePaths) {
+        if (path.endsWith('.jpg')) {
+          //upload the image to firestorage
+          String downloadUrl = await uploadImage(path);
 
-          if (firstImage.containsKey('latitude') && firstImage.containsKey('longitude')) {
-            lat = firstImage['latitude'] as double?;
-            long = firstImage['longitude'] as double?;
-          }
-
-          Sight sight = Sight(
-            id: DateTime.now().millisecondsSinceEpoch.toString(),
-            name: "Captured Image",
-            description: "Sightseeing image",
-            tags: ["dummy tag1", "dummy tag2"],
-            lat: lat,
-            long: long,
-            imageUrls: imagePaths,
-          );
-
-          print(sight.toString());
-
-          Sights.add(sight);
+          //add the firestorage url to the uploaded urls
+          uploadedUrls.add(downloadUrl);
         }
+      }
 
-      //Print the entire Sights array after adding all objects
-      print("Sights Array: $Sights");
+      //Extract lat and long from the first image in the trip
+      var firstImage = tripData.first;
 
-      // After creating the Sights array
-      sendSights(Sights);
-       
-       
+      double? lat;
+      double? long;
+
+      if (firstImage.containsKey('latitude') &&
+          firstImage.containsKey('longitude')) {
+        lat = firstImage['latitude'] as double?;
+        long = firstImage['longitude'] as double?;
+      }
+
+      Sight sight = Sight(
+        id: DateTime.now().millisecondsSinceEpoch.toString(),
+        name: "Captured Image",
+        description: "Sightseeing image",
+        tags: ["dummy tag1", "dummy tag2"],
+        lat: lat,
+        long: long,
+        imageUrls: uploadedUrls,
+      );
+
+      print(sight.toString());
+
+      Sights.add(sight);
     }
 
-  
-  
+    //Print the entire Sights array after adding all objects
+    print("Sights Array: $Sights");
+
+    //After creating the Sights array
+    sendSights(Sights);
+  }
+
   @override
   Widget build(BuildContext context) {
     final selectedPlaceProvider = Provider.of<SelectedPlaceProvider>(context);
@@ -244,7 +270,6 @@ class _SightMenuState extends State<SightMenu> {
           FloatingActionButton(
             heroTag: 'saveButton',
             onPressed: () {
-
               onSightSave();
               Navigator.push(
                 context,

@@ -38,6 +38,12 @@ class SsmPlayState extends State<SsmPlay> {
   static const LatLng sourceLocation = LatLng(6.928684, 79.878155);
   static const LatLng destination = LatLng(6.922409, 79.866084);
 
+  //store the navigation steps recieved from the Directions waypoint api request
+  List<Map<String, dynamic>> navigationSteps = [];
+
+  //track the current step
+  int currentStepIndex = 0;
+
   //list of lat and lang co-ordinates to hold the polyline coordinates
   List<LatLng> polylineCoordinates = [];
 
@@ -100,6 +106,28 @@ class SsmPlayState extends State<SsmPlay> {
       //call the current locaton to destination distance matrix api request (full sightseeing mode duration and distance)
       getDistanceAndDuration();
 
+      //dynamically update the navigation steps
+      if (navigationSteps.isEmpty || currentStepIndex >= navigationSteps.length)
+        return;
+
+      LatLng userLatLng = LatLng(newLoc.latitude!, newLoc.longitude!);
+
+      //Update current step's distance
+      double distanceToStep = calculateDistance(
+          userLatLng, navigationSteps[currentStepIndex]['distance']);
+
+      setState(() {
+        navigationSteps[currentStepIndex]['distance'] = distanceToStep;
+      });
+
+      //If user reaches the step, move to the next step
+      if (distanceToStep < 10) {
+        setState(() {
+          //Move to the next instruction
+          currentStepIndex++;
+        });
+      }
+
       //change the animate Camera of the controller to the new location
       googleMapController.animateCamera(CameraUpdate.newCameraPosition(
         CameraPosition(
@@ -113,7 +141,10 @@ class SsmPlayState extends State<SsmPlay> {
     });
   }
 
-  // Check if the user is within 200 meters of the destination and show an alert dialog if true
+  //function to check the navigation steps(directions api)
+  void startTrackingLocation() {}
+
+  //Check if the user is within 200 meters of the destination and show an alert dialog if true
   void checkProximityAndNotify() {
     //if the currentLocation has no location value return
     if (currentLocation == null) return;
@@ -183,7 +214,7 @@ class SsmPlayState extends State<SsmPlay> {
     }
   }
 
-  // Show an AlertDialog with the specified message
+  //Show an AlertDialog with the specified message
   void showAlertDialog(String message) {
     // Check if the widget is still mounted before showing dialog
     if (!mounted) return;
@@ -287,9 +318,9 @@ class SsmPlayState extends State<SsmPlay> {
 
   //distance matrix api request for the sightseeing route
   Future<void> getDistanceAndDuration() async {
-
     //convert current location into a lat lang object
-    LatLng currentLatLng = LatLng(currentLocation!.latitude!, currentLocation!.longitude!);
+    LatLng currentLatLng =
+        LatLng(currentLocation!.latitude!, currentLocation!.longitude!);
 
     //url with location coorindates
     //get distancea and duration between the current location and the destination
@@ -314,10 +345,11 @@ class SsmPlayState extends State<SsmPlay> {
   }
 
   //distance and duration to the nearest waypoint using directions api
-  Future<void> getWaypointDistanceandDuration(LocationData? currentLocation, PolylineWayPoint waypoint) async {
-
+  Future<void> getWaypointDistanceandDuration(
+      LocationData? currentLocation, PolylineWayPoint waypoint) async {
     //convert current location into a lat lang object
-    LatLng currentLatLng = LatLng(currentLocation!.latitude!, currentLocation!.longitude!);
+    LatLng currentLatLng =
+        LatLng(currentLocation!.latitude!, currentLocation!.longitude!);
 
     //convert the PolylineWaypoint object into a lat lang object
     LatLng WaypointlatLng = LatLng(
@@ -336,15 +368,39 @@ class SsmPlayState extends State<SsmPlay> {
 
       if (data['routes'].isNotEmpty) {
         final legs = data['routes'][0]['legs'][0];
+
         setState(() {
           waypointDistance = legs['distance']['text'];
           waypointDuration = legs['duration']['text'];
         });
 
         print('Distance: $waypointDistance, Duration: $waypointDuration');
+
+        //Extract step-by-step navigation instructions
+        List<Map<String, dynamic>> stepsList = [];
+        for (var step in legs['steps']) {
+          //Remove HTML tags
+          String instruction =
+              step['html_instructions'].replaceAll(RegExp(r'<[^>]*>'), '');
+          //Distance in meters
+          double distance = step['distance']['value'].toDouble();
+
+          stepsList.add({
+            'instruction': instruction,
+            'distance': distance,
+          });
+        }
+        //Store navigation steps
+        setState(() {
+          navigationSteps = stepsList;
+          //Start from first step
+          currentStepIndex = 0;
+        });
+
+        print("Navigation Steps: $navigationSteps");
+      } else {
+        print("Failed to fetch waypoint distance & duration.");
       }
-    } else {
-      print("Failed to fetch waypoint distance & duration.");
     }
   }
 
@@ -460,8 +516,10 @@ class SsmPlayState extends State<SsmPlay> {
                   Text("Distance: $distance", style: TextStyle(fontSize: 16)),
                   Text("Duration: $duration", style: TextStyle(fontSize: 16)),
                   Divider(),
-                  Text("Waypoint Distance: $waypointDistance", style: TextStyle(fontSize: 16, color: Colors.blue)),
-                  Text("Waypoint Duration: $waypointDuration", style: TextStyle(fontSize: 16, color: Colors.blue)),
+                  Text("Waypoint Distance: $waypointDistance",
+                      style: TextStyle(fontSize: 16, color: Colors.blue)),
+                  Text("Waypoint Duration: $waypointDuration",
+                      style: TextStyle(fontSize: 16, color: Colors.blue)),
                   // ElevatedButton(
                   //   onPressed:(){
                   //    // Navigate to MapboxPage when button is pressed
@@ -475,6 +533,31 @@ class SsmPlayState extends State<SsmPlay> {
                 ],
               ),
             ),
+          ),
+          Positioned(
+            bottom: 80, //You can adjust the position to not overlap with the other widget
+            left: 20,
+            right: 20,
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(8),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black26,
+                    blurRadius: 4,
+                    offset: Offset(2, 2),
+                  ),
+                ],
+              ),
+              child: Text(
+                navigationSteps.isNotEmpty && currentStepIndex < navigationSteps.length
+                    ? "${navigationSteps[currentStepIndex]['instruction']} in ${navigationSteps[currentStepIndex]['distance'].toInt()}m"
+                    : "Arrived at destination",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+          ),
           )
         ],
       ),

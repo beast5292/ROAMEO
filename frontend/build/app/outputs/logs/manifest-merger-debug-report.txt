@@ -75,6 +75,7 @@ INJECTED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\andro
 INJECTED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 INJECTED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 MERGED from [:cloud_firestore] C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-15:12
+MERGED from [:connectivity_plus] C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\build\connectivity_plus\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-9:12
 MERGED from [:firebase_storage] C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_core] C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-15:12
 MERGED from [:google_maps_flutter_android] C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\build\google_maps_flutter_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
@@ -212,6 +213,8 @@ ADDED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\
 		ADDED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:9:22-82
 uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:10:5-79
+MERGED from [:connectivity_plus] C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\build\connectivity_plus\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-79
+MERGED from [:connectivity_plus] C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\build\connectivity_plus\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-79
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\user\.gradle\caches\8.9\transforms\5a1c2ddf67291cb8b7380ef388e3de12\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:23:5-79
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\user\.gradle\caches\8.9\transforms\5a1c2ddf67291cb8b7380ef388e3de12\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:23:5-79
 MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk:9.6.2] C:\Users\user\.gradle\caches\8.9\transforms\cfb1c10d620af9e3ee6c29103e091fcc\transformed\jetified-mapbox-android-sdk-9.6.2\AndroidManifest.xml:17:5-79
@@ -256,6 +259,8 @@ INJECTED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\andro
 INJECTED from C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\android\app\src\debug\AndroidManifest.xml
 MERGED from [:cloud_firestore] C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
 MERGED from [:cloud_firestore] C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:connectivity_plus] C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\build\connectivity_plus\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:connectivity_plus] C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\build\connectivity_plus\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_storage] C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_storage] C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_core] C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44

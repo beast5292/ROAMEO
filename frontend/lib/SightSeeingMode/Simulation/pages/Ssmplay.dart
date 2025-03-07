@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -30,6 +31,9 @@ class SsmPlayState extends State<SsmPlay> {
 
   //Store reached waypoints to avoid duplicate alerts (when you reached a waypoint)
   Set<LatLng> reachedWaypoints = {};
+
+  //track the internet connection status
+  String _connectionStatus = 'Unknown';
 
   //Google map instance as a completer
   final Completer<GoogleMapController> _controller = Completer();
@@ -86,6 +90,7 @@ class SsmPlayState extends State<SsmPlay> {
 
     //waits for the google map controller to be available
     GoogleMapController googleMapController = await _controller.future;
+    
 
     //listens to the stream function onLocationChanged in location package and a callback function everytime location changes
     location.onLocationChanged.listen((newLoc) {
@@ -513,6 +518,10 @@ class SsmPlayState extends State<SsmPlay> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Text(
+                    _connectionStatus,
+                    style: TextStyle(fontSize: 20),
+                  ),
                   Text("Distance: $distance", style: TextStyle(fontSize: 16)),
                   Text("Duration: $duration", style: TextStyle(fontSize: 16)),
                   Divider(),
@@ -535,7 +544,8 @@ class SsmPlayState extends State<SsmPlay> {
             ),
           ),
           Positioned(
-            bottom: 80, //You can adjust the position to not overlap with the other widget
+            bottom:
+                80, //You can adjust the position to not overlap with the other widget
             left: 20,
             right: 20,
             child: Container(
@@ -552,12 +562,13 @@ class SsmPlayState extends State<SsmPlay> {
                 ],
               ),
               child: Text(
-                navigationSteps.isNotEmpty && currentStepIndex < navigationSteps.length
+                navigationSteps.isNotEmpty &&
+                        currentStepIndex < navigationSteps.length
                     ? "${navigationSteps[currentStepIndex]['instruction']} in ${navigationSteps[currentStepIndex]['distance'].toInt()}m"
                     : "Arrived at destination",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
             ),
-          ),
           )
         ],
       ),

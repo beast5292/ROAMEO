@@ -4,7 +4,6 @@ class NotificationsPage extends StatelessWidget {
   final List<Map<String, String>> notifications = [
     {"type": "like", "user": "Alex", "message": "liked your post.", "image": "lib/assets/images/cars1.jpg"},
     {"type": "comment", "user": "Sarah", "message": "commented: Nice post!", "image": "lib/assets/images/cars5.png"},
-
   ];
 
   @override

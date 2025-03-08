@@ -3,6 +3,28 @@ allprojects {
         google()
         mavenCentral()
     }
+
+    configurations.all {
+        resolutionStrategy.eachDependency { details ->
+            if (details.requested.group == 'com.google.android.gms' && details.requested.name == 'play-services-maps') {
+                details.useVersion '18.2.0' // or the version you prefer
+            }
+        }
+    }
+
+    // This code is where all the magic happens and fixes the error.
+    subprojects {
+        afterEvaluate { project ->
+            if (project.hasProperty('android')) {
+                project.android {
+                    if (namespace == null) {
+                        namespace project.group
+                    }
+                }
+            }
+        }
+    }
+    // This code is where all the magic happens and fixes the error.
 }
 
 rootProject.buildDir = "../build"

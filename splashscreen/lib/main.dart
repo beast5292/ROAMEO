@@ -1,12 +1,13 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'screens/splash_screen.dart';
 import 'screens/blogPage.dart';
 
-void main() {
-  runApp(const MyApp());
-}
 
-//correct function to be used on the app with with splash screen and blog page
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 
 class MyApp extends StatelessWidget {
@@ -16,14 +17,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Animated Splash Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const SplashScreen(),
-      routes: {
-        '/home': (context) => const HomeScreen(),
-      },
+      title: 'Blog App',
+      theme: ThemeData.dark(), // Use dark theme
+      home: const HomeScreen(),
     );
   }
 }
@@ -33,31 +29,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Colors.black,
       body: BlogPage(),
-
     );
   }
 }
-// temporary function used to work only on blog page
-/*
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Blog',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const HomeScreen(),
-
-
-    );
-  }
-}
-
- */

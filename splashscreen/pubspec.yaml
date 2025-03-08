@@ -1,4 +1,4 @@
-name: splashscreen
+name: bloge
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -31,16 +31,23 @@ dependencies:
   flutter:
     sdk: flutter
 
+
+
+  firebase_core: ^2.24.2
+  firebase_auth: ^4.16.0
+  cloud_firestore: ^4.17.4
+  firebase_storage: ^11.6.5
+
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  image_picker: ^0.8.4+3
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  cupertino_icons: ^1.0.8
-  image_picker: ^0.8.4+3
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -54,20 +61,11 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-  assets:
-    - assets/images/
-    - lib/assets/images/
-    - lib/assets/icons/
-
-
-
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
-
-
-
+  uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
   # assets:
@@ -99,17 +97,6 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
-
-
-  fonts:
-    - family: Inter
-      fonts:
-        - asset: assets/fonts/Inter-Regular.woff
-        - asset: assets/fonts/Inter-Bold.woff
-          weight: 700
-        - asset: assets/fonts/Inter-ExtraBold.woff
-          weight: 800
-        - asset: assets/fonts/Inter-Black.woff
-          weight: 900
-
-
+  assets:
+    - lib/assets/images/
+    - lib/assets/icons/

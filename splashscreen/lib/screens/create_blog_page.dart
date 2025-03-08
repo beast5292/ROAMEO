@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
+import 'package:firebase_storage/firebase_storage.dart';
 import '../models/blog_model.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CreateBlogPage extends StatefulWidget {
-  final Function(Blog) onSubmit; // Add the onSubmit callback
+  final Function(Blog) onSubmit; // Add this line to accept the callback
 
   const CreateBlogPage({Key? key, required this.onSubmit}) : super(key: key);
 
@@ -12,13 +14,16 @@ class CreateBlogPage extends StatefulWidget {
   _CreateBlogPageState createState() => _CreateBlogPageState();
 }
 
+
 class _CreateBlogPageState extends State<CreateBlogPage> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _contentController = TextEditingController();
   File? _image;
+  bool _isLoading = false;
 
   Future<void> _pickImage() async {
-    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    final pickedFile =
+    await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
         _image = File(pickedFile.path);
@@ -26,100 +31,105 @@ class _CreateBlogPageState extends State<CreateBlogPage> {
     }
   }
 
+  Future<String?> _uploadImage(File imageFile) async {
+    try {
+      String fileName = 'blog_images/${DateTime.now().millisecondsSinceEpoch}.jpg';
+      Reference storageRef = FirebaseStorage.instance.ref().child(fileName);
+      UploadTask uploadTask = storageRef.putFile(imageFile);
+      TaskSnapshot snapshot = await uploadTask;
+      return await snapshot.ref.getDownloadURL();
+    } catch (e) {
+      print("Image upload failed: $e");
+      return null;
+    }
+  }
+
+  Future<void> _submitBlog() async {
+    if (_titleController.text.isEmpty || _contentController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Title and content cannot be empty")),
+      );
+      return;
+    }
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    String? imageUrl;
+    if (_image != null) {
+      imageUrl = await _uploadImage(_image!);
+    }
+
+    String postId = FirebaseFirestore.instance.collection('posts').doc().id;
+
+    void _submitBlog() async {
+      Blog newBlog = Blog(
+        id: FirebaseFirestore.instance.collection('posts').doc().id, // Generate an ID for the new post
+        title: _titleController.text,
+        content: _contentController.text,
+        userName: 'User Name', // Update to current user
+        userProfileImage: 'lib/assets/images/cars5.png',
+        timestamp: Timestamp.now(),
+        imagePath: null, // Handle image uploading if applicable
+      );
+
+      try {
+        await FirebaseFirestore.instance.collection('posts').doc(newBlog.id).set({
+          'title': newBlog.title,
+          'content': newBlog.content,
+          'userName': newBlog.userName,
+          'userProfileImage': newBlog.userProfileImage,
+          'timestamp': newBlog.timestamp,
+          'likes': 0, // Initialize like count
+          'dislikes': 0, // Initialize dislike count
+          'imagePath': newBlog.imagePath, // Handle the image if applicable
+        });
+
+        widget.onSubmit(newBlog); // Notify parent widget of new blog
+        Navigator.pop(context); // Close the page
+      } catch (e) {
+        // Handle errors here
+        print('Error adding blog: $e');
+      }
+    }
+
+
+    setState(() {
+      _isLoading = false;
+    });
+
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Create Blog",style: TextStyle(color: Colors.white)),
+        title: Text("Create Blog", style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.black,
-        iconTheme: const IconThemeData(
-            color: Colors.white
-        ),
-        actions: [ // Use actions for the right corner
-          TextButton( // Or IconButton if you want an icon
-              onPressed: () {
-                final newBlog = Blog(
-                  title: _titleController.text,
-                  content: _contentController.text,
-                  //image: _image,
-                );
-                widget.onSubmit(newBlog);
-                Navigator.pop(context);
-              },
-              child: Container(
-                child: const Text("Post", style: TextStyle(color: Colors.white, fontSize: 17)),
-
-              )
-
-            // text inside a box if needed
-            /*child: Container(
-          decoration: BoxDecoration(
-          color: Colors.grey, // Background color of the box
-            borderRadius: BorderRadius.circular(10.0), // Adjust the radius for curvature
-          ),
-          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0), // Padding inside the box
-          child: const Text("Post", style: TextStyle(color: Colors.white)),
-          )*/
-
+        actions: [
+          _isLoading
+              ? Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: CircularProgressIndicator(color: Colors.white),
+          )
+              : TextButton(
+            onPressed: _submitBlog,
+            child: Text("Post", style: TextStyle(color: Colors.white, fontSize: 17)),
           ),
         ],
       ),
-      backgroundColor: Colors.black,
       body: Padding(
-        padding: const EdgeInsets.all(25.0),
+        padding: EdgeInsets.all(25.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextField(
-              controller: _titleController,
-              decoration: const InputDecoration(
-                labelText: 'Title',
-                labelStyle: TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.bold), // Hint text color
-                enabledBorder: UnderlineInputBorder( // Underline color when enabled
-                  borderSide: BorderSide(color: Colors.white),
-                ),
-                focusedBorder: UnderlineInputBorder( // Underline color when focused
-                  borderSide: BorderSide(color: Colors.white70), // Example: Blue when focused
-                ),
-              ),
-              style: const TextStyle(color: Colors.white), // Text color
-            ),
-            TextField(
-              controller: _contentController,
-              decoration: const InputDecoration(
-                labelText: 'Content',
-                labelStyle: TextStyle(color: Colors.white,fontSize: 20), // Hint text color
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
-                ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white70), // Example: Blue when focused
-                ),
-              ),
-              maxLines: 4,
-              style: const TextStyle(color: Colors.white), // Text color
-            ),
-
-            SizedBox(height: 50,),
-            Row(
-              children: [
-                if (_image != null) Image.file(_image!),
-                IconButton(
-                  onPressed: _pickImage,
-                  icon: const Icon(Icons.add_a_photo, color: Colors.white, size: 30,),
-                ),
-                IconButton(
-                  onPressed: _pickImage,
-                  icon: const Icon(Icons.poll_outlined, color: Colors.white, size: 31,),
-                ),
-              ],
-            )
-
-
+            TextField(controller: _titleController, decoration: InputDecoration(labelText: 'Title')),
+            TextField(controller: _contentController, decoration: InputDecoration(labelText: 'Content'), maxLines: 4),
+            IconButton(onPressed: _pickImage, icon: Icon(Icons.add_a_photo)),
           ],
         ),
       ),
     );
   }
 }
-

@@ -3,6 +3,7 @@ import 'dart:convert';
 
 //fetch all the sights
 Future<List<dynamic>> fetchSights() async {
+  
   final response = await http.get(Uri.parse('http://10.0.2.2:8000/sights/'));
   
   if (response.statusCode == 200) {

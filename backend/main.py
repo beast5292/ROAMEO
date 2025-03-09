@@ -24,19 +24,27 @@ async def add_sights(sights:List[Sight]): #type: ignore
     sight_dicts = [sight.dict() for sight in sights]
 
     # Save the whole array as one record in Firestore
-    doc_ref = db.collection("sights").document()  # Firestore will auto-generate the document ID
+    doc_ref = db.collection("sights").document()  #Firestore will auto-generate the document ID
     doc_ref.set({"sights": sight_dicts})  
 
-    # Add to local storage
+
+    # Add to the local array
     sights_db.append(sight_dicts)
     print("Current sights_db:", sights_db)
     return {"message": "Sightseeing mode added successfully"}
 
 
-#get a sight from the db
+#get all the sights from the db
 @app.get("/sights/")
 async def get_sights():
-    return {"sights": sights_db}
+
+    return_sights = []
+    docs = db.collection("sights").stream()
+
+    for doc in docs:
+        return_sights.append(doc.to_dict().get("sights",[]))
+
+    return {"sights": return_sights}
 
 #get selected sight by index
 @app.get("/sights/{index}")

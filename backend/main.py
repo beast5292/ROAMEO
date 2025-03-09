@@ -6,7 +6,7 @@ from typing import List
 import firebase_admin
 
 #Initialize Firebase Admin SDK with your credentials
-cred = credentials.Certificate(r'C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\backend\private key\roameo-f3ab0-firebase-adminsdk-ss40k-04eb540eda.json') 
+cred = credentials.Certificate(r'C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\backend\private key\roameo-f3ab0-firebase-adminsdk-ss40k-1e1297f52f.json') 
 initialize_app(cred)
 
 #Firestore client initialization

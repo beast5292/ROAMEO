@@ -30,6 +30,9 @@ class SsmPlayState extends State<SsmPlay> {
   //loading state variable
   bool isLoading = true;
 
+  //Add a flag to track if data is loaded
+  bool isDataLoaded = true;
+
   //store the recieved sightseeing data in a Map
   Map<String, dynamic>? sightMode;
 
@@ -46,8 +49,16 @@ class SsmPlayState extends State<SsmPlay> {
   final Completer<GoogleMapController> _controller = Completer();
 
   //temporary holders for the sourcelocation and destination
-  static const LatLng sourceLocation = LatLng(6.928684, 79.878155);
-  static const LatLng destination = LatLng(6.922409, 79.866084);
+  static LatLng? sourceLocation;
+  static LatLng? destination;
+  List<LatLng> waypoints = [];
+
+  // static LatLng sourceLocation = LatLng(6.928684, 79.878155);
+  // static LatLng destination = LatLng(6.922409, 79.866084);
+
+  //dynamic source and destination
+  // LatLng? source;
+  // LatLng? destin;
 
   //store the navigation steps recieved from the Directions waypoint api request
   List<Map<String, dynamic>> navigationSteps = [];
@@ -80,9 +91,9 @@ class SsmPlayState extends State<SsmPlay> {
   //function to iterate through the sightmode and get the source,waypoints and destination
   void assignPoints(Map<String, dynamic> sightMode) {
     if (sightMode.isEmpty || !sightMode.containsKey('sights')) {
-    print('No sights available');
-    return;
-  }
+      print('No sights available');
+      return;
+    }
 
     // Extract the list of sights
     List<dynamic> sights = sightMode['sights'];
@@ -96,10 +107,25 @@ class SsmPlayState extends State<SsmPlay> {
     var source = sights.first;
 
     // Get the last sight as destination
-    var destination = sights.last;
+    var destin= sights.last;
 
     // Get the waypoints (all intermediate sights between first and last)
-    var waypoints = sights.length > 2 ? sights.sublist(1, sights.length - 1) : [];
+    var waypoints_list =
+        sights.length > 2 ? sights.sublist(1, sights.length - 1) : [];
+
+    //set the state variables
+    setState(() {
+      sourceLocation = LatLng(source['lat'], source['long']);
+      destination = LatLng(destin['lat'], destin['long']);
+      waypoints =
+          waypoints_list.map((wp) => LatLng(wp['lat'], wp['long'])).toList();
+      isDataLoaded = true;
+    });
+
+    var alertMessage2 =
+        "source $sourceLocation, destination $destination, waypoints $waypoints, isDataLoaded $isDataLoaded";
+
+    showAlertDialog2("recieved $alertMessage2");
 
     // Output source, destination, and waypoints
     print('Source:');
@@ -107,12 +133,12 @@ class SsmPlayState extends State<SsmPlay> {
     print('Latitude: ${source['lat']}, Longitude: ${source['long']}');
 
     print('\nDestination:');
-    print('Name: ${destination['description']}');
-    print('Latitude: ${destination['lat']}, Longitude: ${destination['long']}');
+    print('Name: ${destin['description']}');
+    print('Latitude: ${destin['lat']}, Longitude: ${destin['long']}');
 
-    if (waypoints.isNotEmpty) {
+    if (waypoints_list.isNotEmpty) {
       print('\nWaypoints:');
-      for (var waypoint in waypoints) {
+      for (var waypoint in waypoints_list) {
         print('Name: ${waypoint['description']}');
         print('Latitude: ${waypoint['lat']}, Longitude: ${waypoint['long']}');
       }
@@ -120,53 +146,51 @@ class SsmPlayState extends State<SsmPlay> {
       print('\nNo waypoints available.');
     }
 
-    
-  // Build the alert message
-  String alertMessage = 'Source:\n'
-      'Name: ${source['description']}\n'
-      'Latitude: ${source['lat']}, Longitude: ${source['long']}\n\n'
-      'Destination:\n'
-      'Name: ${destination['description']}\n'
-      'Latitude: ${destination['lat']}, Longitude: ${destination['long']}\n\n';
+    // Build the alert message
+    String alertMessage = 'Source:\n'
+        'Name: ${source['description']}\n'
+        'Latitude: ${source['lat']}, Longitude: ${source['long']}\n\n'
+        'Destination:\n'
+        'Name: ${destin['description']}\n'
+        'Latitude: ${destin['lat']}, Longitude: ${destin['long']}\n\n';
 
-  if (waypoints.isNotEmpty) {
-    alertMessage += 'Waypoints:\n';
-    for (var waypoint in waypoints) {
-      alertMessage +=
-          'Name: ${waypoint['description']}\nLatitude: ${waypoint['lat']}, Longitude: ${waypoint['long']}\n';
+    if (waypoints.isNotEmpty) {
+      alertMessage += 'Waypoints:\n';
+      for (var waypoint in waypoints_list) {
+        alertMessage +=
+            'Name: ${waypoint['description']}\nLatitude: ${waypoint['lat']}, Longitude: ${waypoint['long']}\n';
+      }
+    } else {
+      alertMessage += 'No waypoints available.';
     }
-  } else {
-    alertMessage += 'No waypoints available.';
-  
-  }
     // Show the alert dialog
-  showAlertDialog2(alertMessage);
-}
+    showAlertDialog2(alertMessage);
+  }
 
   void showAlertDialog2(String message) {
-  // Check if the widget is still mounted before showing dialog
-  if (!mounted) return;
+    // Check if the widget is still mounted before showing dialog
+    if (!mounted) return;
 
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: const Text("Sightseeing Details"),
-        content: SingleChildScrollView(
-          child: Text(message),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: const Text("OK"),
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Sightseeing Details"),
+          content: SingleChildScrollView(
+            child: Text(message),
           ),
-        ],
-      );
-    },
-  );
-}
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text("OK"),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   //function to get the current location (using the location package)
   void getCurrentLocation() async {
@@ -302,7 +326,7 @@ class SsmPlayState extends State<SsmPlay> {
     //calculate the distance to destination using the haveersine calculation
     double distanceToDestination = calculateDistance(
       LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
-      destination,
+      destination!,
     );
 
     //if the distance is less than 50 meteres display you have arrived
@@ -342,9 +366,6 @@ class SsmPlayState extends State<SsmPlay> {
 
   //function to get the polypoints
   void getPolyPoints() async {
-    //if current location is null return
-    if (currentLocation == null) return;
-
     //new polyline object (polyline)
     PolylinePoints polylinePoints = PolylinePoints();
 
@@ -354,7 +375,7 @@ class SsmPlayState extends State<SsmPlay> {
     //Define waypoints excluding reached ones
     activeWaypoints = [
       PolylineWayPoint(
-          location: "${sourceLocation.latitude},${sourceLocation.longitude}")
+          location: "${sourceLocation!.latitude},${sourceLocation!.longitude}")
     ].where((wp) {
       LatLng wpLatLng = LatLng(
         double.parse(wp.location.split(',')[0]),
@@ -367,7 +388,7 @@ class SsmPlayState extends State<SsmPlay> {
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
         'AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0',
         PointLatLng(currentLocation!.latitude!, currentLocation!.longitude!),
-        PointLatLng(destination.latitude, destination.longitude),
+        PointLatLng(destination!.latitude, destination!.longitude),
         travelMode: TravelMode.driving,
         wayPoints: activeWaypoints);
 
@@ -427,7 +448,7 @@ class SsmPlayState extends State<SsmPlay> {
     //url with location coorindates
     //get distancea and duration between the current location and the destination
     String url =
-        'https://maps.googleapis.com/maps/api/distancematrix/json?origins=${currentLatLng.latitude!},${currentLatLng.longitude!}&destinations=${destination.latitude},${destination.longitude}&key=AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0';
+        'https://maps.googleapis.com/maps/api/distancematrix/json?origins=${currentLatLng.latitude!},${currentLatLng.longitude!}&destinations=${destination!.latitude},${destination!.longitude}&key=AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0';
 
     //get request to distance matrix api
     var response = await http.get(Uri.parse(url));
@@ -537,10 +558,6 @@ class SsmPlayState extends State<SsmPlay> {
   @override
   void initState() {
     super.initState();
-    getCurrentLocation();
-    setCustomMarkerIcon();
-    getPolyPoints();
-    getDistanceAndDuration();
     // Fetch sight mode data
     fetchSightMode(widget.docId).then((data) {
       if (data != null) {
@@ -550,6 +567,9 @@ class SsmPlayState extends State<SsmPlay> {
           print("sightMode: $sightMode");
         });
         assignPoints(sightMode!);
+        setState(() {
+          isDataLoaded = true;
+        });
       } else {
         setState(() {
           isLoading = false; // Data is null, set loading to false
@@ -562,6 +582,10 @@ class SsmPlayState extends State<SsmPlay> {
       });
       print("Error fetching sight mode: $error");
     });
+    getCurrentLocation();
+    // setCustomMarkerIcon();
+    // getPolyPoints();
+    // getDistanceAndDuration();
   }
 
   @override
@@ -582,10 +606,36 @@ class SsmPlayState extends State<SsmPlay> {
       );
     }
 
+
+  // Show loading indicator until sourceLocation and destination are initialized
+  if (!isDataLoaded || sourceLocation == null || destination == null) {
+    print("Data not fully loaded - showing progress indicator");
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircularProgressIndicator(), // Loading indicator
+            SizedBox(height: 20), // Spacing
+            // Show details if available
+              Column(
+                children: [
+                  Text("Source Location: ${sourceLocation ?? "Loading..."}"),
+                Text("Destination: ${destination ?? "Loading..."}"),
+                Text("Waypoints: ${waypoints.isNotEmpty ? waypoints : "Loading..."}"),
+                Text("isDataLoaded: $isDataLoaded"),
+                ],
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Track order",
+          "Sightseeing mode",
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
       ),
@@ -613,13 +663,13 @@ class SsmPlayState extends State<SsmPlay> {
                         icon: currentLocationIcon,
                         position: LatLng(currentLocation!.latitude!,
                             currentLocation!.longitude!)),
-                    const Marker(
+                    Marker(
                       markerId: MarkerId("source"),
-                      position: sourceLocation,
+                      position: sourceLocation!,
                     ),
-                    const Marker(
+                    Marker(
                       markerId: MarkerId("destination"),
-                      position: destination,
+                      position: destination!,
                     )
                   },
                   onMapCreated: (mapController) {

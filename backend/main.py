@@ -21,16 +21,16 @@ sights_db = []
 @app.post("/sights/")
 async def add_sights(sights:List[Sight]): #type: ignore
 
-    #Save the received sights to Firebase Firestore
-    for sight in sights:
-        sight_dict = sight.dict()
-        sight_ref = db.collection("sights").document(sight.id)  #Use the sight's id as document ID
-        sight_ref.set(sight_dict)  #Save the sight data to Firestore
+    sight_dicts = [sight.dict() for sight in sights]
 
-    #Add the array as one sightseeing mode
-    sights_db.append([sight.dict() for sight in sights])
-    print("Current sights_db:", sights_db)  # Print the updated array
-    return {"Message": "Sightseeing mode added successfully"}
+    # Save the whole array as one record in Firestore
+    doc_ref = db.collection("sights").document()  # Firestore will auto-generate the document ID
+    doc_ref.set({"sights": sight_dicts})  
+
+    # Add to local storage
+    sights_db.append(sight_dicts)
+    print("Current sights_db:", sights_db)
+    return {"message": "Sightseeing mode added successfully"}
 
 
 #get a sight from the db

@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI,HTTPException
 from typing import List
 from Sight_info import Sight
 from firebase_admin import credentials,firestore, initialize_app
@@ -55,9 +55,17 @@ async def get_sights():
 
     return {"sights": return_sights}
 
+
 #get selected sight by index
-@app.get("/sights/{index}")
-async def get_sight_mode(index: int):
-    if index < 0 or index >= len(sights_db):
-        return {"error": "Invalid index"}
-    return {"sight_mode": sights_db[index]}
+@app.get("/sights/{docId}")
+async def get_sight_by_id(docId: str):
+    # Fetch the specific document from Firestore using the docId
+    doc = db.collection("sights").document(docId).get()
+
+    if doc.exists:
+        sight_data = doc.to_dict().get("sights", [])
+        #Print the received sight data
+        print("Received sight data:", sight_data)
+        return {"id": doc.id, "sights": sight_data}
+    else:
+        raise HTTPException(status_code=404, detail="Sight not found")

@@ -16,7 +16,6 @@ class _CameraPageState extends State<CameraPage> {
   final ImagePicker _picker = ImagePicker();
 
   //Function to fetch GPS location
-
   Future<Position> _getCurrentLocation() async {
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {

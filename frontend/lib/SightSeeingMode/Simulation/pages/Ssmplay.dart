@@ -19,13 +19,17 @@ class SsmPlay extends StatefulWidget {
   //widget takes the doc id of the sight
   final String docId;
 
-  const SsmPlay({Key? key, required this.index,required this.docId}) : super(key: key);
+  const SsmPlay({Key? key, required this.index, required this.docId})
+      : super(key: key);
 
   @override
   State<SsmPlay> createState() => SsmPlayState();
 }
 
 class SsmPlayState extends State<SsmPlay> {
+  //loading state variable
+  bool isLoading = true;
+
   //store the recieved sightseeing data in a Map
   Map<String, dynamic>? sightMode;
 
@@ -72,6 +76,97 @@ class SsmPlayState extends State<SsmPlay> {
   BitmapDescriptor sourceIcon = BitmapDescriptor.defaultMarker;
   BitmapDescriptor destinationIcon = BitmapDescriptor.defaultMarker;
   BitmapDescriptor currentLocationIcon = BitmapDescriptor.defaultMarker;
+
+  //function to iterate through the sightmode and get the source,waypoints and destination
+  void assignPoints(Map<String, dynamic> sightMode) {
+    if (sightMode.isEmpty || !sightMode.containsKey('sights')) {
+    print('No sights available');
+    return;
+  }
+
+    // Extract the list of sights
+    List<dynamic> sights = sightMode['sights'];
+
+    if (sights.isEmpty) {
+      print('No sights available');
+      return;
+    }
+
+    // Get the first sight as source
+    var source = sights.first;
+
+    // Get the last sight as destination
+    var destination = sights.last;
+
+    // Get the waypoints (all intermediate sights between first and last)
+    var waypoints = sights.length > 2 ? sights.sublist(1, sights.length - 1) : [];
+
+    // Output source, destination, and waypoints
+    print('Source:');
+    print('Name: ${source['description']}');
+    print('Latitude: ${source['lat']}, Longitude: ${source['long']}');
+
+    print('\nDestination:');
+    print('Name: ${destination['description']}');
+    print('Latitude: ${destination['lat']}, Longitude: ${destination['long']}');
+
+    if (waypoints.isNotEmpty) {
+      print('\nWaypoints:');
+      for (var waypoint in waypoints) {
+        print('Name: ${waypoint['description']}');
+        print('Latitude: ${waypoint['lat']}, Longitude: ${waypoint['long']}');
+      }
+    } else {
+      print('\nNo waypoints available.');
+    }
+
+    
+  // Build the alert message
+  String alertMessage = 'Source:\n'
+      'Name: ${source['description']}\n'
+      'Latitude: ${source['lat']}, Longitude: ${source['long']}\n\n'
+      'Destination:\n'
+      'Name: ${destination['description']}\n'
+      'Latitude: ${destination['lat']}, Longitude: ${destination['long']}\n\n';
+
+  if (waypoints.isNotEmpty) {
+    alertMessage += 'Waypoints:\n';
+    for (var waypoint in waypoints) {
+      alertMessage +=
+          'Name: ${waypoint['description']}\nLatitude: ${waypoint['lat']}, Longitude: ${waypoint['long']}\n';
+    }
+  } else {
+    alertMessage += 'No waypoints available.';
+  
+  }
+    // Show the alert dialog
+  showAlertDialog2(alertMessage);
+}
+
+  void showAlertDialog2(String message) {
+  // Check if the widget is still mounted before showing dialog
+  if (!mounted) return;
+
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text("Sightseeing Details"),
+        content: SingleChildScrollView(
+          child: Text(message),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text("OK"),
+          ),
+        ],
+      );
+    },
+  );
+}
 
   //function to get the current location (using the location package)
   void getCurrentLocation() async {
@@ -446,17 +541,47 @@ class SsmPlayState extends State<SsmPlay> {
     setCustomMarkerIcon();
     getPolyPoints();
     getDistanceAndDuration();
-    fetchSightMode(widget.index).then((data) {
-      setState(() {
-        sightMode = data;
-      });
+    // Fetch sight mode data
+    fetchSightMode(widget.docId).then((data) {
+      if (data != null) {
+        setState(() {
+          sightMode = data;
+          isLoading = false; // Data fetched, set loading to false
+          print("sightMode: $sightMode");
+        });
+        assignPoints(sightMode!);
+      } else {
+        setState(() {
+          isLoading = false; // Data is null, set loading to false
+        });
+        print("Fetched data is null");
+      }
     }).catchError((error) {
+      setState(() {
+        isLoading = false; // Error occurred, set loading to false
+      });
       print("Error fetching sight mode: $error");
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    if (isLoading) {
+      return Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
+
+    if (sightMode == null) {
+      return Scaffold(
+        body: Center(
+          child: Text("Failed to load sight mode data."),
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(

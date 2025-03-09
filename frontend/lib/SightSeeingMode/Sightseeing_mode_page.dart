@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-<<<<<<< HEAD:frontend/lib/Sightseeingmode/Sightseeing_mode_page.dart
-import 'package:homepage/Sightseeingmode/SightMenu.dart';
-=======
 import 'package:practice/SightSeeingMode/Feed/SightFeed.dart';
 import 'package:practice/SightSeeingMode/Menu.dart';
 import 'package:google_maps_webservice/places.dart';
->>>>>>> origin/Mahith:frontend/lib/SightSeeingMode/Sightseeing_mode_page.dart
 
 class SsmPage extends StatefulWidget {
   const SsmPage({super.key});
@@ -188,60 +184,6 @@ class _SsmPageState extends State<SsmPage> {
             bottom: 20,
             left: 20,
             right: 20,
-<<<<<<< HEAD:frontend/lib/Sightseeingmode/Sightseeing_mode_page.dart
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: List.generate(
-                  5,
-                  (index) => Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 5),
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                        color: Colors.black54,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Column(
-                      children: [
-                        Image.network("https://via.placeholder.com/100"),
-                        const Text("Popular Place",
-                            style: TextStyle(color: Colors.white)),
-                        TextButton(
-                            onPressed: () {}, child: const Text("EXPLORE")),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: 200,
-            right: 20,
-            child: Column(
-              children: [
-                FloatingActionButton(
-                  heroTag: "fab_add",
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => SightMenu()));
-                  },
-                  child: const Icon(Icons.add),
-                ),
-                const SizedBox(height: 10),
-                FloatingActionButton(
-                  heroTag: "fab_edit",
-                  onPressed: () {
-                    _showEditDialog();
-                  },
-                  child: const Icon(Icons.edit),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-=======
             child: FloatingActionButton(
                 onPressed: () {
                   Navigator.push(
@@ -264,6 +206,5 @@ class _SsmPageState extends State<SsmPage> {
                 child: Icon(Icons.search)),
           )
         ]));
->>>>>>> origin/Mahith:frontend/lib/SightSeeingMode/Sightseeing_mode_page.dart
   }
 }

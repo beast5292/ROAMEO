@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:homepage/Sightseeingmode/camera_page.dart';
-import 'package:homepage/location_search_screen.dart';
+import 'package:practice/SightSeeingMode/CameraPage/pages/camera_page.dart';
+import 'package:practice/SightSeeingMode/location_select/pages/autoCwidget.dart';
 
 class SightMenu extends StatefulWidget {
   const SightMenu({super.key});
@@ -30,7 +30,10 @@ class _SightMenuState extends State<SightMenu> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => SearchLocationScreen()),
+                       builder: (context) => PlacesAutoCompleteField(
+                                apiKey: 'AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0', // Pass the actual API key here
+                     ),
+                    )
                   );
                 },
                 child: Icon(Icons.map)),

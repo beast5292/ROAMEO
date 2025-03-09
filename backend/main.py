@@ -3,6 +3,7 @@ from typing import List
 from Sight_info import Sight
 from firebase_admin import credentials,firestore, initialize_app
 from typing import List
+import asyncio
 import firebase_admin
 
 #Initialize Firebase Admin SDK with your credentials
@@ -42,7 +43,15 @@ async def get_sights():
     docs = db.collection("sights").stream()
 
     for doc in docs:
-        return_sights.append(doc.to_dict().get("sights",[]))
+
+        #Include document ID and the data
+        sight_data = doc.to_dict().get("sights", [])
+
+        return_sights.append({
+            #model the response
+            "id": doc.id,  
+            "sights": sight_data
+        })
 
     return {"sights": return_sights}
 

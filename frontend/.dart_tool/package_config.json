@@ -650,6 +650,12 @@
       "languageVersion": "3.4"
     },
     {
+      "name": "web_socket_channel",
+      "rootUri": "file:///C:/Users/user/AppData/Local/Pub/Cache/hosted/pub.dev/web_socket_channel-2.4.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
       "name": "xdg_directories",
       "rootUri": "file:///C:/Users/user/AppData/Local/Pub/Cache/hosted/pub.dev/xdg_directories-1.1.0",
       "packageUri": "lib/",
@@ -668,7 +674,7 @@
       "languageVersion": "3.6"
     }
   ],
-  "generated": "2025-03-09T04:25:49.195637Z",
+  "generated": "2025-03-09T11:16:54.631807Z",
   "generator": "pub",
   "generatorVersion": "3.6.0",
   "flutterRoot": "file:///C:/Computer%20Science/Flutter/Flutter%20SDK/flutter",

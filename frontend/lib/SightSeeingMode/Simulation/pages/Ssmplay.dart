@@ -16,7 +16,10 @@ class SsmPlay extends StatefulWidget {
   //widget takes the index as a parameter to figure out the sightseeing mode id
   final int index;
 
-  const SsmPlay({Key? key, required this.index}) : super(key: key);
+  //widget takes the doc id of the sight
+  final String docId;
+
+  const SsmPlay({Key? key, required this.index,required this.docId}) : super(key: key);
 
   @override
   State<SsmPlay> createState() => SsmPlayState();
@@ -90,7 +93,6 @@ class SsmPlayState extends State<SsmPlay> {
 
     //waits for the google map controller to be available
     GoogleMapController googleMapController = await _controller.future;
-    
 
     //listens to the stream function onLocationChanged in location package and a callback function everytime location changes
     location.onLocationChanged.listen((newLoc) {

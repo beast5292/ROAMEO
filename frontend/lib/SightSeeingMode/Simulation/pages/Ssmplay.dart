@@ -228,12 +228,13 @@ class SsmPlayState extends State<SsmPlay> {
       //checks the proximity everytime the location changes
       checkProximityAndNotify();
 
-       // Check if the current location is within the polyline threshold
-    LatLng currentLatLng = LatLng(newLoc.latitude!, newLoc.longitude!);
-    if (!isLocationWithinPolylineThreshold(currentLatLng, polylineCoordinates, 50.0)) {
-      // Redraw the polyline if the location is outside the threshold
-      getPolyPoints();
-    }
+      // Check if the current location is within the polyline threshold
+      LatLng currentLatLng = LatLng(newLoc.latitude!, newLoc.longitude!);
+      if (!isLocationWithinPolylineThreshold(
+          currentLatLng, polylineCoordinates, 50.0)) {
+        // Redraw the polyline if the location is outside the threshold
+        getPolyPoints();
+      }
 
       //Recalculate the polyline with updated location
       getPolyPoints();
@@ -429,14 +430,15 @@ class SsmPlayState extends State<SsmPlay> {
     // setState(() {});
   }
 
-  bool isLocationWithinPolylineThreshold(LatLng currentLocation, List<LatLng> polylineCoordinates, double threshold) {
-  for (var point in polylineCoordinates) {
-    double distance = calculateDistance(currentLocation, point);
-    if (distance <= threshold) {
-      return true;
+  bool isLocationWithinPolylineThreshold(LatLng currentLocation,
+      List<LatLng> polylineCoordinates, double threshold) {
+    for (var point in polylineCoordinates) {
+      double distance = calculateDistance(currentLocation, point);
+      if (distance <= threshold) {
+        return true;
+      }
     }
-  }
-  return false;
+    return false;
   }
 
   //Use google ROADS API to snap polyline coorindates to the nearest road
@@ -482,7 +484,6 @@ class SsmPlayState extends State<SsmPlay> {
     }
   }
 
-  
   //distance matrix api request for the sightseeing route
   Future<void> getDistanceAndDuration() async {
     //convert current location into a lat lang object
@@ -623,6 +624,10 @@ class SsmPlayState extends State<SsmPlay> {
         icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
       ),
     );
+
+    var locationString = currentLocation!.latitude.toString();
+
+    showAlertDialog2(locationString);
 
     //add marker for current location
     markers.add(

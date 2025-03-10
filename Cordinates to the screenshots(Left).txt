@@ -1,0 +1,410 @@
+
+Number: 1
+Start:
+   Lat:7.24293744N
+   Long:80.5937685E
+End:
+   Lat:7.24283187N
+   Long:80.59380878E
+(Udunuwara kandy tunnel)
+
+Number: 2
+Start:
+   Lat:7.18022971N
+   Long:80.58982119E
+End:
+   Lat:7.18003761N
+   Long:80.58915158E
+(Mahaweli River: The Mahaweli River is a 335 km (208 mi) long river, the longest river in Sri Lanka. It has a drainage basin of 10,448 km2 (4,034 sq mi), the largest in Sri Lanka)
+
+
+Number: 3
+Start:
+   Lat:7.1078241N
+   Long:80.55817063E
+End:
+   Lat:7.09818223N
+   Long:80.55712205E
+(Mountain range)
+
+
+Number: 4
+Start:
+   Lat:7.04616915N
+   Long:80.52953978E
+End:
+   Lat:7.04567493N
+   Long:80.52968672E
+(Mahaweli River: The Mahaweli River is a 335 km (208 mi) long river, the longest river in Sri Lanka. It has a drainage basin of 10,448 km2 (4,034 sq mi), the largest in Sri Lanka)
+
+
+Number: 5
+Start:
+   Lat:6.98426545N
+   Long:80.53841396E
+End:
+   Lat:6.9841968N
+   Long:80.53826392E
+(Mahaweli River: The Mahaweli River is a 335 km (208 mi) long river, the longest river in Sri Lanka. It has a drainage basin of 10,448 km2 (4,034 sq mi), the largest in Sri Lanka)
+
+
+Number: 6
+Start:
+   Lat:6.97206969N
+   Long:80.51868558E
+End:
+   Lat:6.97165996N
+   Long:80.51896786E
+(An open field in mountain range)
+
+
+Number: 7
+Start:
+   Lat:6.96687242N
+   Long:80.52399856E
+End:
+   Lat:6.96596795N
+   Long:80.52506456E
+(Tea estate)
+
+
+Number: 8
+Start:
+   Lat:6.95967915N
+   Long:80.52983385E
+End:
+   Lat:6.95823634N
+   Long:80.53196237E
+(Tea estate)
+
+
+Number: 9
+Start:
+   Lat:6.94953641N
+   Long:80.53842368E
+End:
+   Lat:6.94919594N
+   Long:80.5392615E
+(Tea plantation)
+
+
+Number: 10
+Start:
+   Lat:6.89777276N
+   Long:80.60394225E
+End:
+   Lat:6.90356213N
+   Long:80.60630082E
+(Small forest)
+
+
+Number: 11
+Start:
+   Lat:6.92196534N
+   Long:80.60539525E
+End:
+   Lat:6.92491181N
+   Long:80.60665032E
+(A little forest hill)
+
+
+Number: 12
+Start:
+   Lat:6.93021697N
+   Long:80.61392483E
+End:
+   Lat:6.93001113N
+   Long:80.61463011E
+(Kotmale oya: The longest tributary of Mahaweli River. The river begins as the Agra Oya, in the Horton Plains. The Central Plains receive approximately 125 to 200 inches annually in the form of rainfall. The river is approximately 70 km (43 mi) long and drains a basin of approximately 58,534 ha (226 square miles).)
+
+
+Number: 13
+Start:
+   Lat:6.93068219N
+   Long:80.61823197E
+End:
+   Lat:6.93134857N
+   Long:80.61898956E
+(Tea plantation)
+
+
+Number: 14
+Start:
+   Lat:6.83259517N
+   Long:80.62281958E
+End:
+   Lat:6.93410409N
+   Long:80.62445435E
+(Hill sight)
+
+
+Number: 15
+Start:
+   Lat:6.93635075N
+   Long:80.62541696E
+End:
+   Lat:6.9372804N
+   Long:80.62777348E
+(Tea plantation)
+
+
+Number: 16
+Start:
+   Lat:6.93851763N
+   Long:80.63133067E
+End:
+   Lat:6.9446917N
+   Long:80.63961834E
+(Field of tea plantation. A wide range)
+
+
+Number: 17
+Start:
+   Lat:6.94684783N
+   Long:80.64631113E
+End:
+   Lat:6.94669234N
+   Long:80.64731148E
+(Small waterfall)
+
+
+Number: 18
+Start:
+   Lat:6.94259154N
+   Long:80.65710127E
+End:
+   Lat:6.9389333N
+   Long:80.6619967E
+(Talawakale - Nuwaraeliya Tunnel)
+
+
+Number: 19
+Start:
+   Lat:6.94216004N
+   Long:80.65960464E
+End:
+   Lat:6.94210294N
+   Long:80.65964367E
+(Upper Kotmale reservoir)
+
+
+Number: 20
+Start:
+   Lat:6.93938255N
+   Long:80.66281822E
+End:
+   Lat:6.9422003N
+   Long:80.66280894E
+(Upper Kotmale reservoir)
+
+
+Number: 21
+Start:
+   Lat:6.95413924N
+   Long:8065579755E
+End:
+   Lat:6.95453706N
+   Long:80.65666351E
+(Tea plantation)
+
+
+Number: 22
+Start:
+   Lat:6.95714825N
+   Long:80.65826182E
+End:
+   Lat:6.96292082N
+   Long:80.6578481E
+(A wide range of a single tea plantation)
+
+
+Number: 23
+Start:
+   Lat:6.95970288N
+   Long:8065944033E
+End:
+   Lat:6.96308215N
+   Long:80.65926893E
+(Wide Tea plantation)
+
+
+Number: 24
+Start:
+   Lat:6.94507359N
+   Long:80.71865155E
+End:
+   Lat:6.94438249N
+   Long:80.72031036E
+(Tea plantation)
+
+
+Number: 25
+Start:
+   Lat:6.94540477N
+   Long:80.73768872E
+End:
+   Lat:6.94559856N
+   Long:80.73789778E
+(Small waterfall)
+
+
+Number: 26
+Start:
+   Lat:6.94587959N
+   Long:80.73853483E
+End:
+   Lat:6.94581535N
+   Long:80.73901052E
+(Ice fall view point: Located in the picturesque region of Nanuoya, the Ice Fall View Point stands as a hidden gem for travelers seeking natural beauty and tranquility.)
+
+
+Number: 27
+Start:
+   Lat:6.94420642N
+   Long:80.74359521E
+End:
+   Lat:6.9438676N
+   Long:80.74377284E
+(NanuOya Falls: Nanuoya Waterfall is situated in Nanuoya of the Nuwara Eliya district. It is 60 meters high and cascades down a sequence of 25 steps. The fall joins the Kotmale and Mahaweli rivers and creates a very scenic view of nature.)
+
+
+Number: 28
+Start:
+   Lat:6.93363425N
+   Long:80.74461321E
+End:
+   Lat:6.9288106N
+   Long:80.74196019E
+(Tea plantation)
+
+
+Number: 29
+Start:
+   Lat:6.89664001N
+   Long:8.76801709E
+End:
+   Lat:6.89642542N
+   Long:80.76948889E
+(Small forest in the hill)
+
+
+Number: 30
+Start:
+   Lat:6.88442819N
+   Long:80.79581063E
+End:
+   Lat:6.8809944N
+   Long:80.79609478E
+(Hill Forest)
+
+
+Number: 31
+Start:
+   Lat:6.87990644N
+   Long:80.80682988E
+
+End:
+   Lat:6.87956392N
+   Long:80.80709448E
+(Cloud hill forest)
+
+
+Number: 32
+Start:
+   Lat:6.87893956N
+   Long:80.81014026E
+End:
+   Lat:6.87902556N
+   Long:80.81101867E
+(Paddy field: This is farmed using the hill country style called as "Helmalu kramaya" in Sinhalese.)
+
+
+Number: 33
+Start:
+   Lat:6.77003652N
+   Long:80.9399001E
+End:
+   Lat:6.76765773N
+   Long:80.94539924E
+(A mountain range in distance)
+
+
+Number: 34
+Start:
+   Lat:6.77390378N
+   Long:80.96234301E
+End:
+   Lat:6.7795812N
+   Long:80.96200192E
+(Tea plantation)
+
+
+
+Number: 35
+Start:
+   Lat:6.78025111N
+   Long:80.96198158E
+End:
+   Lat:6.78117416N
+   Long:80.96205683E
+(Home farming area)
+
+
+Number: 36
+Start:
+   Lat:6.79692273N
+   Long:80.95853887E
+End:
+   Lat:6.79714662N
+   Long:80.95806321E
+(Pinus tree forest)
+
+
+Number: 37
+Start:
+   Lat:6.87672827N
+   Long:81.06140422E
+End:
+   Lat:
+   Long:
+(Nine arch bridge: 47 wordsclear
+Humanize AI
+also known as the Bridge in the Sky, is a viaduct bridge in Sri Lanka and one of the best examples of colonial rail work in Sri Lanka.
+
+The bridge was constructed to carry a tricky nine-degree curve and steep incline. It was built entirely by local laborers under British supervision)
+
+
+Number: 38
+Start:
+   Lat:6.90459205N
+   Long:81.06414084E
+End:
+   Lat:6.90502885N
+   Long:81.06443228E
+(Badulu Oya: The Badulu Oya travels 59 km across the country's central highlands before joining the Mahaweli River, Sri Lanka's largest river. )
+
+
+Number: 39
+Start:
+   Lat:6.91352659N
+   Long:81.06153275E
+End:
+   Lat:6.91390331N
+   Long:81.06120582E
+(Badulu Oya Damn: is made for contain rainwater through the badulu oya and known as "Ella Rainwater Tank Supplier or Ella Jala Radawuma")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

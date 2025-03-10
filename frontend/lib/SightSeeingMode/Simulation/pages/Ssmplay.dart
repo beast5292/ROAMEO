@@ -225,8 +225,15 @@ class SsmPlayState extends State<SsmPlay> {
       //checks the proximity everytime the location changes
       checkProximityAndNotify();
 
-      //Recalculate the polyline with updated location
+       // Check if the current location is within the polyline threshold
+    LatLng currentLatLng = LatLng(newLoc.latitude!, newLoc.longitude!);
+    if (!isLocationWithinPolylineThreshold(currentLatLng, polylineCoordinates, 50.0)) {
+      // Redraw the polyline if the location is outside the threshold
       getPolyPoints();
+    }
+
+      //Recalculate the polyline with updated location
+      // getPolyPoints();
 
       //call the waypoint distance and duration calculator using current locaton anf the first active waypoint
       getWaypointDistanceandDuration(currentLocation, activeWaypoints[0]);
@@ -412,26 +419,36 @@ class SsmPlayState extends State<SsmPlay> {
       // showAlertDialog2(alertMessage3);
 
       //Snap the route coordinates to the nearest road
-      // await snapToRoads(routePoints);
+      await snapToRoads(routePoints);
     }
 
     //call set state which has many functions
     // setState(() {});
   }
 
+  bool isLocationWithinPolylineThreshold(LatLng currentLocation, List<LatLng> polylineCoordinates, double threshold) {
+  for (var point in polylineCoordinates) {
+    double distance = calculateDistance(currentLocation, point);
+    if (distance <= threshold) {
+      return true;
+    }
+  }
+  return false;
+  }
+
   //Use google ROADS API to snap polyline coorindates to the nearest road
   Future<void> snapToRoads(List<LatLng> routePoints) async {
     //get the path of all the coordinates of the path and snap it to the nearest road
-    String waypoints = routePoints
+    String waypoints_snapped = routePoints
         .map((LatLng point) => '${point.latitude},${point.longitude}')
-        .join('|');
+        .join('%7C');
 
-    // var alertMessage3 = waypoints.toString();
+    print(waypoints_snapped);
 
-    // showAlertDialog2(alertMessage3);
+    print(waypoints_snapped.length);
 
     String url =
-        'https://roads.googleapis.com/v1/snapToRoads?path=$waypoints&key=AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0';
+        'https://roads.googleapis.com/v1/snapToRoads?path=$waypoints_snapped&key=AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0';
 
     var response = await http.get(Uri.parse(url));
 
@@ -445,9 +462,9 @@ class SsmPlayState extends State<SsmPlay> {
         snappedCoordinates.add(LatLng(lat, lng));
       }
 
-      var alertMessage3 = snappedCoordinates.toString();
+      // var alertMessage3 = snappedCoordinates.toString();
 
-      showAlertDialog2(alertMessage3);
+      // showAlertDialog2(alertMessage3);
 
       //set the polyline coordinates to snapped coordinates
       setState(() {
@@ -456,12 +473,13 @@ class SsmPlayState extends State<SsmPlay> {
     } else {
       print("Failed to snap to roads: ${response.statusCode}");
 
-      var alertMessage3 = "Failed to snap to roads ${response.statusCode}";
+      // var alertMessage3 = "Failed to snap to roads ${response.statusCode}";
 
-      showAlertDialog2(alertMessage3);
+      // showAlertDialog2(alertMessage3);
     }
   }
 
+  
   //distance matrix api request for the sightseeing route
   Future<void> getDistanceAndDuration() async {
     //convert current location into a lat lang object
@@ -610,11 +628,9 @@ class SsmPlayState extends State<SsmPlay> {
         position:
             LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
         infoWindow: InfoWindow(title: 'You are here'),
-        icon:
-            BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
       ),
     );
-    
   }
 
   //init state

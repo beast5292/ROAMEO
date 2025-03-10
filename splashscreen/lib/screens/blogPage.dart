@@ -158,64 +158,6 @@ class _BlogPageState extends State<BlogPage> {
     );
   }
 
-  Widget _buildBlogCard(Blog blog) {
-    return Card(
-      color: Colors.black,
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                CircleAvatar(
-                  backgroundImage: NetworkImage(blog.userProfileImage),
-                  radius: 20,
-                ),
-                const SizedBox(width: 8),
-                Text(blog.userName, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-              ],
-            ),
-          ),
-          ListTile(
-            title: Text(blog.title, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20)),
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (blog.imagePath != null)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Image.network(blog.imagePath!, height: 200, width: double.infinity, fit: BoxFit.cover),
-                    ),
-                  ),
-                Text(blog.content, style: TextStyle(color: Colors.white, fontSize: 15)),
-                Row(
-                  children: [
-                    IconButton(
-                      icon: Icon(Icons.arrow_upward, color: Colors.white),
-                      onPressed: () {}, // Handle like action
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.arrow_downward, color: Colors.white),
-                      onPressed: () {}, // Handle dislike action
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.message_outlined, color: Colors.white),
-                      onPressed: () => _showComments(blog.id),
-                    ),
-                    Spacer(),
-                    IconButton(icon: Icon(Icons.share, color: Colors.white), onPressed: () {}),
-                  ],
-                ),
-                Divider(color: Colors.white24, thickness: 1),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 
   // Function to show comments for a specific blog
   void _showComments(String blogId) {

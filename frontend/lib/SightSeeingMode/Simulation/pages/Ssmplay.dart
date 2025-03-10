@@ -88,6 +88,9 @@ class SsmPlayState extends State<SsmPlay> {
   BitmapDescriptor destinationIcon = BitmapDescriptor.defaultMarker;
   BitmapDescriptor currentLocationIcon = BitmapDescriptor.defaultMarker;
 
+  // Set to hold markers
+  Set<Marker> markers = {};
+
   //function to iterate through the sightmode and get the source,waypoints and destination
   void assignPoints(Map<String, dynamic> sightMode) {
     if (sightMode.isEmpty || !sightMode.containsKey('sights')) {
@@ -110,8 +113,7 @@ class SsmPlayState extends State<SsmPlay> {
     var destin = sights.last;
 
     // Get the waypoints (all intermediate sights between first and last)
-    var waypoints_list =
-        sights.length > 2 ? sights.sublist(1, sights.length - 1) : [];
+    var waypoints_list = sights.sublist(0, sights.length - 1);
 
     //set the state variables
     setState(() {
@@ -407,7 +409,7 @@ class SsmPlayState extends State<SsmPlay> {
         polylineCoordinates = routePoints;
       });
 
-      showAlertDialog2(alertMessage3);
+      // showAlertDialog2(alertMessage3);
 
       //Snap the route coordinates to the nearest road
       // await snapToRoads(routePoints);
@@ -575,6 +577,46 @@ class SsmPlayState extends State<SsmPlay> {
     );
   }
 
+  // Function to add markers for waypoints and destination
+  void addMarkers() {
+    markers.clear();
+
+    // Add markers for waypoints
+    for (int i = 0; i < waypoints.length; i++) {
+      markers.add(
+        Marker(
+          markerId: MarkerId('waypoint_$i'),
+          position: waypoints[i],
+          infoWindow: InfoWindow(title: 'Waypoint ${i + 1}'),
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+        ),
+      );
+    }
+
+    // Add marker for destination
+    markers.add(
+      Marker(
+        markerId: MarkerId('destination'),
+        position: destination!,
+        infoWindow: InfoWindow(title: 'Destination'),
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+      ),
+    );
+
+    //add marker for current location
+    markers.add(
+      Marker(
+        markerId: MarkerId('current_location'),
+        position:
+            LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
+        infoWindow: InfoWindow(title: 'You are here'),
+        icon:
+            BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+      ),
+    );
+    
+  }
+
   //init state
   @override
   void initState() {
@@ -588,6 +630,7 @@ class SsmPlayState extends State<SsmPlay> {
           print("sightMode: $sightMode");
         });
         assignPoints(sightMode!);
+        addMarkers();
         setState(() {
           isDataLoaded = true;
         });
@@ -605,9 +648,12 @@ class SsmPlayState extends State<SsmPlay> {
     });
     getCurrentLocation();
     setCustomMarkerIcon();
+
     // getPolyPoints();
     getDistanceAndDuration();
   }
+
+  //Function to add markers for waypoints and destination
 
   @override
   Widget build(BuildContext context) {
@@ -670,6 +716,7 @@ class SsmPlayState extends State<SsmPlay> {
                         currentLocation!.longitude!),
                     zoom: 13.5,
                   ),
+                  markers: markers,
                   polylines: {
                     Polyline(
                       polylineId: PolylineId("route"),
@@ -678,21 +725,21 @@ class SsmPlayState extends State<SsmPlay> {
                       width: 6,
                     )
                   },
-                  markers: {
-                    Marker(
-                        markerId: const MarkerId("currentLocation"),
-                        icon: currentLocationIcon,
-                        position: LatLng(currentLocation!.latitude!,
-                            currentLocation!.longitude!)),
-                    Marker(
-                      markerId: MarkerId("source"),
-                      position: sourceLocation!,
-                    ),
-                    Marker(
-                      markerId: MarkerId("destination"),
-                      position: destination!,
-                    )
-                  },
+                  // markers: {
+                  //   Marker(
+                  //       markerId: const MarkerId("currentLocation"),
+                  //       icon: currentLocationIcon,
+                  //       position: LatLng(currentLocation!.latitude!,
+                  //           currentLocation!.longitude!)),
+                  //   Marker(
+                  //     markerId: MarkerId("source"),
+                  //     position: sourceLocation!,
+                  //   ),
+                  //   Marker(
+                  //     markerId: MarkerId("destination"),
+                  //     position: destination!,
+                  //   )
+                  // },
                   onMapCreated: (mapController) {
                     _controller.complete(mapController);
                   },

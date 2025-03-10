@@ -107,7 +107,7 @@ class SsmPlayState extends State<SsmPlay> {
     var source = sights.first;
 
     // Get the last sight as destination
-    var destin= sights.last;
+    var destin = sights.last;
 
     // Get the waypoints (all intermediate sights between first and last)
     var waypoints_list =
@@ -276,16 +276,16 @@ class SsmPlayState extends State<SsmPlay> {
     if (currentLocation == null) return;
 
     //List of LatLng objects containing coordinates of the waypoints (dummy)
-    List<LatLng> waypoints = [
-      LatLng(6.928684, 79.878155),
-    ];
+    // List<LatLng> waypoints = [
+    //   LatLng(6.928684, 79.878155),
+    // ];
 
     //boolean value to store if the alert is shown
     bool alertShown = false;
 
     //for every waypoint in all the waypoints
     for (LatLng waypoint in waypoints) {
-      //calculate distance to a waypoint from the current location using the haverSince calculation
+      //calculate distance to a waypoint from the current location using the haverSine calculation
       double distanceToWaypoint = calculateDistance(
         LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
         waypoint,
@@ -373,16 +373,17 @@ class SsmPlayState extends State<SsmPlay> {
     polylineCoordinates.clear();
 
     //Define waypoints excluding reached ones
-    activeWaypoints = [
-      PolylineWayPoint(
-          location: "${sourceLocation!.latitude},${sourceLocation!.longitude}")
-    ].where((wp) {
-      LatLng wpLatLng = LatLng(
-        double.parse(wp.location.split(',')[0]),
-        double.parse(wp.location.split(',')[1]),
-      );
-      return !reachedWaypoints.contains(wpLatLng);
-    }).toList();
+    activeWaypoints = waypoints
+        .where((wp) =>
+            !reachedWaypoints.contains(wp)) // Filter out reached waypoints
+        .map((wp) => PolylineWayPoint(
+              location: "${wp.latitude},${wp.longitude}",
+            ))
+        .toList();
+
+    // var alertMessage3 = activeWaypoints[0].toString();
+
+    // showAlertDialog2(alertMessage3);
 
     //receieve polylines using getRoutebetween function of directions api
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
@@ -400,12 +401,20 @@ class SsmPlayState extends State<SsmPlay> {
         routePoints.add(LatLng(point.latitude, point.longitude));
       });
 
+      var alertMessage3 = routePoints.toString();
+
+      setState(() {
+        polylineCoordinates = routePoints;
+      });
+
+      showAlertDialog2(alertMessage3);
+
       //Snap the route coordinates to the nearest road
-      await snapToRoads(routePoints);
+      // await snapToRoads(routePoints);
     }
 
     //call set state which has many functions
-    setState(() {});
+    // setState(() {});
   }
 
   //Use google ROADS API to snap polyline coorindates to the nearest road
@@ -414,6 +423,10 @@ class SsmPlayState extends State<SsmPlay> {
     String waypoints = routePoints
         .map((LatLng point) => '${point.latitude},${point.longitude}')
         .join('|');
+
+    // var alertMessage3 = waypoints.toString();
+
+    // showAlertDialog2(alertMessage3);
 
     String url =
         'https://roads.googleapis.com/v1/snapToRoads?path=$waypoints&key=AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0';
@@ -430,12 +443,20 @@ class SsmPlayState extends State<SsmPlay> {
         snappedCoordinates.add(LatLng(lat, lng));
       }
 
+      var alertMessage3 = snappedCoordinates.toString();
+
+      showAlertDialog2(alertMessage3);
+
       //set the polyline coordinates to snapped coordinates
       setState(() {
         polylineCoordinates = snappedCoordinates;
       });
     } else {
       print("Failed to snap to roads: ${response.statusCode}");
+
+      var alertMessage3 = "Failed to snap to roads ${response.statusCode}";
+
+      showAlertDialog2(alertMessage3);
     }
   }
 
@@ -583,9 +604,9 @@ class SsmPlayState extends State<SsmPlay> {
       print("Error fetching sight mode: $error");
     });
     getCurrentLocation();
-    // setCustomMarkerIcon();
+    setCustomMarkerIcon();
     // getPolyPoints();
-    // getDistanceAndDuration();
+    getDistanceAndDuration();
   }
 
   @override
@@ -606,31 +627,31 @@ class SsmPlayState extends State<SsmPlay> {
       );
     }
 
-
-  // Show loading indicator until sourceLocation and destination are initialized
-  if (!isDataLoaded || sourceLocation == null || destination == null) {
-    print("Data not fully loaded - showing progress indicator");
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CircularProgressIndicator(), // Loading indicator
-            SizedBox(height: 20), // Spacing
-            // Show details if available
+    // Show loading indicator until sourceLocation and destination are initialized
+    if (!isDataLoaded || sourceLocation == null || destination == null) {
+      print("Data not fully loaded - showing progress indicator");
+      return Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircularProgressIndicator(), // Loading indicator
+              SizedBox(height: 20), // Spacing
+              // Show details if available
               Column(
                 children: [
                   Text("Source Location: ${sourceLocation ?? "Loading..."}"),
-                Text("Destination: ${destination ?? "Loading..."}"),
-                Text("Waypoints: ${waypoints.isNotEmpty ? waypoints : "Loading..."}"),
-                Text("isDataLoaded: $isDataLoaded"),
+                  Text("Destination: ${destination ?? "Loading..."}"),
+                  Text(
+                      "Waypoints: ${waypoints.isNotEmpty ? waypoints : "Loading..."}"),
+                  Text("isDataLoaded: $isDataLoaded"),
                 ],
               ),
-          ],
+            ],
+          ),
         ),
-      ),
-    );
-  }
+      );
+    }
 
     return Scaffold(
       appBar: AppBar(

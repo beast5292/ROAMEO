@@ -769,8 +769,8 @@ class SsmPlayState extends State<SsmPlay> {
                   },
                 ),
           Positioned(
-            bottom: 20,
-            left: 20,
+            bottom: 10,
+            left: 0,
             child: Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
@@ -814,8 +814,8 @@ class SsmPlayState extends State<SsmPlay> {
           ),
           Positioned(
             bottom:
-                80, //You can adjust the position to not overlap with the other widget
-            left: 20,
+                750, //You can adjust the position to not overlap with the other widget
+            left: 0,
             right: 20,
             child: Container(
               padding: const EdgeInsets.all(8),

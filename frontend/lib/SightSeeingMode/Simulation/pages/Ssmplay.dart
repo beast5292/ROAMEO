@@ -106,6 +106,9 @@ class SsmPlayState extends State<SsmPlay> {
       return;
     }
 
+    // Sort the sights by the 'id' key (timestamp in milliseconds since epoch)
+    sights.sort((a, b) => a['id'].compareTo(b['id']));
+
     // Get the first sight as source
     var source = sights.first;
 
@@ -129,7 +132,7 @@ class SsmPlayState extends State<SsmPlay> {
 
     showAlertDialog2("recieved $alertMessage2");
 
-    // Output source, destination, and waypoints
+    //Output source, destination, and waypoints
     print('Source:');
     print('Name: ${source['description']}');
     print('Latitude: ${source['lat']}, Longitude: ${source['long']}');
@@ -233,7 +236,7 @@ class SsmPlayState extends State<SsmPlay> {
     }
 
       //Recalculate the polyline with updated location
-      // getPolyPoints();
+      getPolyPoints();
 
       //call the waypoint distance and duration calculator using current locaton anf the first active waypoint
       getWaypointDistanceandDuration(currentLocation, activeWaypoints[0]);
@@ -508,7 +511,7 @@ class SsmPlayState extends State<SsmPlay> {
     }
   }
 
-  //distance and duration to the nearest waypoint using directions api
+  //distance and duration to the nearest waypoint using directions api*
   Future<void> getWaypointDistanceandDuration(
       LocationData? currentLocation, PolylineWayPoint waypoint) async {
     //convert current location into a lat lang object

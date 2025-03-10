@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:geolocator/geolocator.dart';
@@ -37,7 +38,7 @@ class _CameraPageState extends State<CameraPage> {
           'photo': pickedImage.path,
           'latitude': position.latitude,
           'longitude': position.longitude,
-          'name': "dummy name"
+          'name': "dummy name",
         };
 
         print(imageData);

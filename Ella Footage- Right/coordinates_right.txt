@@ -51,3 +51,58 @@ End:
 	Lat: 7.152281538583338
 	Long: 80.55941903963685
 Description:  gampola suburbs
+
+Number: 7
+Start:
+	Lat: 7.12146694432199
+	Long:80.55832955986261
+End:
+	Lat: 7.081673392094672
+	Long: 80.54993801750243
+Description: Nawala suburbs
+
+Number: 8
+Start:
+	Lat: 7.056261054240167
+	Long: 80.53406068123877
+End:
+	Lat: 7.0617765430361
+	Long: 80.53401919081807
+Description: Nawala temple
+
+Number: 9
+Start:
+	Lat: 7.045713770203292
+	Long: 80.52965976297855
+End:
+	Lat: 7.04563254956156
+	Long: 80.52967501804233
+Description: Nawala lake
+
+Number: 10
+Start:
+	Lat: 7.024486097507179
+	Long: 80.54104138165712	
+End:
+	Lat: 7.023756662383676
+	Long: 80.54265590384603
+Description: nawala forest
+
+Number: 11
+Start:
+	Lat: 7.0210124691948295
+	Long: 80.54608611389995
+End:
+	Lat: 7.0210124691948295
+	Long: 80.54608611389995
+Description:  Nawala lake
+
+Number: 12
+Start:
+	Lat: 7.010607090778649
+	Long: 80.53894255310297
+End:
+	Lat:7.010607090778649
+	Long: 80.53894255310297
+Description: inguru oya
+

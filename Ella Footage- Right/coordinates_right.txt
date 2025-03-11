@@ -295,4 +295,50 @@ End:
 	Long: 80.8318211248368
 Description: buddha statue
 
+Number: 34
+Start:
+	Lat: 6.855434509925544
+	Long: 80.83084459416568
+End:
+	Lat: 6.855434509925544
+	Long: 80.83084459416568
+Description: pattipola sign board
+
+Number: 35
+Start:
+	Lat: 6.84882328798993
+	Long: 80.83311868831515
+End:
+	Lat: 6.848559840582311
+	Long: 80.833407612511748
+Description: highest railway station
+
+Number: 36
+Start:
+	Lat: 6.844758647494018
+	Long: 80.8349278382957
+End:
+	Lat: 6.844204068870673
+	Long: 80.8350979093008
+Description: pattipola cultivations
+
+Number: 37
+Start:
+	Lat: 6.904459004290402
+	Long: 81.0642696171999
+End:
+	Lat: 6.904631000943482
+	Long: 81.06444437988102
+Description: demodara stream
+
+Number: 38
+Start:
+	Lat: 6.932527064345777
+	Long: 81.04204022325575
+End:
+	Lat: 6.932581923902035
+	Long: 81.04200334428818
+Description: hidden stream in hali ela
+
+
 

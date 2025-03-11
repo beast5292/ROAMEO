@@ -1,0 +1,53 @@
+Number: 1
+Start:
+	Lat:7.288602129556239
+	Long:80.6309981457889
+End:
+	Lat:7.288445387966931
+	Long:80.63075733371079
+Description: Kandy station
+
+Number: 2
+Start:
+	Lat:7.257397184148431
+	Long:80.59054766781628
+End:
+	Lat: 7.256529866717765
+	Long:80.590008620408475
+Description: Pera Station
+
+Number: 3
+Start:
+	Lat: 7.250979328528047
+	Long: 80.59088001027703
+End:
+	Lat: 7.248802254907787
+	Long: 80.59164603240298
+Description: Pera suburbs
+
+Number: 4
+Start:
+	Lat: 7.186540137075685
+	Long: 80.59257832235525
+End:
+	Lat: 7.180406888946891
+	Long: 80.58386189945042
+Description: Gampola suburbs
+
+Number: 5
+Start:
+	Lat: 7.1747792372480035
+	Long: 80.57968547567725
+End:
+	Lat: 7.1747792372480035
+	Long: 80.57968547567725
+Description: gampola temple
+
+Number: 6
+Start:
+	Lat: 7.153291432186961
+	Long: 80.55938643403351
+End:
+	Lat: 7.152281538583338
+	Long: 80.55941903963685
+Description:  gampola suburbs

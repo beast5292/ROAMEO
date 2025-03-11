@@ -106,3 +106,66 @@ End:
 	Long: 80.53894255310297
 Description: inguru oya
 
+Number: 13
+Start:
+	Lat: 6.9932552502018571
+	Long: 80.5453209722042
+End:
+	Lat: 6.992476070299745
+	Long: 80.54078187793493
+Description: galboda forest
+
+Number: 14
+Start:
+	Lat: 6.968066752888262
+	Long: 80.52329856902361
+End:
+	Lat: 6.96064755320649
+	Long: 80.52775288000703
+Description: watawala forest
+
+Number: 15
+Start:
+	Lat: 6.951565174385905
+	Long: 80.53503164090216
+End:
+	Lat: 6.951565174385905
+	Long: 80.53503164090216
+Description: n eliya tea factory
+
+Number: 16
+Start:
+	Lat: 6.944615696556866
+	Long:80.54670796729624
+End:
+	Lat: 6.943612340837717
+	Long: 80.5474489643275
+Description: n eliya scenery
+
+Number: 17
+Start:
+	Lat: 6.912171151489019
+	Long: 80.57817696318516
+End:
+	Lat: 6.90081979148099
+	Long: 80.5915169381356
+Description: hatton tea plantation
+
+Number: 18
+Start:
+	Lat: 6.906007728539407
+	Long: 80260428529737353
+End:
+	Lat: 6.92975718062371
+	Long: 80.61703984625638
+Description: nuwaraeliya tea plantation
+
+Number: 19
+Start:
+	Lat: 6.931386748328805
+	Long: 80.62144629657269
+End:
+	Lat: 6.967865582294762
+	Long: 80.63365646637976
+Description: kotagala tea
+

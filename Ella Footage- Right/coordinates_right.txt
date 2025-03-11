@@ -223,5 +223,76 @@ End:
 	Long: 80.74364111758769
 Description: nanu oya
 
+Number: 26
+Start:
+	Lat: 6.945045352913439
+	Long: 80.71709177456796
+End:
+	Lat: 6.94380763204906
+	Long: 80.73644642718136
+Description: nuwaraeliya vegetation
+
+Number: 27
+Start:
+	Lat: 6.9260392198339105
+	Long: 80.74246186763148
+End:
+	Lat:6.91746449097991
+	Long: 80.75469961389899
+Description: nuwarawliya cultivations
+
+Number: 28
+Start:
+	Lat: 6.898237743251026
+	Long: 80.76655799522996
+End:
+	Lat: 6.898237743251026
+	Long: 80.76655799522996
+Description: manmade stream in ambewela
+
+Number: 29
+Start:
+	Lat: 6.888582422398091
+	Long: 80.7798318285495
+End:
+	Lat: 6.888582422398091
+	Long: 80.7798318285495
+Description: bambarakanda falls (?)
+
+Number: 30
+Start:
+	Lat: 6.878955052234232
+	Long: 80.80782361328602
+End:
+	Lat: 6.878884183242917
+	Long: 80.80799309536815
+Description: ambewela cultivation
+
+Number: 31
+Start:
+	Lat: 6.877766037359834
+	Long: 80.8139586634934
+End:
+	Lat: 6.872757137753069
+	Long: 80.82409615628421
+Description: highland milk factory
+
+Number: 32
+Start:
+	Lat: 6.867139502428472
+	Long: 80.8261572662741
+End:
+	Lat: 6.860441314056516
+	Long: 8082879337482154
+Description: pattipola vegetation
+
+Number: 33
+Start:
+	Lat: 6.855455255135894
+	Long: 80.8318211248368
+End:
+	Lat: 6.855455255135894
+	Long: 80.8318211248368
+Description: buddha statue
 
 

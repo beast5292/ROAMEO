@@ -169,3 +169,59 @@ End:
 	Long: 80.63365646637976
 Description: kotagala tea
 
+Number: 20
+Start:
+	Lat: 6.945012956857681
+	Long: 80.64370578154922
+End:
+	Lat: 6.94504274922799
+	Long: 80.6439028250146
+Description: small waterfall in talawakelle
+
+Number: 21 
+Start:
+	Lat: 6.9403655687347054
+	Long: 80.66074744798243
+End:
+	Lat: 6.9403655687347054
+	Long: 80.66074744798243
+Description: talawakelle board
+
+Number: 22
+Start:
+	Lat: 6.939456718973815
+	Long: 80.6629853323102
+End:
+	Lat:  6.939441631548107
+	Long: 80.66302623599768
+Description: lake in talawakalle
+
+Number: 23
+Start:
+	Lat: 6.954496200196445
+	Long: 80.65671399235725
+End:
+	Lat: 6.95813428144902
+	Long: 80.65582819283009
+Description: talawakalle tea plantation
+
+Number: 24
+Start:
+	Lat: 6.957217804156244
+	Long: 80.68904098123312
+End:
+	Lat: 6.956953816115856
+	Long: 80.68956359289587
+Description: the great western
+
+Number: 25
+Start:
+	Lat: 6.944348565302789
+	Long: 80.7433703656733
+End:
+	Lat: 6.944078458473086
+	Long: 80.74364111758769
+Description: nanu oya
+
+
+

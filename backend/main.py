@@ -39,6 +39,8 @@ async def add_sights(sights:List[Sight]): #type: ignore
 @app.get("/sights/")
 async def get_sights():
 
+    print("Recieved sights")
+
     return_sights = []
     docs = db.collection("sights").stream()
 
@@ -68,4 +70,4 @@ async def get_sight_by_id(docId: str):
         print("Received sight data:", sight_data)
         return {"id": doc.id, "sights": sight_data}
     else:
-        raise HTTPException(status_code=404, detail="Sight not found")
+        raise HTTPException(status_code=404, detail="Sight not found")  

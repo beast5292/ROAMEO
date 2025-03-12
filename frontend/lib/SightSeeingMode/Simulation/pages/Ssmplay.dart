@@ -11,6 +11,10 @@ import 'package:practice/SightSeeingMode/Services/SightGet.dart';
 import 'package:practice/SightSeeingMode/Simulation/pages/Navigation.dart';
 import 'package:practice/SightSeeingMode/Simulation/pages/mapbox.dart';
 import 'package:practice/SightSeeingMode/Simulation/services/Haversine_formula.dart';
+import 'package:practice/SightSeeingMode/Simulation/services/assignPoints.dart';
+import 'package:practice/SightSeeingMode/Simulation/services/alertDialog.dart';
+import 'package:practice/SightSeeingMode/Simulation/services/checkProximity.dart';
+import 'package:practice/SightSeeingMode/Simulation/services/PolylineThresholdCheck.dart';
 
 class SsmPlay extends StatefulWidget {
   //widget takes the index as a parameter to figure out the sightseeing mode id
@@ -31,7 +35,7 @@ class SsmPlayState extends State<SsmPlay> {
   bool isLoading = true;
 
   //Add a flag to track if data is loaded
-  bool isDataLoaded = true;
+  static bool isDataLoaded = true;
 
   //store the recieved sightseeing data in a Map
   Map<String, dynamic>? sightMode;
@@ -51,14 +55,7 @@ class SsmPlayState extends State<SsmPlay> {
   //temporary holders for the sourcelocation and destination
   static LatLng? sourceLocation;
   static LatLng? destination;
-  List<LatLng> waypoints = [];
-
-  // static LatLng sourceLocation = LatLng(6.928684, 79.878155);
-  // static LatLng destination = LatLng(6.922409, 79.866084);
-
-  //dynamic source and destination
-  // LatLng? source;
-  // LatLng? destin;
+  static List<LatLng> waypoints = [];
 
   //store the navigation steps recieved from the Directions waypoint api request
   List<Map<String, dynamic>> navigationSteps = [];
@@ -88,120 +85,26 @@ class SsmPlayState extends State<SsmPlay> {
   BitmapDescriptor destinationIcon = BitmapDescriptor.defaultMarker;
   BitmapDescriptor currentLocationIcon = BitmapDescriptor.defaultMarker;
 
-  // Set to hold markers
+  //Set to hold markers
   Set<Marker> markers = {};
-
-  //function to iterate through the sightmode and get the source,waypoints and destination
-  void assignPoints(Map<String, dynamic> sightMode) {
-    if (sightMode.isEmpty || !sightMode.containsKey('sights')) {
-      print('No sights available');
-      return;
-    }
-
-    // Extract the list of sights
-    List<dynamic> sights = sightMode['sights'];
-
-    if (sights.isEmpty) {
-      print('No sights available');
-      return;
-    }
-
-    // Sort the sights by the 'id' key (timestamp in milliseconds since epoch)
-    sights.sort((a, b) => a['id'].compareTo(b['id']));
-
-    // Get the first sight as source
-    var source = sights.first;
-
-    // Get the last sight as destination
-    var destin = sights.last;
-
-    // Get the waypoints (all intermediate sights between first and last)
-    var waypoints_list = sights.sublist(0, sights.length - 1);
-
-    //set the state variables
+  //setState of assignPoints function
+  void updateAssignPointsState(
+    LatLng source,
+    LatLng dest,
+    List<LatLng> wps,
+    bool loaded,
+  ) {
     setState(() {
-      sourceLocation = LatLng(source['lat'], source['long']);
-      destination = LatLng(destin['lat'], destin['long']);
-      waypoints =
-          waypoints_list.map((wp) => LatLng(wp['lat'], wp['long'])).toList();
-      isDataLoaded = true;
+      sourceLocation = source;
+      destination = dest;
+      waypoints = wps;
+      isDataLoaded = loaded;
     });
-
-    var alertMessage2 =
-        "source $sourceLocation, destination $destination, waypoints $waypoints, isDataLoaded $isDataLoaded";
-
-    showAlertDialog2("recieved $alertMessage2");
-
-    //Output source, destination, and waypoints
-    print('Source:');
-    print('Name: ${source['description']}');
-    print('Latitude: ${source['lat']}, Longitude: ${source['long']}');
-
-    print('\nDestination:');
-    print('Name: ${destin['description']}');
-    print('Latitude: ${destin['lat']}, Longitude: ${destin['long']}');
-
-    if (waypoints_list.isNotEmpty) {
-      print('\nWaypoints:');
-      for (var waypoint in waypoints_list) {
-        print('Name: ${waypoint['description']}');
-        print('Latitude: ${waypoint['lat']}, Longitude: ${waypoint['long']}');
-      }
-    } else {
-      print('\nNo waypoints available.');
-    }
-
-    // Build the alert message
-    String alertMessage = 'Source:\n'
-        'Name: ${source['description']}\n'
-        'Latitude: ${source['lat']}, Longitude: ${source['long']}\n\n'
-        'Destination:\n'
-        'Name: ${destin['description']}\n'
-        'Latitude: ${destin['lat']}, Longitude: ${destin['long']}\n\n';
-
-    if (waypoints.isNotEmpty) {
-      alertMessage += 'Waypoints:\n';
-      for (var waypoint in waypoints_list) {
-        alertMessage +=
-            'Name: ${waypoint['description']}\nLatitude: ${waypoint['lat']}, Longitude: ${waypoint['long']}\n';
-      }
-    } else {
-      alertMessage += 'No waypoints available.';
-    }
-    // Show the alert dialog
-    showAlertDialog2(alertMessage);
   }
-
-  void showAlertDialog2(String message) {
-    // Check if the widget is still mounted before showing dialog
-    if (!mounted) return;
-
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text("Sightseeing Details"),
-          content: SingleChildScrollView(
-            child: Text(message),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text("OK"),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   //function to get the current location (using the location package)
   void getCurrentLocation() async {
     //hold the current location
     Location location = Location();
-
     //get the current location using getlocation and uses then to handle the result (Location package)
     location.getLocation().then(
       (location) {
@@ -214,7 +117,6 @@ class SsmPlayState extends State<SsmPlay> {
         getPolyPoints();
       },
     );
-
     //waits for the google map controller to be available
     GoogleMapController googleMapController = await _controller.future;
 
@@ -224,9 +126,16 @@ class SsmPlayState extends State<SsmPlay> {
       setState(() {
         currentLocation = newLoc;
       });
-
       //checks the proximity everytime the location changes
-      checkProximityAndNotify();
+      checkProximityAndNotify(
+          context,
+          currentLocation,
+          waypoints,
+          reachedNearWaypoints,
+          reachedWaypoints,
+          destination,
+          getPolyPoints,
+        );
 
       // Check if the current location is within the polyline threshold
       LatLng currentLatLng = LatLng(newLoc.latitude!, newLoc.longitude!);
@@ -279,104 +188,7 @@ class SsmPlayState extends State<SsmPlay> {
       // setState(() {});
     });
   }
-
-  //function to check the navigation steps(directions api)
-  void startTrackingLocation() {}
-
-  //Check if the user is within 200 meters of the destination and show an alert dialog if true
-  void checkProximityAndNotify() {
-    //if the currentLocation has no location value return
-    if (currentLocation == null) return;
-
-    //List of LatLng objects containing coordinates of the waypoints (dummy)
-    // List<LatLng> waypoints = [
-    //   LatLng(6.928684, 79.878155),
-    // ];
-
-    //boolean value to store if the alert is shown
-    bool alertShown = false;
-
-    //for every waypoint in all the waypoints
-    for (LatLng waypoint in waypoints) {
-      //calculate distance to a waypoint from the current location using the haverSine calculation
-      double distanceToWaypoint = calculateDistance(
-        LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
-        waypoint,
-      );
-
-      //if the obtained distance to the waypoint from current location is less than 200
-      if (distanceToWaypoint <= 200 &&
-          !reachedNearWaypoints.contains(waypoint)) {
-        //show that you are near a waypoint
-        showAlertDialog("You are near a waypoint!");
-
-        //mark the waypoint as a reached near one to avoid duplication
-        reachedNearWaypoints.add(waypoint);
-
-        //alert will show up
-        alertShown = true;
-      }
-
-      //if the obtained distance to the waypoint from current location is less than 50
-      if (distanceToWaypoint <= 50 && !reachedWaypoints.contains(waypoint)) {
-        //show that you have arrived at a waypoint
-        showAlertDialog("You have arrived at a waypoint!");
-
-        //add it to rezched waypoints to avoid duplication
-        reachedWaypoints.add(waypoint);
-
-        //redraw polylines without the arrived waypoints
-        getPolyPoints();
-
-        //alert will show up
-        alertShown = true;
-      }
-
-      //exit the loop if one of the alerts return true
-      if (alertShown) return;
-    }
-
-    //calculate the distance to destination using the haveersine calculation
-    double distanceToDestination = calculateDistance(
-      LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
-      destination!,
-    );
-
-    //if the distance is less than 50 meteres display you have arrived
-    if (distanceToDestination <= 50) {
-      showAlertDialog("You have arrived at your destination!");
-    }
-
-    //if the distance is less than 200 display you are near the destination
-    if (distanceToDestination <= 200) {
-      showAlertDialog("You are near the destination!");
-    }
-  }
-
-  //Show an AlertDialog with the specified message
-  void showAlertDialog(String message) {
-    // Check if the widget is still mounted before showing dialog
-    if (!mounted) return;
-
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text("Location Alert"),
-          content: Text(message),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text("OK"),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
+  
   //function to get the polypoints
   void getPolyPoints() async {
     //new polyline object (polyline)
@@ -423,65 +235,11 @@ class SsmPlayState extends State<SsmPlay> {
       // showAlertDialog2(alertMessage3);
 
       //Snap the route coordinates to the nearest road
-      await snapToRoads(routePoints);
+      // await snapToRoads(routePoints);
     }
 
     //call set state which has many functions
     // setState(() {});
-  }
-
-  bool isLocationWithinPolylineThreshold(LatLng currentLocation,
-      List<LatLng> polylineCoordinates, double threshold) {
-    for (var point in polylineCoordinates) {
-      double distance = calculateDistance(currentLocation, point);
-      if (distance <= threshold) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  //Use google ROADS API to snap polyline coorindates to the nearest road
-  Future<void> snapToRoads(List<LatLng> routePoints) async {
-    //get the path of all the coordinates of the path and snap it to the nearest road
-    String waypoints_snapped = routePoints
-        .map((LatLng point) => '${point.latitude},${point.longitude}')
-        .join('%7C');
-
-    print(waypoints_snapped);
-
-    print(waypoints_snapped.length);
-
-    String url =
-        'https://roads.googleapis.com/v1/snapToRoads?path=$waypoints_snapped&key=AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0';
-
-    var response = await http.get(Uri.parse(url));
-
-    if (response.statusCode == 200) {
-      var data = json.decode(response.body);
-      List<LatLng> snappedCoordinates = [];
-
-      for (var snappedPoint in data['snappedPoints']) {
-        double lat = snappedPoint['location']['latitude'];
-        double lng = snappedPoint['location']['longitude'];
-        snappedCoordinates.add(LatLng(lat, lng));
-      }
-
-      // var alertMessage3 = snappedCoordinates.toString();
-
-      // showAlertDialog2(alertMessage3);
-
-      //set the polyline coordinates to snapped coordinates
-      setState(() {
-        polylineCoordinates = snappedCoordinates;
-      });
-    } else {
-      print("Failed to snap to roads: ${response.statusCode}");
-
-      // var alertMessage3 = "Failed to snap to roads ${response.statusCode}";
-
-      // showAlertDialog2(alertMessage3);
-    }
   }
 
   //distance matrix api request for the sightseeing route
@@ -572,37 +330,10 @@ class SsmPlayState extends State<SsmPlay> {
     }
   }
 
-  //function to set the custom marker
-  void setCustomMarkerIcon() {
-    BitmapDescriptor.fromAssetImage(
-            ImageConfiguration.empty, "assets/images/profile.jpg")
-        .then(
-      (icon) {
-        sourceIcon = icon;
-      },
-    );
-
-    BitmapDescriptor.fromAssetImage(
-            ImageConfiguration.empty, "assets/images/profile.jpg")
-        .then(
-      (icon) {
-        sourceIcon = icon;
-      },
-    );
-
-    BitmapDescriptor.fromAssetImage(
-            ImageConfiguration.empty, "assets/images/profile.jpg")
-        .then(
-      (icon) {
-        sourceIcon = icon;
-      },
-    );
-  }
 
   // Function to add markers for waypoints and destination
   void addMarkers() {
     markers.clear();
-
     // Add markers for waypoints
     for (int i = 0; i < waypoints.length; i++) {
       markers.add(
@@ -627,7 +358,7 @@ class SsmPlayState extends State<SsmPlay> {
 
     var locationString = currentLocation!.latitude.toString();
 
-    showAlertDialog2(locationString);
+    showAlertDialog2(context,locationString);
 
     //add marker for current location
     markers.add(
@@ -653,7 +384,7 @@ class SsmPlayState extends State<SsmPlay> {
           isLoading = false; // Data fetched, set loading to false
           print("sightMode: $sightMode");
         });
-        assignPoints(sightMode!);
+        assignPoints(sightMode!, updateAssignPointsState, context);
         addMarkers();
         setState(() {
           isDataLoaded = true;
@@ -671,14 +402,13 @@ class SsmPlayState extends State<SsmPlay> {
       print("Error fetching sight mode: $error");
     });
     getCurrentLocation();
-    setCustomMarkerIcon();
+    // setCustomMarkerIcon();
 
     // getPolyPoints();
     getDistanceAndDuration();
   }
 
   //Function to add markers for waypoints and destination
-
   @override
   Widget build(BuildContext context) {
     if (isLoading) {
@@ -749,21 +479,6 @@ class SsmPlayState extends State<SsmPlay> {
                       width: 6,
                     )
                   },
-                  // markers: {
-                  //   Marker(
-                  //       markerId: const MarkerId("currentLocation"),
-                  //       icon: currentLocationIcon,
-                  //       position: LatLng(currentLocation!.latitude!,
-                  //           currentLocation!.longitude!)),
-                  //   Marker(
-                  //     markerId: MarkerId("source"),
-                  //     position: sourceLocation!,
-                  //   ),
-                  //   Marker(
-                  //     markerId: MarkerId("destination"),
-                  //     position: destination!,
-                  //   )
-                  // },
                   onMapCreated: (mapController) {
                     _controller.complete(mapController);
                   },
@@ -798,16 +513,6 @@ class SsmPlayState extends State<SsmPlay> {
                       style: TextStyle(fontSize: 16, color: Colors.blue)),
                   Text("Waypoint Duration: $waypointDuration",
                       style: TextStyle(fontSize: 16, color: Colors.blue)),
-                  // ElevatedButton(
-                  //   onPressed:(){
-                  //    // Navigate to MapboxPage when button is pressed
-                  //     Navigator.push(
-                  //       context,
-                  //       MaterialPageRoute(builder: (context) => NavigationSample()),
-                  //     );
-                  // },
-                  // child:  Text("Go to Mapbox Page"),
-                  // )
                 ],
               ),
             ),

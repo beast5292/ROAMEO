@@ -40,9 +40,9 @@ class _SsmPageState extends State<SsmPage> {
 
   // Method to move the map and display images based on the selected scenery type
   void _moveToLocation(Map<String, dynamic> location) {
-    LatLng position = LatLang(location['latitude'], locaation['longtitude']);
+    LatLng position = LatLng(location['latitude'], location['longtitude']);
 
-    mapController.animateCamera(cameraUpdate.newLatLng(position));
+    mapController.animateCamera(CameraUpdate.newLatLng(position));
 
     setState(() {
       _markers.clear();
@@ -147,99 +147,167 @@ class _SsmPageState extends State<SsmPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(children: [
-      GoogleMap(
-        initialCameraPosition: const CameraPosition(
-          target: googlePlex,
-          zoom: 12,
-        ),
-        markers: _markers,
-        onMapCreated: (GoogleMapController controller) {
-          mapController = controller;
-        },
-        onTap: _addMarker, // Allow adding markers by tapping on the map
-      ),
-      Positioned(
-        top: 40,
-        left: 10,
-        right: 10,
-        child: Row(
-          children: [
-            IconButton(
-              icon: const Icon(Icons.arrow_back, color: Colors.white),
-              onPressed: () => Navigator.pop(context),
+      body: Stack(
+        children: [
+          GoogleMap(
+            initialCameraPosition: const CameraPosition(
+              target: googlePlex,
+              zoom: 12,
             ),
-            Expanded(
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                decoration: BoxDecoration(
-                  color: Colors.black54,
-                  borderRadius: BorderRadius.circular(10),
+            markers: _markers,
+            onMapCreated: (GoogleMapController controller) {
+              mapController = controller;
+            },
+            onTap: _addMarker, // Allow adding markers by tapping on the map
+          ),
+          Positioned(
+            top: 40,
+            left: 10,
+            right: 10,
+            child: Row(
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.arrow_back, color: Colors.white),
+                  onPressed: () => Navigator.pop(context),
                 ),
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    decoration: BoxDecoration(
+                      color: Colors.black54,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
 
 // START UPDATING FROM HERE
-                // Search bar
-                child: const TextField(
-                  decoration: InputDecoration(
-                    hintText: "Search...",
-                    hintStyle: TextStyle(color: Colors.white54),
-                    border: InputBorder.none,
-                    icon: Icon(Icons.search, color: Colors.white),
+
+                    // Search bar
+                    child: TextField(
+                      onChanged: (value) {
+                        _searchLocations(value)
+                            .then((List<Map<String, dynamic>> fetchedResults) {
+                          setState(() {
+                            _searchResults =
+                                fetchedResults; // store results in state
+                          });
+                        }).catchError((error) {
+                          print('Error searching locations: $error');
+                        });
+                      },
+                      decoration: InputDecoration(
+                        hintText: "Search...",
+                        hintStyle: TextStyle(color: Colors.white54),
+                        border: InputBorder.none,
+                        icon: Icon(Icons.search, color: Colors.white),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
-            IconButton(
-              icon: const Icon(Icons.fullscreen, color: Colors.white),
-              onPressed: () {},
-            ),
-          ],
-        ),
-      ),
-      if (_showDetails)
-        Positioned(
-          bottom: 120,
-          left: 20,
-          right: 20,
-          child: Container(
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-                color: Colors.black54, borderRadius: BorderRadius.circular(10)),
-            child: Column(
-              children: [
-                Image.network("https://via.placeholder.com/100"),
-                const Text("Beautiful Scenery",
-                    style: TextStyle(color: Colors.white)),
-                TextButton(onPressed: () {}, child: const Text("EXPLORE")),
+                IconButton(
+                  icon: const Icon(Icons.fullscreen, color: Colors.white),
+                  onPressed: () {},
+                ),
               ],
             ),
           ),
-        ),
-      Positioned(
-        bottom: 20,
-        left: 20,
-        right: 20,
-        child: FloatingActionButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => SightMenu()),
-              );
-            },
-            child: Icon(Icons.create)),
+
+          // Search results
+          if (_searchResults.isNotEmpty)
+            Positioned(
+              top: 80,
+              left: 10,
+              right: 10,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: _searchResults.length,
+                  itemBuilder: (context, index) {
+                    final location = _searchResults[index];
+                    return ListTile(
+                      title: Text(location['name']),
+                      onTap: () {
+                        _moveToLocation(location);
+                      },
+                    );
+                  },
+                ),
+              ),
+            ),
+
+          // Display images when location is selected
+          if (_selectedImage != null)
+            Positioned(
+                bottom: 120,
+                left: 20,
+                right: 20,
+                child: Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: Colors.black54,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Column(
+                    children: [
+                      Image.network(_selectedImage!),
+                      Text("Selected Location",
+                          style: TextStyle(color: Colors.white)),
+                    ],
+                  ),
+                )),
+
+          if (_showDetails)
+            Positioned(
+              bottom: 120,
+              left: 20,
+              right: 20,
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                    color: Colors.black54,
+                    borderRadius: BorderRadius.circular(10)),
+                child: Column(
+                  children: [
+                    Image.network("https://via.placeholder.com/100"),
+                    const Text("Beautiful Scenery",
+                        style: TextStyle(color: Colors.white)),
+                    TextButton(onPressed: () {}, child: const Text("EXPLORE")),
+                  ],
+                ),
+              ),
+            ),
+
+          Positioned(
+            bottom: 20,
+            left: 20,
+            right: 20,
+            child: FloatingActionButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SightMenu()),
+                  );
+                },
+                child: Icon(Icons.create)),
+          ),
+
+          Positioned(
+            top: 600,
+            right: 20,
+            child: FloatingActionButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SightFeed()),
+                );
+              },
+              child: Icon(Icons.search),
+            ),
+          ),
+        ],
       ),
-      Positioned(
-        top: 600,
-        right: 20,
-        child: FloatingActionButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => SightFeed()),
-              );
-            },
-            child: Icon(Icons.search)),
-      )
-    ]));
+    );
   }
 }

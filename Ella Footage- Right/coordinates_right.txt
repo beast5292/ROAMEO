@@ -5,7 +5,7 @@ Start:
 End:
 	Lat:7.288445387966931
 	Long:80.63075733371079
-Description: Kandy station
+Description: Kandy Railway Station, built in 1867 during British rule, is a key transport hub with colonial-era architecture. It serves as a major stop on the scenic Main Line, connecting Colombo to Sri Lanka’s central highlands. Travelers often start the famous Kandy-to-Ella train journey here, enjoying breathtaking views of tea plantations and misty mountains.
 
 Number: 2
 Start:
@@ -14,7 +14,7 @@ Start:
 End:
 	Lat: 7.256529866717765
 	Long:80.590008620408475
-Description: Pera Station
+Description: Peradeniya Railway Station, located near Kandy, is a historic station along Sri Lanka’s Main Line. It is known for its charming colonial architecture and as a key junction where the Main Line and Matale Line diverge. Surrounded by lush greenery, it provides easy access to the famous Peradeniya Botanical Gardens, one of Sri Lanka’s largest and most beautiful gardens.
 
 Number: 3
 Start:
@@ -104,7 +104,7 @@ Start:
 End:
 	Lat:7.010607090778649
 	Long: 80.53894255310297
-Description: inguru oya
+Description: Inguru Oya is a picturesque stream in Sri Lanka that flows through the central highlands, surrounded by lush greenery and tea plantations. Originating from the misty hills, it serves as a tributary of the Mahaweli River, the longest river in Sri Lanka. The stream is known for its clear waters and small cascades, making it a serene spot for nature lovers and those seeking a peaceful retreat.
 
 Number: 13
 Start:
@@ -212,7 +212,7 @@ Start:
 End:
 	Lat: 6.956953816115856
 	Long: 80.68956359289587
-Description: the great western
+Description: Great Western is a stunning mountain peak in Sri Lanka’s central highlands, standing at 2,216 meters. It offers breathtaking views of misty valleys, tea plantations, and nearby peaks, making it a popular hiking destination. The area is also home to Great Western Railway Station, one of the highest railway stops in the country.
 
 Number: 25
 Start:
@@ -221,7 +221,7 @@ Start:
 End:
 	Lat: 6.944078458473086
 	Long: 80.74364111758769
-Description: nanu oya
+Description: Nanu Oya is a picturesque town in Sri Lanka’s central highlands, known as the gateway to Nuwara Eliya. Surrounded by tea estates and rolling hills, it features the Nanu Oya River, which feeds Lake Gregory. The Nanu Oya Railway Station is a key stop on the scenic Main Line, offering breathtaking views of misty mountains and lush landscapes.
 
 Number: 26
 Start:
@@ -257,7 +257,7 @@ Start:
 End:
 	Lat: 6.888582422398091
 	Long: 80.7798318285495
-Description: bambarakanda falls (?)
+Description: Bambarakanda Falls, located in the Badulla District, is Sri Lanka's tallest waterfall, with a height of 263 meters. It cascades down from the hills of the central highlands, surrounded by lush greenery and dense forest. The falls are a popular attraction for nature lovers and hikers, offering a serene environment and stunning views.
 
 Number: 30
 Start:
@@ -275,7 +275,7 @@ Start:
 End:
 	Lat: 6.872757137753069
 	Long: 80.82409615628421
-Description: highland milk factory
+Description: The Highland Milk Factory, located in the central highlands of Sri Lanka, is known for producing high-quality dairy products. Situated amidst the scenic tea plantations near Nuwara Eliya, the factory is an essential part of the region's agricultural industry. It supports local dairy farmers and contributes to the production of fresh milk, yogurt, and other dairy items, serving both local markets and exports.
 
 Number: 32
 Start:
@@ -339,6 +339,5 @@ End:
 	Lat: 6.932581923902035
 	Long: 81.04200334428818
 Description: hidden stream in hali ela
-
 
 

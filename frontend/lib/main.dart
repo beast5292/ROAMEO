@@ -7,17 +7,30 @@ import 'package:practice/SightSeeingMode/location_select/pages/autoCwidget.dart'
 import 'package:practice/SightSeeingMode/location_select/services/autoCService.dart';
 import 'package:practice/SightSeeingMode/location_select/providers/selected_place_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:practice/providers/combined_provider.dart';
 
 void main() async {
-  
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  
+
   //providers
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => SelectedImageProvider()),
-    ChangeNotifierProvider(create: (_) => SelectedPlaceProvider())
-  ], child: const MyApp()));
+    ChangeNotifierProvider(create: (_) => SelectedPlaceProvider()),
+    
+    //combined list provider
+    ChangeNotifierProxyProvider2<SelectedPlaceProvider, SelectedImageProvider,
+        CombinedListProvider>(
+      create: (_) => CombinedListProvider(
+        Provider.of<SelectedPlaceProvider>(_, listen: false),
+        Provider.of<SelectedImageProvider>(_, listen: false),
+      ),
+      update: (_, selectedPlaceProvider, selectedImageProvider,
+              combinedListProvider) =>
+          CombinedListProvider(selectedPlaceProvider, selectedImageProvider),
+    ),
+
+  ], child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {

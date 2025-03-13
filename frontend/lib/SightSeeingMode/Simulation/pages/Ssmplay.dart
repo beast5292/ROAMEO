@@ -18,6 +18,7 @@ import 'package:practice/SightSeeingMode/Simulation/services/checkProximity.dart
 import 'package:practice/SightSeeingMode/Simulation/services/PolylineThresholdCheck.dart';
 
 class SsmPlay extends StatefulWidget {
+  
   //widget takes the index as a parameter to figure out the sightseeing mode id
   final int index;
 
@@ -206,7 +207,7 @@ class SsmPlayState extends State<SsmPlay> {
     //Define waypoints excluding reached ones
     activeWaypoints = waypoints
         .where((wp) =>
-            !reachedWaypoints.contains(wp)) // Filter out reached waypoints
+            !reachedWaypoints.contains(wp)) //Filter out reached waypoints
         .map((wp) => PolylineWayPoint(
               location: "${wp.latitude},${wp.longitude}",
             ))

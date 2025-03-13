@@ -7,12 +7,12 @@ import 'package:practice/SightSeeingMode/location_select/pages/autoCwidget.dart'
 import 'package:practice/SightSeeingMode/location_select/services/autoCService.dart';
 import 'package:practice/SightSeeingMode/location_select/providers/selected_place_provider.dart';
 import 'package:provider/provider.dart';
+import 'pages/sign_up_page.dart';
 
 void main() async {
-  
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  
+
   //providers
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => SelectedImageProvider()),
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: HomePage(),
     );

@@ -11,6 +11,7 @@ import 'package:practice/SightSeeingMode/Services/SightGet.dart';
 import 'package:practice/SightSeeingMode/Simulation/pages/Navigation.dart';
 import 'package:practice/SightSeeingMode/Simulation/pages/mapbox.dart';
 import 'package:practice/SightSeeingMode/Simulation/services/Haversine_formula.dart';
+import 'package:practice/SightSeeingMode/Simulation/services/TrimPolyline.dart';
 import 'package:practice/SightSeeingMode/Simulation/services/assignPoints.dart';
 import 'package:practice/SightSeeingMode/Simulation/services/alertDialog.dart';
 import 'package:practice/SightSeeingMode/Simulation/services/checkProximity.dart';
@@ -64,7 +65,7 @@ class SsmPlayState extends State<SsmPlay> {
   int currentStepIndex = 0;
 
   //list of lat and lang co-ordinates to hold the polyline coordinates
-  List<LatLng> polylineCoordinates = [];
+  static List<LatLng> polylineCoordinates = [];
 
   //define only the active way points
   late List<PolylineWayPoint> activeWaypoints;
@@ -87,6 +88,7 @@ class SsmPlayState extends State<SsmPlay> {
 
   //Set to hold markers
   Set<Marker> markers = {};
+
   //setState of assignPoints function
   void updateAssignPointsState(
     LatLng source,
@@ -101,6 +103,7 @@ class SsmPlayState extends State<SsmPlay> {
       isDataLoaded = loaded;
     });
   }
+
   //function to get the current location (using the location package)
   void getCurrentLocation() async {
     //hold the current location
@@ -112,7 +115,6 @@ class SsmPlayState extends State<SsmPlay> {
           //set the current location to the obtained location
           currentLocation = location;
         });
-
         //call getPolyPoints after a obtaining the current location
         getPolyPoints();
       },
@@ -126,16 +128,20 @@ class SsmPlayState extends State<SsmPlay> {
       setState(() {
         currentLocation = newLoc;
       });
+      
+      //trim the polyline
+      trimPolyline(LatLng(newLoc.latitude!, newLoc.longitude!));
+
       //checks the proximity everytime the location changes
       checkProximityAndNotify(
-          context,
-          currentLocation,
-          waypoints,
-          reachedNearWaypoints,
-          reachedWaypoints,
-          destination,
-          getPolyPoints,
-        );
+        context,
+        currentLocation,
+        waypoints,
+        reachedNearWaypoints,
+        reachedWaypoints,
+        destination,
+        getPolyPoints,
+      );
 
       // Check if the current location is within the polyline threshold
       LatLng currentLatLng = LatLng(newLoc.latitude!, newLoc.longitude!);
@@ -146,7 +152,7 @@ class SsmPlayState extends State<SsmPlay> {
       }
 
       //Recalculate the polyline with updated location
-      getPolyPoints();
+      // getPolyPoints();
 
       //call the waypoint distance and duration calculator using current locaton anf the first active waypoint
       getWaypointDistanceandDuration(currentLocation, activeWaypoints[0]);
@@ -188,7 +194,7 @@ class SsmPlayState extends State<SsmPlay> {
       // setState(() {});
     });
   }
-  
+
   //function to get the polypoints
   void getPolyPoints() async {
     //new polyline object (polyline)
@@ -330,6 +336,16 @@ class SsmPlayState extends State<SsmPlay> {
     }
   }
 
+  //trim the polylines as the user moves
+  void trimPolyline(LatLng userLocation) {
+    if (polylineCoordinates.isEmpty) return;
+
+    int closestIndex = findClosestPointIndex(userLocation, polylineCoordinates);
+
+    setState(() {
+      polylineCoordinates = polylineCoordinates.sublist(closestIndex);
+    });
+  }
 
   // Function to add markers for waypoints and destination
   void addMarkers() {
@@ -358,7 +374,7 @@ class SsmPlayState extends State<SsmPlay> {
 
     var locationString = currentLocation!.latitude.toString();
 
-    showAlertDialog2(context,locationString);
+    showAlertDialog2(context, locationString);
 
     //add marker for current location
     markers.add(

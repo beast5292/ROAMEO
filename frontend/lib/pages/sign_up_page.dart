@@ -6,7 +6,7 @@ class SignUpPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text('Sign Up'),
-          backgroundColor: Colors.white, // Adjust the app bar color
+          backgroundColor: Colors.white,
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -42,18 +42,17 @@ class SignUpPage extends StatelessWidget {
               ),
               SizedBox(height: 24.0),
               SizedBox(
-                width: double.infinity, // Match the width of the text fields
-                height: 50.0, // Set the height of the button
+                width: double.infinity,
+                height: 50.0,
                 child: ElevatedButton(
                   onPressed: () {
                     // Handle sign up
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue, // Button background color
-                    foregroundColor: Colors.white, // Text color
+                    backgroundColor: Colors.blue,
+                    foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.circular(8.0), // Rounded corners
+                      borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
                   child: Text('Sign Up'),
@@ -67,34 +66,28 @@ class SignUpPage extends StatelessWidget {
                 children: <Widget>[
                   IconButton(
                     icon: SizedBox(
-                      width: 48.0, // Set the width
-                      height: 48.0, // Set the height
+                      width: 48.0,
+                      height: 48.0,
                       child: Image.asset('assets/images/google_icon.jpg'),
                     ),
-                    onPressed: () {
-                      // Handle Google sign up
-                    },
+                    onPressed: () {},
                   ),
                   IconButton(
                     icon: SizedBox(
-                      width: 48.0, // Set the width
-                      height: 48.0, // Set the height
+                      width: 48.0,
+                      height: 48.0,
                       child: Image.asset('assets/images/facebook_icon.jpg'),
                     ),
-                    onPressed: () {
-                      // Handle Facebook sign up
-                    },
+                    onPressed: () {},
                   ),
                 ],
               ),
               SizedBox(height: 16.0),
               TextButton(
-                onPressed: () {
-                  // Navigate to login page
-                },
+                onPressed: () {},
                 child: Text(
                   'Already have an account? Login Now',
-                  style: TextStyle(color: Colors.blue), // Text color
+                  style: TextStyle(color: Colors.blue),
                 ),
               ),
             ],

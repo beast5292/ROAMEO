@@ -8,6 +8,7 @@ import 'package:practice/SightSeeingMode/location_select/services/autoCService.d
 import 'package:practice/SightSeeingMode/location_select/providers/selected_place_provider.dart';
 import 'package:provider/provider.dart';
 import 'pages/sign_up_page.dart';
+import 'pages/login_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

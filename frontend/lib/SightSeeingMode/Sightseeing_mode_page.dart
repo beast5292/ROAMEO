@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:practice/SightSeeingMode/Feed/SightFeed.dart';
 import 'package:practice/SightSeeingMode/Menu.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_maps_webservice/places.dart';
 
 class SsmPage extends StatefulWidget {
   const SsmPage({super.key});
@@ -18,44 +18,10 @@ class _SsmPageState extends State<SsmPage> {
   bool _showDetails = false;
   String _selectedScenery = 'temporary'; // Default to 'temporary'
 
-  List<Map<String, dynamic>> _searchResults =
-      []; // List to store search results
-  String? _selectedImage; // Variable to store the selected image
-
   @override
   void initState() {
     super.initState();
   }
-
-  // Method to fetch locations from database based on search keyword
-  Future<List<Map<String, dynamic>>> _searchLocations(String keyword) async {
-    final querySnapshot = await FirebaseFirestore.instance
-        .collection('sights') // Firestore collection name to fetch data
-        .where('name', isGreaterThanOrEqualTo: keyword)
-        .where('name', isLessThan: keyword + 'z') // Range based search
-        .get();
-
-    return querySnapshot.docs.map((doc) => doc.data()).toList();
-  }
-
-  // Method to move the map and display images based on the selected scenery type
-  void _moveToLocation(Map<String, dynamic> location) {
-    LatLng position = LatLng(location['latitude'], location['longtitude']);
-
-    mapController.animateCamera(CameraUpdate.newLatLng(position));
-
-    setState(() {
-      _markers.clear();
-      _markers.add(
-        Marker(
-          markerId: MarkerId(location['name']),
-          position: position,
-          infoWindow: InfoWindow(title: location['name']),
-        ),
-      );
-      _selectedImage = location['image_url']; // Store image url from firebase
-    });
-  } // Method over
 
   void _loadMarkers() {
     setState(() {
@@ -177,22 +143,7 @@ class _SsmPageState extends State<SsmPage> {
                       color: Colors.black54,
                       borderRadius: BorderRadius.circular(10),
                     ),
-
-// START UPDATING FROM HERE
-
-                    // Search bar
-                    child: TextField(
-                      onChanged: (value) {
-                        _searchLocations(value)
-                            .then((List<Map<String, dynamic>> fetchedResults) {
-                          setState(() {
-                            _searchResults =
-                                fetchedResults; // store results in state
-                          });
-                        }).catchError((error) {
-                          print('Error searching locations: $error');
-                        });
-                      },
+                    child: const TextField(
                       decoration: InputDecoration(
                         hintText: "Search...",
                         hintStyle: TextStyle(color: Colors.white54),
@@ -209,55 +160,6 @@ class _SsmPageState extends State<SsmPage> {
               ],
             ),
           ),
-
-          // Search results
-          if (_searchResults.isNotEmpty)
-            Positioned(
-              top: 80,
-              left: 10,
-              right: 10,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: _searchResults.length,
-                  itemBuilder: (context, index) {
-                    final location = _searchResults[index];
-                    return ListTile(
-                      title: Text(location['name']),
-                      onTap: () {
-                        _moveToLocation(location);
-                      },
-                    );
-                  },
-                ),
-              ),
-            ),
-
-          // Display images when location is selected
-          if (_selectedImage != null)
-            Positioned(
-                bottom: 120,
-                left: 20,
-                right: 20,
-                child: Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: Colors.black54,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    children: [
-                      Image.network(_selectedImage!),
-                      Text("Selected Location",
-                          style: TextStyle(color: Colors.white)),
-                    ],
-                  ),
-                )),
-
           if (_showDetails)
             Positioned(
               bottom: 120,
@@ -278,7 +180,6 @@ class _SsmPageState extends State<SsmPage> {
                 ),
               ),
             ),
-
           Positioned(
             bottom: 20,
             left: 20,
@@ -292,22 +193,18 @@ class _SsmPageState extends State<SsmPage> {
                 },
                 child: Icon(Icons.create)),
           ),
-
           Positioned(
             top: 600,
             right: 20,
             child: FloatingActionButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SightFeed()),
-                );
-              },
-              child: Icon(Icons.search),
-            ),
-          ),
-        ],
-      ),
-    );
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SightFeed()),
+                  );
+                },
+                child: Icon(Icons.search)),
+          )
+        ]));
   }
 }

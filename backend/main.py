@@ -1,4 +1,4 @@
-from fastapi import FastAPI,HTTPException
+from fastapi import FastAPI, HTTPException, Query
 from typing import List
 from Sight_info import Sight
 from firebase_admin import credentials,firestore, initialize_app
@@ -85,11 +85,11 @@ async def search_sights(
 
     for doc in sights_ref:
         data = doc.to_dict()
-        records = data.get("records", [])
+        records = data.get("sights", [])
 
         # Filter records within this document
         for record in records:
-            if (not name or record["name"] == name) and (not tag or tag in record["tags"]):
+            if name.lower() in record["name"].lower():
                 results.append(record)
 
     return {"results": results}

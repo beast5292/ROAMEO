@@ -130,6 +130,7 @@ class _SightMenuState extends State<SightMenu> {
 
   @override
   Widget build(BuildContext context) {
+    
     final selectedPlaceProvider = Provider.of<SelectedPlaceProvider>(context);
 
     return Scaffold(
@@ -142,66 +143,80 @@ class _SightMenuState extends State<SightMenu> {
             ),
             SizedBox(height: 10),
 
-            // Single list for both locations and image trips
+            // Reorderable list for image trips
             Expanded(
-              child: ListView.builder(
-                itemCount: selectedPlaceProvider.selectedLocations.length,
-                itemBuilder: (context, index) {
-                  final item = selectedPlaceProvider.selectedLocations[index];
+  child: ReorderableListView(
+    onReorder: (oldIndex, newIndex) {
+      // Handle reordering logic here
+      selectedPlaceProvider.reorderTrips(oldIndex, newIndex);
+    },
+    children: selectedPlaceProvider.selectedLocations
+        .map<Widget>((dynamic item) {
+      final key = ValueKey(item.hashCode); // Unique key for each item
 
-                  if (item is LocationInfo) {
-                    // Display location item
-                    final firstImageUrl =
-                        item.imageUrls.isNotEmpty ? item.imageUrls[0] : null;
-
-                    return ListTile(
-                      leading: firstImageUrl != null
-                          ? Image.network(
-                              firstImageUrl,
-                              width: 40,
-                              height: 40,
-                              fit: BoxFit.cover,
-                            )
-                          : Icon(Icons.location_on, color: Colors.blue),
-                      title: Text(
-                        item.prediction.mainText ?? "Unknown Place",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      subtitle: Text(
-                        item.prediction.secondaryText ?? "No details available",
+      if (item is LocationInfo) {
+        // Handle LocationInfo type
+        return ListTile(
+          key: key,
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(item.prediction.mainText ?? "Unknown Place"),
+              Text(item.prediction.secondaryText ?? "No details available"),
+              if (item.imageUrls.isNotEmpty)
+                Row(
+                  children: item.imageUrls.map<Widget>((imageUrl) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image.network(
+                        imageUrl,
+                        width: 150,
+                        height: 150,
+                        fit: BoxFit.cover,
                       ),
                     );
-                  } else if (item is List<Map<String, dynamic>>) {
-                    // Display image trip item
-                    return ListTile(
-                      title: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: item.map<Widget>((imageData) {
-                              return Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Image.file(
-                                  File(imageData['photo']),
-                                  width: 150,
-                                  height: 150,
-                                  fit: BoxFit.cover,
-                                ),
-                              );
-                            }).toList(),
-                          ),
-                        ],
+                  }).toList(),
+                ),
+            ],
+          ),
+        );
+      } else if (item is List<Map<String, dynamic>>) {
+        // Handle List<Map<String, dynamic>> type
+        return ListTile(
+          key: key,
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: item.map<Widget>((imageData) {
+                  if (imageData.containsKey('photo') && imageData['photo'] != null) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image.file(
+                        File(imageData['photo']),
+                        width: 150,
+                        height: 150,
+                        fit: BoxFit.cover,
                       ),
                     );
                   } else {
-                    return SizedBox.shrink(); // Fallback for unknown types
+                    return Container(); // Handle missing photo data
                   }
-                },
+                }).toList(),
               ),
-            ),
+            ],
+          ),
+        );
+      } else {
+        // Handle unexpected types (optional)
+        return ListTile(
+          key: key,
+          title: Text("Unknown item type"),
+        );
+      }
+    }).toList(),
+  ),
+),
           ],
         ),
       ),

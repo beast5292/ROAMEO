@@ -6,6 +6,7 @@ from typing import List
 import asyncio
 import firebase_admin
 from user_model import User
+import bcrypt
 
 #Initialize Firebase Admin SDK with your credentials
 cred = credentials.Certificate(r'C:\Users\Mindula\Desktop\ROAMEO\backend\private key\roameo-f3ab0-firebase-adminsdk-ss40k-1e1297f52f.json') 
@@ -74,13 +75,28 @@ async def get_sight_by_id(docId: str):
         raise HTTPException(status_code=404, detail="Sight not found")  
     
 
-#Signup route endpoints
+# Function to hash passwords
+def hash_password(password: str) -> str:
+    salt = bcrypt.gensalt()
+    hashed_password = bcrypt.hashpw(password.encode('utf-8'), salt)
+    return hashed_password.decode('utf-8')
+
+# Signup route endpoint
 @app.post("/signup")
 async def signup(user: User):
     try:
+        # Hashing the password before storing
+        hashed_password = hash_password(user.password)
+
         user_ref = db.collection("users").document()
-        # Saving the user data
-        user_ref.set(user.dict()) 
+
+        user_ref.set({
+            "name": user.name,
+            "email": user.email,
+            "dob": user.dob,
+            "password": hashed_password  
+        })
+
         return {"message": "User registered successfully"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

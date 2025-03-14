@@ -24,15 +24,18 @@ class _SsmPageState extends State<SsmPage> {
 
   // TextEditingController for search bar
   TextEditingController _searchController = TextEditingController();
+  FocusNode _searchFocusNode = FocusNode();
 
   @override
-  void initState() {
-    super.initState();
+  void dispose() {
+    _searchController.dispose();
+    _searchFocusNode.dispose();
+    super.dispose();
   }
 
   // Method to fetch locations from database based on search keyword
   Future<List<Map<String, dynamic>>> _searchLocations(String keyword) async {
-    print("Searching for: $keyword");
+    debugPrint("Searching for: $keyword");
 
     final querySnapshot = await FirebaseFirestore.instance
         .collection('sights') // Firestore collection name to fetch data
@@ -43,29 +46,9 @@ class _SsmPageState extends State<SsmPage> {
     List<Map<String, dynamic>> fetchedData =
         querySnapshot.docs.map((doc) => doc.data()).toList();
 
-    print("Found ${fetchedData.length} results.");
+    debugPrint("Found ${fetchedData.length} results.");
     return fetchedData;
   }
-
-  // Method to move the map and display images based on the selected scenery type
-  void _moveToLocation(Map<String, dynamic> location) {
-    LatLng position = LatLng(location['latitude'], location['longitude']);
-
-    mapController.animateCamera(CameraUpdate.newLatLng(position));
-
-    setState(() {
-      _markers.clear();
-      _markers.add(
-        Marker(
-          markerId: MarkerId(location['name']),
-          position: position,
-          infoWindow: InfoWindow(title: location['name']),
-        ),
-      );
-      _selectedImage = location['image_url']; // Display image from Firestore
-    });
-  }
-  // Method over
 
   void _loadMarkers() {
     setState(() {
@@ -157,7 +140,7 @@ class _SsmPageState extends State<SsmPage> {
   // Method to handle search button press
   void _performSearch() async {
     String searchQuery = _searchController.text.trim();
-    print("Search button clicked with query: $searchQuery");
+    debugPrint("Search button clicked with query: $searchQuery");
 
     if (searchQuery.isNotEmpty) {
       List<Map<String, dynamic>> results = await _searchLocations(searchQuery);
@@ -166,6 +149,26 @@ class _SsmPageState extends State<SsmPage> {
       });
     }
   }
+
+  // Method to move the map and display images based on the selected scenery type
+  void _moveToLocation(Map<String, dynamic> location) {
+    LatLng position = LatLng(location['latitude'], location['longitude']);
+
+    mapController.animateCamera(CameraUpdate.newLatLng(position));
+
+    setState(() {
+      _markers.clear();
+      _markers.add(
+        Marker(
+          markerId: MarkerId(location['name']),
+          position: position,
+          infoWindow: InfoWindow(title: location['name']),
+        ),
+      );
+      _selectedImage = location['image_url']; // Display image from Firestore
+    });
+  }
+  // Method over
 
   @override
   Widget build(BuildContext context) {
@@ -205,24 +208,36 @@ class _SsmPageState extends State<SsmPage> {
                     // Search bar
                     child: TextField(
                       controller: _searchController,
-                      decoration: InputDecoration(
+                      focusNode: _searchFocusNode, // Attach focus node
+                      decoration: const InputDecoration(
                         hintText: "Search...",
                         hintStyle: TextStyle(color: Colors.white54),
                         border: InputBorder.none,
                         icon: Icon(Icons.search, color: Colors.white),
                       ),
+
+                      onTap: () {
+                        debugPrint("Search bar tapped");
+                        FocusScope.of(context).requestFocus(_searchFocusNode);
+                      },
                     ),
                   ),
                 ),
-                IconButton(
-                  icon: const Icon(Icons.fullscreen, color: Colors.white),
-                  onPressed: () {},
+                GestureDetector(
+                  onTap: () {
+                    debugPrint("Search button clicked");
+                    _performSearch();
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Icon(Icons.search, color: Colors.white),
+                  ),
                 ),
               ],
             ),
           ),
 
-          // Search results
+          // Display Search results
           if (_searchResults.isNotEmpty)
             Positioned(
               top: 80,

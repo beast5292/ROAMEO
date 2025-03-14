@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:practice/SightSeeingMode/CameraPage/providers/Image_provider.dart';
 import 'package:practice/SightSeeingMode/Menu.dart';
+import 'package:practice/SightSeeingMode/location_select/providers/selected_place_provider.dart';
 import 'package:provider/provider.dart';
 import 'dart:io';
 
@@ -156,9 +157,10 @@ class _CameraPageState extends State<CameraPage> {
           FloatingActionButton(
             onPressed: () {
               if (tempImages.isNotEmpty) {
+
                 //adds the temp images array to the provider as an array object
-                Provider.of<SelectedImageProvider>(context, listen: false)
-                    .addTrip(List.from(tempImages));
+                Provider.of<SelectedPlaceProvider>(context, listen: false)
+                    .addImageInfo(List.from(tempImages));
 
                 //make temp images array clear
                 setState(() {

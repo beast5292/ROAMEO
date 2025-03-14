@@ -23,7 +23,7 @@ Start:
 End:
 	Lat: 7.248802254907787
 	Long: 80.59164603240298
-Description: Pera suburbs
+Description: Peradenya Suburbs
 
 Number: 4
 Start:
@@ -41,7 +41,7 @@ Start:
 End:
 	Lat: 7.1747792372480035
 	Long: 80.57968547567725
-Description: gampola temple
+Description: Sri Gangathilaka Raja Maha Viharaya in Gampola is a unique Buddhist temple known for its striking stupa built in the shape of a bell tower. Located on a small hill, it offers panoramic views of the surrounding landscapes, including the Mahaweli River. The temple, with its serene atmosphere and historical significance, attracts both pilgrims and visitors seeking spiritual and architectural beauty
 
 Number: 6
 Start:
@@ -50,7 +50,7 @@ Start:
 End:
 	Lat: 7.152281538583338
 	Long: 80.55941903963685
-Description:  gampola suburbs
+Description:  Gampola Suburbs
 
 Number: 7
 Start:
@@ -59,7 +59,7 @@ Start:
 End:
 	Lat: 7.081673392094672
 	Long: 80.54993801750243
-Description: Nawala suburbs
+Description: Nawalapitiya suburbs
 
 Number: 8
 Start:
@@ -68,7 +68,7 @@ Start:
 End:
 	Lat: 7.0617765430361
 	Long: 80.53401919081807
-Description: Nawala temple
+Description: Kalugalhinna Buddhist Temple is a peaceful temple located in Sri Lanka’s central highlands, surrounded by lush greenery and misty hills. It is known for its serene atmosphere, traditional architecture, and spiritual significance to the local Buddhist community. The temple serves as a place for meditation and religious observance, offering visitors a tranquil retreat amidst nature.
 
 Number: 9
 Start:
@@ -77,7 +77,7 @@ Start:
 End:
 	Lat: 7.04563254956156
 	Long: 80.52967501804233
-Description: Nawala lake
+Description: Selam Bridge in Nawalapitiya is a historic railway bridge along Sri Lanka’s scenic Main Line. Surrounded by lush greenery and rolling hills, it is known for its colonial-era engineering and stunning views. The bridge is a popular spot for train enthusiasts and travelers capturing the beauty of Sri Lanka’s central highlands. On the right is River Mahaweli.
 
 Number: 10
 Start:
@@ -86,7 +86,7 @@ Start:
 End:
 	Lat: 7.023756662383676
 	Long: 80.54265590384603
-Description: nawala forest
+Description: Forestry IN Nawalapitiya
 
 Number: 11
 Start:
@@ -95,7 +95,7 @@ Start:
 End:
 	Lat: 7.0210124691948295
 	Long: 80.54608611389995
-Description:  Nawala lake
+Description:  Small Stream passing by
 
 Number: 12
 Start:
@@ -113,7 +113,7 @@ Start:
 End:
 	Lat: 6.992476070299745
 	Long: 80.54078187793493
-Description: galboda forest
+Description: Galboda Forest, located in Sri Lanka’s central highlands, is a lush rainforest known for its rich biodiversity and scenic beauty. It is home to the famous Galboda Waterfall, which is surrounded by dense greenery and diverse wildlife. The forest offers a serene escape for nature lovers, with hiking trails and a cool climate adding to its charm.
 
 Number: 14
 Start:
@@ -122,7 +122,7 @@ Start:
 End:
 	Lat: 6.96064755320649
 	Long: 80.52775288000703
-Description: watawala forest
+Description: Watawala Forest, located in Sri Lanka’s central highlands, is a lush and misty rainforest known for its rich biodiversity. It is home to diverse flora and fauna, including rare bird species, making it a popular spot for birdwatching and nature walks. The forest’s cool climate and dense greenery provide a peaceful retreat for visitors seeking tranquility and natural beauty.
 
 Number: 15
 Start:
@@ -131,7 +131,7 @@ Start:
 End:
 	Lat: 6.951565174385905
 	Long: 80.53503164090216
-Description: n eliya tea factory
+Description: Templestowe Tea Factory, located in Sri Lanka’s central highlands, is known for producing high-quality Ceylon tea. Surrounded by scenic tea estates, the factory offers visitors insights into traditional tea processing methods. It provides a chance to experience the aroma of freshly processed tea while enjoying breathtaking views of the misty hills.
 
 Number: 16
 Start:
@@ -140,7 +140,7 @@ Start:
 End:
 	Lat: 6.943612340837717
 	Long: 80.5474489643275
-Description: n eliya scenery
+Description: Nuwara Eliya Scenery
 
 Number: 17
 Start:
@@ -255,8 +255,8 @@ Start:
 	Lat: 6.888582422398091
 	Long: 80.7798318285495
 End:
-	Lat: 6.888582422398091
-	Long: 80.7798318285495
+	Lat: 6.888764435425401
+	Long: 80.78059961088002
 Description: Bambarakanda Falls, located in the Badulla District, is Sri Lanka's tallest waterfall, with a height of 263 meters. It cascades down from the hills of the central highlands, surrounded by lush greenery and dense forest. The falls are a popular attraction for nature lovers and hikers, offering a serene environment and stunning views.
 
 Number: 30

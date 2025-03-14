@@ -71,3 +71,34 @@ async def get_sight_by_id(docId: str):
         return {"id": doc.id, "sights": sight_data}
     else:
         raise HTTPException(status_code=404, detail="Sight not found")  
+
+#get request for search
+@app.get("/search_sights/")
+async def search_sights(
+    name: str = Query(None), 
+    tag: str = Query(None)
+):
+    # Get all documents in the "sights" collection
+    sights_ref = db.collection("sights").stream()
+
+    results = []
+
+    for doc in sights_ref:
+        data = doc.to_dict()
+        records = data.get("records", [])
+
+        # Filter records within this document
+        for record in records:
+            if (not name or record["name"] == name) and (not tag or tag in record["tags"]):
+                results.append(record)
+
+    return {"results": results}
+
+
+
+
+  
+
+
+
+    

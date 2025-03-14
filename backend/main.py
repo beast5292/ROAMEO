@@ -5,6 +5,7 @@ from firebase_admin import credentials,firestore, initialize_app
 from typing import List
 import asyncio
 import firebase_admin
+from user_model import User
 
 #Initialize Firebase Admin SDK with your credentials
 cred = credentials.Certificate(r'C:\Users\Mindula\Desktop\ROAMEO\backend\private key\roameo-f3ab0-firebase-adminsdk-ss40k-1e1297f52f.json') 
@@ -71,3 +72,15 @@ async def get_sight_by_id(docId: str):
         return {"id": doc.id, "sights": sight_data}
     else:
         raise HTTPException(status_code=404, detail="Sight not found")  
+    
+
+#Signup route endpoints
+@app.post("/signup")
+async def signup(user: User):
+    try:
+        user_ref = db.collection("users").document()
+        # Saving the user data
+        user_ref.set(user.dict()) 
+        return {"message": "User registered successfully"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

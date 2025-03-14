@@ -6,6 +6,7 @@ from typing import List
 import asyncio
 import firebase_admin
 from user_model import User
+from login_model import LoginRequest
 import bcrypt
 
 #Initialize Firebase Admin SDK with your credentials
@@ -103,7 +104,9 @@ async def signup(user: User):
     
 # Signin/Login route endpoint    
 @app.post("/login")
-async def login(user: User):
+async def login(user: LoginRequest):
+    print(f"Received data: {user.dict()}") 
+
     try:
         user_ref = db.collection("users").where("email", "==", user.email).stream()
         user_doc = next(user_ref, None)  

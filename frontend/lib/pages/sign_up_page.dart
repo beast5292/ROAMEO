@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../Home/home_page.dart';
+import 'login_page.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -150,7 +151,13 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
             SizedBox(height: 16.0),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                // Navigating to Login Page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage()),
+                );
+              },
               child: Text(
                 'Already have an account? Login Now',
                 style: TextStyle(color: Colors.blue),

@@ -22,6 +22,9 @@ class _SsmPageState extends State<SsmPage> {
       []; // List to store search results
   String? _selectedImage; // Variable to store the selected image
 
+  // TextEditingController for search bar
+  TextEditingController _searchController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -29,13 +32,19 @@ class _SsmPageState extends State<SsmPage> {
 
   // Method to fetch locations from database based on search keyword
   Future<List<Map<String, dynamic>>> _searchLocations(String keyword) async {
+    print("Searching for: $keyword");
+
     final querySnapshot = await FirebaseFirestore.instance
         .collection('sights') // Firestore collection name to fetch data
         .where('name', isGreaterThanOrEqualTo: keyword)
         .where('name', isLessThan: keyword + 'z') // Range based search
         .get();
 
-    return querySnapshot.docs.map((doc) => doc.data()).toList();
+    List<Map<String, dynamic>> fetchedData =
+        querySnapshot.docs.map((doc) => doc.data()).toList();
+
+    print("Found ${fetchedData.length} results.");
+    return fetchedData;
   }
 
   // Method to move the map and display images based on the selected scenery type
@@ -145,6 +154,19 @@ class _SsmPageState extends State<SsmPage> {
     );
   }
 
+  // Method to handle search button press
+  void _performSearch() async {
+    String searchQuery = _searchController.text.trim();
+    print("Search button clicked with query: $searchQuery");
+
+    if (searchQuery.isNotEmpty) {
+      List<Map<String, dynamic>> results = await _searchLocations(searchQuery);
+      setState(() {
+        _searchResults = results;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -161,6 +183,7 @@ class _SsmPageState extends State<SsmPage> {
             },
             onTap: _addMarker, // Allow adding markers by tapping on the map
           ),
+
           Positioned(
             top: 40,
             left: 10,
@@ -181,22 +204,7 @@ class _SsmPageState extends State<SsmPage> {
 
                     // Search bar
                     child: TextField(
-                      onChanged: (value) {
-                        if (value.isNotEmpty) {
-                          _searchLocations(value).then(
-                              (List<Map<String, dynamic>> fetchedResults) {
-                            setState(() {
-                              _searchResults = fetchedResults;
-                            });
-                          }).catchError((error) {
-                            print('Error searching locations: $error');
-                          });
-                        } else {
-                          setState(() {
-                            _searchResults = [];
-                          });
-                        }
-                      },
+                      controller: _searchController,
                       decoration: InputDecoration(
                         hintText: "Search...",
                         hintStyle: TextStyle(color: Colors.white54),

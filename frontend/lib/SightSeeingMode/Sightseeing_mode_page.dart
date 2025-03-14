@@ -40,7 +40,7 @@ class _SsmPageState extends State<SsmPage> {
 
   // Method to move the map and display images based on the selected scenery type
   void _moveToLocation(Map<String, dynamic> location) {
-    LatLng position = LatLng(location['latitude'], location['longtitude']);
+    LatLng position = LatLng(location['latitude'], location['longitude']);
 
     mapController.animateCamera(CameraUpdate.newLatLng(position));
 
@@ -53,9 +53,10 @@ class _SsmPageState extends State<SsmPage> {
           infoWindow: InfoWindow(title: location['name']),
         ),
       );
-      _selectedImage = location['image_url']; // Store image url from firebase
+      _selectedImage = location['image_url']; // Display image from Firestore
     });
-  } // Method over
+  }
+  // Method over
 
   void _loadMarkers() {
     setState(() {
@@ -181,15 +182,20 @@ class _SsmPageState extends State<SsmPage> {
                     // Search bar
                     child: TextField(
                       onChanged: (value) {
-                        _searchLocations(value)
-                            .then((List<Map<String, dynamic>> fetchedResults) {
-                          setState(() {
-                            _searchResults =
-                                fetchedResults; // store results in state
+                        if (value.isNotEmpty) {
+                          _searchLocations(value).then(
+                              (List<Map<String, dynamic>> fetchedResults) {
+                            setState(() {
+                              _searchResults = fetchedResults;
+                            });
+                          }).catchError((error) {
+                            print('Error searching locations: $error');
                           });
-                        }).catchError((error) {
-                          print('Error searching locations: $error');
-                        });
+                        } else {
+                          setState(() {
+                            _searchResults = [];
+                          });
+                        }
                       },
                       decoration: InputDecoration(
                         hintText: "Search...",

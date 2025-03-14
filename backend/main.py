@@ -100,3 +100,24 @@ async def signup(user: User):
         return {"message": "User registered successfully"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
+# Signin/Login route endpoint    
+@app.post("/login")
+async def login(user: User):
+    try:
+        user_ref = db.collection("users").where("email", "==", user.email).stream()
+        user_doc = next(user_ref, None)  
+
+        if not user_doc:
+            raise HTTPException(status_code=400, detail="Invalid email or password")
+
+        user_data = user_doc.to_dict()
+        stored_hashed_password = user_data.get("password")
+
+        if not stored_hashed_password or not bcrypt.checkpw(user.password.encode('utf-8'), stored_hashed_password.encode('utf-8')):
+            raise HTTPException(status_code=400, detail="Invalid email or password")
+
+        return {"message": "Login successful", "redirect": "/home"}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

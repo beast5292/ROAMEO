@@ -22,16 +22,13 @@ void assignPoints(
     return;
   }
 
-  // Sort the sights by the 'id' key (timestamp in milliseconds since epoch)
-  sights.sort((a, b) => a['id'].compareTo(b['id']));
-
   // Get the first sight as source
   var source = sights.first;
 
   // Get the last sight as destination
   var destin = sights.last;
 
-  // Get the waypoints (all intermediate sights between first and last)
+  // Get the waypoints (all intermediate sights including first and last)
   var waypoints_list = sights.sublist(0, sights.length - 1);
 
   //set the state variables

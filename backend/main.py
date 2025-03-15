@@ -1,8 +1,7 @@
 from fastapi import FastAPI, HTTPException, Query
-from typing import List
+from typing import List, Dict
 from Sight_info import Sight
 from firebase_admin import credentials,firestore, initialize_app
-from typing import List
 import asyncio
 import firebase_admin
 

@@ -137,19 +137,6 @@ class _SsmPageState extends State<SsmPage> {
     );
   }
 
-  // Method to handle search button press
-  void _performSearch() async {
-    String searchQuery = _searchController.text.trim();
-    debugPrint("Search button clicked with query: $searchQuery");
-
-    if (searchQuery.isNotEmpty) {
-      List<Map<String, dynamic>> results = await _searchLocations(searchQuery);
-      setState(() {
-        _searchResults = results;
-      });
-    }
-  }
-
   // Method to move the map and display images based on the selected scenery type
   void _moveToLocation(Map<String, dynamic> location) {
     LatLng position = LatLng(location['latitude'], location['longitude']);

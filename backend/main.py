@@ -82,9 +82,11 @@ async def search_sights(
     if not name and not tag:
         raise HTTPException(status_code=400, detail="Please provide either name or tag for search")
 
+    # Convert search query to lowercase for case-insensitive search
+    name_lower = name.lower()
+
     # Get all documents in the "sights" collection
     sights_ref = db.collection("sights").stream()
-
     results = []
 
     for doc in sights_ref:
@@ -93,7 +95,7 @@ async def search_sights(
 
         # Filter records within this document
         for record in records:
-            if "name" in record and name.lower() in record["name"].lower():
+            if "name" in record and name_lower in record["name"].lower():
                 results.append(record)
 
     return {"results": results}

@@ -105,18 +105,21 @@ def verify_jwt_token(credentials: HTTPAuthorizationCredentials = Depends(securit
     except jwt.InvalidTokenError:
         raise HTTPException(status_code=401, detail="Invalid token")
 
+# Signup endpoint
 @app.post("/signup")
 async def signup(user: User):
     try:
         hashed_password = hash_password(user.password)
         user_ref = db.collection("users").document()
         user_ref.set({
-            "name": user.name,
+            "username": user.username,
             "email": user.email,
             "dob": user.dob,
             "password": hashed_password
         })
-        return {"message": "User registered successfully"}
+        # Generate JWT token after successful signup
+        token = create_jwt_token(user.email)
+        return {"message": "User registered successfully", "token": token}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -130,18 +133,35 @@ async def login(user: LoginRequest):
         user_data = user_doc.to_dict()
         if not verify_password(user.password, user_data["password"]):
             raise HTTPException(status_code=400, detail="Invalid email or password")
+
+        # Checking if the token exists and is valid
+        if "token" in user_data:
+            try:
+                jwt.decode(user_data["token"], JWT_SECRET, algorithms=["HS256"])
+                # If the token is valid, reuse it
+                return {"message": "Login successful", "token": user_data["token"]}
+            except jwt.ExpiredSignatureError:
+                # If the token has expired, return 401
+                raise HTTPException(status_code=401, detail="Token expired")
+            except jwt.InvalidTokenError:
+                # If the token is invalid, return 401
+                raise HTTPException(status_code=401, detail="Invalid token")
+
+        # Creating a new token
         token = create_jwt_token(user.email)
+        user_doc.reference.update({"token": token})
         return {"message": "Login successful", "token": token}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-    
+
+# User endpoint
 @app.get("/user")
 async def get_user(credentials: HTTPAuthorizationCredentials = Depends(security)):
     try:
-        # verifying the JWT token
+        # Verify the JWT token
         payload = verify_jwt_token(credentials)
-        # Extracting the email from the token
-        user_email = payload.get("sub")  
+        # Extract the email from the token
+        user_email = payload.get("sub")
 
         # Fetch user data from Firestore
         user_ref = db.collection("users").where("email", "==", user_email).stream()

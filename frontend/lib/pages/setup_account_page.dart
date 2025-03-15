@@ -1,8 +1,107 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'dart:io';
 import 'registration_complete_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class SetupAccountPage extends StatelessWidget {
+class SetupAccountPage extends StatefulWidget {
   const SetupAccountPage({super.key});
+
+  @override
+  _SetupAccountPageState createState() => _SetupAccountPageState();
+}
+
+class _SetupAccountPageState extends State<SetupAccountPage> {
+  File? _image;
+  final ImagePicker _picker = ImagePicker();
+  final FirebaseStorage _storage = FirebaseStorage.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
+  bool _isLoading = false;
+  String? userEmail;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserEmail();
+  }
+
+  /// Load user email from secure storage
+  Future<void> _loadUserEmail() async {
+    final String? email = await _secureStorage.read(key: 'user_email');
+    print("Stored user email: $email"); // Debugging log
+    setState(() {
+      userEmail = email;
+    });
+
+    if (email == null) {
+      _showSnackBar('User email not found. Please log in again.');
+    }
+  }
+
+  /// Pick an image from the gallery
+  Future<void> _pickImage() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _image = File(pickedFile.path);
+      });
+    }
+  }
+
+  /// Upload image to Firebase Storage and update Firestore
+  Future<void> _uploadImage() async {
+    if (_image == null) {
+      _showSnackBar('Please select an image');
+      return;
+    }
+    if (userEmail == null) {
+      _showSnackBar('Error: User email not found. Please log in again.');
+      return;
+    }
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      final String fileName = 'profile_$userEmail.jpg';
+      final Reference storageRef =
+          _storage.ref().child('profile_images/$fileName');
+      await storageRef.putFile(_image!);
+      final String downloadURL = await storageRef.getDownloadURL();
+
+      DocumentReference userDoc = _firestore.collection('users').doc(userEmail);
+      DocumentSnapshot docSnapshot = await userDoc.get();
+
+      if (docSnapshot.exists) {
+        await userDoc.update({'profileImage': downloadURL});
+      } else {
+        await userDoc.set({'profileImage': downloadURL});
+      }
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => RegistrationCompletePage()),
+      );
+    } catch (e) {
+      print("Error uploading image: $e");
+      _showSnackBar('Error: $e');
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
+  void _showSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message)),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,39 +113,16 @@ class SetupAccountPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 30), // Add spacing between elements
-
-              // Back button
+              const SizedBox(height: 30),
               GestureDetector(
-                onTap: () {
-                  Navigator.pop(context); // Go back to the previous screen
-                },
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    //Glow effect
-                    Icon(
-                      Icons.arrow_back_ios_new_rounded,
-                      color: Colors.white.withOpacity(0.6),
-                      size: 35,
-                      shadows: [
-                        Shadow(
-                          color: Colors.white,
-                          blurRadius: 20,
-                        ),
-                        Shadow(
-                          color: Colors.white.withOpacity(0.5),
-                          blurRadius: 40,
-                        ),
-                      ],
-                    ),
-                  ],
+                onTap: () => Navigator.pop(context),
+                child: Icon(
+                  Icons.arrow_back_ios_new_rounded,
+                  color: Colors.white.withOpacity(0.6),
+                  size: 35,
                 ),
               ),
-
               const SizedBox(height: 10),
-
-              // Title and description
               const Text(
                 "Setup your\n account",
                 style: TextStyle(
@@ -57,35 +133,33 @@ class SetupAccountPage extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               const Text(
-                "Finish your account setup by\n uploading your profile picture\n and setting your username.",
+                "Finish your account setup by\n uploading your profile picture.",
                 style: TextStyle(
                   fontSize: 12,
                   color: Colors.white70,
                 ),
               ),
               const SizedBox(height: 30),
-
-              // Profile picture placeholder
               Center(
                 child: Stack(
                   children: [
                     CircleAvatar(
                       radius: 50,
-                      backgroundImage: AssetImage(
-                          'assets/profile_placeholder.png'), // Placeholder image
+                      backgroundImage: _image != null
+                          ? FileImage(_image!)
+                          : const AssetImage('assets/profile_placeholder.png')
+                              as ImageProvider,
                     ),
                     Positioned(
                       bottom: 0,
                       right: 0,
                       child: Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Colors.lightBlueAccent,
                           shape: BoxShape.circle,
                         ),
                         child: IconButton(
-                          onPressed: () {
-                            // Image picker logic will go here
-                          },
+                          onPressed: _pickImage,
                           icon: const Icon(
                             Icons.camera_alt,
                             color: Colors.white,
@@ -98,42 +172,9 @@ class SetupAccountPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 30),
-
-              // Username field
-              TextField(
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.person, color: Colors.white70),
-                  hintText: "Username",
-                  hintStyle:
-                      const TextStyle(color: Colors.white70, fontSize: 10),
-                  filled: true,
-                  fillColor: const Color.fromARGB(
-                      166, 103, 102, 1118), //Text field fill colour
-                  contentPadding:
-                      const EdgeInsets.symmetric(vertical: 7, horizontal: 18),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(22),
-                    borderSide: BorderSide.none,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 170),
-
-              // Create account button
               Center(
                 child: ElevatedButton(
-                  onPressed: () {
-                    // Add logic for account creation
-                    String username = "Username";
-
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            RegistrationCompletePage(username: username),
-                      ),
-                    );
-                  },
+                  onPressed: _isLoading ? null : _uploadImage,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromARGB(255, 2, 32, 46),
                     padding: const EdgeInsets.symmetric(
@@ -142,14 +183,16 @@ class SetupAccountPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  child: const Text(
-                    "Create account",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  child: _isLoading
+                      ? const CircularProgressIndicator(color: Colors.white)
+                      : const Text(
+                          "Create account",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                 ),
               ),
             ],

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../Home/home_page.dart';
 import 'login_page.dart';
 import 'open_page.dart';
+import './setup_account_page.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -14,15 +16,15 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _dobController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isLoading = false;
+  final storage = FlutterSecureStorage();
 
   Future<void> _signUp() async {
     if (!_formKey.currentState!.validate()) {
-      // Stop the process if the form data is not valid
       return;
     }
 
@@ -32,7 +34,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
     final url = Uri.parse('http://192.168.100.14:8000/signup');
     final Map<String, String> requestBody = {
-      "name": _nameController.text,
+      "username": _usernameController.text,
       "email": _emailController.text,
       "dob": _dobController.text,
       "password": _passwordController.text,
@@ -45,17 +47,21 @@ class _SignUpPageState extends State<SignUpPage> {
         body: jsonEncode(requestBody),
       );
 
+      final responseBody = jsonDecode(response.body);
       if (response.statusCode == 200) {
+        // Store the JWT token and email
+        await storage.write(key: 'jwt_token', value: responseBody["token"]);
+        await storage.write(key: 'user_email', value: _emailController.text);
+
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
               content: Text('Signup successful! Please login to continue.')),
         );
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => LoginPage()),
+          MaterialPageRoute(builder: (context) => SetupAccountPage()),
         );
       } else {
-        final responseBody = jsonDecode(response.body);
         final errorMessage =
             responseBody["detail"] ?? "Signup failed. Please try again.";
         ScaffoldMessenger.of(context).showSnackBar(
@@ -73,33 +79,6 @@ class _SignUpPageState extends State<SignUpPage> {
     });
   }
 
-  Widget _buildTextField(
-      {required IconData icon,
-      required String hintText,
-      bool obscureText = false,
-      required TextEditingController controller,
-      String? Function(String?)? validator}) {
-    return TextFormField(
-      controller: controller,
-      obscureText: obscureText,
-      style: TextStyle(color: Colors.white),
-      decoration: InputDecoration(
-        prefixIcon: Icon(icon, color: Colors.white70),
-        hintText: hintText,
-        hintStyle: TextStyle(color: Colors.white70, fontSize: 14),
-        contentPadding: EdgeInsets.symmetric(vertical: 10),
-        filled: true,
-        fillColor: Color.fromARGB(166, 103, 102, 1118),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(22),
-          borderSide: BorderSide.none,
-        ),
-      ),
-      // Adding validator
-      validator: validator,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -108,7 +87,6 @@ class _SignUpPageState extends State<SignUpPage> {
         child: Padding(
           padding: const EdgeInsets.all(18.0),
           child: Form(
-            // Assigning the form key
             key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -135,55 +113,24 @@ class _SignUpPageState extends State<SignUpPage> {
                 const SizedBox(height: 10),
                 _buildTextField(
                     icon: Icons.person,
-                    hintText: "Full Name",
-                    controller: _nameController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your full name';
-                      }
-                      return null;
-                    }),
+                    hintText: "Username",
+                    controller: _usernameController),
                 const SizedBox(height: 15),
                 _buildTextField(
                     icon: Icons.email,
                     hintText: "Email ID",
-                    controller: _emailController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your email';
-                      }
-                      if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
-                          .hasMatch(value)) {
-                        return 'Please enter a valid email';
-                      }
-                      return null;
-                    }),
+                    controller: _emailController),
                 const SizedBox(height: 15),
                 _buildTextField(
                     icon: Icons.calendar_today,
                     hintText: "DOB",
-                    controller: _dobController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your date of birth';
-                      }
-                      return null;
-                    }),
+                    controller: _dobController),
                 const SizedBox(height: 15),
                 _buildTextField(
                     icon: Icons.lock,
                     hintText: "Enter Your Password",
-                    obscureText: true,
                     controller: _passwordController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter a password';
-                      }
-                      if (value.length < 8) {
-                        return 'Password must be at least 8 characters';
-                      }
-                      return null;
-                    }),
+                    obscureText: true),
                 const SizedBox(height: 15),
                 Center(
                   child: ElevatedButton(
@@ -206,33 +153,6 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 const SizedBox(height: 20),
                 Center(
-                  child: Column(
-                    children: [
-                      const Text("or sign up with",
-                          style:
-                              TextStyle(color: Colors.white70, fontSize: 16)),
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          IconButton(
-                            icon: Image.asset('assets/images/google.png',
-                                width: 48, height: 48),
-                            onPressed: () {},
-                          ),
-                          const SizedBox(width: 20),
-                          IconButton(
-                            icon: Icon(Icons.apple,
-                                color: Colors.white, size: 48),
-                            onPressed: () {},
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 20),
-                Center(
                   child: TextButton(
                     onPressed: () => Navigator.push(context,
                         MaterialPageRoute(builder: (context) => LoginPage())),
@@ -246,6 +166,36 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildTextField(
+      {required IconData icon,
+      required String hintText,
+      bool obscureText = false,
+      required TextEditingController controller}) {
+    return TextFormField(
+      controller: controller,
+      obscureText: obscureText,
+      style: TextStyle(color: Colors.white),
+      decoration: InputDecoration(
+        prefixIcon: Icon(icon, color: Colors.white70),
+        hintText: hintText,
+        hintStyle: TextStyle(color: Colors.white70, fontSize: 14),
+        contentPadding: EdgeInsets.symmetric(vertical: 10),
+        filled: true,
+        fillColor: Color.fromARGB(166, 103, 102, 1118),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(22),
+          borderSide: BorderSide.none,
+        ),
+      ),
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Please enter $hintText';
+        }
+        return null;
+      },
     );
   }
 }

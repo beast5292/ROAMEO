@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import './sign_up_page.dart';
 import './setup_account_page.dart';
+import '../Home/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -41,21 +42,35 @@ class _LoginPageState extends State<LoginPage> {
 
       final responseBody = jsonDecode(response.body);
       if (response.statusCode == 200) {
+        // Storing the JWT token
         await storage.write(key: 'jwt_token', value: responseBody["token"]);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Login successful!')),
         );
+        // Redirecting to HomePage
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => SetupAccountPage()),
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
+      } else if (response.statusCode == 401) {
+        // If the Token has expired or is invalid
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Token expired. Please sign up again.')),
+        );
+        // Redirecting to Signup Page
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => SignUpPage()),
         );
       } else {
+        // For other errors like 'invalid credentials'
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
               content: Text(responseBody["detail"] ?? "Invalid credentials")),
         );
       }
     } catch (_) {
+      // Network or server error
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Error: Unable to connect to the server')),
       );
@@ -97,8 +112,9 @@ class _LoginPageState extends State<LoginPage> {
                         fontWeight: FontWeight.bold,
                         color: Color.fromRGBO(68, 202, 233, 1))),
                 SizedBox(height: 40),
-                _buildTextField(Icons.email, "Enter your email / username",
-                    _emailController, validator: (value) {
+                _buildTextField(
+                    Icons.email, "Enter your email", _emailController,
+                    validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your email';
                   }

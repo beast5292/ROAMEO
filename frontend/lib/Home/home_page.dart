@@ -18,6 +18,7 @@ class _HomePageState extends State<HomePage> {
   final storage = FlutterSecureStorage();
   Map<String, dynamic>? userData;
   String? profileImageUrl;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   @override
   void initState() {
@@ -44,10 +45,19 @@ class _HomePageState extends State<HomePage> {
 
       if (response.statusCode == 200) {
         final responseBody = jsonDecode(response.body);
-        setState(() {
-          userData = responseBody["user"];
-          profileImageUrl = userData?["profileImage"];
-        });
+        final userEmail = responseBody["user"]["email"]; // Get user email
+
+        // Fetch profile image URL from Firestore
+        DocumentSnapshot userDoc =
+            await _firestore.collection('users').doc(userEmail).get();
+        if (userDoc.exists) {
+          setState(() {
+            userData = responseBody["user"];
+            profileImageUrl = userDoc['profileImage']; // Fetch the image URL
+          });
+        } else {
+          print("User data not found in Firestore");
+        }
       } else {
         print("Failed to fetch user data: ${response.statusCode}");
       }
@@ -202,7 +212,8 @@ class _HomePageState extends State<HomePage> {
                           child: CircleAvatar(
                             radius: 40,
                             backgroundImage: profileImageUrl != null
-                                ? NetworkImage(profileImageUrl!)
+                                ? NetworkImage(
+                                    profileImageUrl!) // Use NetworkImage for Firebase URL
                                 : AssetImage('assets/images/profile.jpg')
                                     as ImageProvider,
                           ),

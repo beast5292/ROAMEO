@@ -21,7 +21,7 @@ class _RegistrationCompletePageState extends State<RegistrationCompletePage> {
   @override
   void initState() {
     super.initState();
-    // Fetch user data when the page loads
+    // Fetching user data when the page loads
     fetchUserData();
   }
 
@@ -46,7 +46,7 @@ class _RegistrationCompletePageState extends State<RegistrationCompletePage> {
         final responseBody = jsonDecode(response.body);
         final userEmail = responseBody["user"]["email"]; // Get user email
 
-        // Fetch profile image URL from Firestore based on email
+        // Fetching profile image URL from Firestore based on email
         DocumentSnapshot userDoc =
             await _firestore.collection('users').doc(userEmail).get();
         if (userDoc.exists) {
@@ -66,7 +66,7 @@ class _RegistrationCompletePageState extends State<RegistrationCompletePage> {
         SnackBar(content: Text('Error fetching user data: $e')),
       );
       setState(() {
-        _isLoading = false; // Stop loading even if there's an error
+        _isLoading = false; // Stopping loading evet if there's an error
       });
     }
   }

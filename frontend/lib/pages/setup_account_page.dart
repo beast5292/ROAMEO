@@ -29,7 +29,7 @@ class _SetupAccountPageState extends State<SetupAccountPage> {
     _loadUserEmail();
   }
 
-  /// Load user email from secure storage
+  /// Loading user email from secure storage
   Future<void> _loadUserEmail() async {
     final String? email = await _secureStorage.read(key: 'user_email');
     print("Stored user email: $email"); // Debugging log
@@ -42,7 +42,7 @@ class _SetupAccountPageState extends State<SetupAccountPage> {
     }
   }
 
-  /// Pick an image from the gallery
+  /// Picking an image from the gallery
   Future<void> _pickImage() async {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
@@ -52,7 +52,7 @@ class _SetupAccountPageState extends State<SetupAccountPage> {
     }
   }
 
-  /// Upload image to Firebase Storage and update Firestore
+  /// Uploading image to Firebase Storage and updating Firestore
   Future<void> _uploadImage() async {
     if (_image == null) {
       _showSnackBar('Please select an image');

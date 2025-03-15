@@ -49,7 +49,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
       final responseBody = jsonDecode(response.body);
       if (response.statusCode == 200) {
-        // Store the JWT token and email
+        // Storing the JWT token and email
         await storage.write(key: 'jwt_token', value: responseBody["token"]);
         await storage.write(key: 'user_email', value: _emailController.text);
 

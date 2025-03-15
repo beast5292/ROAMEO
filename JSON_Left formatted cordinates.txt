@@ -1,6 +1,6 @@
 [
   {
-    "id": "1",
+    "id": "8.09PM",
     "name": "Udunuwara-Kandy Tunnel",
     "description": "A small tunnel along the hill country railway, cutting through lush mountains, adding a unique charm to the journey.",
     "lat": "7.24293744N",
@@ -10,7 +10,7 @@
   },
 
   {
-    "id": "2",
+    "id": "8.11PM",
     "name": "Mahaweli River",
     "description": "The Mahaweli River is a 335 km (208 mi) long river, the longest river in Sri Lanka. It has a drainage basin of 10,448 km² (4,034 sq mi), the largest in Sri Lanka.",
     "lat": "7.18022971N",
@@ -20,7 +20,7 @@
   },
 
   {
-    "id": "3",
+    "id": "8.12PM",
     "name": "Mountain Range",
     "description": "A scenic mountain range with lush greenery and mist-covered peaks.",
     "lat": "7.1078241N",
@@ -31,7 +31,7 @@
   },
 
   {
-    "id": "4",
+    "id": "8.15PM",
     "name": "Mahaweli River",
     "description": "The Mahaweli River is a 335 km (208 mi) long river, the longest river in Sri Lanka. It has a drainage basin of 10,448 km² (4,034 sq mi), the largest in Sri Lanka.",
     "lat": "7.04616915N",
@@ -41,7 +41,7 @@
   },
  
   {
-    "id": "5",
+    "id": "8.16PM",
     "name": "Mahaweli River",
     "description": "The Mahaweli River is a 335 km (208 mi) long river, the longest river in Sri Lanka. It has a drainage basin of 10,448 km² (4,034 sq mi), the largest in Sri Lanka.",
     "lat": "6.98426545N",
@@ -51,7 +51,7 @@
   },
   
   {
-    "id": "6",
+    "id": "8.18PM",
     "name": "Open Field in Mountain Range",
     "description": "A beautiful open field nestled in the mountain range, perfect for scenic views.",
     "lat": "6.97206969N",
@@ -61,7 +61,7 @@
   },
 
   {
-    "id": "7",
+    "id": "8.19PM",
     "name": "Tea Estate",
     "description": "A tea estate with vast plantations covering rolling hills.",
     "lat": "6.96687242N",
@@ -71,7 +71,7 @@
   },
 
   {
-    "id": "8",
+    "id": "8.21PM",
     "name": "Tea Estate",
     "description": "A lush tea estate offering a picturesque view of Sri Lanka's tea country.",
     "lat": "6.95967915N",
@@ -81,7 +81,7 @@
   },
 
   {
-    "id": "9",
+    "id": "8.22PM",
     "name": "Tea Plantation",
     "description": "A scenic tea plantation known for its high-quality tea production.",
     "lat": "6.94953641N",
@@ -91,7 +91,7 @@
   },
 
   {
-    "id": "10",
+    "id": "8.24PM",
     "name": "Small Forest",
     "description": "A dense and serene small forest providing a peaceful nature retreat.",
     "lat": "6.89777276N",
@@ -101,7 +101,7 @@
   },
 
   {
-    "id": "11",
+    "id": "8.26PM",
     "name": "A Little Forest Hill",
     "description": "A beautiful hill covered with lush forest, offering breathtaking views.",
     "lat": "6.92196534N",
@@ -111,7 +111,7 @@
   },
 
   {
-    "id": "12",
+    "id": "8.28PM",
     "name": "Kotmale Oya",
     "description": "The longest tributary of Mahaweli River. The river begins as the Agra Oya in Horton Plains. The Central Plains receive approximately 125 to 200 inches annually in the form of rainfall. The river is approximately 70 km (43 mi) long and drains a basin of approximately 58,534 ha (226 square miles).",
     "lat": "6.93021697N",
@@ -121,7 +121,7 @@
   },
 
   {
-    "id": "13",
+    "id": "8.29PM",
     "name": "Tea Plantation",
     "description": "A vast tea plantation with rows of neatly arranged tea plants.",
     "lat": "6.93068219N",
@@ -131,7 +131,7 @@
   },
 
   {
-    "id": "14",
+    "id": "8.31PM",
     "name": "Hill Sight",
     "description": "A mesmerizing view of Sri Lanka's hill country, perfect for photography.",
     "lat": "6.83259517N",
@@ -141,7 +141,7 @@
   },
 
   {
-    "id": "15",
+    "id": "8.33PM",
     "name": "Tea Plantation",
     "description": "A beautiful tea plantation with an extensive range.",
     "lat": "6.93635075N",
@@ -151,7 +151,7 @@
   },
 
   {
-    "id": "16",
+    "id": "8.35PM",
     "name": "Field of Tea Plantation",
     "description": "A wide range of lush tea plantations covering the rolling hills.",
     "lat": "6.93851763N",
@@ -164,7 +164,7 @@
   },
 
   {
-    "id": "17",
+    "id": "8.41PM",
     "name": "Small Waterfall",
     "description": "A hidden waterfall nestled in the highlands, offering a tranquil escape.",
     "lat": "6.94684783N",
@@ -174,7 +174,7 @@
   },
 
   {
-    "id": "18",
+    "id": "8.43PM",
     "name": "Talawakale - Nuwaraeliya Tunnel",
     "description": "A scenic tunnel cutting through the lush hills of Sri Lanka's tea country.",
     "lat": "6.94259154N",
@@ -184,7 +184,7 @@
   },
 
   {
-    "id": "19",
+    "id": "8.45PM",
     "name": "Upper Kotmale Reservoir",
     "description": "A large water reservoir contributing to hydroelectric power generation in Sri Lanka.",
     "lat": "6.94216004N",
@@ -194,7 +194,7 @@
   },
 
   {
-    "id": "20",
+    "id": "8.47PM",
     "name": "Upper Kotmale Reservoir",
     "description": "Another beautiful viewpoint of the Upper Kotmale Reservoir, providing stunning landscape views.",
     "lat": "6.93938255N",
@@ -206,7 +206,7 @@
   },
 
   {
-    "id": "21",
+    "id": "8.48PM",
     "name": "Tea Plantation",
     "description": "A tea plantation covering rolling hills with neatly arranged tea plants.",
     "lat": 6.95413924,
@@ -216,7 +216,7 @@
   },
 
   {
-    "id": "22",
+    "id": "8.50PM",
     "name": "Wide Range of a Single Tea Plantation",
     "description": "A vast tea plantation extending over a large landscape.",
     "lat": 6.95714825,
@@ -226,7 +226,7 @@
   },
 
   {
-    "id": "23",
+    "id": "8.52PM",
     "name": "Wide Tea Plantation",
     "description": "A large tea plantation with a stunning green landscape.",
     "lat": 6.95970288,
@@ -238,7 +238,7 @@
   },
 
   {
-    "id": "24",
+    "id": "8.54PM",
     "name": "Tea Plantation",
     "description": "A beautiful tea plantation situated in a highland region.",
     "lat": 6.94507359,
@@ -248,7 +248,7 @@
   },
 
   {
-    "id": "25",
+    "id": "8.56PM",
     "name": "Small Waterfall",
     "description": "A hidden waterfall within the lush greenery of the highlands.",
     "lat": 6.94540477,
@@ -258,7 +258,7 @@
   },
 
   {
-    "id": "26",
+    "id": "8.58PM",
     "name": "Ice Fall View Point",
     "description": "Located in the picturesque region of Nanuoya, the Ice Fall View Point stands as a hidden gem for travelers seeking natural beauty and tranquility.",
     "lat": 6.94587959,
@@ -268,7 +268,7 @@
   },
 
   {
-    "id": "27",
+    "id": "8.59PM",
     "name": "NanuOya Falls",
     "description": "Nanuoya Waterfall is situated in Nanuoya of the Nuwara Eliya district. It is 60 meters high and cascades down a sequence of 25 steps. The fall joins the Kotmale and Mahaweli rivers and creates a very scenic view of nature.",
     "lat": 6.94420642,
@@ -278,7 +278,7 @@
   },
 
   {
-    "id": "28",
+    "id": "9.02PM",
     "name": "Tea Plantation",
     "description": "A vast tea plantation stretching across the hills of Nuwara Eliya.",
     "lat": 6.93363425,
@@ -289,7 +289,7 @@
   },
 
   {
-    "id": "29",
+    "id": "9.05PM",
     "name": "Small Forest in the Hill",
     "description": "A small but dense forest situated on a highland, offering cool weather and serenity.",
     "lat": 6.89664001,
@@ -299,7 +299,7 @@
   },
 
   {
-    "id": "30",
+    "id": "9.08PM",
     "name": "Hill Forest",
     "description": "A green hill covered with thick forest, adding to the region’s scenic beauty.",
     "lat": 6.88442819,
@@ -309,7 +309,7 @@
   },
 
   {
-    "id": "31",
+    "id": "9.11PM",
     "name": "Cloud Hill Forest",
     "description": "A misty forest-covered hill offering cool weather and a peaceful environment.",
     "lat": 6.87990644,
@@ -319,7 +319,7 @@
   },
 
   {
-    "id": "32",
+    "id": "9.18PM",
     "name": "Paddy Field",
     "description": "This is farmed using the hill country style called 'Helmalu Kramaya' in Sinhalese.",
     "lat": 6.87893956,
@@ -330,7 +330,7 @@
     "tags": ["paddy field", "agriculture"]
   },
   {
-    "id": "33",
+    "id": "9.22PM",
     "name": "Mountain Range in Distance",
     "description": "A stunning view of a distant mountain range, covered with lush greenery.",
     "lat": 6.77003652,
@@ -340,7 +340,7 @@
   },
 
   {
-    "id": "34",
+    "id": "9.24PM",
     "name": "Tea Plantation",
     "description": "A highland tea plantation that produces high-quality tea leaves.",
     "lat": 6.77390378,
@@ -352,7 +352,7 @@
   },
 
   {
-    "id": "35",
+    "id": "9.27PM",
     "name": "Home Farming Area",
     "description": "A rural farming area with small agricultural plots.",
     "lat": 6.78025111,
@@ -363,7 +363,7 @@
   },
 
   {
-    "id": "36",
+    "id": "9.29PM",
     "name": "Pinus Tree Forest",
     "description": "A dense pine forest offering a different contrast to Sri Lanka’s natural landscape.",
     "lat": 6.79692273,
@@ -373,7 +373,7 @@
   },
 
   {
-    "id": "37",
+    "id": "9.32PM",
     "name": "Nine Arch Bridge",
     "description": "Also known as the Bridge in the Sky, is a viaduct bridge in Sri Lanka and one of the best examples of colonial rail work in Sri Lanka. The bridge was constructed to carry a tricky nine-degree curve and steep incline. It was built entirely by local laborers under British supervision.",
     "lat": 6.87672827,
@@ -384,7 +384,7 @@
   },
 
   {
-    "id": "38",
+    "id": "9.34PM",
     "name": "Badulu Oya",
     "description": "The Badulu Oya travels 59 km across the country's central highlands before joining the Mahaweli River, Sri Lanka's largest river.",
     "lat": 6.90459205,
@@ -396,7 +396,7 @@
   },
 
   {
-    "id": "39",
+    "id": "9.37PM",
     "name": "Badulu Oya Dam",
     "description": "The Badulu Oya Dam is made to contain rainwater through the Badulu Oya and is known as 'Ella Rainwater Tank Supplier' or 'Ella Jala Radawuma'.",
     "lat": 6.91352659,

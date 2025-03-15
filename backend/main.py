@@ -78,6 +78,10 @@ async def search_sights(
     name: str = Query(None), 
     tag: str = Query(None)
 ):
+
+    if not name and not tag:
+        raise HTTPException(status_code=400, detail="Please provide either name or tag for search")
+
     # Get all documents in the "sights" collection
     sights_ref = db.collection("sights").stream()
 
@@ -89,7 +93,7 @@ async def search_sights(
 
         # Filter records within this document
         for record in records:
-            if name.lower() in record["name"].lower():
+            if "name" in record and name.lower() in record["name"].lower():
                 results.append(record)
 
     return {"results": results}

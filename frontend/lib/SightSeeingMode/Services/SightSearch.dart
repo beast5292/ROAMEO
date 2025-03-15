@@ -1,9 +1,14 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'dart:io';
 
 Future<List<Map<String, dynamic>>> _searchLocations(String keyword) async {
+  final encodedKeyword = Uri.encodeComponent(keyword); // Encode the keyword
   final response = await http.get(
-    Uri.parse('http://10.0.2.2:8000/search_sights/?name=$keyword'),
+    Uri.parse('http://10.0.2.2:8000/search_sights/?name=$encodedKeyword'),
+    headers: {
+      HttpHeaders.contentTypeHeader: 'application/json',
+    },
   );
 
   if (response.statusCode == 200) {

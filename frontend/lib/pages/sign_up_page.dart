@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../Home/home_page.dart';
 import 'login_page.dart';
+import 'open_page.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -22,7 +23,6 @@ class _SignUpPageState extends State<SignUpPage> {
     });
 
     final url = Uri.parse('http://192.168.100.14:8000/signup');
-
     final Map<String, String> requestBody = {
       "name": _nameController.text,
       "email": _emailController.text,
@@ -42,14 +42,11 @@ class _SignUpPageState extends State<SignUpPage> {
           SnackBar(
               content: Text('Signup successful! Please login to continue.')),
         );
-
-        // Navigating to the login page after successful signup
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => LoginPage()),
         );
       } else {
-        // Handle specific error messages from the backend
         final responseBody = jsonDecode(response.body);
         final errorMessage =
             responseBody["detail"] ?? "Signup failed. Please try again.";
@@ -68,107 +65,136 @@ class _SignUpPageState extends State<SignUpPage> {
     });
   }
 
+  Widget _buildTextField(
+      {required IconData icon,
+      required String hintText,
+      bool obscureText = false,
+      required TextEditingController controller}) {
+    return TextField(
+      controller: controller,
+      obscureText: obscureText,
+      style: const TextStyle(color: Colors.white),
+      decoration: InputDecoration(
+        prefixIcon: Icon(icon, color: Colors.white70),
+        hintText: hintText,
+        hintStyle: const TextStyle(color: Colors.white70),
+        filled: true,
+        fillColor: const Color.fromRGBO(3, 10, 14, 1),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide.none,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Sign Up'),
-        backgroundColor: Colors.white,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            TextField(
-              controller: _nameController,
-              decoration: InputDecoration(
-                labelText: 'Name',
-                border: OutlineInputBorder(),
+      backgroundColor: const Color.fromRGBO(3, 10, 14, 1),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(18.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 30),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => OpeningScreen()),
+                  );
+                },
+                child: Icon(Icons.arrow_back_ios_new_rounded,
+                    color: Colors.white.withOpacity(0.6),
+                    size: 35,
+                    shadows: [Shadow(color: Colors.white, blurRadius: 20)]),
               ),
-            ),
-            SizedBox(height: 16.0),
-            TextField(
-              controller: _emailController,
-              decoration: InputDecoration(
-                labelText: 'Email',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 16.0),
-            TextField(
-              controller: _dobController,
-              decoration: InputDecoration(
-                labelText: 'DOB',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 16.0),
-            TextField(
-              controller: _passwordController,
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: 'Password',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 24.0),
-            SizedBox(
-              width: double.infinity,
-              height: 50.0,
-              child: ElevatedButton(
-                onPressed: _isLoading ? null : _signUp,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
+              const SizedBox(height: 70),
+              const Text("Sign up",
+                  style: TextStyle(
+                      fontSize: 35,
+                      fontWeight: FontWeight.w900,
+                      color: Color.fromRGBO(68, 202, 233, 1))),
+              const SizedBox(height: 10),
+              _buildTextField(
+                  icon: Icons.person,
+                  hintText: "Full Name",
+                  controller: _nameController),
+              const SizedBox(height: 15),
+              _buildTextField(
+                  icon: Icons.email,
+                  hintText: "Email ID",
+                  controller: _emailController),
+              const SizedBox(height: 15),
+              _buildTextField(
+                  icon: Icons.calendar_today,
+                  hintText: "DOB",
+                  controller: _dobController),
+              const SizedBox(height: 15),
+              _buildTextField(
+                  icon: Icons.lock,
+                  hintText: "Enter Your Password",
+                  obscureText: true,
+                  controller: _passwordController),
+              const SizedBox(height: 15),
+              Center(
+                child: ElevatedButton(
+                  onPressed: _isLoading ? null : _signUp,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 2, 32, 46),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 142, vertical: 15),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
                   ),
+                  child: _isLoading
+                      ? CircularProgressIndicator(color: Colors.white)
+                      : const Text("Sign up",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold)),
                 ),
-                child: _isLoading
-                    ? CircularProgressIndicator(color: Colors.white)
-                    : Text('Sign Up'),
               ),
-            ),
-            SizedBox(height: 16.0),
-            Text('or sign up with'),
-            SizedBox(height: 16.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                IconButton(
-                  icon: SizedBox(
-                    width: 48.0,
-                    height: 48.0,
-                    child: Image.asset('assets/images/google_icon.jpg'),
-                  ),
-                  onPressed: () {},
+              const SizedBox(height: 20),
+              Center(
+                child: Column(
+                  children: [
+                    const Text("or sign up with",
+                        style: TextStyle(color: Colors.white70, fontSize: 16)),
+                    const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        IconButton(
+                          icon: Image.asset('assets/images/google.png',
+                              width: 48, height: 48),
+                          onPressed: () {},
+                        ),
+                        const SizedBox(width: 20),
+                        IconButton(
+                          icon:
+                              Icon(Icons.apple, color: Colors.white, size: 48),
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                IconButton(
-                  icon: SizedBox(
-                    width: 48.0,
-                    height: 48.0,
-                    child: Image.asset('assets/images/facebook_icon.jpg'),
-                  ),
-                  onPressed: () {},
-                ),
-              ],
-            ),
-            SizedBox(height: 16.0),
-            TextButton(
-              onPressed: () {
-                // Navigating to Login Page
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginPage()),
-                );
-              },
-              child: Text(
-                'Already have an account? Login Now',
-                style: TextStyle(color: Colors.blue),
               ),
-            ),
-          ],
+              const SizedBox(height: 20),
+              Center(
+                child: TextButton(
+                  onPressed: () => Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => LoginPage())),
+                  child: const Text("Already have an account? Login Now",
+                      style: TextStyle(color: Color.fromRGBO(68, 202, 233, 1))),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

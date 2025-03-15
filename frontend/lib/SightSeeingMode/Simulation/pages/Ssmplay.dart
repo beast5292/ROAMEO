@@ -23,8 +23,7 @@ class SsmPlay extends StatefulWidget {
   //widget takes the doc id of the sight
   final String docId;
 
-  const SsmPlay({Key? key, required this.index, required this.docId})
-      : super(key: key);
+  const SsmPlay({super.key, required this.index, required this.docId});
 
   @override
   State<SsmPlay> createState() => SsmPlayState();
@@ -47,7 +46,7 @@ class SsmPlayState extends State<SsmPlay> {
   Set<LatLng> reachedWaypoints = {};
 
   //track the internet connection status
-  String _connectionStatus = 'Unknown';
+  final String _connectionStatus = 'Unknown';
 
   //Google map instance as a completer
   final Completer<GoogleMapController> _controller = Completer();
@@ -101,6 +100,7 @@ class SsmPlayState extends State<SsmPlay> {
       isDataLoaded = loaded;
     });
   }
+
   //function to get the current location (using the location package)
   void getCurrentLocation() async {
     //hold the current location
@@ -128,14 +128,14 @@ class SsmPlayState extends State<SsmPlay> {
       });
       //checks the proximity everytime the location changes
       checkProximityAndNotify(
-          context,
-          currentLocation,
-          waypoints,
-          reachedNearWaypoints,
-          reachedWaypoints,
-          destination,
-          getPolyPoints,
-        );
+        context,
+        currentLocation,
+        waypoints,
+        reachedNearWaypoints,
+        reachedWaypoints,
+        destination,
+        getPolyPoints,
+      );
 
       // Check if the current location is within the polyline threshold
       LatLng currentLatLng = LatLng(newLoc.latitude!, newLoc.longitude!);
@@ -155,8 +155,10 @@ class SsmPlayState extends State<SsmPlay> {
       getDistanceAndDuration();
 
       //dynamically update the navigation steps
-      if (navigationSteps.isEmpty || currentStepIndex >= navigationSteps.length)
+      if (navigationSteps.isEmpty ||
+          currentStepIndex >= navigationSteps.length) {
         return;
+      }
 
       LatLng userLatLng = LatLng(newLoc.latitude!, newLoc.longitude!);
 
@@ -188,7 +190,7 @@ class SsmPlayState extends State<SsmPlay> {
       // setState(() {});
     });
   }
-  
+
   //function to get the polypoints
   void getPolyPoints() async {
     //new polyline object (polyline)
@@ -222,9 +224,9 @@ class SsmPlayState extends State<SsmPlay> {
 
     if (result.points.isNotEmpty) {
       List<LatLng> routePoints = [];
-      result.points.forEach((PointLatLng point) {
+      for (var point in result.points) {
         routePoints.add(LatLng(point.latitude, point.longitude));
-      });
+      }
 
       var alertMessage3 = routePoints.toString();
 
@@ -251,7 +253,7 @@ class SsmPlayState extends State<SsmPlay> {
     //url with location coorindates
     //get distancea and duration between the current location and the destination
     String url =
-        'https://maps.googleapis.com/maps/api/distancematrix/json?origins=${currentLatLng.latitude!},${currentLatLng.longitude!}&destinations=${destination!.latitude},${destination!.longitude}&key=AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0';
+        'https://maps.googleapis.com/maps/api/distancematrix/json?origins=${currentLatLng.latitude},${currentLatLng.longitude}&destinations=${destination!.latitude},${destination!.longitude}&key=AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0';
 
     //get request to distance matrix api
     var response = await http.get(Uri.parse(url));
@@ -275,7 +277,7 @@ class SsmPlayState extends State<SsmPlay> {
       LocationData? currentLocation, PolylineWayPoint waypoint) async {
     //convert current location into a lat lang object
     LatLng currentLatLng =
-        LatLng(currentLocation!.latitude!, currentLocation!.longitude!);
+        LatLng(currentLocation!.latitude!, currentLocation.longitude!);
 
     //convert the PolylineWaypoint object into a lat lang object
     LatLng WaypointlatLng = LatLng(
@@ -330,7 +332,6 @@ class SsmPlayState extends State<SsmPlay> {
     }
   }
 
-
   // Function to add markers for waypoints and destination
   void addMarkers() {
     markers.clear();
@@ -358,7 +359,7 @@ class SsmPlayState extends State<SsmPlay> {
 
     var locationString = currentLocation!.latitude.toString();
 
-    showAlertDialog2(context,locationString);
+    showAlertDialog2(context, locationString);
 
     //add marker for current location
     markers.add(
@@ -378,23 +379,16 @@ class SsmPlayState extends State<SsmPlay> {
     super.initState();
     // Fetch sight mode data
     fetchSightMode(widget.docId).then((data) {
-      if (data != null) {
-        setState(() {
-          sightMode = data;
-          isLoading = false; // Data fetched, set loading to false
-          print("sightMode: $sightMode");
-        });
-        assignPoints(sightMode!, updateAssignPointsState, context);
-        addMarkers();
-        setState(() {
-          isDataLoaded = true;
-        });
-      } else {
-        setState(() {
-          isLoading = false; // Data is null, set loading to false
-        });
-        print("Fetched data is null");
-      }
+      setState(() {
+        sightMode = data;
+        isLoading = false; // Data fetched, set loading to false
+        print("sightMode: $sightMode");
+      });
+      assignPoints(sightMode!, updateAssignPointsState, context);
+      addMarkers();
+      setState(() {
+        isDataLoaded = true;
+      });
     }).catchError((error) {
       setState(() {
         isLoading = false; // Error occurred, set loading to false

@@ -13,7 +13,6 @@ void checkProximityAndNotify(
   Set<LatLng> reachedWaypoints,
   LatLng? destination,
   Function() getPolyPoints,
-
 ) {
   //if the currentLocation has no location value return
   if (currentLocation == null) return;
@@ -30,7 +29,7 @@ void checkProximityAndNotify(
   for (LatLng waypoint in waypoints) {
     //calculate distance to a waypoint from the current location using the haverSine calculation
     double distanceToWaypoint = calculateDistance(
-      LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
+      LatLng(currentLocation.latitude!, currentLocation.longitude!),
       waypoint,
     );
 
@@ -67,7 +66,7 @@ void checkProximityAndNotify(
 
   //calculate the distance to destination using the haveersine calculation
   double distanceToDestination = calculateDistance(
-    LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
+    LatLng(currentLocation.latitude!, currentLocation.longitude!),
     destination!,
   );
 

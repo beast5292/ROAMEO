@@ -6,11 +6,14 @@ import 'login_page.dart';
 import 'open_page.dart';
 
 class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
+
   @override
   _SignUpPageState createState() => _SignUpPageState();
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  final _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _dobController = TextEditingController();
@@ -18,6 +21,11 @@ class _SignUpPageState extends State<SignUpPage> {
   bool _isLoading = false;
 
   Future<void> _signUp() async {
+    if (!_formKey.currentState!.validate()) {
+      // Stop the process if the form data is not valid
+      return;
+    }
+
     setState(() {
       _isLoading = true;
     });
@@ -69,131 +77,172 @@ class _SignUpPageState extends State<SignUpPage> {
       {required IconData icon,
       required String hintText,
       bool obscureText = false,
-      required TextEditingController controller}) {
-    return TextField(
+      required TextEditingController controller,
+      String? Function(String?)? validator}) {
+    return TextFormField(
       controller: controller,
       obscureText: obscureText,
-      style: const TextStyle(color: Colors.white),
+      style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
         prefixIcon: Icon(icon, color: Colors.white70),
         hintText: hintText,
-        hintStyle: const TextStyle(color: Colors.white70),
+        hintStyle: TextStyle(color: Colors.white70, fontSize: 14),
+        contentPadding: EdgeInsets.symmetric(vertical: 10),
         filled: true,
-        fillColor: const Color.fromRGBO(3, 10, 14, 1),
+        fillColor: Color.fromARGB(166, 103, 102, 1118),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(22),
           borderSide: BorderSide.none,
         ),
       ),
+      // Adding validator
+      validator: validator,
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(3, 10, 14, 1),
+      backgroundColor: Color.fromRGBO(3, 10, 14, 1),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(18.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 30),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => OpeningScreen()),
-                  );
-                },
-                child: Icon(Icons.arrow_back_ios_new_rounded,
-                    color: Colors.white.withOpacity(0.6),
-                    size: 35,
-                    shadows: [Shadow(color: Colors.white, blurRadius: 20)]),
-              ),
-              const SizedBox(height: 70),
-              const Text("Sign up",
-                  style: TextStyle(
-                      fontSize: 35,
-                      fontWeight: FontWeight.w900,
-                      color: Color.fromRGBO(68, 202, 233, 1))),
-              const SizedBox(height: 10),
-              _buildTextField(
-                  icon: Icons.person,
-                  hintText: "Full Name",
-                  controller: _nameController),
-              const SizedBox(height: 15),
-              _buildTextField(
-                  icon: Icons.email,
-                  hintText: "Email ID",
-                  controller: _emailController),
-              const SizedBox(height: 15),
-              _buildTextField(
-                  icon: Icons.calendar_today,
-                  hintText: "DOB",
-                  controller: _dobController),
-              const SizedBox(height: 15),
-              _buildTextField(
-                  icon: Icons.lock,
-                  hintText: "Enter Your Password",
-                  obscureText: true,
-                  controller: _passwordController),
-              const SizedBox(height: 15),
-              Center(
-                child: ElevatedButton(
-                  onPressed: _isLoading ? null : _signUp,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(255, 2, 32, 46),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 142, vertical: 15),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                  ),
-                  child: _isLoading
-                      ? CircularProgressIndicator(color: Colors.white)
-                      : const Text("Sign up",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold)),
+          child: Form(
+            // Assigning the form key
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 30),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => OpeningScreen()),
+                    );
+                  },
+                  child: Icon(Icons.arrow_back_ios_new_rounded,
+                      color: Colors.white.withOpacity(0.6),
+                      size: 35,
+                      shadows: [Shadow(color: Colors.white, blurRadius: 20)]),
                 ),
-              ),
-              const SizedBox(height: 20),
-              Center(
-                child: Column(
-                  children: [
-                    const Text("or sign up with",
-                        style: TextStyle(color: Colors.white70, fontSize: 16)),
-                    const SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        IconButton(
-                          icon: Image.asset('assets/images/google.png',
-                              width: 48, height: 48),
-                          onPressed: () {},
-                        ),
-                        const SizedBox(width: 20),
-                        IconButton(
-                          icon:
-                              Icon(Icons.apple, color: Colors.white, size: 48),
-                          onPressed: () {},
-                        ),
-                      ],
+                const SizedBox(height: 70),
+                const Text("Sign up",
+                    style: TextStyle(
+                        fontSize: 35,
+                        fontWeight: FontWeight.w900,
+                        color: Color.fromRGBO(68, 202, 233, 1))),
+                const SizedBox(height: 10),
+                _buildTextField(
+                    icon: Icons.person,
+                    hintText: "Full Name",
+                    controller: _nameController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your full name';
+                      }
+                      return null;
+                    }),
+                const SizedBox(height: 15),
+                _buildTextField(
+                    icon: Icons.email,
+                    hintText: "Email ID",
+                    controller: _emailController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your email';
+                      }
+                      if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                          .hasMatch(value)) {
+                        return 'Please enter a valid email';
+                      }
+                      return null;
+                    }),
+                const SizedBox(height: 15),
+                _buildTextField(
+                    icon: Icons.calendar_today,
+                    hintText: "DOB",
+                    controller: _dobController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your date of birth';
+                      }
+                      return null;
+                    }),
+                const SizedBox(height: 15),
+                _buildTextField(
+                    icon: Icons.lock,
+                    hintText: "Enter Your Password",
+                    obscureText: true,
+                    controller: _passwordController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter a password';
+                      }
+                      if (value.length < 8) {
+                        return 'Password must be at least 8 characters';
+                      }
+                      return null;
+                    }),
+                const SizedBox(height: 15),
+                Center(
+                  child: ElevatedButton(
+                    onPressed: _isLoading ? null : _signUp,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 2, 32, 46),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 142, vertical: 15),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
                     ),
-                  ],
+                    child: _isLoading
+                        ? CircularProgressIndicator(color: Colors.white)
+                        : const Text("Sign up",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold)),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 20),
-              Center(
-                child: TextButton(
-                  onPressed: () => Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LoginPage())),
-                  child: const Text("Already have an account? Login Now",
-                      style: TextStyle(color: Color.fromRGBO(68, 202, 233, 1))),
+                const SizedBox(height: 20),
+                Center(
+                  child: Column(
+                    children: [
+                      const Text("or sign up with",
+                          style:
+                              TextStyle(color: Colors.white70, fontSize: 16)),
+                      const SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          IconButton(
+                            icon: Image.asset('assets/images/google.png',
+                                width: 48, height: 48),
+                            onPressed: () {},
+                          ),
+                          const SizedBox(width: 20),
+                          IconButton(
+                            icon: Icon(Icons.apple,
+                                color: Colors.white, size: 48),
+                            onPressed: () {},
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+                const SizedBox(height: 20),
+                Center(
+                  child: TextButton(
+                    onPressed: () => Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => LoginPage())),
+                    child: const Text("Already have an account? Login Now",
+                        style:
+                            TextStyle(color: Color.fromRGBO(68, 202, 233, 1))),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

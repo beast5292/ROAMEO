@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'registration_complete_page.dart';
 
 class SetupAccountPage extends StatelessWidget {
-  const SetupAccountPage({Key? key}) : super(key: key);
+  const SetupAccountPage({super.key});
 
   @override
   Widget build(BuildContext context) {

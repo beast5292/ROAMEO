@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'sign_up_page.dart';
 
 class OpeningScreen extends StatelessWidget {
-  const OpeningScreen({Key? key}) : super(key: key);
+  const OpeningScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

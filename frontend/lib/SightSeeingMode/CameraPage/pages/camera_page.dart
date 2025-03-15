@@ -8,12 +8,13 @@ import 'package:provider/provider.dart';
 import 'dart:io';
 
 class CameraPage extends StatefulWidget {
+  const CameraPage({super.key});
+
   @override
   _CameraPageState createState() => _CameraPageState();
 }
 
 class _CameraPageState extends State<CameraPage> {
-
   final ImagePicker _picker = ImagePicker();
 
   //Array to store the temporary images taken per session
@@ -21,7 +22,6 @@ class _CameraPageState extends State<CameraPage> {
 
   //open camera function
   Future<void> _openCamera() async {
-    
     //store the picked image file by source reference using image picker
     final XFile? pickedImage =
         await _picker.pickImage(source: ImageSource.camera);
@@ -164,7 +164,7 @@ class _CameraPageState extends State<CameraPage> {
                 setState(() {
                   tempImages.clear();
                 });
-          
+
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => SightMenu()),

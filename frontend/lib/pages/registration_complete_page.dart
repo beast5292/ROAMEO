@@ -4,8 +4,7 @@ import '../Home/home_page.dart';
 class RegistrationCompletePage extends StatelessWidget {
   final String username; // Pass the username to this page
 
-  const RegistrationCompletePage({Key? key, required this.username})
-      : super(key: key);
+  const RegistrationCompletePage({super.key, required this.username});
 
   @override
   Widget build(BuildContext context) {

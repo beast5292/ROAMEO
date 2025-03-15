@@ -6,17 +6,25 @@ import './sign_up_page.dart';
 import './setup_account_page.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isLoading = false;
   final storage = FlutterSecureStorage();
 
   Future<void> _login() async {
+    if (!_formKey.currentState!.validate()) {
+      // Stop the process if the form data is not valid
+      return;
+    }
+
     setState(() => _isLoading = true);
     final url = Uri.parse('http://192.168.100.14:8000/login');
     final requestBody = {
@@ -62,94 +70,112 @@ class _LoginPageState extends State<LoginPage> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(18.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 40),
-              GestureDetector(
-                onTap: () => Navigator.pop(context),
-                child: Icon(
-                  Icons.arrow_back_ios_new_rounded,
-                  color: Colors.white.withOpacity(0.6),
-                  size: 35,
-                  shadows: [
-                    Shadow(color: Colors.white, blurRadius: 20),
-                    Shadow(
-                        color: Colors.white.withOpacity(0.5), blurRadius: 40),
-                  ],
-                ),
-              ),
-              SizedBox(height: 90),
-              Text("Login",
-                  style: TextStyle(
-                      fontSize: 35,
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromRGBO(68, 202, 233, 1))),
-              SizedBox(height: 40),
-              _buildTextField(
-                  Icons.email, "Enter your email / username", _emailController),
-              SizedBox(height: 30),
-              _buildTextField(
-                  Icons.lock, "Enter Your Password", _passwordController,
-                  obscureText: true),
-              SizedBox(height: 30),
-              Center(
-                child: ElevatedButton(
-                  onPressed: _isLoading ? null : _login,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(2, 32, 46, 1),
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 150, vertical: 12),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                  ),
-                  child: _isLoading
-                      ? CircularProgressIndicator(color: Colors.white)
-                      : Text("Login",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold)),
-                ),
-              ),
-              SizedBox(height: 70),
-              Center(
-                  child: Text("or Login With",
-                      style: TextStyle(color: Colors.white70, fontSize: 16))),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _buildSocialButton(Icons.apple),
-                  SizedBox(width: 20),
-                  _buildSocialButton(Icons.facebook),
-                ],
-              ),
-              Spacer(),
-              Center(
-                child: Text.rich(
-                  TextSpan(
-                    text: "New user? ",
-                    style: TextStyle(color: Colors.white70),
-                    children: [
-                      WidgetSpan(
-                        child: GestureDetector(
-                          onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SignUpPage())),
-                          child: Text("Register Here",
-                              style: TextStyle(
-                                  color: Color.fromRGBO(68, 202, 233, 1),
-                                  fontWeight: FontWeight.bold)),
-                        ),
-                      ),
+          child: Form(
+            // Assigning the form key
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 40),
+                GestureDetector(
+                  onTap: () => Navigator.pop(context),
+                  child: Icon(
+                    Icons.arrow_back_ios_new_rounded,
+                    color: Colors.white.withOpacity(0.6),
+                    size: 35,
+                    shadows: [
+                      Shadow(color: Colors.white, blurRadius: 20),
+                      Shadow(
+                          color: Colors.white.withOpacity(0.5), blurRadius: 40),
                     ],
                   ),
                 ),
-              ),
-              SizedBox(height: 20),
-            ],
+                SizedBox(height: 90),
+                Text("Login",
+                    style: TextStyle(
+                        fontSize: 35,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromRGBO(68, 202, 233, 1))),
+                SizedBox(height: 40),
+                _buildTextField(Icons.email, "Enter your email / username",
+                    _emailController, validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your email';
+                  }
+                  if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                      .hasMatch(value)) {
+                    return 'Please enter a valid email';
+                  }
+                  return null;
+                }),
+                SizedBox(height: 30),
+                _buildTextField(
+                    Icons.lock, "Enter Your Password", _passwordController,
+                    obscureText: true, validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your password';
+                  }
+                  return null;
+                }),
+                SizedBox(height: 30),
+                Center(
+                  child: ElevatedButton(
+                    onPressed: _isLoading ? null : _login,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromRGBO(2, 32, 46, 1),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 150, vertical: 12),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                    ),
+                    child: _isLoading
+                        ? CircularProgressIndicator(color: Colors.white)
+                        : Text("Login",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold)),
+                  ),
+                ),
+                SizedBox(height: 70),
+                Center(
+                    child: Text("or Login With",
+                        style: TextStyle(color: Colors.white70, fontSize: 16))),
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildSocialButton(Icons.apple),
+                    SizedBox(width: 20),
+                    _buildSocialButton(Icons.facebook),
+                  ],
+                ),
+                Spacer(),
+                Center(
+                  child: Text.rich(
+                    TextSpan(
+                      text: "New user? ",
+                      style: TextStyle(color: Colors.white70),
+                      children: [
+                        WidgetSpan(
+                          child: GestureDetector(
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SignUpPage())),
+                            child: Text("Register Here",
+                                style: TextStyle(
+                                    color: Color.fromRGBO(68, 202, 233, 1),
+                                    fontWeight: FontWeight.bold)),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+              ],
+            ),
           ),
         ),
       ),
@@ -158,8 +184,8 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _buildTextField(
       IconData icon, String hintText, TextEditingController controller,
-      {bool obscureText = false}) {
-    return TextField(
+      {bool obscureText = false, String? Function(String?)? validator}) {
+    return TextFormField(
       controller: controller,
       obscureText: obscureText,
       style: TextStyle(color: Colors.white),
@@ -174,6 +200,8 @@ class _LoginPageState extends State<LoginPage> {
             borderRadius: BorderRadius.circular(22),
             borderSide: BorderSide.none),
       ),
+      // Adding validator
+      validator: validator,
     );
   }
 

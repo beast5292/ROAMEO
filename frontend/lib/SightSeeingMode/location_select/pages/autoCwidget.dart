@@ -100,7 +100,6 @@ class _PlacesAutoCompleteFieldState extends State<PlacesAutoCompleteField> {
   }
 
   void _onPlaceSelected(PlacePrediction prediction) async {
-
     var placeDetails;
 
     List<String> imageUrls = [];
@@ -112,9 +111,9 @@ class _PlacesAutoCompleteFieldState extends State<PlacesAutoCompleteField> {
 
       // Fetch the image URLs
       imageUrls = LocationInfo.getImageUrlsFromPhotos(
-      placeDetails.images,
-      widget.apiKey,
-    );
+        placeDetails.images,
+        widget.apiKey,
+      );
 
       print(
           'Place Details: ${placeDetails.name}, ${placeDetails.latitude}, ${placeDetails.longitude}, ${placeDetails.address}');
@@ -123,8 +122,10 @@ class _PlacesAutoCompleteFieldState extends State<PlacesAutoCompleteField> {
     }
 
     //creating location info object
-    final locationinfo =
-        LocationInfo(prediction: prediction, placeDetails: placeDetails,imageUrls: imageUrls);
+    final locationinfo = LocationInfo(
+        prediction: prediction,
+        placeDetails: placeDetails,
+        imageUrls: imageUrls);
 
     //Assigning the selected location object to selectedPlace
     _selectedPlace = locationinfo;
@@ -226,20 +227,21 @@ class _PlacesAutoCompleteFieldState extends State<PlacesAutoCompleteField> {
                     ),
                   ),
                 // Displaying images below the map
-            if (_selectedPlace != null)
-              Positioned(
-                bottom: 100,
-                left: 20,
-                right: 20,
-                child: Column(
-                    children: (_selectedPlace.imageUrls as List<String>).map((imageUrl) {
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 8),
-                        child: Image.network(imageUrl, fit: BoxFit.cover),
-                      );
-                    }).toList(),
-                ),
-              )
+                if (_selectedPlace != null)
+                  Positioned(
+                    bottom: 100,
+                    left: 20,
+                    right: 20,
+                    child: Column(
+                      children: (_selectedPlace.imageUrls as List<String>)
+                          .map((imageUrl) {
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 8),
+                          child: Image.network(imageUrl, fit: BoxFit.cover),
+                        );
+                      }).toList(),
+                    ),
+                  )
               ],
             ),
           ),

@@ -22,8 +22,6 @@ sights_db = []
 @app.post("/sights/")
 async def add_sights(sights:List[Sight]): #type: ignore
 
-
-
     sight_dicts = [sight.dict() for sight in sights]
 
     # Save the whole array as one record in Firestore

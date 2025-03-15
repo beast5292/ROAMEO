@@ -39,17 +39,22 @@ class _SignUpPageState extends State<SignUpPage> {
 
       if (response.statusCode == 200) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Signup successful!')),
+          SnackBar(
+              content: Text('Signup successful! Please login to continue.')),
         );
 
-        // Navigating to the homepage after successful signup
+        // Navigating to the login page after successful signup
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => HomePage()),
+          MaterialPageRoute(builder: (context) => LoginPage()),
         );
       } else {
+        // Handle specific error messages from the backend
+        final responseBody = jsonDecode(response.body);
+        final errorMessage =
+            responseBody["detail"] ?? "Signup failed. Please try again.";
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Signup failed. Please try again.')),
+          SnackBar(content: Text(errorMessage)),
         );
       }
     } catch (error) {

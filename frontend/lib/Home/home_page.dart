@@ -1,5 +1,8 @@
-import "package:flutter/material.dart";
-import "package:practice/SightSeeingMode/Sightseeing_mode_page.dart";
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:practice/SightSeeingMode/Sightseeing_mode_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,17 +14,57 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   bool isPillSwitchOn = false; // State for the pill switch
   int _selectedIndex = 0; // To keep track of selected icon
+  final storage = FlutterSecureStorage(); // For securely storing the JWT token
+  Map<String, dynamic>? userData; // To store user information
+
+  @override
+  void initState() {
+    super.initState();
+    // Fetching the user data when the page loads
+    fetchUserData();
+  }
+
+  // Fetching the user data from the backend
+  Future<void> fetchUserData() async {
+    try {
+      final String? token = await storage.read(key: 'jwt_token');
+      if (token == null) {
+        print("No token found");
+        return;
+      }
+
+      final url = Uri.parse('http://192.168.100.14:8000/user');
+      final response = await http.get(
+        url,
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer $token",
+        },
+      );
+
+      if (response.statusCode == 200) {
+        final responseBody = jsonDecode(response.body);
+        setState(() {
+          userData = responseBody["user"];
+        });
+      } else {
+        print("Failed to fetch user data: ${response.statusCode}");
+      }
+    } catch (error) {
+      print("Error fetching user data: $error");
+    }
+  }
 
   // Method to get greeting based on the time of day
   String getGreeting() {
     final hour = DateTime.now().hour;
 
     if (hour >= 6 && hour < 12) {
-      return 'Good Morning, Sulaiman!';
+      return 'Good Morning, ${userData?["name"] ?? "User"}!';
     } else if (hour >= 12 && hour < 15) {
-      return 'Good Afternoon, Sulaiman!';
+      return 'Good Afternoon, ${userData?["name"] ?? "User"}!';
     } else {
-      return 'Good Evening, Sulaiman!';
+      return 'Good Evening, ${userData?["name"] ?? "User"}!';
     }
   }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../Home/home_page.dart';
 import './sign_up_page.dart';
 
@@ -13,6 +14,8 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isLoading = false;
+  // Storing the JWT token
+  final storage = FlutterSecureStorage();
 
   Future<void> _login() async {
     setState(() {
@@ -34,17 +37,29 @@ class _LoginPageState extends State<LoginPage> {
       );
 
       if (response.statusCode == 200) {
+        // Parsing the response body to obtain the token
+        final responseBody = jsonDecode(response.body);
+        final String token = responseBody["token"];
+
+        // Saving the token
+        await storage.write(key: 'jwt_token', value: token);
+
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Login successful!')),
         );
 
+        // Navigating to the home page after successful login
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => HomePage()),
         );
       } else {
+        // Handling error messages from the backend
+        final responseBody = jsonDecode(response.body);
+        final errorMessage =
+            responseBody["detail"] ?? "Invalid credentials. Please try again.";
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Invalid credentials. Please try again.')),
+          SnackBar(content: Text(errorMessage)),
         );
       }
     } catch (error) {

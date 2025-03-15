@@ -35,12 +35,12 @@ class _SsmPageState extends State<SsmPage> {
 
   // Method to fetch locations from database based on search keyword
   Future<List<Map<String, dynamic>>> _searchLocations(String keyword) async {
+    keyword = keyword.toLowerCase(); // Convert user input to lowercase
     debugPrint("Searching for: $keyword");
 
     final querySnapshot = await FirebaseFirestore.instance
         .collection('sights') // Firestore collection name to fetch data
-        .where('name', isGreaterThanOrEqualTo: keyword)
-        .where('name', isLessThan: keyword + 'z') // Range based search
+        .where('name', isEqualTo: keyword)
         .get();
 
     List<Map<String, dynamic>> fetchedData =

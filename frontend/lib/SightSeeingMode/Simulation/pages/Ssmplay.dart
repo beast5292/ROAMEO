@@ -224,7 +224,7 @@ class SsmPlayState extends State<SsmPlay> {
         'AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0',
         PointLatLng(currentLocation!.latitude!, currentLocation!.longitude!),
         PointLatLng(destination!.latitude, destination!.longitude),
-        travelMode: TravelMode.driving,
+        travelMode: TravelMode.transit,
         wayPoints: activeWaypoints,
         optimizeWaypoints: true);
 

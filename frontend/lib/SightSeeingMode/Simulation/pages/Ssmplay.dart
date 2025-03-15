@@ -119,6 +119,7 @@ class SsmPlayState extends State<SsmPlay> {
         getPolyPoints();
       },
     );
+
     //waits for the google map controller to be available
     GoogleMapController googleMapController = await _controller.future;
 
@@ -128,6 +129,8 @@ class SsmPlayState extends State<SsmPlay> {
       setState(() {
         currentLocation = newLoc;
       });
+
+      addMarkers();
 
       //trim the polyline
       trimPolyline(LatLng(newLoc.latitude!, newLoc.longitude!));
@@ -285,7 +288,6 @@ class SsmPlayState extends State<SsmPlay> {
 
         //call set state
         setState(() {
-          
           distance = distanceText;
           duration = durationText;
         });
@@ -439,7 +441,6 @@ class SsmPlayState extends State<SsmPlay> {
     });
     getCurrentLocation();
     // setCustomMarkerIcon();
-
     // getPolyPoints();
     getDistanceAndDuration();
   }

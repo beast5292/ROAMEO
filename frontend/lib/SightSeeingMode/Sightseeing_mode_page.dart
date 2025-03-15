@@ -208,29 +208,30 @@ class _SsmPageState extends State<SsmPage> {
                     // Search bar
                     child: TextField(
                       controller: _searchController,
-                      focusNode: _searchFocusNode, // Attach focus node
-                      decoration: const InputDecoration(
+                      textInputAction: TextInputAction.search,
+                      //focusNode: _seasssssrchFocusNode, // Attach focus node
+                      decoration: InputDecoration(
                         hintText: "Search...",
                         hintStyle: TextStyle(color: Colors.white54),
                         border: InputBorder.none,
-                        icon: Icon(Icons.search, color: Colors.white),
+                        icon: GestureDetector(
+                          onTap: () {
+                            debugPrint("Search icon clicked");
+                            _performSearch();
+                          },
+                          child: Icon(Icons.search, color: Colors.white),
+                        ),
                       ),
 
-                      onTap: () {
-                        debugPrint("Search bar tapped");
-                        FocusScope.of(context).requestFocus(_searchFocusNode);
+                      onSubmitted: (value) {
+                        _performSearch();
                       },
+
+                      // onTap: () {
+                      //   debugPrint("Search bar tapped");
+                      //   FocusScope.of(context).requestFocus(_searchFocusNode);
+                      // },
                     ),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    debugPrint("Search button clicked");
-                    _performSearch();
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Icon(Icons.search, color: Colors.white),
                   ),
                 ),
               ],

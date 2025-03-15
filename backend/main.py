@@ -93,12 +93,3 @@ async def search_sights(
                 results.append(record)
 
     return {"results": results}
-
-
-
-
-  
-
-
-
-    

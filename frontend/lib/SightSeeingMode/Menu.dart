@@ -8,6 +8,7 @@ import 'package:practice/SightSeeingMode/location_select/pages/autoCwidget.dart'
 import 'package:practice/SightSeeingMode/CameraPage/providers/Image_provider.dart';
 import 'package:practice/SightSeeingMode/location_select/providers/selected_place_provider.dart';
 import 'package:practice/SightSeeingMode/models/sight.dart';
+import 'package:google_maps_flutter_platform_interface/src/types/location.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:io';
@@ -22,7 +23,6 @@ class SightMenu extends StatefulWidget {
 }
 
 class _SightMenuState extends State<SightMenu> {
-  
   //Toggle switch state
   bool showLocations = true;
 
@@ -78,8 +78,7 @@ class _SightMenuState extends State<SightMenu> {
       }
 
       if (location is List<Map<String, dynamic>>) {
-
-          //Extracting image URLs
+        //Extracting image URLs
         List<String> imagePaths = location
             .where((imageData) =>
                 imageData.containsKey('photo') && imageData['photo'] != null)
@@ -123,7 +122,6 @@ class _SightMenuState extends State<SightMenu> {
         print(sight.toString());
 
         Sights.add(sight);
-
       }
     }
 

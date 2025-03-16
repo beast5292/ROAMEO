@@ -1,0 +1,9 @@
+get request to directions api - https://maps.googleapis.com/maps/api/directions/json?destination=6.875698, 81.047082&origin=7.289213, 80.631614&mode=transit&transit_mode=train&key=AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0
+returns the train route from kandy to ella
+
+polyline decoder - (note-it decodes in reverse lat and lang)
+https://web.archive.org/web/20140209040329/http://facstaff.unca.edu/mcmcclur/googlemaps/encodepolyline/decode.html 
+
+ensure the lat and long coordinates - 
+https://www.gps-coordinates.net/
+

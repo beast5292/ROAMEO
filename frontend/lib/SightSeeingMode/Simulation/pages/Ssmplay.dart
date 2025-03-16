@@ -198,8 +198,11 @@ class SsmPlayState extends State<SsmPlay> {
     });
   }
 
+  
+
   //function to get the polypoints
   void getPolyPoints() async {
+
     //new polyline object (polyline)
     PolylinePoints polylinePoints = PolylinePoints();
 
@@ -238,19 +241,24 @@ class SsmPlayState extends State<SsmPlay> {
 
       var alertMessage3 = routePoints.toString();
 
+
       setState(() {
         polylineCoordinates = routePoints;
       });
 
       // showAlertDialog2(alertMessage3);
 
+      
       //Snap the route coordinates to the nearest road
       // await snapToRoads(routePoints);
+
+     
     }
 
     //call set state which has many functions
     // setState(() {});
   }
+
 
   //distance matrix api request for the sightseeing route
   Future<void> getDistanceAndDuration() async {

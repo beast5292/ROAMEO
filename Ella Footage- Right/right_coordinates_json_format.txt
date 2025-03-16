@@ -20,7 +20,7 @@
   {
     "id": "3",
     "name": "Peradenya Suburbs",
-    "description": "Peradenya Suburbs",
+    "description": "Nestled in the heart of Sri Lanka’s central highlands, Peradeniya Suburbs is a tranquil haven surrounded by lush greenery, where the gentle rustle of leaves and the cool mountain breeze create a perfect escape from the hustle and bustle of city life.",
     "lat": 7.250979328528047,
     "long": 80.59088001027703,
     "imageUrls": ["-"],
@@ -29,7 +29,7 @@
   {
     "id": "4",
     "name": "Gampola Suburbs",
-    "description": "Gampola suburbs",
+    "description": "Gampola Suburbs, a charming blend of scenic beauty and rural tranquility, invites you to unwind amidst rolling hills, tea plantations, and the gentle whispers of the Mahaweli River.",
     "lat": 7.186540137075685,
     "long": 80.59257832235525,
     "imageUrls": ["-"],
@@ -47,7 +47,7 @@
   {
     "id": "6",
     "name": "Gampola Suburbs",
-    "description": "Gampola Suburbs",
+    "description": "Gampola Suburbs, nestled in Sri Lanka’s central highlands, is a peaceful escape surrounded by lush tea estates, misty hills, and the serene flow of the Mahaweli River",
     "lat": 7.153291432186961,
     "long": 80.55938643403351,
     "imageUrls": ["-"],
@@ -56,7 +56,7 @@
   {
     "id": "7",
     "name": "Nawalapitiya Suburbs",
-    "description": "Nawalapitiya suburbs",
+    "description": "Nawalapitiya Suburbs is a serene hill-country retreat with misty mountains, waterfalls, and lush greenery.",
     "lat": 7.12146694432199,
     "long": 80.55832955986261,
     "imageUrls": ["-"],
@@ -83,7 +83,7 @@
   {
     "id": "10",
     "name": "Forestry in Nawalapitiya",
-    "description": "Forestry in Nawalapitiya",
+    "description": "Forestry in Nawalapitiya is a lush, green paradise, where dense forests, vibrant wildlife, and tranquil trails create a perfect escape into nature’s embrace. ",
     "lat": 7.024486097507179,
     "long": 80.54104138165712,
     "imageUrls": ["-"],
@@ -92,7 +92,7 @@
   {
     "id": "11",
     "name": "Small Stream",
-    "description": "Small Stream passing by",
+    "description": "A small stream passing by gently winds through the landscape, its crystal-clear waters reflecting the sunlight as it adds a soothing melody to the serene surroundings.",
     "lat": 7.0210124691948295,
     "long": 80.54608611389995,
     "imageUrls": ["-"],
@@ -137,7 +137,7 @@
   {
     "id": "16",
     "name": "Nuwara Eliya Scenery",
-    "description": "Nuwara Eliya Scenery",
+    "description": "Nuwara Eliya’s scenery is a breathtaking tapestry of misty hills, emerald tea plantations, and vibrant flowers, often called "Little England" for its cool climate and enchanting beauty.",
     "lat": 6.944615696556866,
     "long": 80.54670796729624,
     "imageUrls": ["-"],
@@ -173,7 +173,7 @@
   {
     "id": "20",
     "name": "Small Waterfall in Talawakelle",
-    "description": "Small waterfall in talawakelle",
+    "description": "A small waterfall in Talawakelle cascades gracefully through the lush greenery, its gentle flow creating a peaceful and picturesque spot amidst the hills",
     "lat": 6.945012956857681,
     "long": 80.64370578154922,
     "imageUrls": ["-"],
@@ -227,7 +227,7 @@
   {
     "id": "26",
     "name": "Vegetation in Nuwaraeliya",
-    "description": "Vegetation in Nuwaraeliya",
+    "description": "The vegetation in Nuwara Eliya is a vibrant mix of lush tea plantations, colorful flowers, and dense forests, painting the landscape in shades of green and splashes of floral brilliance",
     "lat": 6.945045352913439,
     "long": 80.71709177456796,
     "imageUrls": ["-"],
@@ -236,7 +236,7 @@
   {
     "id": "27",
     "name": "Cultivations in Nuwaraeliya",
-    "description": "Cultivations in Nuwaraeliya",
+    "description": "Cultivations in Nuwara Eliya thrive in the cool, misty climate, with sprawling tea estates, vibrant vegetable farms, and fragrant flower gardens adding charm to the picturesque hills",
     "lat": 6.9260392198339105,
     "long": 80.74246186763148,
     "imageUrls": ["-"],
@@ -245,7 +245,7 @@
   {
     "id": "28",
     "name": "Manmade Stream in Ambewela",
-    "description": "Manmade stream in Ambewela",
+    "description": "The manmade stream in Ambewela winds gracefully through the lush meadows, its gentle flow adding a touch of serenity to the idyllic countryside landscape",
     "lat": 6.898237743251026,
     "long": 80.76655799522996,
     "imageUrls": ["-"],
@@ -263,7 +263,7 @@
   {
     "id": "30",
     "name": "Ambewela Cultivations",
-    "description": "Ambewela cultivations",
+    "description": "Ambewela’s cultivations are a patchwork of vibrant green pastures, dairy farms, and vegetable fields, set against the backdrop of rolling hills and crisp mountain air",
     "lat": 6.878955052234232,
     "long": 80.80782361328602,
     "imageUrls": ["-"],
@@ -281,7 +281,7 @@
   {
     "id": "32",
     "name": "Pattipola Vegetation",
-    "description": "Pattipola vegetation",
+    "description": "Pattipola’s vegetation is a lush blend of montane forests, grassy plains, and vibrant wildflowers, thriving in the cool, misty climate of Sri Lanka’s highest regions.",
     "lat": 6.867139502428472,
     "long": 80.8261572662741,
     "imageUrls": ["-"],
@@ -290,7 +290,7 @@
   {
     "id": "33",
     "name": "Buddha Statue",
-    "description": "Buddha statue",
+    "description": "The Buddha statue in Pattipola stands as a serene symbol of peace and spirituality, overlooking the misty hills and offering a tranquil space for reflection and calm.",
     "lat": 6.855455255135894,
     "long": 80.8318211248368,
     "imageUrls": ["-"],
@@ -317,7 +317,7 @@
   {
     "id": "36",
     "name": "Pattipola Cultivations",
-    "description": "Pattipola cultivations",
+    "description": "Pattipola cultivations, located in Sri Lanka’s highest-altitude farming region, are known for their cool-climate crops like potatoes, carrots, and cabbage.",
     "lat": 6.844758647494018,
     "long": 80.8349278382957,
     "imageUrls": ["-"],
@@ -326,7 +326,7 @@
   {
     "id": "37",
     "name": "Stream in Demodara",
-    "description": "Stream in Demodara",
+    "description": "A small, scenic stream flows through Demodara, winding its way through lush tea plantations and misty hills.",
     "lat": 6.904459004290402,
     "long": 81.0642696171999,
     "imageUrls": ["-"],
@@ -335,7 +335,7 @@
   {
     "id": "38",
     "name": "Hidden Stream in Hali Ela",
-    "description": "Hidden stream in hali ela",
+    "description": "Hali Ela is home to a hidden stream that flows through dense greenery and rocky landscapes, offering a peaceful retreat for nature lovers. ",
     "lat": 6.932527064345777,
     "long": 81.04204022325575,
     "imageUrls": ["-"],

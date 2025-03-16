@@ -72,22 +72,34 @@ async def get_sight_by_id(docId: str):
 
 #get request for search
 @app.get("/search_sights/")
-async def search_sight(place: str):
+async def search_sight(place: str = Query(...)):
     print(f"Received search query: {place}")  # Debugging log
+
+
     sights_ref = db.collection("sights")
-    query = sights_ref.where("sights.name", "==", place).stream()
+    docs = sights_ref.stream()  # Print all documents in Firestore for debugging
+    
+    results = []
 
-    results = [doc.to_dict() for doc in query]
+    for doc in docs:
+        doc_data = doc.to_dict()
+        
+        # Ensure 'sights' field exists and is a list
+        if "sights" in doc_data and isinstance(doc_data["sights"], list):
+            for sight in doc_data["sights"]:
+                if "name" in sight and place.lower() in sight["name"].lower():
+                    results.append(sight)
 
-    if not results:
-        print("No results found.")  # Debugging log
-        return {"message": "No sights found", "data": []}
+        print("Filtered Sights:", results)
 
-    return {"message": "Sights found", "data": results}
+        if results:
+            return {"message": "Sights found", "data": results}
+        else:
+            return {"message": "No sights found", "data": []}
 
+    
 
-
-
+ 
 # # Following is for debug to see if fast API is working or not
 # from fastapi import FastAPI
 

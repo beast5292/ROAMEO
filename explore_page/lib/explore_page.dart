@@ -27,52 +27,74 @@ class _ExplorePageState extends State<ExplorePage> {
     {"name": "Udawalawe", "image": "assets/images/Udawalawe.jpg", "rating": 4.6},
   ];
 
+  List<Map<String, dynamic>> _filteredTravelCards = [];
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _filteredTravelCards = List.from(travelCards); // Initialize with all cards
+  }
+
   void _onNavBarItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
 
+  void _filterTravelCards(String query) {
+    setState(() {
+      if (query.isEmpty) {
+        // If the search query is empty, show all travel cards
+        _filteredTravelCards = List.from(travelCards);
+      } else {
+        // Filter the travel cards based on the query
+        _filteredTravelCards = travelCards
+            .where((card) =>
+                card["name"].toLowerCase().contains(query.toLowerCase()))
+            .toList();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true, // Ensure the screen resizes when the keyboard appears
       backgroundColor: Colors.black,
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 20),
+        child: SingleChildScrollView( // Make the screen scrollable
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 20),
 
-            // 🔹 Back Button & Search Bar 🔹
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-              child: Row(
-                children: [
-                  // 🔹 Back Button 🔹
-                  GestureDetector(
-                    onTap: () {
-                      print("Back button tapped");
-                    },
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.2), // Same as category chips
-                        borderRadius: BorderRadius.circular(25), // Same as category chips
-                      ),
-                      child: const Center( // Center the icon inside the container
-                        child: Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 30),
+              // 🔹 Back Button & Search Bar 🔹
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+                child: Row(
+                  children: [
+                    // 🔹 Back Button 🔹
+                    GestureDetector(
+                      onTap: () {
+                        print("Back button tapped");
+                      },
+                      child: Container(
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.2), // Same as category chips
+                          borderRadius: BorderRadius.circular(25), // Same as category chips
+                        ),
+                        child: const Center( // Center the icon inside the container
+                          child: Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 30),
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(width: 12),
+                    const SizedBox(width: 12),
 
-                  // 🔹 Search Bar 🔹
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        print("Search tapped");
-                      },
+                    // 🔹 Search Bar 🔹
+                    Expanded(
                       child: Container(
                         height: 60,
                         decoration: BoxDecoration(
@@ -84,72 +106,83 @@ class _ExplorePageState extends State<ExplorePage> {
                             const SizedBox(width: 10),
                             const Icon(Icons.search, color: Colors.white, size: 30),
                             const SizedBox(width: 10),
-                            Text(
-                              "Search...",
-                              style: TextStyle( // Removed `const` here
-                                color: Colors.white.withOpacity(0.7),
-                                fontSize: 18,
+                            Expanded(
+                              child: TextField(
+                                controller: _searchController,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none, // Remove the underline
+                                  hintText: "Search...",
+                                  hintStyle: TextStyle(
+                                    color: Colors.white.withOpacity(0.7),
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                style: const TextStyle(color: Colors.white, fontSize: 18),
+                                onChanged: (query) {
+                                  // Call a method to filter the travel cards
+                                  _filterTravelCards(query);
+                                },
                               ),
                             ),
                           ],
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
 
-            // 🔹 Category Chips 🔹
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _buildCategoryChip("Booking"),
-                  const SizedBox(width: 10),
-                  _buildCategoryChip("Recommendations"),
-                ],
+              // 🔹 Category Chips 🔹
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildCategoryChip("Booking"),
+                    const SizedBox(width: 10),
+                    _buildCategoryChip("Recommendations"),
+                  ],
+                ),
               ),
-            ),
 
-            // 🔹 Travel Cards with PageView 🔹
-            const SizedBox(height: 40),
-            SizedBox(
-              height: 451, // Adjusted height to accommodate taller cards
-              child: PageView.builder(
-                controller: _pageController,
-                itemCount: travelCards.length,
-                onPageChanged: (index) {
-                  setState(() {
-                    _currentPage = index;
-                  });
-                },
-                itemBuilder: (context, index) {
-                  final travel = travelCards[index];
-                  final isSelected = index == _currentPage;
+              // 🔹 Travel Cards with PageView 🔹
+              const SizedBox(height: 40),
+              SizedBox(
+                height: 451, // Adjusted height to accommodate taller cards
+                child: PageView.builder(
+                  controller: _pageController,
+                  itemCount: _filteredTravelCards.length, // Use filtered list
+                  onPageChanged: (index) {
+                    setState(() {
+                      _currentPage = index;
+                    });
+                  },
+                  itemBuilder: (context, index) {
+                    final travel = _filteredTravelCards[index]; // Use filtered list
+                    final isSelected = index == _currentPage;
 
-                  return AnimatedOpacity(
-                    duration: const Duration(milliseconds: 300),
-                    opacity: isSelected ? 1.0 : 0.5,
-                    child: TravelCard(
-                      name: travel["name"],
-                      imagePath: travel["image"],
-                      rating: travel["rating"],
-                      isSelected: isSelected,
-                      onTap: () {
-                        setState(() {
-                          _currentPage = index;
-                        });
-                      },
-                    ),
-                  );
-                },
+                    return AnimatedOpacity(
+                      duration: const Duration(milliseconds: 300),
+                      opacity: isSelected ? 1.0 : 0.5,
+                      child: TravelCard(
+                        name: travel["name"],
+                        imagePath: travel["image"],
+                        rating: travel["rating"],
+                        isSelected: isSelected,
+                        onTap: () {
+                          setState(() {
+                            _currentPage = index;
+                          });
+                        },
+                      ),
+                    );
+                  },
+                ),
               ),
-            ),
 
-            const SizedBox(height: 40), // ✅ Adjusted Space Between Travel Cards & Bottom Nav
-          ],
+              const SizedBox(height: 40), // ✅ Adjusted Space Between Travel Cards & Bottom Nav
+            ],
+          ),
         ),
       ),
 

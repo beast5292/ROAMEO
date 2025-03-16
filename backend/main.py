@@ -2,7 +2,7 @@ import asyncio
 import firebase_admin
 from fastapi import FastAPI, HTTPException, Query
 from typing import List, Dict
-from backend.Sight_info import Sight
+from Sight_info import Sight
 from firebase_admin import credentials,firestore, initialize_app
 
 # Initialize FastAPI
@@ -75,7 +75,7 @@ async def get_sight_by_id(docId: str):
 async def search_sight(place: str):
     print(f"Received search query: {place}")  # Debugging log
     sights_ref = db.collection("sights")
-    query = sights_ref.where("name", "==", place).stream()
+    query = sights_ref.where("sights.name", "==", place).stream()
 
     results = [doc.to_dict() for doc in query]
 
@@ -84,3 +84,15 @@ async def search_sight(place: str):
         return {"message": "No sights found", "data": []}
 
     return {"message": "Sights found", "data": results}
+
+
+
+
+# # Following is for debug to see if fast API is working or not
+# from fastapi import FastAPI
+
+# app = FastAPI()
+
+# @app.get("/search_sights/")
+# async def search_sights(name: str):
+#     return {"results": [{"name": "Test Location", "lat": 6.921, "long": 79.882}]}

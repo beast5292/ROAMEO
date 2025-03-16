@@ -10,7 +10,7 @@ class ExplorePage extends StatefulWidget {
 class _ExplorePageState extends State<ExplorePage> {
   int _selectedIndex = 3; // Default active tab
   int _currentPage = 0;
-  final PageController _pageController = PageController(viewportFraction: 0.80);
+  final PageController _pageController = PageController(viewportFraction: 0.72);
 
   final List<Map<String, dynamic>> travelCards = [
     {"name": "Galle", "image": "assets/images/Galle.png", "rating": 4.6},
@@ -48,7 +48,7 @@ class _ExplorePageState extends State<ExplorePage> {
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
               child: Row(
                 children: [
-                  // Back Button
+                  // 🔹 Back Button 🔹
                   GestureDetector(
                     onTap: () {
                       print("Back button tapped");
@@ -57,15 +57,17 @@ class _ExplorePageState extends State<ExplorePage> {
                       width: 50,
                       height: 50,
                       decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.white.withOpacity(0.2),
+                        color: Colors.white.withOpacity(0.2), // Same as category chips
+                        borderRadius: BorderRadius.circular(25), // Same as category chips
                       ),
-                      child: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 30),
+                      child: const Center( // Center the icon inside the container
+                        child: Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 30),
+                      ),
                     ),
                   ),
                   const SizedBox(width: 12),
 
-                  // Search Bar
+                  // 🔹 Search Bar 🔹
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
@@ -74,14 +76,21 @@ class _ExplorePageState extends State<ExplorePage> {
                       child: Container(
                         height: 60,
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.2),
-                          borderRadius: BorderRadius.circular(25),
+                          color: Colors.white.withOpacity(0.2), // Same as category chips
+                          borderRadius: BorderRadius.circular(25), // Same as category chips
                         ),
-                        child: const Row(
+                        child: Row(
                           children: [
-                            SizedBox(width: 10),
-                            Icon(Icons.search, color: Colors.white, size: 30),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
+                            const Icon(Icons.search, color: Colors.white, size: 30),
+                            const SizedBox(width: 10),
+                            Text(
+                              "Search...",
+                              style: TextStyle( // Removed `const` here
+                                color: Colors.white.withOpacity(0.7),
+                                fontSize: 18,
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -107,7 +116,7 @@ class _ExplorePageState extends State<ExplorePage> {
             // 🔹 Travel Cards with PageView 🔹
             const SizedBox(height: 40),
             SizedBox(
-              height: 450, // Adjust height
+              height: 451, // Adjusted height to accommodate taller cards
               child: PageView.builder(
                 controller: _pageController,
                 itemCount: travelCards.length,
@@ -172,7 +181,7 @@ class _ExplorePageState extends State<ExplorePage> {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 12),
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.1),
+          color: Colors.white.withOpacity(0.1), // Same as back button and search bar
           borderRadius: BorderRadius.circular(25),
         ),
         child: Text(
@@ -231,17 +240,18 @@ class TravelCard extends StatelessWidget {
       onTap: onTap,
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 10),
-        width: 260,
+        width: 220, // Adjusted width (thinner)
+        height: 320, // Adjusted height (taller)
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           image: DecorationImage(image: AssetImage(imagePath), fit: BoxFit.cover),
         ),
         child: Stack(
           children: [
-            Positioned(top: 10, left: 10, child: _buildRatingBadge(rating)),
-            Positioned(top: 10, right: 10, child: Icon(Icons.bookmark, color: Colors.white, size: 30)),
-            Positioned(bottom: 15, left: 10, child: _buildNameLabel(name)),
-            Positioned(bottom: 15, right: 10, child: Icon(Icons.arrow_forward_ios, color: Colors.white, size: 30)),
+            Positioned(top: 25, left: 25, child: _buildRatingBadge(rating)),
+            Positioned(top: 25, right: 25, child: Icon(Icons.bookmark, color: Colors.white, size: 30)),
+            Positioned(bottom: 25, left: 25, child: _buildNameLabel(name)),
+            Positioned(bottom: 25, right: 25, child: Icon(Icons.arrow_forward_ios, color: Colors.white, size: 30)),
           ],
         ),
       ),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:practice/SightSeeingMode/Feed/SightFeed.dart';
 import 'package:practice/SightSeeingMode/Menu.dart';
-import 'package:google_maps_webservice/places.dart';
 
 class SsmPage extends StatefulWidget {
   const SsmPage({super.key});
@@ -113,98 +112,96 @@ class _SsmPageState extends State<SsmPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          GoogleMap(
-            initialCameraPosition: const CameraPosition(
-              target: googlePlex,
-              zoom: 12,
+        body: Stack(children: [
+      GoogleMap(
+        initialCameraPosition: const CameraPosition(
+          target: googlePlex,
+          zoom: 12,
+        ),
+        markers: _markers,
+        onMapCreated: (GoogleMapController controller) {
+          mapController = controller;
+        },
+        onTap: _addMarker, // Allow adding markers by tapping on the map
+      ),
+      Positioned(
+        top: 40,
+        left: 10,
+        right: 10,
+        child: Row(
+          children: [
+            IconButton(
+              icon: const Icon(Icons.arrow_back, color: Colors.white),
+              onPressed: () => Navigator.pop(context),
             ),
-            markers: _markers,
-            onMapCreated: (GoogleMapController controller) {
-              mapController = controller;
-            },
-            onTap: _addMarker, // Allow adding markers by tapping on the map
-          ),
-          Positioned(
-            top: 40,
-            left: 10,
-            right: 10,
-            child: Row(
-              children: [
-                IconButton(
-                  icon: const Icon(Icons.arrow_back, color: Colors.white),
-                  onPressed: () => Navigator.pop(context),
-                ),
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    decoration: BoxDecoration(
-                      color: Colors.black54,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: const TextField(
-                      decoration: InputDecoration(
-                        hintText: "Search...",
-                        hintStyle: TextStyle(color: Colors.white54),
-                        border: InputBorder.none,
-                        icon: Icon(Icons.search, color: Colors.white),
-                      ),
-                    ),
-                  ),
-                ),
-                IconButton(
-                  icon: const Icon(Icons.fullscreen, color: Colors.white),
-                  onPressed: () {},
-                ),
-              ],
-            ),
-          ),
-          if (_showDetails)
-            Positioned(
-              bottom: 120,
-              left: 20,
-              right: 20,
+            Expanded(
               child: Container(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
                 decoration: BoxDecoration(
-                    color: Colors.black54,
-                    borderRadius: BorderRadius.circular(10)),
-                child: Column(
-                  children: [
-                    Image.network("https://via.placeholder.com/100"),
-                    const Text("Beautiful Scenery",
-                        style: TextStyle(color: Colors.white)),
-                    TextButton(onPressed: () {}, child: const Text("EXPLORE")),
-                  ],
+                  color: Colors.black54,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: const TextField(
+                  decoration: InputDecoration(
+                    hintText: "Search...",
+                    hintStyle: TextStyle(color: Colors.white54),
+                    border: InputBorder.none,
+                    icon: Icon(Icons.search, color: Colors.white),
+                  ),
                 ),
               ),
             ),
-          Positioned(
-            bottom: 20,
-            left: 20,
-            right: 20,
-            child: FloatingActionButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SightMenu()),
-                  );
-                },
-                child: Icon(Icons.create)),
+            IconButton(
+              icon: const Icon(Icons.fullscreen, color: Colors.white),
+              onPressed: () {},
+            ),
+          ],
+        ),
+      ),
+      if (_showDetails)
+        Positioned(
+          bottom: 120,
+          left: 20,
+          right: 20,
+          child: Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                color: Colors.black54, borderRadius: BorderRadius.circular(10)),
+            child: Column(
+              children: [
+                Image.network("https://via.placeholder.com/100"),
+                const Text("Beautiful Scenery",
+                    style: TextStyle(color: Colors.white)),
+                TextButton(onPressed: () {}, child: const Text("EXPLORE")),
+              ],
+            ),
           ),
-          Positioned(
-            top: 600,
-            right: 20,
-            child: FloatingActionButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SightFeed()),
-                  );
-                },
-                child: Icon(Icons.search)),
-          )
-        ]));
+        ),
+      Positioned(
+        bottom: 20,
+        left: 20,
+        right: 20,
+        child: FloatingActionButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SightMenu()),
+              );
+            },
+            child: Icon(Icons.create)),
+      ),
+      Positioned(
+        top: 600,
+        right: 20,
+        child: FloatingActionButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SightFeed()),
+              );
+            },
+            child: Icon(Icons.search)),
+      )
+    ]));
   }
 }

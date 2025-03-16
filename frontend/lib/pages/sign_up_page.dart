@@ -1,30 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../Home/home_page.dart';
 import 'login_page.dart';
+import 'open_page.dart';
+import './setup_account_page.dart';
 
 class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
+
   @override
   _SignUpPageState createState() => _SignUpPageState();
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  final TextEditingController _nameController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _dobController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isLoading = false;
+  final storage = FlutterSecureStorage();
 
   Future<void> _signUp() async {
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+
     setState(() {
       _isLoading = true;
     });
 
     final url = Uri.parse('http://192.168.100.14:8000/signup');
-
     final Map<String, String> requestBody = {
-      "name": _nameController.text,
+      "username": _usernameController.text,
       "email": _emailController.text,
       "dob": _dobController.text,
       "password": _passwordController.text,
@@ -37,19 +47,25 @@ class _SignUpPageState extends State<SignUpPage> {
         body: jsonEncode(requestBody),
       );
 
+      final responseBody = jsonDecode(response.body);
       if (response.statusCode == 200) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Signup successful!')),
-        );
+        // Storing the JWT token and email
+        await storage.write(key: 'jwt_token', value: responseBody["token"]);
+        await storage.write(key: 'user_email', value: _emailController.text);
 
-        // Navigating to the homepage after successful signup
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+              content: Text('Signup successful! Please login to continue.')),
+        );
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => HomePage()),
+          MaterialPageRoute(builder: (context) => SetupAccountPage()),
         );
       } else {
+        final errorMessage =
+            responseBody["detail"] ?? "Signup failed. Please try again.";
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Signup failed. Please try again.')),
+          SnackBar(content: Text(errorMessage)),
         );
       }
     } catch (error) {
@@ -66,106 +82,120 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Sign Up'),
-        backgroundColor: Colors.white,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            TextField(
-              controller: _nameController,
-              decoration: InputDecoration(
-                labelText: 'Name',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 16.0),
-            TextField(
-              controller: _emailController,
-              decoration: InputDecoration(
-                labelText: 'Email',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 16.0),
-            TextField(
-              controller: _dobController,
-              decoration: InputDecoration(
-                labelText: 'DOB',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 16.0),
-            TextField(
-              controller: _passwordController,
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: 'Password',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 24.0),
-            SizedBox(
-              width: double.infinity,
-              height: 50.0,
-              child: ElevatedButton(
-                onPressed: _isLoading ? null : _signUp,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
+      backgroundColor: Color.fromRGBO(3, 10, 14, 1),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(18.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 30),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => OpeningScreen()),
+                    );
+                  },
+                  child: Icon(Icons.arrow_back_ios_new_rounded,
+                      color: Colors.white.withOpacity(0.6),
+                      size: 35,
+                      shadows: [Shadow(color: Colors.white, blurRadius: 20)]),
+                ),
+                const SizedBox(height: 70),
+                const Text("Sign up",
+                    style: TextStyle(
+                        fontSize: 35,
+                        fontWeight: FontWeight.w900,
+                        color: Color.fromRGBO(68, 202, 233, 1))),
+                const SizedBox(height: 10),
+                _buildTextField(
+                    icon: Icons.person,
+                    hintText: "Username",
+                    controller: _usernameController),
+                const SizedBox(height: 15),
+                _buildTextField(
+                    icon: Icons.email,
+                    hintText: "Email ID",
+                    controller: _emailController),
+                const SizedBox(height: 15),
+                _buildTextField(
+                    icon: Icons.calendar_today,
+                    hintText: "DOB",
+                    controller: _dobController),
+                const SizedBox(height: 15),
+                _buildTextField(
+                    icon: Icons.lock,
+                    hintText: "Enter Your Password",
+                    controller: _passwordController,
+                    obscureText: true),
+                const SizedBox(height: 15),
+                Center(
+                  child: ElevatedButton(
+                    onPressed: _isLoading ? null : _signUp,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 2, 32, 46),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 142, vertical: 15),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                    ),
+                    child: _isLoading
+                        ? CircularProgressIndicator(color: Colors.white)
+                        : const Text("Sign up",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold)),
                   ),
                 ),
-                child: _isLoading
-                    ? CircularProgressIndicator(color: Colors.white)
-                    : Text('Sign Up'),
-              ),
-            ),
-            SizedBox(height: 16.0),
-            Text('or sign up with'),
-            SizedBox(height: 16.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                IconButton(
-                  icon: SizedBox(
-                    width: 48.0,
-                    height: 48.0,
-                    child: Image.asset('assets/images/google_icon.jpg'),
+                const SizedBox(height: 20),
+                Center(
+                  child: TextButton(
+                    onPressed: () => Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => LoginPage())),
+                    child: const Text("Already have an account? Login Now",
+                        style:
+                            TextStyle(color: Color.fromRGBO(68, 202, 233, 1))),
                   ),
-                  onPressed: () {},
-                ),
-                IconButton(
-                  icon: SizedBox(
-                    width: 48.0,
-                    height: 48.0,
-                    child: Image.asset('assets/images/facebook_icon.jpg'),
-                  ),
-                  onPressed: () {},
                 ),
               ],
             ),
-            SizedBox(height: 16.0),
-            TextButton(
-              onPressed: () {
-                // Navigating to Login Page
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginPage()),
-                );
-              },
-              child: Text(
-                'Already have an account? Login Now',
-                style: TextStyle(color: Colors.blue),
-              ),
-            ),
-          ],
+          ),
         ),
       ),
+    );
+  }
+
+  Widget _buildTextField(
+      {required IconData icon,
+      required String hintText,
+      bool obscureText = false,
+      required TextEditingController controller}) {
+    return TextFormField(
+      controller: controller,
+      obscureText: obscureText,
+      style: TextStyle(color: Colors.white),
+      decoration: InputDecoration(
+        prefixIcon: Icon(icon, color: Colors.white70),
+        hintText: hintText,
+        hintStyle: TextStyle(color: Colors.white70, fontSize: 14),
+        contentPadding: EdgeInsets.symmetric(vertical: 10),
+        filled: true,
+        fillColor: Color.fromARGB(166, 103, 102, 1118),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(22),
+          borderSide: BorderSide.none,
+        ),
+      ),
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Please enter $hintText';
+        }
+        return null;
+      },
     );
   }
 }

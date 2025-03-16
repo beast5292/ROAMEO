@@ -7,7 +7,7 @@ import asyncio
 import firebase_admin
 
 #Initialize Firebase Admin SDK with your credentials
-cred = credentials.Certificate(r'C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\backend\private key\roameo-f3ab0-firebase-adminsdk-ss40k-1e1297f52f.json') 
+cred = credentials.Certificate(r'C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\backend\private key\roameo-f3ab0-firebase-adminsdk-ss40k-1e1297f52f.json') 
 initialize_app(cred)
 
 #Firestore client initialization
@@ -21,8 +21,6 @@ sights_db = []
 #add a sight to the db
 @app.post("/sights/")
 async def add_sights(sights:List[Sight]): #type: ignore
-
-
 
     sight_dicts = [sight.dict() for sight in sights]
 

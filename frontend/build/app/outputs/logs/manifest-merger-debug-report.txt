@@ -1,25 +1,23 @@
 -- Merging decision tree log ---
 application
-INJECTED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:15:5-60:19
-INJECTED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\debug\AndroidManifest.xml
-MERGED from [:location] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:5-16:19
-MERGED from [:location] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:5-16:19
-MERGED from [:geolocator_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
-MERGED from [:geolocator_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
+INJECTED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:15:5-60:19
+INJECTED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\debug\AndroidManifest.xml
+MERGED from [:location] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:5-16:19
+MERGED from [:location] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:5-16:19
+MERGED from [:geolocator_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
+MERGED from [:geolocator_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
 MERGED from [com.google.android.gms:play-services-location:21.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\cd4ecbd59244f1992bd259654b6cba05\transformed\jetified-play-services-location-21.2.0\AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-location:21.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\cd4ecbd59244f1992bd259654b6cba05\transformed\jetified-play-services-location-21.2.0\AndroidManifest.xml:7:5-20
-MERGED from [:cloud_firestore] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
-MERGED from [:cloud_firestore] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
-MERGED from [:firebase_storage] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
-MERGED from [:firebase_storage] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
-MERGED from [:firebase_core] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
-MERGED from [:firebase_core] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
-MERGED from [:image_picker_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:5-32:19
-MERGED from [:image_picker_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:5-32:19
+MERGED from [:cloud_firestore] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
+MERGED from [:cloud_firestore] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
+MERGED from [:firebase_storage] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
+MERGED from [:firebase_storage] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
+MERGED from [:firebase_core] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
+MERGED from [:firebase_core] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
+MERGED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:5-32:19
+MERGED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:5-32:19
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\579b74b0c35c86a810935e5b44a03f8b\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:36:5-42:19
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\579b74b0c35c86a810935e5b44a03f8b\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:36:5-42:19
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-plugin-offline-v9:0.7.0] C:\Users\sulai\.gradle\caches\8.9\transforms\c02a422e178eb65cbf57b0e082769161\transformed\jetified-mapbox-android-plugin-offline-v9-0.7.0\AndroidManifest.xml:9:5-20:19
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-plugin-offline-v9:0.7.0] C:\Users\sulai\.gradle\caches\8.9\transforms\c02a422e178eb65cbf57b0e082769161\transformed\jetified-mapbox-android-plugin-offline-v9-0.7.0\AndroidManifest.xml:9:5-20:19
 MERGED from [com.google.firebase:firebase-firestore:25.1.2] C:\Users\sulai\.gradle\caches\8.9\transforms\12576f9b530b1aaae327ef30bfcb66fe\transformed\jetified-firebase-firestore-25.1.2\AndroidManifest.xml:13:5-24:19
 MERGED from [com.google.firebase:firebase-firestore:25.1.2] C:\Users\sulai\.gradle\caches\8.9\transforms\12576f9b530b1aaae327ef30bfcb66fe\transformed\jetified-firebase-firestore-25.1.2\AndroidManifest.xml:13:5-24:19
 MERGED from [com.google.firebase:firebase-storage:21.0.1] C:\Users\sulai\.gradle\caches\8.9\transforms\87e82ddb773091c5fab363eff7c7c738\transformed\jetified-firebase-storage-21.0.1\AndroidManifest.xml:26:5-37:19
@@ -38,10 +36,6 @@ MERGED from [com.google.firebase:firebase-auth-interop:19.0.2] C:\Users\sulai\.g
 MERGED from [com.google.firebase:firebase-auth-interop:19.0.2] C:\Users\sulai\.gradle\caches\8.9\transforms\eccdb8659a40657aa1a9743477f84f98\transformed\jetified-firebase-auth-interop-19.0.2\AndroidManifest.xml:7:5-8:19
 MERGED from [androidx.window:window:1.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\13f3833de7cf4f53b4e3804da14f5d51\transformed\jetified-window-1.2.0\AndroidManifest.xml:22:5-29:19
 MERGED from [androidx.window:window:1.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\13f3833de7cf4f53b4e3804da14f5d51\transformed\jetified-window-1.2.0\AndroidManifest.xml:22:5-29:19
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0] C:\Users\sulai\.gradle\caches\8.9\transforms\ce47cfc1ba6b59a95ca7d3d8714420e8\transformed\jetified-mapbox-android-telemetry-okhttp3-8.1.0\AndroidManifest.xml:20:5-34:19
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0] C:\Users\sulai\.gradle\caches\8.9\transforms\ce47cfc1ba6b59a95ca7d3d8714420e8\transformed\jetified-mapbox-android-telemetry-okhttp3-8.1.0\AndroidManifest.xml:20:5-34:19
-MERGED from [com.google.android.material:material:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\cf753b73fbf13b66f3a3af0f1939c2dd\transformed\material-1.0.0\AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.material:material:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\cf753b73fbf13b66f3a3af0f1939c2dd\transformed\material-1.0.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services-tasks:18.1.0] C:\Users\sulai\.gradle\caches\8.9\transforms\272bd27d6503a62191985afa7a27497d\transformed\jetified-play-services-tasks-18.1.0\AndroidManifest.xml:5:5-20
 MERGED from [com.google.android.gms:play-services-tasks:18.1.0] C:\Users\sulai\.gradle\caches\8.9\transforms\272bd27d6503a62191985afa7a27497d\transformed\jetified-play-services-tasks-18.1.0\AndroidManifest.xml:5:5-20
 MERGED from [com.google.android.gms:play-services-basement:18.3.0] C:\Users\sulai\.gradle\caches\8.9\transforms\9cc68d6dae004107b0324aaaa2a341fb\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:20:5-24:19
@@ -58,39 +52,30 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\su
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\sulai\.gradle\caches\8.9\transforms\60e00c3c6815110f8213eeeffb4b70b1\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
 MERGED from [com.google.maps.android:android-maps-utils:3.6.0] C:\Users\sulai\.gradle\caches\8.9\transforms\9d4841b04a342970dd512ab8527b92be\transformed\jetified-android-maps-utils-3.6.0\AndroidManifest.xml:7:5-11:19
 MERGED from [com.google.maps.android:android-maps-utils:3.6.0] C:\Users\sulai\.gradle\caches\8.9\transforms\9d4841b04a342970dd512ab8527b92be\transformed\jetified-android-maps-utils-3.6.0\AndroidManifest.xml:7:5-11:19
-MERGED from [com.jakewharton.timber:timber:4.7.1] C:\Users\sulai\.gradle\caches\8.9\transforms\fb67c5f11d09091397c2112219b90194\transformed\jetified-timber-4.7.1\AndroidManifest.xml:7:5-20
-MERGED from [com.jakewharton.timber:timber:4.7.1] C:\Users\sulai\.gradle\caches\8.9\transforms\fb67c5f11d09091397c2112219b90194\transformed\jetified-timber-4.7.1\AndroidManifest.xml:7:5-20
-MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\sulai\.gradle\caches\8.9\transforms\c1da1bf3655e3d53a96f45cd8b1aeb02\transformed\constraintlayout-1.1.3\AndroidManifest.xml:9:5-20
-MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\sulai\.gradle\caches\8.9\transforms\c1da1bf3655e3d53a96f45cd8b1aeb02\transformed\constraintlayout-1.1.3\AndroidManifest.xml:9:5-20
 	android:extractNativeLibs
-		INJECTED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\debug\AndroidManifest.xml
+		INJECTED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\debug\AndroidManifest.xml
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.13.1] C:\Users\sulai\.gradle\caches\8.9\transforms\6602b6343cf9be29207be3b5c8effb9c\transformed\core-1.13.1\AndroidManifest.xml:28:18-86
 	android:name
-		INJECTED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml
 manifest
-ADDED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:1:1-69:12
-MERGED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:1:1-69:12
-INJECTED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\debug\AndroidManifest.xml:1:1-7:12
-INJECTED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\debug\AndroidManifest.xml:1:1-7:12
-INJECTED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\debug\AndroidManifest.xml:1:1-7:12
-MERGED from [:location] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-18:12
-MERGED from [:geolocator_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-15:12
+ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:1:1-69:12
+MERGED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:1:1-69:12
+INJECTED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\debug\AndroidManifest.xml:1:1-7:12
+INJECTED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\debug\AndroidManifest.xml:1:1-7:12
+INJECTED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\debug\AndroidManifest.xml:1:1-7:12
+MERGED from [:location] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-18:12
+MERGED from [:geolocator_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-15:12
 MERGED from [com.google.android.gms:play-services-location:21.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\cd4ecbd59244f1992bd259654b6cba05\transformed\jetified-play-services-location-21.2.0\AndroidManifest.xml:2:1-9:12
-MERGED from [:cloud_firestore] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-15:12
-MERGED from [:connectivity_plus] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\connectivity_plus\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-9:12
-MERGED from [:firebase_storage] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-15:12
-MERGED from [:firebase_core] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-15:12
-MERGED from [:google_maps_flutter_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\google_maps_flutter_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
-MERGED from [:image_picker_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-34:12
-MERGED from [:flutter_plugin_android_lifecycle] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
-MERGED from [:mapbox_gl] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\mapbox_gl\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
-MERGED from [:path_provider_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\path_provider_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
+MERGED from [:cloud_firestore] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-15:12
+MERGED from [:connectivity_plus] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\connectivity_plus\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-9:12
+MERGED from [:firebase_storage] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-15:12
+MERGED from [:firebase_core] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-15:12
+MERGED from [:google_maps_flutter_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\google_maps_flutter_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
+MERGED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-34:12
+MERGED from [:flutter_plugin_android_lifecycle] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
+MERGED from [:path_provider_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\path_provider_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\579b74b0c35c86a810935e5b44a03f8b\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:17:1-44:12
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-plugin-annotation-v9:0.9.0] C:\Users\sulai\.gradle\caches\8.9\transforms\9526331cbb3f764cd3a538ed99c81d78\transformed\jetified-mapbox-android-plugin-annotation-v9-0.9.0\AndroidManifest.xml:2:1-9:12
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-plugin-localization-v9:0.12.0] C:\Users\sulai\.gradle\caches\8.9\transforms\87aff048f97bae0bb62571c30fc1304f\transformed\jetified-mapbox-android-plugin-localization-v9-0.12.0\AndroidManifest.xml:2:1-9:12
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-plugin-offline-v9:0.7.0] C:\Users\sulai\.gradle\caches\8.9\transforms\c02a422e178eb65cbf57b0e082769161\transformed\jetified-mapbox-android-plugin-offline-v9-0.7.0\AndroidManifest.xml:2:1-22:12
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk:9.6.2] C:\Users\sulai\.gradle\caches\8.9\transforms\0b2cd658115a52d9a87f08c8d5efa8a1\transformed\jetified-mapbox-android-sdk-9.6.2\AndroidManifest.xml:2:1-21:12
 MERGED from [com.google.firebase:firebase-firestore:25.1.2] C:\Users\sulai\.gradle\caches\8.9\transforms\12576f9b530b1aaae327ef30bfcb66fe\transformed\jetified-firebase-firestore-25.1.2\AndroidManifest.xml:2:1-26:12
 MERGED from [com.google.firebase:firebase-storage:21.0.1] C:\Users\sulai\.gradle\caches\8.9\transforms\87e82ddb773091c5fab363eff7c7c738\transformed\jetified-firebase-storage-21.0.1\AndroidManifest.xml:15:1-39:12
 MERGED from [com.google.firebase:firebase-database-collection:18.0.1] C:\Users\sulai\.gradle\caches\8.9\transforms\4f577560feb7896f78fcf28240913e56\transformed\jetified-firebase-database-collection-18.0.1\AndroidManifest.xml:2:1-9:12
@@ -102,14 +87,6 @@ MERGED from [com.google.firebase:firebase-common:21.0.0] C:\Users\sulai\.gradle\
 MERGED from [com.google.firebase:firebase-auth-interop:19.0.2] C:\Users\sulai\.gradle\caches\8.9\transforms\eccdb8659a40657aa1a9743477f84f98\transformed\jetified-firebase-auth-interop-19.0.2\AndroidManifest.xml:2:1-10:12
 MERGED from [androidx.window:window:1.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\13f3833de7cf4f53b4e3804da14f5d51\transformed\jetified-window-1.2.0\AndroidManifest.xml:17:1-31:12
 MERGED from [androidx.window:window-java:1.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\72811a13ef9c9c4df0695b020a8de850\transformed\jetified-window-java-1.2.0\AndroidManifest.xml:17:1-21:12
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0] C:\Users\sulai\.gradle\caches\8.9\transforms\ce47cfc1ba6b59a95ca7d3d8714420e8\transformed\jetified-mapbox-android-telemetry-okhttp3-8.1.0\AndroidManifest.xml:2:1-36:12
-MERGED from [com.google.android.material:material:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\cf753b73fbf13b66f3a3af0f1939c2dd\transformed\material-1.0.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.appcompat:appcompat:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\319a416be362c3f436facd1ce42ad1e4\transformed\appcompat-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\8b962dadc63136a609c47bb3c42e124e\transformed\legacy-support-v4-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\1bd491d23c3791f6952a36ff187813e8\transformed\vectordrawable-animated-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.recyclerview:recyclerview:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\52a3d31ece1147ef6f67dfbb79e7e69a\transformed\recyclerview-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\e0c6213ab55f10bb29740595235e2102\transformed\legacy-support-core-ui-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\d6a91a2e6a0db2436d28b0ce1113177c\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\922d7b2bd955198d58e44a195f86508b\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.7.0] C:\Users\sulai\.gradle\caches\8.9\transforms\1b50851537b89bcdf00fba63e8062008\transformed\jetified-lifecycle-livedata-core-ktx-2.7.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.7.0] C:\Users\sulai\.gradle\caches\8.9\transforms\09ea2cecad0bab3525f85eb11e17a323\transformed\lifecycle-livedata-core-2.7.0\AndroidManifest.xml:17:1-22:12
@@ -121,17 +98,8 @@ MERGED from [com.google.android.gms:play-services-basement:18.3.0] C:\Users\sula
 MERGED from [androidx.fragment:fragment:1.7.1] C:\Users\sulai\.gradle\caches\8.9\transforms\51f6eac4038a65534f117c02d10aa191\transformed\fragment-1.7.1\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.activity:activity:1.9.3] C:\Users\sulai\.gradle\caches\8.9\transforms\50339a8ebdc463990be9d079e90496e0\transformed\jetified-activity-1.9.3\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.core:core-ktx:1.13.1] C:\Users\sulai\.gradle\caches\8.9\transforms\23715f59be1357ce953950175bde6ee4\transformed\jetified-core-ktx-1.13.1\AndroidManifest.xml:2:1-7:12
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-gestures:0.7.0] C:\Users\sulai\.gradle\caches\8.9\transforms\29cfeb03ae1fda5c6ed4f713e0caaec6\transformed\jetified-mapbox-android-gestures-0.7.0\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\139027ea9b8d342dbf1656b0fc990345\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.vectordrawable:vectordrawable:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\769add15b7d2c4be819b80de6a973a10\transformed\vectordrawable-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.media:media:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\0ffa14557ae3f19bbaf22379733939fb\transformed\media-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.transition:transition:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\bed1a68c1d534c49f51c2476e5332920\transformed\transition-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\570c65607a393a258d6feb1e09c4e8c6\transformed\coordinatorlayout-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\b55dc579809694579a7e8a5caddbf6fe\transformed\drawerlayout-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\dc7c5fe349b3ebae02e841eefbd94849\transformed\slidingpanelayout-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.customview:customview:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\755bc3e1b07bc7bd1aae09322303f266\transformed\customview-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\31e000e0de8bbd5d5c91bd3e50d6e1cf\transformed\swiperefreshlayout-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\38fd9528ce3d4d9c9a665a282d4876f1\transformed\asynclayoutinflater-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.core:core:1.13.1] C:\Users\sulai\.gradle\caches\8.9\transforms\6602b6343cf9be29207be3b5c8effb9c\transformed\core-1.13.1\AndroidManifest.xml:17:1-30:12
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.7.0] C:\Users\sulai\.gradle\caches\8.9\transforms\783991e7aad515893e505cf83295d582\transformed\lifecycle-runtime-2.7.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\sulai\.gradle\caches\8.9\transforms\89cfbe318cec41806566b16b8a4aa57f\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:17:1-35:12
@@ -142,157 +110,119 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\sulai\.gradle\cach
 MERGED from [androidx.tracing:tracing:1.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\a069f933e51b95c98bcc0703c4f1d6bf\transformed\jetified-tracing-1.2.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\e6b8444f092202c272143f67758e8404\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\sulai\.gradle\caches\8.9\transforms\60e00c3c6815110f8213eeeffb4b70b1\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-accounts:0.7.0] C:\Users\sulai\.gradle\caches\8.9\transforms\578971d9d0a2e6eca47d719086ea76a2\transformed\jetified-mapbox-android-accounts-0.7.0\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.firebase:firebase-components:18.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\abe88e695d6a8151058ddcf723ee0db1\transformed\jetified-firebase-components-18.0.0\AndroidManifest.xml:15:1-20:12
 MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\8fee9f8e2e9a9c3de0b0d70873c7b3ae\transformed\core-runtime-2.2.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\8ce033a71208732309c4f6caf06aa759\transformed\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\b9b82e06076709270651bdc69b2cddae\transformed\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.window.extensions.core:core:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\e27303cf3c078eced34c32fd5270fc5f\transformed\jetified-core-1.0.0\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\e8ed8a1e96ad73c191d50979507e9a04\transformed\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\e189abe7ad37149f65f15c5a73da4df4\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.print:print:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\7ea2367c14d62fae3b51d486ebd440d1\transformed\print-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\sulai\.gradle\caches\8.9\transforms\1f1c4006f9a0f6a76a8a6761df10789c\transformed\jetified-annotation-experimental-1.4.0\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.maps.android:android-maps-utils:3.6.0] C:\Users\sulai\.gradle\caches\8.9\transforms\9d4841b04a342970dd512ab8527b92be\transformed\jetified-android-maps-utils-3.6.0\AndroidManifest.xml:2:1-13:12
 MERGED from [com.getkeepsafe.relinker:relinker:1.4.5] C:\Users\sulai\.gradle\caches\8.9\transforms\b564ee697ebe2c4213e08f7451c6a71e\transformed\jetified-relinker-1.4.5\AndroidManifest.xml:2:1-7:12
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-core:5.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\a5f2734b081b6244cc667c7c71649ba2\transformed\jetified-mapbox-android-core-5.0.0\AndroidManifest.xml:2:1-13:12
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk-gl-core:5.2.2] C:\Users\sulai\.gradle\caches\8.9\transforms\111825167b5d288acbaddea5f4bd83d1\transformed\jetified-mapbox-android-sdk-gl-core-5.2.2\AndroidManifest.xml:2:1-21:12
-MERGED from [com.jakewharton.timber:timber:4.7.1] C:\Users\sulai\.gradle\caches\8.9\transforms\fb67c5f11d09091397c2112219b90194\transformed\jetified-timber-4.7.1\AndroidManifest.xml:2:1-9:12
-MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\sulai\.gradle\caches\8.9\transforms\c1da1bf3655e3d53a96f45cd8b1aeb02\transformed\constraintlayout-1.1.3\AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\81cdc4cf2e812250d61d3ddd2db099ed\transformed\jetified-protolite-well-known-types-18.0.0\AndroidManifest.xml:2:1-11:12
 MERGED from [io.grpc:grpc-android:1.62.2] C:\Users\sulai\.gradle\caches\8.9\transforms\fb407052d09babfc09dec898053015ef\transformed\jetified-grpc-android-1.62.2\AndroidManifest.xml:2:1-9:12
 	package
-		ADDED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:2:3-33
-		INJECTED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\debug\AndroidManifest.xml
+		ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:2:3-33
+		INJECTED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\debug\AndroidManifest.xml
 	android:versionName
-		INJECTED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\debug\AndroidManifest.xml
+		INJECTED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\debug\AndroidManifest.xml
 	android:versionCode
-		INJECTED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\debug\AndroidManifest.xml
+		INJECTED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\debug\AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:1:11-69
+		ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:1:11-69
 uses-permission#android.permission.INTERNET
-ADDED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:5:5-66
-MERGED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:5:5-66
-MERGED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:5:5-66
-MERGED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:12:5-66
-MERGED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:12:5-66
+ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:5:5-66
+MERGED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:5:5-66
+MERGED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:5:5-66
+MERGED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:12:5-66
+MERGED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:12:5-66
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\579b74b0c35c86a810935e5b44a03f8b\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:24:5-67
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\579b74b0c35c86a810935e5b44a03f8b\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:24:5-67
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk:9.6.2] C:\Users\sulai\.gradle\caches\8.9\transforms\0b2cd658115a52d9a87f08c8d5efa8a1\transformed\jetified-mapbox-android-sdk-9.6.2\AndroidManifest.xml:16:5-67
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk:9.6.2] C:\Users\sulai\.gradle\caches\8.9\transforms\0b2cd658115a52d9a87f08c8d5efa8a1\transformed\jetified-mapbox-android-sdk-9.6.2\AndroidManifest.xml:16:5-67
 MERGED from [com.google.firebase:firebase-firestore:25.1.2] C:\Users\sulai\.gradle\caches\8.9\transforms\12576f9b530b1aaae327ef30bfcb66fe\transformed\jetified-firebase-firestore-25.1.2\AndroidManifest.xml:11:5-67
 MERGED from [com.google.firebase:firebase-firestore:25.1.2] C:\Users\sulai\.gradle\caches\8.9\transforms\12576f9b530b1aaae327ef30bfcb66fe\transformed\jetified-firebase-firestore-25.1.2\AndroidManifest.xml:11:5-67
 MERGED from [com.google.firebase:firebase-storage:21.0.1] C:\Users\sulai\.gradle\caches\8.9\transforms\87e82ddb773091c5fab363eff7c7c738\transformed\jetified-firebase-storage-21.0.1\AndroidManifest.xml:24:5-67
 MERGED from [com.google.firebase:firebase-storage:21.0.1] C:\Users\sulai\.gradle\caches\8.9\transforms\87e82ddb773091c5fab363eff7c7c738\transformed\jetified-firebase-storage-21.0.1\AndroidManifest.xml:24:5-67
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0] C:\Users\sulai\.gradle\caches\8.9\transforms\ce47cfc1ba6b59a95ca7d3d8714420e8\transformed\jetified-mapbox-android-telemetry-okhttp3-8.1.0\AndroidManifest.xml:15:5-67
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0] C:\Users\sulai\.gradle\caches\8.9\transforms\ce47cfc1ba6b59a95ca7d3d8714420e8\transformed\jetified-mapbox-android-telemetry-okhttp3-8.1.0\AndroidManifest.xml:15:5-67
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk-gl-core:5.2.2] C:\Users\sulai\.gradle\caches\8.9\transforms\111825167b5d288acbaddea5f4bd83d1\transformed\jetified-mapbox-android-sdk-gl-core-5.2.2\AndroidManifest.xml:16:5-67
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk-gl-core:5.2.2] C:\Users\sulai\.gradle\caches\8.9\transforms\111825167b5d288acbaddea5f4bd83d1\transformed\jetified-mapbox-android-sdk-gl-core-5.2.2\AndroidManifest.xml:16:5-67
 	android:name
-		ADDED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:5:22-64
+		ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:5:22-64
 uses-permission#android.permission.FOREGROUND_SERVICE
-ADDED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:6:5-77
+ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:6:5-77
 	android:name
-		ADDED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:6:22-74
+		ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:6:22-74
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:7:5-78
-MERGED from [:location] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:5-79
-MERGED from [:location] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:5-79
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk:9.6.2] C:\Users\sulai\.gradle\caches\8.9\transforms\0b2cd658115a52d9a87f08c8d5efa8a1\transformed\jetified-mapbox-android-sdk-9.6.2\AndroidManifest.xml:19:5-79
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk:9.6.2] C:\Users\sulai\.gradle\caches\8.9\transforms\0b2cd658115a52d9a87f08c8d5efa8a1\transformed\jetified-mapbox-android-sdk-9.6.2\AndroidManifest.xml:19:5-79
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk-gl-core:5.2.2] C:\Users\sulai\.gradle\caches\8.9\transforms\111825167b5d288acbaddea5f4bd83d1\transformed\jetified-mapbox-android-sdk-gl-core-5.2.2\AndroidManifest.xml:19:5-79
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk-gl-core:5.2.2] C:\Users\sulai\.gradle\caches\8.9\transforms\111825167b5d288acbaddea5f4bd83d1\transformed\jetified-mapbox-android-sdk-gl-core-5.2.2\AndroidManifest.xml:19:5-79
+ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:7:5-78
+MERGED from [:location] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:5-79
+MERGED from [:location] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:5-79
 	android:name
-		ADDED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:7:22-76
+		ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:7:22-76
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:8:5-80
-MERGED from [:location] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-81
-MERGED from [:location] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-81
+ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:8:5-80
+MERGED from [:location] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-81
+MERGED from [:location] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-81
 	android:name
-		ADDED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:8:22-78
+		ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:8:22-78
 uses-permission#android.permission.ACCESS_BACKGROUND_LOCATION
-ADDED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:9:5-84
+ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:9:5-84
 	android:name
-		ADDED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:9:22-82
+		ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:9:22-82
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:10:5-79
-MERGED from [:connectivity_plus] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\connectivity_plus\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-79
-MERGED from [:connectivity_plus] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\connectivity_plus\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-79
+ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:10:5-79
+MERGED from [:connectivity_plus] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\connectivity_plus\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-79
+MERGED from [:connectivity_plus] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\connectivity_plus\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-79
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\579b74b0c35c86a810935e5b44a03f8b\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:23:5-79
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\579b74b0c35c86a810935e5b44a03f8b\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:23:5-79
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk:9.6.2] C:\Users\sulai\.gradle\caches\8.9\transforms\0b2cd658115a52d9a87f08c8d5efa8a1\transformed\jetified-mapbox-android-sdk-9.6.2\AndroidManifest.xml:17:5-79
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk:9.6.2] C:\Users\sulai\.gradle\caches\8.9\transforms\0b2cd658115a52d9a87f08c8d5efa8a1\transformed\jetified-mapbox-android-sdk-9.6.2\AndroidManifest.xml:17:5-79
 MERGED from [com.google.firebase:firebase-firestore:25.1.2] C:\Users\sulai\.gradle\caches\8.9\transforms\12576f9b530b1aaae327ef30bfcb66fe\transformed\jetified-firebase-firestore-25.1.2\AndroidManifest.xml:10:5-79
 MERGED from [com.google.firebase:firebase-firestore:25.1.2] C:\Users\sulai\.gradle\caches\8.9\transforms\12576f9b530b1aaae327ef30bfcb66fe\transformed\jetified-firebase-firestore-25.1.2\AndroidManifest.xml:10:5-79
 MERGED from [com.google.firebase:firebase-storage:21.0.1] C:\Users\sulai\.gradle\caches\8.9\transforms\87e82ddb773091c5fab363eff7c7c738\transformed\jetified-firebase-storage-21.0.1\AndroidManifest.xml:23:5-79
 MERGED from [com.google.firebase:firebase-storage:21.0.1] C:\Users\sulai\.gradle\caches\8.9\transforms\87e82ddb773091c5fab363eff7c7c738\transformed\jetified-firebase-storage-21.0.1\AndroidManifest.xml:23:5-79
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0] C:\Users\sulai\.gradle\caches\8.9\transforms\ce47cfc1ba6b59a95ca7d3d8714420e8\transformed\jetified-mapbox-android-telemetry-okhttp3-8.1.0\AndroidManifest.xml:13:5-79
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0] C:\Users\sulai\.gradle\caches\8.9\transforms\ce47cfc1ba6b59a95ca7d3d8714420e8\transformed\jetified-mapbox-android-telemetry-okhttp3-8.1.0\AndroidManifest.xml:13:5-79
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-core:5.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\a5f2734b081b6244cc667c7c71649ba2\transformed\jetified-mapbox-android-core-5.0.0\AndroidManifest.xml:11:5-79
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-core:5.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\a5f2734b081b6244cc667c7c71649ba2\transformed\jetified-mapbox-android-core-5.0.0\AndroidManifest.xml:11:5-79
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk-gl-core:5.2.2] C:\Users\sulai\.gradle\caches\8.9\transforms\111825167b5d288acbaddea5f4bd83d1\transformed\jetified-mapbox-android-sdk-gl-core-5.2.2\AndroidManifest.xml:17:5-79
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk-gl-core:5.2.2] C:\Users\sulai\.gradle\caches\8.9\transforms\111825167b5d288acbaddea5f4bd83d1\transformed\jetified-mapbox-android-sdk-gl-core-5.2.2\AndroidManifest.xml:17:5-79
 MERGED from [io.grpc:grpc-android:1.62.2] C:\Users\sulai\.gradle\caches\8.9\transforms\fb407052d09babfc09dec898053015ef\transformed\jetified-grpc-android-1.62.2\AndroidManifest.xml:7:5-79
 MERGED from [io.grpc:grpc-android:1.62.2] C:\Users\sulai\.gradle\caches\8.9\transforms\fb407052d09babfc09dec898053015ef\transformed\jetified-grpc-android-1.62.2\AndroidManifest.xml:7:5-79
 	android:name
-		ADDED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:10:22-76
+		ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:10:22-76
 uses-feature#android.hardware.location.gps
-ADDED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:11:5-89
+ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:11:5-89
 	android:required
-		ADDED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:11:64-87
+		ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:11:64-87
 	android:name
-		ADDED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:11:19-63
+		ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:11:19-63
 queries
-ADDED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:63:5-68:15
+ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:63:5-68:15
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\579b74b0c35c86a810935e5b44a03f8b\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:30:5-34:15
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\579b74b0c35c86a810935e5b44a03f8b\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:30:5-34:15
 intent#action:name:android.intent.action.PROCESS_TEXT+data:mimeType:text/plain
-ADDED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:64:9-67:18
+ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:64:9-67:18
 action#android.intent.action.PROCESS_TEXT
-ADDED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:65:13-73
+ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:65:13-73
 	android:name
-		ADDED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:65:21-70
+		ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:65:21-70
 data
-ADDED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:66:13-51
+ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:66:13-51
 	android:mimeType
-		ADDED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\main\AndroidManifest.xml:66:19-48
+		ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:66:19-48
 uses-sdk
-INJECTED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\debug\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\debug\AndroidManifest.xml
-INJECTED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\debug\AndroidManifest.xml
-MERGED from [:location] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:location] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:geolocator_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:geolocator_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+INJECTED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\debug\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\debug\AndroidManifest.xml
+INJECTED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\debug\AndroidManifest.xml
+MERGED from [:location] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:location] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:geolocator_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:geolocator_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-location:21.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\cd4ecbd59244f1992bd259654b6cba05\transformed\jetified-play-services-location-21.2.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-location:21.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\cd4ecbd59244f1992bd259654b6cba05\transformed\jetified-play-services-location-21.2.0\AndroidManifest.xml:5:5-44
-MERGED from [:cloud_firestore] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:cloud_firestore] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:connectivity_plus] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\connectivity_plus\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:connectivity_plus] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\connectivity_plus\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:firebase_storage] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:firebase_storage] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:firebase_core] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:firebase_core] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:google_maps_flutter_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\google_maps_flutter_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:google_maps_flutter_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\google_maps_flutter_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:image_picker_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:6:5-44
-MERGED from [:image_picker_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:6:5-44
-MERGED from [:flutter_plugin_android_lifecycle] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:flutter_plugin_android_lifecycle] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:mapbox_gl] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\mapbox_gl\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:mapbox_gl] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\mapbox_gl\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:path_provider_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\path_provider_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:path_provider_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\path_provider_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:cloud_firestore] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:cloud_firestore] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:connectivity_plus] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\connectivity_plus\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:connectivity_plus] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\connectivity_plus\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_storage] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_storage] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_core] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_core] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:google_maps_flutter_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\google_maps_flutter_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:google_maps_flutter_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\google_maps_flutter_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:6:5-44
+MERGED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:6:5-44
+MERGED from [:flutter_plugin_android_lifecycle] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_plugin_android_lifecycle] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:path_provider_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\path_provider_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:path_provider_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\path_provider_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\579b74b0c35c86a810935e5b44a03f8b\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\579b74b0c35c86a810935e5b44a03f8b\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:20:5-44
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-plugin-annotation-v9:0.9.0] C:\Users\sulai\.gradle\caches\8.9\transforms\9526331cbb3f764cd3a538ed99c81d78\transformed\jetified-mapbox-android-plugin-annotation-v9-0.9.0\AndroidManifest.xml:5:5-7:41
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-plugin-annotation-v9:0.9.0] C:\Users\sulai\.gradle\caches\8.9\transforms\9526331cbb3f764cd3a538ed99c81d78\transformed\jetified-mapbox-android-plugin-annotation-v9-0.9.0\AndroidManifest.xml:5:5-7:41
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-plugin-localization-v9:0.12.0] C:\Users\sulai\.gradle\caches\8.9\transforms\87aff048f97bae0bb62571c30fc1304f\transformed\jetified-mapbox-android-plugin-localization-v9-0.12.0\AndroidManifest.xml:5:5-7:41
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-plugin-localization-v9:0.12.0] C:\Users\sulai\.gradle\caches\8.9\transforms\87aff048f97bae0bb62571c30fc1304f\transformed\jetified-mapbox-android-plugin-localization-v9-0.12.0\AndroidManifest.xml:5:5-7:41
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-plugin-offline-v9:0.7.0] C:\Users\sulai\.gradle\caches\8.9\transforms\c02a422e178eb65cbf57b0e082769161\transformed\jetified-mapbox-android-plugin-offline-v9-0.7.0\AndroidManifest.xml:5:5-7:41
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-plugin-offline-v9:0.7.0] C:\Users\sulai\.gradle\caches\8.9\transforms\c02a422e178eb65cbf57b0e082769161\transformed\jetified-mapbox-android-plugin-offline-v9-0.7.0\AndroidManifest.xml:5:5-7:41
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk:9.6.2] C:\Users\sulai\.gradle\caches\8.9\transforms\0b2cd658115a52d9a87f08c8d5efa8a1\transformed\jetified-mapbox-android-sdk-9.6.2\AndroidManifest.xml:5:5-7:41
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk:9.6.2] C:\Users\sulai\.gradle\caches\8.9\transforms\0b2cd658115a52d9a87f08c8d5efa8a1\transformed\jetified-mapbox-android-sdk-9.6.2\AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.firebase:firebase-firestore:25.1.2] C:\Users\sulai\.gradle\caches\8.9\transforms\12576f9b530b1aaae327ef30bfcb66fe\transformed\jetified-firebase-firestore-25.1.2\AndroidManifest.xml:6:5-44
 MERGED from [com.google.firebase:firebase-firestore:25.1.2] C:\Users\sulai\.gradle\caches\8.9\transforms\12576f9b530b1aaae327ef30bfcb66fe\transformed\jetified-firebase-firestore-25.1.2\AndroidManifest.xml:6:5-44
 MERGED from [com.google.firebase:firebase-storage:21.0.1] C:\Users\sulai\.gradle\caches\8.9\transforms\87e82ddb773091c5fab363eff7c7c738\transformed\jetified-firebase-storage-21.0.1\AndroidManifest.xml:19:5-44
@@ -315,22 +245,6 @@ MERGED from [androidx.window:window:1.2.0] C:\Users\sulai\.gradle\caches\8.9\tra
 MERGED from [androidx.window:window:1.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\13f3833de7cf4f53b4e3804da14f5d51\transformed\jetified-window-1.2.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.window:window-java:1.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\72811a13ef9c9c4df0695b020a8de850\transformed\jetified-window-java-1.2.0\AndroidManifest.xml:19:5-44
 MERGED from [androidx.window:window-java:1.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\72811a13ef9c9c4df0695b020a8de850\transformed\jetified-window-java-1.2.0\AndroidManifest.xml:19:5-44
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0] C:\Users\sulai\.gradle\caches\8.9\transforms\ce47cfc1ba6b59a95ca7d3d8714420e8\transformed\jetified-mapbox-android-telemetry-okhttp3-8.1.0\AndroidManifest.xml:7:5-9:41
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0] C:\Users\sulai\.gradle\caches\8.9\transforms\ce47cfc1ba6b59a95ca7d3d8714420e8\transformed\jetified-mapbox-android-telemetry-okhttp3-8.1.0\AndroidManifest.xml:7:5-9:41
-MERGED from [com.google.android.material:material:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\cf753b73fbf13b66f3a3af0f1939c2dd\transformed\material-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.material:material:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\cf753b73fbf13b66f3a3af0f1939c2dd\transformed\material-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.appcompat:appcompat:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\319a416be362c3f436facd1ce42ad1e4\transformed\appcompat-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.appcompat:appcompat:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\319a416be362c3f436facd1ce42ad1e4\transformed\appcompat-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\8b962dadc63136a609c47bb3c42e124e\transformed\legacy-support-v4-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\8b962dadc63136a609c47bb3c42e124e\transformed\legacy-support-v4-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\1bd491d23c3791f6952a36ff187813e8\transformed\vectordrawable-animated-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\1bd491d23c3791f6952a36ff187813e8\transformed\vectordrawable-animated-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.recyclerview:recyclerview:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\52a3d31ece1147ef6f67dfbb79e7e69a\transformed\recyclerview-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.recyclerview:recyclerview:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\52a3d31ece1147ef6f67dfbb79e7e69a\transformed\recyclerview-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\e0c6213ab55f10bb29740595235e2102\transformed\legacy-support-core-ui-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\e0c6213ab55f10bb29740595235e2102\transformed\legacy-support-core-ui-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\d6a91a2e6a0db2436d28b0ce1113177c\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\d6a91a2e6a0db2436d28b0ce1113177c\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\922d7b2bd955198d58e44a195f86508b\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\922d7b2bd955198d58e44a195f86508b\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.7.0] C:\Users\sulai\.gradle\caches\8.9\transforms\1b50851537b89bcdf00fba63e8062008\transformed\jetified-lifecycle-livedata-core-ktx-2.7.0\AndroidManifest.xml:5:5-44
@@ -353,28 +267,10 @@ MERGED from [androidx.activity:activity:1.9.3] C:\Users\sulai\.gradle\caches\8.9
 MERGED from [androidx.activity:activity:1.9.3] C:\Users\sulai\.gradle\caches\8.9\transforms\50339a8ebdc463990be9d079e90496e0\transformed\jetified-activity-1.9.3\AndroidManifest.xml:20:5-44
 MERGED from [androidx.core:core-ktx:1.13.1] C:\Users\sulai\.gradle\caches\8.9\transforms\23715f59be1357ce953950175bde6ee4\transformed\jetified-core-ktx-1.13.1\AndroidManifest.xml:5:5-44
 MERGED from [androidx.core:core-ktx:1.13.1] C:\Users\sulai\.gradle\caches\8.9\transforms\23715f59be1357ce953950175bde6ee4\transformed\jetified-core-ktx-1.13.1\AndroidManifest.xml:5:5-44
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-gestures:0.7.0] C:\Users\sulai\.gradle\caches\8.9\transforms\29cfeb03ae1fda5c6ed4f713e0caaec6\transformed\jetified-mapbox-android-gestures-0.7.0\AndroidManifest.xml:7:5-9:41
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-gestures:0.7.0] C:\Users\sulai\.gradle\caches\8.9\transforms\29cfeb03ae1fda5c6ed4f713e0caaec6\transformed\jetified-mapbox-android-gestures-0.7.0\AndroidManifest.xml:7:5-9:41
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\139027ea9b8d342dbf1656b0fc990345\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\139027ea9b8d342dbf1656b0fc990345\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.vectordrawable:vectordrawable:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\769add15b7d2c4be819b80de6a973a10\transformed\vectordrawable-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.vectordrawable:vectordrawable:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\769add15b7d2c4be819b80de6a973a10\transformed\vectordrawable-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media:media:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\0ffa14557ae3f19bbaf22379733939fb\transformed\media-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media:media:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\0ffa14557ae3f19bbaf22379733939fb\transformed\media-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.transition:transition:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\bed1a68c1d534c49f51c2476e5332920\transformed\transition-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.transition:transition:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\bed1a68c1d534c49f51c2476e5332920\transformed\transition-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\570c65607a393a258d6feb1e09c4e8c6\transformed\coordinatorlayout-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\570c65607a393a258d6feb1e09c4e8c6\transformed\coordinatorlayout-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\b55dc579809694579a7e8a5caddbf6fe\transformed\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\b55dc579809694579a7e8a5caddbf6fe\transformed\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\dc7c5fe349b3ebae02e841eefbd94849\transformed\slidingpanelayout-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\dc7c5fe349b3ebae02e841eefbd94849\transformed\slidingpanelayout-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.customview:customview:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\755bc3e1b07bc7bd1aae09322303f266\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.customview:customview:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\755bc3e1b07bc7bd1aae09322303f266\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\31e000e0de8bbd5d5c91bd3e50d6e1cf\transformed\swiperefreshlayout-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\31e000e0de8bbd5d5c91bd3e50d6e1cf\transformed\swiperefreshlayout-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\38fd9528ce3d4d9c9a665a282d4876f1\transformed\asynclayoutinflater-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\38fd9528ce3d4d9c9a665a282d4876f1\transformed\asynclayoutinflater-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.core:core:1.13.1] C:\Users\sulai\.gradle\caches\8.9\transforms\6602b6343cf9be29207be3b5c8effb9c\transformed\core-1.13.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.core:core:1.13.1] C:\Users\sulai\.gradle\caches\8.9\transforms\6602b6343cf9be29207be3b5c8effb9c\transformed\core-1.13.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.7.0] C:\Users\sulai\.gradle\caches\8.9\transforms\783991e7aad515893e505cf83295d582\transformed\lifecycle-runtime-2.7.0\AndroidManifest.xml:5:5-44
@@ -395,72 +291,52 @@ MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\sulai\.gradle\ca
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\e6b8444f092202c272143f67758e8404\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\sulai\.gradle\caches\8.9\transforms\60e00c3c6815110f8213eeeffb4b70b1\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\sulai\.gradle\caches\8.9\transforms\60e00c3c6815110f8213eeeffb4b70b1\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-accounts:0.7.0] C:\Users\sulai\.gradle\caches\8.9\transforms\578971d9d0a2e6eca47d719086ea76a2\transformed\jetified-mapbox-android-accounts-0.7.0\AndroidManifest.xml:5:5-7:41
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-accounts:0.7.0] C:\Users\sulai\.gradle\caches\8.9\transforms\578971d9d0a2e6eca47d719086ea76a2\transformed\jetified-mapbox-android-accounts-0.7.0\AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.firebase:firebase-components:18.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\abe88e695d6a8151058ddcf723ee0db1\transformed\jetified-firebase-components-18.0.0\AndroidManifest.xml:18:5-44
 MERGED from [com.google.firebase:firebase-components:18.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\abe88e695d6a8151058ddcf723ee0db1\transformed\jetified-firebase-components-18.0.0\AndroidManifest.xml:18:5-44
 MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\8fee9f8e2e9a9c3de0b0d70873c7b3ae\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\8fee9f8e2e9a9c3de0b0d70873c7b3ae\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\8ce033a71208732309c4f6caf06aa759\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\8ce033a71208732309c4f6caf06aa759\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\b9b82e06076709270651bdc69b2cddae\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\b9b82e06076709270651bdc69b2cddae\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.window.extensions.core:core:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\e27303cf3c078eced34c32fd5270fc5f\transformed\jetified-core-1.0.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.window.extensions.core:core:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\e27303cf3c078eced34c32fd5270fc5f\transformed\jetified-core-1.0.0\AndroidManifest.xml:5:5-44
-MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\e8ed8a1e96ad73c191d50979507e9a04\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\e8ed8a1e96ad73c191d50979507e9a04\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\e189abe7ad37149f65f15c5a73da4df4\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\e189abe7ad37149f65f15c5a73da4df4\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.print:print:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\7ea2367c14d62fae3b51d486ebd440d1\transformed\print-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.print:print:1.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\7ea2367c14d62fae3b51d486ebd440d1\transformed\print-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\sulai\.gradle\caches\8.9\transforms\1f1c4006f9a0f6a76a8a6761df10789c\transformed\jetified-annotation-experimental-1.4.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\sulai\.gradle\caches\8.9\transforms\1f1c4006f9a0f6a76a8a6761df10789c\transformed\jetified-annotation-experimental-1.4.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.maps.android:android-maps-utils:3.6.0] C:\Users\sulai\.gradle\caches\8.9\transforms\9d4841b04a342970dd512ab8527b92be\transformed\jetified-android-maps-utils-3.6.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.maps.android:android-maps-utils:3.6.0] C:\Users\sulai\.gradle\caches\8.9\transforms\9d4841b04a342970dd512ab8527b92be\transformed\jetified-android-maps-utils-3.6.0\AndroidManifest.xml:5:5-44
 MERGED from [com.getkeepsafe.relinker:relinker:1.4.5] C:\Users\sulai\.gradle\caches\8.9\transforms\b564ee697ebe2c4213e08f7451c6a71e\transformed\jetified-relinker-1.4.5\AndroidManifest.xml:5:5-43
 MERGED from [com.getkeepsafe.relinker:relinker:1.4.5] C:\Users\sulai\.gradle\caches\8.9\transforms\b564ee697ebe2c4213e08f7451c6a71e\transformed\jetified-relinker-1.4.5\AndroidManifest.xml:5:5-43
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-core:5.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\a5f2734b081b6244cc667c7c71649ba2\transformed\jetified-mapbox-android-core-5.0.0\AndroidManifest.xml:7:5-9:41
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-core:5.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\a5f2734b081b6244cc667c7c71649ba2\transformed\jetified-mapbox-android-core-5.0.0\AndroidManifest.xml:7:5-9:41
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk-gl-core:5.2.2] C:\Users\sulai\.gradle\caches\8.9\transforms\111825167b5d288acbaddea5f4bd83d1\transformed\jetified-mapbox-android-sdk-gl-core-5.2.2\AndroidManifest.xml:5:5-7:41
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk-gl-core:5.2.2] C:\Users\sulai\.gradle\caches\8.9\transforms\111825167b5d288acbaddea5f4bd83d1\transformed\jetified-mapbox-android-sdk-gl-core-5.2.2\AndroidManifest.xml:5:5-7:41
-MERGED from [com.jakewharton.timber:timber:4.7.1] C:\Users\sulai\.gradle\caches\8.9\transforms\fb67c5f11d09091397c2112219b90194\transformed\jetified-timber-4.7.1\AndroidManifest.xml:5:5-43
-MERGED from [com.jakewharton.timber:timber:4.7.1] C:\Users\sulai\.gradle\caches\8.9\transforms\fb67c5f11d09091397c2112219b90194\transformed\jetified-timber-4.7.1\AndroidManifest.xml:5:5-43
-MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\sulai\.gradle\caches\8.9\transforms\c1da1bf3655e3d53a96f45cd8b1aeb02\transformed\constraintlayout-1.1.3\AndroidManifest.xml:5:5-7:41
-MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\sulai\.gradle\caches\8.9\transforms\c1da1bf3655e3d53a96f45cd8b1aeb02\transformed\constraintlayout-1.1.3\AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\81cdc4cf2e812250d61d3ddd2db099ed\transformed\jetified-protolite-well-known-types-18.0.0\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\81cdc4cf2e812250d61d3ddd2db099ed\transformed\jetified-protolite-well-known-types-18.0.0\AndroidManifest.xml:7:5-9:41
 MERGED from [io.grpc:grpc-android:1.62.2] C:\Users\sulai\.gradle\caches\8.9\transforms\fb407052d09babfc09dec898053015ef\transformed\jetified-grpc-android-1.62.2\AndroidManifest.xml:5:5-44
 MERGED from [io.grpc:grpc-android:1.62.2] C:\Users\sulai\.gradle\caches\8.9\transforms\fb407052d09babfc09dec898053015ef\transformed\jetified-grpc-android-1.62.2\AndroidManifest.xml:5:5-44
 	android:targetSdkVersion
-		INJECTED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\debug\AndroidManifest.xml
+		INJECTED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\debug\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from C:\Users\sulai\Desktop\Website\ROAMEO\frontend\android\app\src\debug\AndroidManifest.xml
+		INJECTED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\debug\AndroidManifest.xml
 service#com.lyokone.location.FlutterLocationService
-ADDED from [:location] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:9-15:56
+ADDED from [:location] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:9-15:56
 	android:enabled
-		ADDED from [:location] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:13:13-35
+		ADDED from [:location] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:13:13-35
 	android:exported
-		ADDED from [:location] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:14:13-37
+		ADDED from [:location] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:14:13-37
 	android:foregroundServiceType
-		ADDED from [:location] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:15:13-53
+		ADDED from [:location] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:15:13-53
 	android:name
-		ADDED from [:location] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:12:13-71
+		ADDED from [:location] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:12:13-71
 service#com.baseflow.geolocator.GeolocatorLocationService
-ADDED from [:geolocator_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:9-12:56
+ADDED from [:geolocator_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:9-12:56
 	android:enabled
-		ADDED from [:geolocator_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:13-35
+		ADDED from [:geolocator_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:13-35
 	android:exported
-		ADDED from [:geolocator_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:13-37
+		ADDED from [:geolocator_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:13-37
 	android:foregroundServiceType
-		ADDED from [:geolocator_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:12:13-53
+		ADDED from [:geolocator_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:12:13-53
 	android:name
-		ADDED from [:geolocator_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:9:13-77
+		ADDED from [:geolocator_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:9:13-77
 service#com.google.firebase.components.ComponentDiscoveryService
-ADDED from [:cloud_firestore] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:9-12:19
-MERGED from [:firebase_storage] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:9-12:19
-MERGED from [:firebase_storage] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:9-12:19
-MERGED from [:firebase_core] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:9-12:19
-MERGED from [:firebase_core] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:9-12:19
+ADDED from [:cloud_firestore] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_storage] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_storage] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_core] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_core] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:9-12:19
 MERGED from [com.google.firebase:firebase-firestore:25.1.2] C:\Users\sulai\.gradle\caches\8.9\transforms\12576f9b530b1aaae327ef30bfcb66fe\transformed\jetified-firebase-firestore-25.1.2\AndroidManifest.xml:14:9-23:19
 MERGED from [com.google.firebase:firebase-firestore:25.1.2] C:\Users\sulai\.gradle\caches\8.9\transforms\12576f9b530b1aaae327ef30bfcb66fe\transformed\jetified-firebase-firestore-25.1.2\AndroidManifest.xml:14:9-23:19
 MERGED from [com.google.firebase:firebase-storage:21.0.1] C:\Users\sulai\.gradle\caches\8.9\transforms\87e82ddb773091c5fab363eff7c7c738\transformed\jetified-firebase-storage-21.0.1\AndroidManifest.xml:27:9-36:19
@@ -478,69 +354,65 @@ MERGED from [com.google.firebase:firebase-common:21.0.0] C:\Users\sulai\.gradle\
 	android:directBootAware
 		ADDED from [com.google.firebase:firebase-common:21.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\92ba69902e0c608552e1de52e9f7face\transformed\jetified-firebase-common-21.0.0\AndroidManifest.xml:32:13-43
 	android:name
-		ADDED from [:cloud_firestore] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:18-89
+		ADDED from [:cloud_firestore] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:18-89
 meta-data#com.google.firebase.components:io.flutter.plugins.firebase.firestore.FlutterFirebaseFirestoreRegistrar
-ADDED from [:cloud_firestore] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:9:13-11:85
+ADDED from [:cloud_firestore] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:9:13-11:85
 	android:value
-		ADDED from [:cloud_firestore] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:17-82
+		ADDED from [:cloud_firestore] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:17-82
 	android:name
-		ADDED from [:cloud_firestore] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:17-134
+		ADDED from [:cloud_firestore] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:17-134
 meta-data#com.google.firebase.components:io.flutter.plugins.firebase.storage.FlutterFirebaseAppRegistrar
-ADDED from [:firebase_storage] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:9:13-11:85
+ADDED from [:firebase_storage] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:9:13-11:85
 	android:value
-		ADDED from [:firebase_storage] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:17-82
+		ADDED from [:firebase_storage] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:17-82
 	android:name
-		ADDED from [:firebase_storage] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:17-126
+		ADDED from [:firebase_storage] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:17-126
 meta-data#com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar
-ADDED from [:firebase_core] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:9:13-11:85
+ADDED from [:firebase_core] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:9:13-11:85
 	android:value
-		ADDED from [:firebase_core] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:17-82
+		ADDED from [:firebase_core] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:17-82
 	android:name
-		ADDED from [:firebase_core] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:17-124
+		ADDED from [:firebase_core] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:17-124
 provider#io.flutter.plugins.imagepicker.ImagePickerFileProvider
-ADDED from [:image_picker_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:9:9-17:20
+ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:9:9-17:20
 	android:grantUriPermissions
-		ADDED from [:image_picker_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:13:13-47
+		ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:13:13-47
 	android:authorities
-		ADDED from [:image_picker_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:13-74
+		ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:13-74
 	android:exported
-		ADDED from [:image_picker_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:12:13-37
+		ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:12:13-37
 	android:name
-		ADDED from [:image_picker_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:13-82
+		ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:13-82
 meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from [:image_picker_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:14:13-16:75
+ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:14:13-16:75
 	android:resource
-		ADDED from [:image_picker_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:16:17-72
+		ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:16:17-72
 	android:name
-		ADDED from [:image_picker_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:15:17-67
+		ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:15:17-67
 service#com.google.android.gms.metadata.ModuleDependencies
-ADDED from [:image_picker_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:19:9-31:19
+ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:19:9-31:19
 	android:enabled
-		ADDED from [:image_picker_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:21:13-36
+		ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:21:13-36
 	android:exported
-		ADDED from [:image_picker_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:22:13-37
+		ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:22:13-37
 	tools:ignore
-		ADDED from [:image_picker_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:23:13-40
+		ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:23:13-40
 	android:name
-		ADDED from [:image_picker_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:20:13-78
+		ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:20:13-78
 intent-filter#action:name:com.google.android.gms.metadata.MODULE_DEPENDENCIES
-ADDED from [:image_picker_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:24:13-26:29
+ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:24:13-26:29
 action#com.google.android.gms.metadata.MODULE_DEPENDENCIES
-ADDED from [:image_picker_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:25:17-94
+ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:25:17-94
 	android:name
-		ADDED from [:image_picker_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:25:25-91
+		ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:25:25-91
 meta-data#photopicker_activity:0:required
-ADDED from [:image_picker_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:28:13-30:36
+ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:28:13-30:36
 	android:value
-		ADDED from [:image_picker_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:30:17-33
+		ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:30:17-33
 	android:name
-		ADDED from [:image_picker_android] C:\Users\sulai\Desktop\Website\ROAMEO\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:29:17-63
+		ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:29:17-63
 uses-feature#0x00020000
 ADDED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\579b74b0c35c86a810935e5b44a03f8b\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:26:5-28:35
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk:9.6.2] C:\Users\sulai\.gradle\caches\8.9\transforms\0b2cd658115a52d9a87f08c8d5efa8a1\transformed\jetified-mapbox-android-sdk-9.6.2\AndroidManifest.xml:9:5-11:35
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk:9.6.2] C:\Users\sulai\.gradle\caches\8.9\transforms\0b2cd658115a52d9a87f08c8d5efa8a1\transformed\jetified-mapbox-android-sdk-9.6.2\AndroidManifest.xml:9:5-11:35
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk-gl-core:5.2.2] C:\Users\sulai\.gradle\caches\8.9\transforms\111825167b5d288acbaddea5f4bd83d1\transformed\jetified-mapbox-android-sdk-gl-core-5.2.2\AndroidManifest.xml:9:5-11:35
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk-gl-core:5.2.2] C:\Users\sulai\.gradle\caches\8.9\transforms\111825167b5d288acbaddea5f4bd83d1\transformed\jetified-mapbox-android-sdk-gl-core-5.2.2\AndroidManifest.xml:9:5-11:35
 	android:glEsVersion
 		ADDED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\579b74b0c35c86a810935e5b44a03f8b\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:27:9-41
 	android:required
@@ -555,34 +427,6 @@ ADDED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\sulai\.gr
 		ADDED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\579b74b0c35c86a810935e5b44a03f8b\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:41:13-37
 	android:name
 		ADDED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\579b74b0c35c86a810935e5b44a03f8b\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:40:13-50
-activity#com.mapbox.mapboxsdk.plugins.offline.ui.OfflineActivity
-ADDED from [com.mapbox.mapboxsdk:mapbox-android-plugin-offline-v9:0.7.0] C:\Users\sulai\.gradle\caches\8.9\transforms\c02a422e178eb65cbf57b0e082769161\transformed\jetified-mapbox-android-plugin-offline-v9-0.7.0\AndroidManifest.xml:12:9-14:125
-	android:configChanges
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-plugin-offline-v9:0.7.0] C:\Users\sulai\.gradle\caches\8.9\transforms\c02a422e178eb65cbf57b0e082769161\transformed\jetified-mapbox-android-plugin-offline-v9-0.7.0\AndroidManifest.xml:14:13-122
-	android:name
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-plugin-offline-v9:0.7.0] C:\Users\sulai\.gradle\caches\8.9\transforms\c02a422e178eb65cbf57b0e082769161\transformed\jetified-mapbox-android-plugin-offline-v9-0.7.0\AndroidManifest.xml:13:13-83
-service#com.mapbox.mapboxsdk.plugins.offline.offline.OfflineDownloadService
-ADDED from [com.mapbox.mapboxsdk:mapbox-android-plugin-offline-v9:0.7.0] C:\Users\sulai\.gradle\caches\8.9\transforms\c02a422e178eb65cbf57b0e082769161\transformed\jetified-mapbox-android-plugin-offline-v9-0.7.0\AndroidManifest.xml:17:9-19:40
-	android:exported
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-plugin-offline-v9:0.7.0] C:\Users\sulai\.gradle\caches\8.9\transforms\c02a422e178eb65cbf57b0e082769161\transformed\jetified-mapbox-android-plugin-offline-v9-0.7.0\AndroidManifest.xml:19:13-37
-	android:name
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-plugin-offline-v9:0.7.0] C:\Users\sulai\.gradle\caches\8.9\transforms\c02a422e178eb65cbf57b0e082769161\transformed\jetified-mapbox-android-plugin-offline-v9-0.7.0\AndroidManifest.xml:18:13-95
-uses-feature#android.hardware.wifi
-ADDED from [com.mapbox.mapboxsdk:mapbox-android-sdk:9.6.2] C:\Users\sulai\.gradle\caches\8.9\transforms\0b2cd658115a52d9a87f08c8d5efa8a1\transformed\jetified-mapbox-android-sdk-9.6.2\AndroidManifest.xml:12:5-14:36
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk-gl-core:5.2.2] C:\Users\sulai\.gradle\caches\8.9\transforms\111825167b5d288acbaddea5f4bd83d1\transformed\jetified-mapbox-android-sdk-gl-core-5.2.2\AndroidManifest.xml:12:5-14:36
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk-gl-core:5.2.2] C:\Users\sulai\.gradle\caches\8.9\transforms\111825167b5d288acbaddea5f4bd83d1\transformed\jetified-mapbox-android-sdk-gl-core-5.2.2\AndroidManifest.xml:12:5-14:36
-	android:required
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-sdk:9.6.2] C:\Users\sulai\.gradle\caches\8.9\transforms\0b2cd658115a52d9a87f08c8d5efa8a1\transformed\jetified-mapbox-android-sdk-9.6.2\AndroidManifest.xml:14:9-33
-	android:name
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-sdk:9.6.2] C:\Users\sulai\.gradle\caches\8.9\transforms\0b2cd658115a52d9a87f08c8d5efa8a1\transformed\jetified-mapbox-android-sdk-9.6.2\AndroidManifest.xml:13:9-45
-uses-permission#android.permission.ACCESS_WIFI_STATE
-ADDED from [com.mapbox.mapboxsdk:mapbox-android-sdk:9.6.2] C:\Users\sulai\.gradle\caches\8.9\transforms\0b2cd658115a52d9a87f08c8d5efa8a1\transformed\jetified-mapbox-android-sdk-9.6.2\AndroidManifest.xml:18:5-76
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0] C:\Users\sulai\.gradle\caches\8.9\transforms\ce47cfc1ba6b59a95ca7d3d8714420e8\transformed\jetified-mapbox-android-telemetry-okhttp3-8.1.0\AndroidManifest.xml:14:5-76
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0] C:\Users\sulai\.gradle\caches\8.9\transforms\ce47cfc1ba6b59a95ca7d3d8714420e8\transformed\jetified-mapbox-android-telemetry-okhttp3-8.1.0\AndroidManifest.xml:14:5-76
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk-gl-core:5.2.2] C:\Users\sulai\.gradle\caches\8.9\transforms\111825167b5d288acbaddea5f4bd83d1\transformed\jetified-mapbox-android-sdk-gl-core-5.2.2\AndroidManifest.xml:18:5-76
-MERGED from [com.mapbox.mapboxsdk:mapbox-android-sdk-gl-core:5.2.2] C:\Users\sulai\.gradle\caches\8.9\transforms\111825167b5d288acbaddea5f4bd83d1\transformed\jetified-mapbox-android-sdk-gl-core-5.2.2\AndroidManifest.xml:18:5-76
-	android:name
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-sdk:9.6.2] C:\Users\sulai\.gradle\caches\8.9\transforms\0b2cd658115a52d9a87f08c8d5efa8a1\transformed\jetified-mapbox-android-sdk-9.6.2\AndroidManifest.xml:18:22-73
 meta-data#com.google.firebase.components:com.google.firebase.firestore.FirebaseFirestoreKtxRegistrar
 ADDED from [com.google.firebase:firebase-firestore:25.1.2] C:\Users\sulai\.gradle\caches\8.9\transforms\12576f9b530b1aaae327ef30bfcb66fe\transformed\jetified-firebase-firestore-25.1.2\AndroidManifest.xml:17:13-19:85
 	android:value
@@ -663,40 +507,6 @@ ADDED from [androidx.window:window:1.2.0] C:\Users\sulai\.gradle\caches\8.9\tran
 		ADDED from [androidx.window:window:1.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\13f3833de7cf4f53b4e3804da14f5d51\transformed\jetified-window-1.2.0\AndroidManifest.xml:28:13-37
 	android:name
 		ADDED from [androidx.window:window:1.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\13f3833de7cf4f53b4e3804da14f5d51\transformed\jetified-window-1.2.0\AndroidManifest.xml:27:13-51
-uses-permission#android.permission.WAKE_LOCK
-ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0] C:\Users\sulai\.gradle\caches\8.9\transforms\ce47cfc1ba6b59a95ca7d3d8714420e8\transformed\jetified-mapbox-android-telemetry-okhttp3-8.1.0\AndroidManifest.xml:12:5-68
-	android:name
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0] C:\Users\sulai\.gradle\caches\8.9\transforms\ce47cfc1ba6b59a95ca7d3d8714420e8\transformed\jetified-mapbox-android-telemetry-okhttp3-8.1.0\AndroidManifest.xml:12:22-65
-uses-permission#android.permission.GET_TASKS
-ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0] C:\Users\sulai\.gradle\caches\8.9\transforms\ce47cfc1ba6b59a95ca7d3d8714420e8\transformed\jetified-mapbox-android-telemetry-okhttp3-8.1.0\AndroidManifest.xml:16:5-18:38
-	android:maxSdkVersion
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0] C:\Users\sulai\.gradle\caches\8.9\transforms\ce47cfc1ba6b59a95ca7d3d8714420e8\transformed\jetified-mapbox-android-telemetry-okhttp3-8.1.0\AndroidManifest.xml:18:9-35
-	android:name
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0] C:\Users\sulai\.gradle\caches\8.9\transforms\ce47cfc1ba6b59a95ca7d3d8714420e8\transformed\jetified-mapbox-android-telemetry-okhttp3-8.1.0\AndroidManifest.xml:17:9-52
-provider#com.mapbox.android.telemetry.provider.MapboxTelemetryInitProvider
-ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0] C:\Users\sulai\.gradle\caches\8.9\transforms\ce47cfc1ba6b59a95ca7d3d8714420e8\transformed\jetified-mapbox-android-telemetry-okhttp3-8.1.0\AndroidManifest.xml:21:9-25:39
-	android:authorities
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0] C:\Users\sulai\.gradle\caches\8.9\transforms\ce47cfc1ba6b59a95ca7d3d8714420e8\transformed\jetified-mapbox-android-telemetry-okhttp3-8.1.0\AndroidManifest.xml:23:13-79
-	android:exported
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0] C:\Users\sulai\.gradle\caches\8.9\transforms\ce47cfc1ba6b59a95ca7d3d8714420e8\transformed\jetified-mapbox-android-telemetry-okhttp3-8.1.0\AndroidManifest.xml:24:13-37
-	android:initOrder
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0] C:\Users\sulai\.gradle\caches\8.9\transforms\ce47cfc1ba6b59a95ca7d3d8714420e8\transformed\jetified-mapbox-android-telemetry-okhttp3-8.1.0\AndroidManifest.xml:25:13-36
-	android:name
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0] C:\Users\sulai\.gradle\caches\8.9\transforms\ce47cfc1ba6b59a95ca7d3d8714420e8\transformed\jetified-mapbox-android-telemetry-okhttp3-8.1.0\AndroidManifest.xml:22:13-93
-service#com.mapbox.android.telemetry.errors.ErrorReporterJobIntentService
-ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0] C:\Users\sulai\.gradle\caches\8.9\transforms\ce47cfc1ba6b59a95ca7d3d8714420e8\transformed\jetified-mapbox-android-telemetry-okhttp3-8.1.0\AndroidManifest.xml:27:9-30:72
-	android:exported
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0] C:\Users\sulai\.gradle\caches\8.9\transforms\ce47cfc1ba6b59a95ca7d3d8714420e8\transformed\jetified-mapbox-android-telemetry-okhttp3-8.1.0\AndroidManifest.xml:29:13-37
-	android:permission
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0] C:\Users\sulai\.gradle\caches\8.9\transforms\ce47cfc1ba6b59a95ca7d3d8714420e8\transformed\jetified-mapbox-android-telemetry-okhttp3-8.1.0\AndroidManifest.xml:30:13-69
-	android:name
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0] C:\Users\sulai\.gradle\caches\8.9\transforms\ce47cfc1ba6b59a95ca7d3d8714420e8\transformed\jetified-mapbox-android-telemetry-okhttp3-8.1.0\AndroidManifest.xml:28:13-93
-service#com.mapbox.android.telemetry.MapboxTelemetryService
-ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0] C:\Users\sulai\.gradle\caches\8.9\transforms\ce47cfc1ba6b59a95ca7d3d8714420e8\transformed\jetified-mapbox-android-telemetry-okhttp3-8.1.0\AndroidManifest.xml:31:9-33:40
-	android:exported
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0] C:\Users\sulai\.gradle\caches\8.9\transforms\ce47cfc1ba6b59a95ca7d3d8714420e8\transformed\jetified-mapbox-android-telemetry-okhttp3-8.1.0\AndroidManifest.xml:33:13-37
-	android:name
-		ADDED from [com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0] C:\Users\sulai\.gradle\caches\8.9\transforms\ce47cfc1ba6b59a95ca7d3d8714420e8\transformed\jetified-mapbox-android-telemetry-okhttp3-8.1.0\AndroidManifest.xml:32:13-79
 meta-data#com.google.android.gms.version
 MERGED from [com.google.android.gms:play-services-basement:18.3.0] C:\Users\sulai\.gradle\caches\8.9\transforms\9cc68d6dae004107b0324aaaa2a341fb\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:21:9-23:69
 MERGED from [com.google.android.gms:play-services-basement:18.3.0] C:\Users\sulai\.gradle\caches\8.9\transforms\9cc68d6dae004107b0324aaaa2a341fb\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:21:9-23:69

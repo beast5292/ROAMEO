@@ -1,0 +1,2 @@
+C:/Users/sulai/Downloads/ROAMEO-SightseeingMode2/frontend/android/app/.cxx/Debug/67ry5e4p/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/sulai/Downloads/ROAMEO-SightseeingMode2/frontend/android/app/.cxx/Debug/67ry5e4p/armeabi-v7a/CMakeFiles/rebuild_cache.dir

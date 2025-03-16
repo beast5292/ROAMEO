@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:practice/SightSeeingMode/Simulation/pages/SsmPlay.dart';
+import 'package:practice/SightSeeingMode/Simulation/providers/SightProvider.dart';
 import 'package:practice/SightSeeingMode/Simulation/services/alertDialog.dart';
+import 'package:provider/provider.dart';
 
 //function to iterate through the sightmode and get the source,waypoints and destination
 void assignPoints(
@@ -14,7 +16,7 @@ void assignPoints(
     return;
   }
 
-  // Extract the list of sights
+  //Extract the list of sights
   List<dynamic> sights = sightMode['sights'];
 
   if (sights.isEmpty) {
@@ -22,13 +24,17 @@ void assignPoints(
     return;
   }
 
-  // Get the first sight as source
+  //Save the sights in the provider
+  final sightProvider = Provider.of<SightProvider>(context, listen: false);
+  sightProvider.setSights(sights);
+
+  //Get the first sight as source
   var source = sights.first;
 
-  // Get the last sight as destination
+  //Get the last sight as destination
   var destin = sights.last;
 
-  // Get the waypoints (all intermediate sights including first and last)
+  //Get the waypoints (all intermediate sights including first and last)
   var waypoints_list = sights.sublist(0, sights.length - 1);
 
   //set the state variables

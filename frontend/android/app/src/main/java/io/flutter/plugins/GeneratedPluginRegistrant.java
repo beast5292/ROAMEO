@@ -61,11 +61,6 @@ public final class GeneratedPluginRegistrant {
       Log.e(TAG, "Error registering plugin location, com.lyokone.location.LocationPlugin", e);
     }
     try {
-      flutterEngine.getPlugins().add(new com.mapbox.mapboxgl.MapboxMapsPlugin());
-    } catch (Exception e) {
-      Log.e(TAG, "Error registering plugin mapbox_gl, com.mapbox.mapboxgl.MapboxMapsPlugin", e);
-    }
-    try {
       flutterEngine.getPlugins().add(new io.flutter.plugins.pathprovider.PathProviderPlugin());
     } catch (Exception e) {
       Log.e(TAG, "Error registering plugin path_provider_android, io.flutter.plugins.pathprovider.PathProviderPlugin", e);

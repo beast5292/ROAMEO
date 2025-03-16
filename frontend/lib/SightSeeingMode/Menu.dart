@@ -11,6 +11,7 @@ import 'package:practice/SightSeeingMode/models/sight.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:io';
+import 'dart:ui'; // Added for blur effect
 
 //Make sure to import dart:io for File handling
 
@@ -186,96 +187,68 @@ class _SightMenuState extends State<SightMenu> {
     final selectedPlaceProvider = Provider.of<SelectedPlaceProvider>(context);
 
     return Scaffold(
+      backgroundColor: const Color(0xFF030A0E),
+      appBar: AppBar(
+        title: const Text('Create Sightseeing Mode', 
+            style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        iconTheme: const IconThemeData(color: Colors.white),
+      ),
       body: SafeArea(
-        child: Column(
-          children: [
-            Text(
-              "Create your own sightseeing mode",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 10),
-
-            // Reorderable list for image trips
-            Expanded(
-              child: ReorderableListView(
-                onReorder: (oldIndex, newIndex) {
-                  // Handle reordering logic here
-                  selectedPlaceProvider.reorderTrips(oldIndex, newIndex);
-                },
-                children: selectedPlaceProvider.selectedLocations
-                    .map<Widget>((dynamic item) {
-                  final key =
-                      ValueKey(item.hashCode); // Unique key for each item
-
-                  if (item is LocationInfo) {
-                    // Handle LocationInfo type
-                    return ListTile(
-                      key: key,
-                      title: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(item.prediction.mainText ?? "Unknown Place"),
-                          Text(item.prediction.secondaryText ??
-                              "No details available"),
-                          if (item.imageUrls.isNotEmpty)
-                            Row(
-                              children: item.imageUrls.map<Widget>((imageUrl) {
-                                return Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Image.network(
-                                    imageUrl,
-                                    width: 150,
-                                    height: 150,
-                                    fit: BoxFit.cover,
-                                  ),
-                                );
-                              }).toList(),
-                            ),
-                        ],
-                      ),
-                    );
-                  } else if (item is List<Map<String, dynamic>>) {
-                    // Handle List<Map<String, dynamic>> type
-                    return ListTile(
-                      key: key,
-                      title: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: item.map<Widget>((imageData) {
-                              if (imageData.containsKey('photo') &&
-                                  imageData['photo'] != null) {
-                                return Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Image.file(
-                                    File(imageData['photo']),
-                                    width: 150,
-                                    height: 150,
-                                    fit: BoxFit.cover,
-                                  ),
-                                );
-                              } else {
-                                return Container(); // Handle missing photo data
-                              }
-                            }).toList(),
-                          ),
-                        ],
-                      ),
-                    );
-                  } else {
-                    // Handle unexpected types (optional)
-                    return ListTile(
-                      key: key,
-                      title: Text("Unknown item type"),
-                    );
-                  }
-                }).toList(),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "Create your own sightseeing mode",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  letterSpacing: 1.1,
+                ),
               ),
-            ),
-          ],
+              const SizedBox(height: 20),
+              // Reorderable list for image trips
+              Expanded(
+                child: ReorderableListView(
+                  onReorder: (oldIndex, newIndex) {
+                    // Handle reordering logic here
+                    selectedPlaceProvider.reorderTrips(oldIndex, newIndex);
+                  },
+                  children: selectedPlaceProvider.selectedLocations
+                      .map<Widget>((dynamic item) {
+                    final key =
+                        ValueKey(item.hashCode); // Unique key for each item
+
+                    return Container(
+                      key: key,
+                      margin: const EdgeInsets.only(bottom: 15),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Colors.white.withOpacity(0.05),
+                        border: Border.all(
+                          color: Colors.white.withOpacity(0.1),
+                          width: 0.5
+                        ),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+                          child: _buildListItem(item),
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
-
       // Floating buttons
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -294,9 +267,10 @@ class _SightMenuState extends State<SightMenu> {
                 ),
               );
             },
-            child: Icon(Icons.map),
+            backgroundColor: Colors.tealAccent.withOpacity(0.9),
+            child: const Icon(Icons.map, color: Colors.black),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           FloatingActionButton(
             heroTag: 'cameraButton',
             onPressed: () {
@@ -305,9 +279,10 @@ class _SightMenuState extends State<SightMenu> {
                 MaterialPageRoute(builder: (context) => CameraPage()),
               );
             },
-            child: Icon(Icons.camera),
+            backgroundColor: Colors.tealAccent.withOpacity(0.9),
+            child: const Icon(Icons.camera_alt, color: Colors.black),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           FloatingActionButton(
             heroTag: 'saveButton',
             onPressed: () {
@@ -317,10 +292,38 @@ class _SightMenuState extends State<SightMenu> {
                 MaterialPageRoute(builder: (context) => SsmPage()),
               );
             },
-            child: Icon(Icons.save),
+            backgroundColor: Colors.tealAccent.withOpacity(0.9),
+            child: const Icon(Icons.save, color: Colors.black),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildListItem(dynamic item) {
+    if (item is LocationInfo) {
+      return ListTile(
+        contentPadding: const EdgeInsets.all(16),
+        title: Text(item.prediction.mainText ?? "Unknown Place",
+            style: const TextStyle(color: Colors.white)),
+        subtitle: Text(item.prediction.secondaryText ?? "No details available",
+            style: TextStyle(color: Colors.white.withOpacity(0.7))),
+        trailing: const Icon(Icons.drag_handle, color: Colors.white54),
+        onTap: () {},
+      );
+    } else if (item is List<Map<String, dynamic>>) {
+      return ListTile(
+        contentPadding: const EdgeInsets.all(16),
+        title: const Text("Image Collection",
+            style: TextStyle(color: Colors.white)),
+        subtitle: Text("${item.length} images",
+            style: TextStyle(color: Colors.white.withOpacity(0.7))),
+        trailing: const Icon(Icons.drag_handle, color: Colors.white54),
+        onTap: () {},
+      );
+    }
+    return const ListTile(
+      title: Text("Unknown item type", style: TextStyle(color: Colors.white)),
     );
   }
 }

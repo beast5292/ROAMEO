@@ -72,4 +72,23 @@ async def get_sight_by_id(docId: str):
         raise HTTPException(status_code=404, detail="Sight not found")
     
 '''
+from fastapi import FastAPI, HTTPException
+import firebase_admin
+from firebase_admin import credentials, firestore
+from fastapi.middleware.cors import CORSMiddleware
 
+# Initialize Firebase
+cred = credentials.Certificate("serviceAccountKey.json")
+firebase_admin.initialize_app(cred)
+db = firestore.client()
+
+app = FastAPI()
+
+# Add CORS middleware to allow Flutter app to connect
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+    allow_credentials=True
+)

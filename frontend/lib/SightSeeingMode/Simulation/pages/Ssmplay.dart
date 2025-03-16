@@ -10,6 +10,7 @@ import 'package:http/http.dart' as http;
 import 'package:practice/SightSeeingMode/Services/SightGet.dart';
 import 'package:practice/SightSeeingMode/Simulation/pages/Navigation.dart';
 import 'package:practice/SightSeeingMode/Simulation/pages/mapbox.dart';
+import 'package:practice/SightSeeingMode/Simulation/providers/SightProvider.dart';
 import 'package:practice/SightSeeingMode/Simulation/services/Haversine_formula.dart';
 import 'package:practice/SightSeeingMode/Simulation/services/TrimPolyline.dart';
 import 'package:practice/SightSeeingMode/Simulation/services/assignPoints.dart';
@@ -220,39 +221,37 @@ class SsmPlayState extends State<SsmPlay> {
 
     // showAlertDialog2(alertMessage3);
 
-      //receieve polylines using getRoutebetween function of directions api
-      PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-          'AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0',
-          PointLatLng(currentLocation!.latitude!, currentLocation!.longitude!),
-          PointLatLng(destination!.latitude, destination!.longitude),
-          travelMode: TravelMode.driving,
-          wayPoints: activeWaypoints,
-          optimizeWaypoints: true);
+    //receieve polylines using getRoutebetween function of directions api
+    PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
+        'AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0',
+        PointLatLng(currentLocation!.latitude!, currentLocation!.longitude!),
+        PointLatLng(destination!.latitude, destination!.longitude),
+        travelMode: TravelMode.driving,
+        wayPoints: activeWaypoints,
+        optimizeWaypoints: true);
 
-      //if the results are not empty add the co-ordinates to the polylineCoordinates array containing lat and lang points
+    //if the results are not empty add the co-ordinates to the polylineCoordinates array containing lat and lang points
 
-      if (result.points.isNotEmpty) {
-        List<LatLng> routePoints = [];
-        result.points.forEach((PointLatLng point) {
-          routePoints.add(LatLng(point.latitude, point.longitude));
-        });
+    if (result.points.isNotEmpty) {
+      List<LatLng> routePoints = [];
+      result.points.forEach((PointLatLng point) {
+        routePoints.add(LatLng(point.latitude, point.longitude));
+      });
 
-        var alertMessage3 = routePoints.toString();
+      var alertMessage3 = routePoints.toString();
 
-        setState(() {
-          polylineCoordinates = routePoints;
-        });
+      setState(() {
+        polylineCoordinates = routePoints;
+      });
 
-        // showAlertDialog2(alertMessage3);
+      // showAlertDialog2(alertMessage3);
 
-        //Snap the route coordinates to the nearest road
-        // await snapToRoads(routePoints);
-      }
+      //Snap the route coordinates to the nearest road
+      // await snapToRoads(routePoints);
     }
-    //call set state which has many functions
-    // setState(() {});
-  
-
+  }
+  //call set state which has many functions
+  // setState(() {});
 
   //distance matrix api request for the sightseeing route
   Future<void> getDistanceAndDuration() async {
@@ -374,13 +373,16 @@ class SsmPlayState extends State<SsmPlay> {
   void addMarkers() {
     markers.clear();
 
+    //index for the destination
+    var destination_id = SightProvider().sights.length - 1;
+
     // Add markers for waypoints
     for (int i = 0; i < waypoints.length; i++) {
       markers.add(
         Marker(
-          markerId: MarkerId('waypoint_$i'),
+          markerId: MarkerId('$i'),
           position: waypoints[i],
-          infoWindow: InfoWindow(title: 'Waypoint ${i + 1}'),
+          infoWindow: InfoWindow(title: 'Waypoint $i'),
           icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
         ),
       );
@@ -389,7 +391,7 @@ class SsmPlayState extends State<SsmPlay> {
     // Add marker for destination
     markers.add(
       Marker(
-        markerId: MarkerId('destination'),
+        markerId: MarkerId('$destination_id'),
         position: destination!,
         infoWindow: InfoWindow(title: 'Destination'),
         icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),

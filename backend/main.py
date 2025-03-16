@@ -92,3 +92,93 @@ app.add_middleware(
     allow_headers=["*"],
     allow_credentials=True
 )
+
+# Endpoint to create a blog post
+@app.post("/create-blog")
+async def create_blog(blog: dict):
+    try:
+        blog['likes'] = 0  # Default to 0
+        blog['dislikes'] = 0  # Default to 0
+        blog['userLikesDislikes'] = {}  # Track user interactions
+
+        blog_ref = db.collection("blogs").document()
+        blog_ref.set(blog)
+
+        return {"message": "Blog created successfully!", "id": blog_ref.id}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+
+# Endpoint to update like/dislike count
+@app.put("/update-like-dislike/{blog_id}")
+async def update_like_dislike(blog_id: str, interaction: dict):
+    try:
+        blog_ref = db.collection("blogs").document(blog_id)
+        blog = blog_ref.get()
+
+        if not blog.exists:
+            raise HTTPException(status_code=404, detail="Blog not found")
+
+        blog_data = blog.to_dict()
+
+        user_id = interaction["user_id"]  # Get the user ID
+        is_like = interaction["is_like"]  # True for like, False for dislike
+
+        # Check if the user has already liked/disliked
+        user_interactions = blog_data.get("userLikesDislikes", {})
+
+        if user_id in user_interactions:
+            return {"message": f"You have already {user_interactions[user_id]}d this post."}
+
+        # Update likes/dislikes count
+        if is_like:
+            updated_likes = blog_data.get("likes", 0) + 1
+            blog_ref.update({
+                "likes": updated_likes,
+                f"userLikesDislikes.{user_id}": "like"
+            })
+        else:
+            updated_dislikes = blog_data.get("dislikes", 0) + 1
+            blog_ref.update({
+                "dislikes": updated_dislikes,
+                f"userLikesDislikes.{user_id}": "dislike"
+            })
+
+        # Return updated data
+        return {"message": "Blog updated successfully", "likes": updated_likes if is_like else blog_data["likes"],
+                "dislikes": updated_dislikes if not is_like else blog_data["dislikes"]}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+
+
+
+# Endpoint to fetch all blogs
+@app.get("/blogs")
+async def get_blogs():
+    try:
+        blogs = db.collection("blogs").stream()
+        blog_list = [{"id": blog.id, **blog.to_dict()} for blog in blogs]
+        return {"blogs": blog_list}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+# Endpoint to fetch a single blog by ID
+@app.get("/blog/{blog_id}")
+async def get_blog(blog_id: str):
+    try:
+        blog = db.collection("blogs").document(blog_id).get()
+        if blog.exists:
+            return {"id": blog.id, **blog.to_dict()}
+        else:
+            raise HTTPException(status_code=404, detail="Blog not found")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)

@@ -85,6 +85,7 @@ MERGED from [:geolocator_android] F:\GITHUB\ROAMEO\frontend\build\geolocator_and
 MERGED from [:location] F:\GITHUB\ROAMEO\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-18:12
 MERGED from [:mapbox_gl] F:\GITHUB\ROAMEO\frontend\build\mapbox_gl\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
 MERGED from [:path_provider_android] F:\GITHUB\ROAMEO\frontend\build\path_provider_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
+MERGED from [:sqflite_android] F:\GITHUB\ROAMEO\frontend\build\sqflite_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.gms:play-services-location:21.2.0] C:\Users\CNN COMPUTERS\.gradle\caches\8.9\transforms\db03a35edf40111347abd4a57e0898aa\transformed\jetified-play-services-location-21.2.0\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\CNN COMPUTERS\.gradle\caches\8.9\transforms\5a1c2ddf67291cb8b7380ef388e3de12\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:17:1-44:12
 MERGED from [com.mapbox.mapboxsdk:mapbox-android-plugin-annotation-v9:0.9.0] C:\Users\CNN COMPUTERS\.gradle\caches\8.9\transforms\fac86549e7df33af938d0f42ec825c24\transformed\jetified-mapbox-android-plugin-annotation-v9-0.9.0\AndroidManifest.xml:2:1-9:12
@@ -281,6 +282,8 @@ MERGED from [:mapbox_gl] F:\GITHUB\ROAMEO\frontend\build\mapbox_gl\intermediates
 MERGED from [:mapbox_gl] F:\GITHUB\ROAMEO\frontend\build\mapbox_gl\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
 MERGED from [:path_provider_android] F:\GITHUB\ROAMEO\frontend\build\path_provider_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
 MERGED from [:path_provider_android] F:\GITHUB\ROAMEO\frontend\build\path_provider_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:sqflite_android] F:\GITHUB\ROAMEO\frontend\build\sqflite_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:sqflite_android] F:\GITHUB\ROAMEO\frontend\build\sqflite_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-location:21.2.0] C:\Users\CNN COMPUTERS\.gradle\caches\8.9\transforms\db03a35edf40111347abd4a57e0898aa\transformed\jetified-play-services-location-21.2.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-location:21.2.0] C:\Users\CNN COMPUTERS\.gradle\caches\8.9\transforms\db03a35edf40111347abd4a57e0898aa\transformed\jetified-play-services-location-21.2.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\CNN COMPUTERS\.gradle\caches\8.9\transforms\5a1c2ddf67291cb8b7380ef388e3de12\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:20:5-44

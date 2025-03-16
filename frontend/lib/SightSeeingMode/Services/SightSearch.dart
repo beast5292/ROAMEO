@@ -22,14 +22,17 @@ Future<List<Map<String, dynamic>>> searchLocations(String keyword) async {
 
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
-      debugPrint("Parsed data: $data"); //  Debug
-      return List<Map<String, dynamic>>.from(
-          data['results']); // Convert to list
+      if (data['results'] != null) {
+        return List<Map<String, dynamic>>.from(data['results']);
+      } else {
+        debugPrint("No results found.");
+        return [];
+      }
     } else {
       throw Exception('Failed to load search results');
     }
   } catch (e) {
-    debugPrint("Network request failed: $e"); //  Debug
+    debugPrint("Network request failed: $e");
     return [];
   }
 }

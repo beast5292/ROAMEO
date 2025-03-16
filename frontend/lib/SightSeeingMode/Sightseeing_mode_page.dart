@@ -4,6 +4,9 @@ import 'package:practice/SightSeeingMode/Feed/SightFeed.dart';
 import 'package:practice/SightSeeingMode/Menu.dart';
 import 'package:practice/SightSeeingMode/Services/SightSearch.dart';
 
+// Optimize image rendering
+import 'package:cached_network_image/cached_network_image.dart';
+
 //  Import the Firebase Firestore library
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -22,10 +25,10 @@ class _SsmPageState extends State<SsmPage> {
   final Set<Marker> _markers = {};
   bool _showDetails = false;
   String _selectedScenery = 'temporary'; // Default to 'temporary'
-
-  List<Map<String, dynamic>> _searchResults =
-      []; // List to store search results
   String? _selectedImage; // Variable to store the selected image
+
+  Future<List<Map<String, dynamic>>>?
+      _searchResults; // List to store search results
 
   // TextEditingController for search bar
   TextEditingController _searchController = TextEditingController();
@@ -37,24 +40,23 @@ class _SsmPageState extends State<SsmPage> {
   }
 
   //  Method to process search results
-  void _performSearch() async {
+  void _performSearch() {
     String searchQuery = _searchController.text.trim();
-    debugPrint("Searching for: $searchQuery");
 
     if (searchQuery.isNotEmpty) {
-      List<Map<String, dynamic>> results = await _searchLocations(searchQuery);
-      debugPrint("Search Results Count: ${results.length}");
+      debugPrint("🔍 Searching for: $searchQuery");
 
       setState(() {
-        _searchResults = results;
+        _searchResults = _searchLocations(searchQuery);
       });
+    } else {
+      debugPrint("⚠️ Search query is empty!");
     }
   }
 
   // Move the map and show the selected location's image
   void _moveToLocation(Map<String, dynamic> location) {
     LatLng position = LatLng(location['latitude'], location['longitude']);
-
     mapController.animateCamera(CameraUpdate.newLatLng(position));
 
     setState(() {
@@ -72,24 +74,34 @@ class _SsmPageState extends State<SsmPage> {
 
   // Method to fetch locations from database based on search keyword
   Future<List<Map<String, dynamic>>> _searchLocations(String keyword) async {
-    final encodedKeyword = Uri.encodeComponent(keyword);
-    try {
-      final response = await http.get(
-        Uri.parse('http://10.0.2.2:8000/search_sights/?name=$encodedKeyword'),
-        headers: {HttpHeaders.contentTypeHeader: 'application/json'},
-      );
+    if (keyword.isEmpty) {
+      debugPrint("Error: Empty search keyword!");
+      return [];
+    }
 
-      debugPrint("Response Code: ${response.statusCode}");
-      debugPrint("Response Body: ${response.body}");
+    final encodedKeyword = Uri.encodeComponent(keyword);
+    final url = 'http://10.0.2.2:8000/search_sights/?place=$encodedKeyword';
+
+    try {
+      debugPrint("📡 Sending request to: $url");
+
+      final response = await http.get(Uri.parse(url));
+
+      debugPrint("🔄 Response Code: ${response.statusCode}");
+      debugPrint("📝 Response Body: ${response.body}");
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
-        return List<Map<String, dynamic>>.from(data['results']);
+        if (data["data"] != null) {
+          return List<Map<String, dynamic>>.from(data["data"]);
+        } else {
+          return [];
+        }
       } else {
         throw Exception('Failed to load search results');
       }
     } catch (e) {
-      debugPrint("Network request failed: $e");
+      debugPrint("❌ Network request failed: $e");
       return [];
     }
   }
@@ -240,50 +252,73 @@ class _SsmPageState extends State<SsmPage> {
           ),
 
           // Display Search results
-          if (_searchResults.isNotEmpty)
+          if (_searchResults != null)
             Positioned(
               top: 80,
               left: 10,
               right: 10,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: _searchResults.length,
-                  itemBuilder: (context, index) {
-                    final location = _searchResults[index];
-                    return ListTile(
-                      title: Text(location['name']),
-                      onTap: () => _moveToLocation(location),
-                    );
-                  },
-                ),
+              child: FutureBuilder<List<Map<String, dynamic>>>(
+                future: _searchResults,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(
+                        child: CircularProgressIndicator(
+                            color: Colors.blueAccent));
+                  }
+                  if (snapshot.hasError) {
+                    return Center(child: Text("Error loading data"));
+                  }
+                  if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                    return Center(child: Text("No results found"));
+                  }
+                  return Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (context, index) {
+                        final location = snapshot.data![index];
+                        return ListTile(
+                          title: Text(location['name']),
+                          onTap: () => _moveToLocation(location),
+                        );
+                      },
+                    ),
+                  );
+                },
               ),
             ),
 
           // Display images when location is selected
           if (_selectedImage != null)
             Positioned(
-                bottom: 120,
-                left: 20,
-                right: 20,
-                child: Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: Colors.black54,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    children: [
-                      Image.network(_selectedImage!),
-                      Text("Selected Location",
-                          style: TextStyle(color: Colors.white)),
-                    ],
-                  ),
-                )),
+              bottom: 120,
+              left: 20,
+              right: 20,
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.black54,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  children: [
+                    CachedNetworkImage(
+                      imageUrl: _selectedImage!,
+                      placeholder: (context, url) =>
+                          CircularProgressIndicator(color: Colors.white),
+                      errorWidget: (context, url, error) =>
+                          Icon(Icons.error, color: Colors.red),
+                    ),
+                    Text("Selected Location",
+                        style: TextStyle(color: Colors.white)),
+                  ],
+                ),
+              ),
+            ),
 
           if (_showDetails)
             Positioned(

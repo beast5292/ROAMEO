@@ -2,14 +2,14 @@ import asyncio
 import firebase_admin
 from fastapi import FastAPI, HTTPException, Query
 from typing import List, Dict
-from Sight_info import Sight
+from backend.Sight_info import Sight
 from firebase_admin import credentials,firestore, initialize_app
 
 # Initialize FastAPI
 app = FastAPI()
 
 #Initialize Firebase Admin SDK with your credentials
-cred = credentials.Certificate(r'C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\backend\private key\roameo-f3ab0-firebase-adminsdk-ss40k-1e1297f52f.json') 
+cred = credentials.Certificate(r'F:\GITHUB\ROAMEO\backend\private key\roameo-f3ab0-firebase-adminsdk-ss40k-1e1297f52f.json') 
 initialize_app(cred)
 db = firestore.client() #Firestore client initialization
 
@@ -72,22 +72,15 @@ async def get_sight_by_id(docId: str):
 
 #get request for search
 @app.get("/search_sights/")
-async def search_sights(name: str):
+async def search_sight(place: str):
+    print(f"Received search query: {place}")  # Debugging log
+    sights_ref = db.collection("sights")
+    query = sights_ref.where("name", "==", place).stream()
 
-    try:
-        name = name.lower()  # Convert input to lowercase
-        docs = db.collection("sights").where("name", "==", name).stream()
+    results = [doc.to_dict() for doc in query]
 
-        results = [
-            {
-                "name": doc.to_dict().get("name"),
-                "latitude": doc.to_dict().get("latitude"),
-                "longitude": doc.to_dict().get("longitude"),
-                "image_url": doc.to_dict().get("image_url")
-            }
-            for doc in docs
-        ]
+    if not results:
+        print("No results found.")  # Debugging log
+        return {"message": "No sights found", "data": []}
 
-        return {"results": results}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    return {"message": "Sights found", "data": results}

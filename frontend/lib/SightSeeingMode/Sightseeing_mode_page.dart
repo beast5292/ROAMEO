@@ -39,9 +39,12 @@ class _SsmPageState extends State<SsmPage> {
   //  Method to process search results
   void _performSearch() async {
     String searchQuery = _searchController.text.trim();
+    debugPrint("Searching for: $searchQuery");
 
     if (searchQuery.isNotEmpty) {
-      List<Map<String, dynamic>> results = await searchLocations(searchQuery);
+      List<Map<String, dynamic>> results = await _searchLocations(searchQuery);
+      debugPrint("Search Results Count: ${results.length}");
+
       setState(() {
         _searchResults = results;
       });
@@ -69,12 +72,15 @@ class _SsmPageState extends State<SsmPage> {
 
   // Method to fetch locations from database based on search keyword
   Future<List<Map<String, dynamic>>> _searchLocations(String keyword) async {
-    final encodedKeyword = Uri.encodeComponent(keyword); // Encode query
+    final encodedKeyword = Uri.encodeComponent(keyword);
     try {
       final response = await http.get(
         Uri.parse('http://10.0.2.2:8000/search_sights/?name=$encodedKeyword'),
         headers: {HttpHeaders.contentTypeHeader: 'application/json'},
       );
+
+      debugPrint("Response Code: ${response.statusCode}");
+      debugPrint("Response Body: ${response.body}");
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);

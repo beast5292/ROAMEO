@@ -58,7 +58,7 @@ class _ExplorePageState extends State<ExplorePage> {
                       height: 50,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Colors.white.withOpacity(0.1),
+                        color: Colors.white.withOpacity(0.2),
                       ),
                       child: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 30),
                     ),
@@ -74,7 +74,7 @@ class _ExplorePageState extends State<ExplorePage> {
                       child: Container(
                         height: 60,
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.1),
+                          color: Colors.white.withOpacity(0.2),
                           borderRadius: BorderRadius.circular(25),
                         ),
                         child: const Row(
@@ -172,7 +172,7 @@ class _ExplorePageState extends State<ExplorePage> {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 12),
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.2),
+          color: Colors.white.withOpacity(0.1),
           borderRadius: BorderRadius.circular(25),
         ),
         child: Text(

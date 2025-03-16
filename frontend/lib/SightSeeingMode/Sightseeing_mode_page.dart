@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:practice/SightSeeingMode/Feed/SightFeed.dart';
 import 'package:practice/SightSeeingMode/Menu.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:practice/SightSeeingMode/Services/SightSearch.dart';
+
+//  Import the Firebase Firestore library
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'dart:io';
 
 class SsmPage extends StatefulWidget {
   const SsmPage({super.key});
@@ -24,30 +29,63 @@ class _SsmPageState extends State<SsmPage> {
 
   // TextEditingController for search bar
   TextEditingController _searchController = TextEditingController();
-  FocusNode _searchFocusNode = FocusNode();
 
   @override
   void dispose() {
     _searchController.dispose();
-    _searchFocusNode.dispose();
     super.dispose();
+  }
+
+  //  Method to process search results
+  void _performSearch() async {
+    String searchQuery = _searchController.text.trim();
+
+    if (searchQuery.isNotEmpty) {
+      List<Map<String, dynamic>> results = await searchLocations(searchQuery);
+      setState(() {
+        _searchResults = results;
+      });
+    }
+  }
+
+  // Move the map and show the selected location's image
+  void _moveToLocation(Map<String, dynamic> location) {
+    LatLng position = LatLng(location['latitude'], location['longitude']);
+
+    mapController.animateCamera(CameraUpdate.newLatLng(position));
+
+    setState(() {
+      _markers.clear();
+      _markers.add(
+        Marker(
+          markerId: MarkerId(location['name']),
+          position: position,
+          infoWindow: InfoWindow(title: location['name']),
+        ),
+      );
+      _selectedImage = location['image_url'];
+    });
   }
 
   // Method to fetch locations from database based on search keyword
   Future<List<Map<String, dynamic>>> _searchLocations(String keyword) async {
-    keyword = keyword.toLowerCase(); // Convert user input to lowercase
-    debugPrint("Searching for: $keyword");
+    final encodedKeyword = Uri.encodeComponent(keyword); // Encode query
+    try {
+      final response = await http.get(
+        Uri.parse('http://10.0.2.2:8000/search_sights/?name=$encodedKeyword'),
+        headers: {HttpHeaders.contentTypeHeader: 'application/json'},
+      );
 
-    final querySnapshot = await FirebaseFirestore.instance
-        .collection('sights') // Firestore collection name to fetch data
-        .where('name', isEqualTo: keyword)
-        .get();
-
-    List<Map<String, dynamic>> fetchedData =
-        querySnapshot.docs.map((doc) => doc.data()).toList();
-
-    debugPrint("Found ${fetchedData.length} results.");
-    return fetchedData;
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        return List<Map<String, dynamic>>.from(data['results']);
+      } else {
+        throw Exception('Failed to load search results');
+      }
+    } catch (e) {
+      debugPrint("Network request failed: $e");
+      return [];
+    }
   }
 
   void _loadMarkers() {
@@ -137,26 +175,6 @@ class _SsmPageState extends State<SsmPage> {
     );
   }
 
-  // Method to move the map and display images based on the selected scenery type
-  void _moveToLocation(Map<String, dynamic> location) {
-    LatLng position = LatLng(location['latitude'], location['longitude']);
-
-    mapController.animateCamera(CameraUpdate.newLatLng(position));
-
-    setState(() {
-      _markers.clear();
-      _markers.add(
-        Marker(
-          markerId: MarkerId(location['name']),
-          position: position,
-          infoWindow: InfoWindow(title: location['name']),
-        ),
-      );
-      _selectedImage = location['image_url']; // Display image from Firestore
-    });
-  }
-  // Method over
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -202,22 +220,12 @@ class _SsmPageState extends State<SsmPage> {
                         hintStyle: TextStyle(color: Colors.white54),
                         border: InputBorder.none,
                         icon: GestureDetector(
-                          onTap: () {
-                            debugPrint("Search icon clicked");
-                            _performSearch();
-                          },
+                          onTap: _performSearch,
                           child: Icon(Icons.search, color: Colors.white),
                         ),
                       ),
 
-                      onSubmitted: (value) {
-                        _performSearch();
-                      },
-
-                      // onTap: () {
-                      //   debugPrint("Search bar tapped");
-                      //   FocusScope.of(context).requestFocus(_searchFocusNode);
-                      // },
+                      onSubmitted: (value) => _performSearch(),
                     ),
                   ),
                 ),
@@ -243,9 +251,7 @@ class _SsmPageState extends State<SsmPage> {
                     final location = _searchResults[index];
                     return ListTile(
                       title: Text(location['name']),
-                      onTap: () {
-                        _moveToLocation(location);
-                      },
+                      onTap: () => _moveToLocation(location),
                     );
                   },
                 ),

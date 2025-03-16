@@ -90,12 +90,12 @@ async def search_sight(place: str = Query(...)):
                 if "name" in sight and place.lower() in sight["name"].lower():
                     results.append(sight)
 
-        print("Filtered Sights:", results)
+    print("Filtered Sights:", results)
 
-        if results:
-            return {"message": "Sights found", "data": results}
-        else:
-            return {"message": "No sights found", "data": []}
+    if results:
+        return {"message": "Sights found", "data": results}
+    else:
+        return {"message": "No sights found", "data": []}
 
     
 

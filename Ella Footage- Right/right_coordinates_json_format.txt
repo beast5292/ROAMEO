@@ -35,7 +35,7 @@
     "description": "Gampola Suburbs, a charming blend of scenic beauty and rural tranquility, invites you to unwind amidst rolling hills, tea plantations, and the gentle whispers of the Mahaweli River.",
     "lat": 7.186540137075685,
     "long": 80.59257832235525,
-    "imageUrls": ["-"],
+    "imageUrls": ["https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F4.1.jpg?alt=media&token=1ced8d65-16a2-4510-a71d-02c82299c4b0","https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F4.2.jpg?alt=media&token=13945c17-0bde-4ef9-b0e3-799598f5b204","https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F4.3.jpg?alt=media&token=fd1ab536-880b-4311-b59c-c34962d40dc3"],
     "tags": ["suburbs", "gampola"]
   },
 
@@ -45,7 +45,7 @@
     "description": "Sri Gangathilaka Raja Maha Viharaya in Gampola is a unique Buddhist temple known for its striking stupa built in the shape of a bell tower. Located on a small hill, it offers panoramic views of the surrounding landscapes, including the Mahaweli River. The temple, with its serene atmosphere and historical significance, attracts both pilgrims and visitors seeking spiritual and architectural beauty.",
     "lat": 7.1747792372480035,
     "long": 80.57968547567725,
-    "imageUrls": ["-"],
+    "imageUrls": ["https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F5.jpg?alt=media&token=3936eaa2-2f5f-4e3f-8fa3-289a05af72db"],
     "tags": ["temple", "gampola"]
   },
 
@@ -55,7 +55,7 @@
     "description": "Gampola Suburbs, nestled in Sri Lanka’s central highlands, is a peaceful escape surrounded by lush tea estates, misty hills, and the serene flow of the Mahaweli River",
     "lat": 7.153291432186961,
     "long": 80.55938643403351,
-    "imageUrls": ["-"],
+    "imageUrls": ["https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F6.1.jpg?alt=media&token=64a18f9c-a257-4c27-bae5-5d43660dcc71","https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F6.2.jpg?alt=media&token=0616772e-3aad-4390-8451-cc6eede2c7c7"],
     "tags": ["suburbs", "gampola"]
   },
 
@@ -65,7 +65,7 @@
     "description": "Nawalapitiya Suburbs is a serene hill-country retreat with misty mountains, waterfalls, and lush greenery.",
     "lat": 7.12146694432199,
     "long": 80.55832955986261,
-    "imageUrls": ["-"],
+    "imageUrls": ["https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F7.1.jpg?alt=media&token=4ee03b00-2587-4635-8fc8-c69b94066316","https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F7.2.jpg?alt=media&token=69049a04-8213-4678-9040-5fe6c0af3f4a"],
     "tags": ["suburbs", "nawalapitiya"]
   },
 
@@ -75,7 +75,7 @@
     "description": "Kalugalhinna Buddhist Temple is a peaceful temple located in Sri Lanka’s central highlands, surrounded by lush greenery and misty hills. It is known for its serene atmosphere, traditional architecture, and spiritual significance to the local Buddhist community. The temple serves as a place for meditation and religious observance, offering visitors a tranquil retreat amidst nature.",
     "lat": 7.056261054240167,
     "long": 80.53406068123877,
-    "imageUrls": ["-"],
+    "imageUrls": ["https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F8.1.jpg?alt=media&token=77fd79a0-7386-42ac-a8b4-2372be45a755","https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F8.2.jpg?alt=media&token=fd725e22-435b-4abd-bc34-81e8bd62e0b5"],
     "tags": ["temple", "nawalapitiya"]
   },
 
@@ -85,7 +85,7 @@
     "description": "Selam Bridge in Nawalapitiya is a historic railway bridge along Sri Lanka’s scenic Main Line. Surrounded by lush greenery and rolling hills, it is known for its colonial-era engineering and stunning views. The bridge is a popular spot for train enthusiasts and travelers capturing the beauty of Sri Lanka’s central highlands. On the right is River Mahaweli.",
     "lat": 7.045713770203292,
     "long": 80.52965976297855,
-    "imageUrls": ["-"],
+    "imageUrls": ["https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F9.1.jpg?alt=media&token=0d5601ba-c80c-471a-ac26-9ad133464637","https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F9.2.jpg?alt=media&token=de97d18c-9aa1-4036-940c-407054c22482"],
     "tags": ["bridge", "nawalapitiya"]
   },
 
@@ -305,7 +305,7 @@
     "description": "The Highland Milk Factory, located in the central highlands of Sri Lanka, is known for producing high-quality dairy products. Situated amidst the scenic tea plantations near Nuwara Eliya, the factory is an essential part of the region's agricultural industry. It supports local dairy farmers and contributes to the production of fresh milk, yogurt, and other dairy items, serving both local markets and exports.",
     "lat": 6.877766037359834,
     "long": 80.8139586634934,
-    "imageUrls": ["https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F31.1.jpg?alt=media&token=60015366-e4d8-46e6-b40d-4bc4517b1fd6","https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F31.2.jpg?alt=media&token=ba3c0106-6af8-4140-9ff7-ec306b5740e8","https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F31.3.jpg?alt=media&token=4fd7809d-63a6-4142-ae84-7b433990bc64","https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F31.4.jpg?alt=media&token=efe0155f-bc1d-4576-81e3-3d4c7cc8c680"],
+    "imageUrls": ["https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F31.1.jpg?alt=media&token=60015366-e4d8-46e6-b40d-4bc4517b1fd6","https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F31.2.jpg?alt=media&token=ba3c0106-6af8-4140-9ff7-ec306b5740e8","https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F31.3.jpg?alt=media&token=4fd7809d-63a6-4142-ae84-7b433990bc64","https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F31.4.jpg?alt=media&token=efe0155f-bc1d-4576-81e3-3d4c7cc8c680","https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F31.5.jpg?alt=media&token=dca43d41-a930-4984-8335-146e66f3a640"],
     "tags": ["factory", "ambewela"]
   },
 
@@ -315,7 +315,7 @@
     "description": "Pattipola’s vegetation is a lush blend of montane forests, grassy plains, and vibrant wildflowers, thriving in the cool, misty climate of Sri Lanka’s highest regions.",
     "lat": 6.867139502428472,
     "long": 80.8261572662741,
-    "imageUrls": ["-"],
+    "imageUrls": ["https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F32.1.jpg?alt=media&token=22b17a5e-3d6d-4872-ab1c-2725ea2048c6","https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F32.2.jpg?alt=media&token=e45f2e0d-f8e4-488a-a976-31a16323b1ec","https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F32.3.jpg?alt=media&token=f49da9a0-ff25-49eb-9970-cb374927fc1e"],
     "tags": ["vegetation", "pattipola"]
   },
 
@@ -325,7 +325,7 @@
     "description": "The Buddha statue in Pattipola stands as a serene symbol of peace and spirituality, overlooking the misty hills and offering a tranquil space for reflection and calm.",
     "lat": 6.855455255135894,
     "long": 80.8318211248368,
-    "imageUrls": ["-"],
+    "imageUrls": ["https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F33.jpg?alt=media&token=78282c8a-271e-45bc-b672-b2e13cf9c99b"],
     "tags": ["statue", "pattipola"]
   },
 
@@ -335,7 +335,7 @@
     "description": "Reaching Pattipola",
     "lat": 6.855434509925544,
     "long": 80.83084459416568,
-    "imageUrls": ["-"],
+    "imageUrls": ["https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F34.jpg?alt=media&token=b683e2d8-d849-4b27-81de-7058e0ba3820"],
     "tags": ["pattipola"]
   },
 
@@ -345,7 +345,7 @@
     "description": "The highest railway station in Sri Lanka is the Nanu Oya Railway Station, located at an elevation of approximately 1,907 meters (6,257 feet) above sea level. Situated in the central highlands, it serves as a key stop on the scenic Main Line, providing access to nearby destinations like Nuwara Eliya. The station is known for its cool climate and stunning views of the surrounding tea plantations and misty hills.",
     "lat": 6.84882328798993,
     "long": 80.83311868831515,
-    "imageUrls": ["-"],
+    "imageUrls": ["https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F35.1.jpg?alt=media&token=80d6d085-adac-440b-b9e7-0a3423514c91","https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F35.2.jpg?alt=media&token=b16e8891-64f5-443c-82cc-2c4a3c0a5f8a","https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F35.3.jpg?alt=media&token=1edce586-9aaf-4b40-8418-b726e28e7778"],
     "tags": ["station", "nanu oya"]
   },
 
@@ -355,7 +355,7 @@
     "description": "Pattipola cultivations, located in Sri Lanka’s highest-altitude farming region, are known for their cool-climate crops like potatoes, carrots, and cabbage.",
     "lat": 6.844758647494018,
     "long": 80.8349278382957,
-    "imageUrls": ["-"],
+    "imageUrls": ["https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F36.1.jpg?alt=media&token=26753f68-40c4-4f02-b38d-b7e281ff746e","https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F36.2.jpg?alt=media&token=49deb60e-04f1-4bd9-94da-f3ad15e0e595","https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F36.3.jpg?alt=media&token=913fbf21-18f3-4431-808d-95954d23633f"],
     "tags": ["cultivations", "pattipola"]
   },
 
@@ -365,7 +365,7 @@
     "description": "A small, scenic stream flows through Demodara, winding its way through lush tea plantations and misty hills.",
     "lat": 6.904459004290402,
     "long": 81.0642696171999,
-    "imageUrls": ["-"],
+    "imageUrls": ["https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F37.1.jpg?alt=media&token=e0f8eff7-acaa-4a98-a683-a440092d397a","https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F37.2.jpg?alt=media&token=f4403d27-5ebf-4aeb-b65e-f216dd8a3562","https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F37.3.jpg?alt=media&token=f433972d-f7d8-4830-bd5e-4f5d06148b15","https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F37.4.jpg?alt=media&token=d14c56f4-ab96-41eb-a3b2-511706d0fceb"],
     "tags": ["stream", "demodara"]
   },
 
@@ -375,7 +375,7 @@
     "description": "Hali Ela is home to a hidden stream that flows through dense greenery and rocky landscapes, offering a peaceful retreat for nature lovers. ",
     "lat": 6.932527064345777,
     "long": 81.04204022325575,
-    "imageUrls": ["-"],
+    "imageUrls": ["https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F38.1.jpg?alt=media&token=c4f2f788-fcdd-412b-a5a3-b7cc6f3ebb50","https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F38.2.jpg?alt=media&token=912fb483-b21f-44cb-a094-83ebb14cd795"],
     "tags": ["stream", "hali ela"]
   }
 ]

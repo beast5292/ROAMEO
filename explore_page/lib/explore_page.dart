@@ -10,7 +10,7 @@ class ExplorePage extends StatefulWidget {
 class _ExplorePageState extends State<ExplorePage> {
   int _selectedIndex = 3; // Default active tab
   int _currentPage = 0;
-  final PageController _pageController = PageController(viewportFraction: 0.72);
+  final PageController _pageController = PageController(viewportFraction: 0.72); //adjust width of travel card
 
   final List<Map<String, dynamic>> travelCards = [
     {"name": "Galle", "image": "assets/images/Galle.png", "rating": 4.6},
@@ -69,12 +69,12 @@ class _ExplorePageState extends State<ExplorePage> {
             children: [
               const SizedBox(height: 20),
 
-              // 🔹 Back Button & Search Bar 🔹
+              //  Back Button & Search Bar 
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
                 child: Row(
                   children: [
-                    // 🔹 Back Button 🔹
+                    //  Back Button 
                     GestureDetector(
                       onTap: () {
                         print("Back button tapped");
@@ -83,23 +83,23 @@ class _ExplorePageState extends State<ExplorePage> {
                         width: 50,
                         height: 50,
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.2), // Same as category chips
-                          borderRadius: BorderRadius.circular(25), // Same as category chips
+                          color: Colors.white.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(25),
                         ),
-                        child: const Center( // Center the icon inside the container
+                        child: const Center( 
                           child: Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 30),
                         ),
                       ),
                     ),
                     const SizedBox(width: 12),
 
-                    // 🔹 Search Bar 🔹
+                    //  Search Bar 
                     Expanded(
                       child: Container(
                         height: 60,
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.2), // Same as category chips
-                          borderRadius: BorderRadius.circular(25), // Same as category chips
+                          color: Colors.white.withOpacity(0.2), 
+                          borderRadius: BorderRadius.circular(25),
                         ),
                         child: Row(
                           children: [
@@ -110,7 +110,7 @@ class _ExplorePageState extends State<ExplorePage> {
                               child: TextField(
                                 controller: _searchController,
                                 decoration: InputDecoration(
-                                  border: InputBorder.none, // Remove the underline
+                                  border: InputBorder.none,
                                   hintText: "Search...",
                                   hintStyle: TextStyle(
                                     color: Colors.white.withOpacity(0.7),
@@ -132,7 +132,7 @@ class _ExplorePageState extends State<ExplorePage> {
                 ),
               ),
 
-              // 🔹 Category Chips 🔹
+              //  Category Chips
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
                 child: Row(
@@ -145,10 +145,10 @@ class _ExplorePageState extends State<ExplorePage> {
                 ),
               ),
 
-              // 🔹 Travel Cards with PageView 🔹
+              // Travel Cards with PageView
               const SizedBox(height: 40),
               SizedBox(
-                height: 451, // Adjusted height to accommodate taller cards
+                height: 451, //adjust travel card height
                 child: PageView.builder(
                   controller: _pageController,
                   itemCount: _filteredTravelCards.length, // Use filtered list
@@ -180,13 +180,13 @@ class _ExplorePageState extends State<ExplorePage> {
                 ),
               ),
 
-              const SizedBox(height: 40), // ✅ Adjusted Space Between Travel Cards & Bottom Nav
+              const SizedBox(height: 40), 
             ],
           ),
         ),
       ),
 
-      // 🔹 Bottom Navigation Bar 🔹
+      // Bottom Navigation Bar 
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(bottom: 26.0),
         child: Container(
@@ -207,14 +207,14 @@ class _ExplorePageState extends State<ExplorePage> {
     );
   }
 
-  // 🔹 Category Chip Widget
+  //  Category Chip Widget
   Widget _buildCategoryChip(String text) {
     return GestureDetector(
       onTap: () => print("$text tapped"),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 12),
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.1), // Same as back button and search bar
+          color: Colors.white.withOpacity(0.1), 
           borderRadius: BorderRadius.circular(25),
         ),
         child: Text(
@@ -229,7 +229,7 @@ class _ExplorePageState extends State<ExplorePage> {
     );
   }
 
-  // 🔹 Bottom Navigation Bar Icon Widget
+  // Bottom Navigation Bar Icon Widget
   Widget _buildNavIconWithImage(String iconPath, String activePath, int index) {
     bool isSelected = _selectedIndex == index;
     double iconSize = (index == 2) ? 60 : 35; // AI icon larger size
@@ -250,7 +250,7 @@ class _ExplorePageState extends State<ExplorePage> {
   }
 }
 
-// 🔹 TravelCard Component
+// TravelCard Component
 class TravelCard extends StatelessWidget {
   final String name;
   final String imagePath;
@@ -273,8 +273,8 @@ class TravelCard extends StatelessWidget {
       onTap: onTap,
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 10),
-        width: 220, // Adjusted width (thinner)
-        height: 320, // Adjusted height (taller)
+        width: 220, 
+        height: 320,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           image: DecorationImage(image: AssetImage(imagePath), fit: BoxFit.cover),

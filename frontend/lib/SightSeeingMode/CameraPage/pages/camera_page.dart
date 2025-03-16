@@ -40,6 +40,8 @@ class _CameraPageState extends State<CameraPage> {
           'latitude': position.latitude,
           'longitude': position.longitude,
           'name': "dummy name",
+          'description': "dummy description",
+          'tags': ["dummy tag1","dummy tag2"]
         };
 
         print(imageData);

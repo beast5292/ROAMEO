@@ -3,6 +3,7 @@ import 'package:location/location.dart';
 import 'package:practice/SightSeeingMode/CameraPage/pages/camera_page.dart';
 import 'package:practice/SightSeeingMode/Services/SightsSend.dart';
 import 'package:practice/SightSeeingMode/Sightseeing_mode_page.dart';
+import 'package:practice/SightSeeingMode/Simulation/pages/Ella_test.dart';
 import 'package:practice/SightSeeingMode/location_select/models/location_info.dart';
 import 'package:practice/SightSeeingMode/location_select/pages/autoCwidget.dart';
 import 'package:practice/SightSeeingMode/CameraPage/providers/Image_provider.dart';
@@ -316,6 +317,18 @@ class _SightMenuState extends State<SightMenu> {
               );
             },
             child: Icon(Icons.save),
+          ),
+           SizedBox(height: 10),
+          FloatingActionButton(
+            heroTag: 'saveButton',
+            onPressed: () {
+              onSightSave();
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MapScreen()),
+              );
+            },
+            child: Icon(Icons.train),
           ),
         ],
       ),

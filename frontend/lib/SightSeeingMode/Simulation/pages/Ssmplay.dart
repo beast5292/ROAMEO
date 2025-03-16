@@ -16,6 +16,7 @@ import 'package:practice/SightSeeingMode/Simulation/services/assignPoints.dart';
 import 'package:practice/SightSeeingMode/Simulation/services/alertDialog.dart';
 import 'package:practice/SightSeeingMode/Simulation/services/checkProximity.dart';
 import 'package:practice/SightSeeingMode/Simulation/services/PolylineThresholdCheck.dart';
+import 'package:practice/SightSeeingMode/Simulation/services/readCoordinatesfromfile.dart';
 
 class SsmPlay extends StatefulWidget {
   //widget takes the index as a parameter to figure out the sightseeing mode id
@@ -198,11 +199,8 @@ class SsmPlayState extends State<SsmPlay> {
     });
   }
 
-  
-
   //function to get the polypoints
   void getPolyPoints() async {
-
     //new polyline object (polyline)
     PolylinePoints polylinePoints = PolylinePoints();
 
@@ -222,42 +220,38 @@ class SsmPlayState extends State<SsmPlay> {
 
     // showAlertDialog2(alertMessage3);
 
-    //receieve polylines using getRoutebetween function of directions api
-    PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-        'AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0',
-        PointLatLng(currentLocation!.latitude!, currentLocation!.longitude!),
-        PointLatLng(destination!.latitude, destination!.longitude),
-        travelMode: TravelMode.transit,
-        wayPoints: activeWaypoints,
-        optimizeWaypoints: true);
+      //receieve polylines using getRoutebetween function of directions api
+      PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
+          'AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0',
+          PointLatLng(currentLocation!.latitude!, currentLocation!.longitude!),
+          PointLatLng(destination!.latitude, destination!.longitude),
+          travelMode: TravelMode.driving,
+          wayPoints: activeWaypoints,
+          optimizeWaypoints: true);
 
-    //if the results are not empty add the co-ordinates to the polylineCoordinates array containing lat and lang points
+      //if the results are not empty add the co-ordinates to the polylineCoordinates array containing lat and lang points
 
-    if (result.points.isNotEmpty) {
-      List<LatLng> routePoints = [];
-      result.points.forEach((PointLatLng point) {
-        routePoints.add(LatLng(point.latitude, point.longitude));
-      });
+      if (result.points.isNotEmpty) {
+        List<LatLng> routePoints = [];
+        result.points.forEach((PointLatLng point) {
+          routePoints.add(LatLng(point.latitude, point.longitude));
+        });
 
-      var alertMessage3 = routePoints.toString();
+        var alertMessage3 = routePoints.toString();
 
+        setState(() {
+          polylineCoordinates = routePoints;
+        });
 
-      setState(() {
-        polylineCoordinates = routePoints;
-      });
+        // showAlertDialog2(alertMessage3);
 
-      // showAlertDialog2(alertMessage3);
-
-      
-      //Snap the route coordinates to the nearest road
-      // await snapToRoads(routePoints);
-
-     
+        //Snap the route coordinates to the nearest road
+        // await snapToRoads(routePoints);
+      }
     }
-
     //call set state which has many functions
     // setState(() {});
-  }
+  
 
 
   //distance matrix api request for the sightseeing route

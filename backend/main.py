@@ -1,4 +1,4 @@
-from fastapi import FastAPI,HTTPException
+from fastapi import FastAPI,HTTPException,Query
 from typing import List
 from Sight_info import Sight
 from firebase_admin import credentials,firestore, initialize_app
@@ -71,3 +71,7 @@ async def get_sight_by_id(docId: str):
         return {"id": doc.id, "sights": sight_data}
     else:
         raise HTTPException(status_code=404, detail="Sight not found")  
+    
+
+
+

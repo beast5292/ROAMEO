@@ -1,7 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:practice/SightSeeingMode/CameraPage/providers/Image_provider.dart';
+import 'package:practice/SightSeeingMode/Simulation/providers/SightProvider.dart';
+import 'package:practice/SightSeeingMode/location_select/pages/autoCwidget.dart';
+import 'package:practice/SightSeeingMode/location_select/services/autoCService.dart';
 import 'package:practice/SightSeeingMode/location_select/providers/selected_place_provider.dart';
+import 'package:practice/pages/open_page.dart';
 import 'package:provider/provider.dart';
 import 'pages/open_page.dart';
 
@@ -12,7 +16,8 @@ void main() async {
   //providers
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => SelectedImageProvider()),
-    ChangeNotifierProvider(create: (_) => SelectedPlaceProvider())
+    ChangeNotifierProvider(create: (_) => SelectedPlaceProvider()),
+    ChangeNotifierProvider(create: (_) => SightProvider())
   ], child: const MyApp()));
 }
 

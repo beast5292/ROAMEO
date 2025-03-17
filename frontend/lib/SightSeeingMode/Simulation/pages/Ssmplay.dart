@@ -10,11 +10,14 @@ import 'package:http/http.dart' as http;
 import 'package:practice/SightSeeingMode/Services/SightGet.dart';
 import 'package:practice/SightSeeingMode/Simulation/pages/Navigation.dart';
 import 'package:practice/SightSeeingMode/Simulation/pages/mapbox.dart';
+import 'package:practice/SightSeeingMode/Simulation/providers/SightProvider.dart';
 import 'package:practice/SightSeeingMode/Simulation/services/Haversine_formula.dart';
+import 'package:practice/SightSeeingMode/Simulation/services/TrimPolyline.dart';
 import 'package:practice/SightSeeingMode/Simulation/services/assignPoints.dart';
 import 'package:practice/SightSeeingMode/Simulation/services/alertDialog.dart';
 import 'package:practice/SightSeeingMode/Simulation/services/checkProximity.dart';
 import 'package:practice/SightSeeingMode/Simulation/services/PolylineThresholdCheck.dart';
+import 'package:practice/SightSeeingMode/Simulation/services/readCoordinatesfromfile.dart';
 
 class SsmPlay extends StatefulWidget {
   //widget takes the index as a parameter to figure out the sightseeing mode id
@@ -63,7 +66,7 @@ class SsmPlayState extends State<SsmPlay> {
   int currentStepIndex = 0;
 
   //list of lat and lang co-ordinates to hold the polyline coordinates
-  List<LatLng> polylineCoordinates = [];
+  static List<LatLng> polylineCoordinates = [];
 
   //define only the active way points
   late List<PolylineWayPoint> activeWaypoints;
@@ -86,6 +89,7 @@ class SsmPlayState extends State<SsmPlay> {
 
   //Set to hold markers
   Set<Marker> markers = {};
+
   //setState of assignPoints function
   void updateAssignPointsState(
     LatLng source,
@@ -112,11 +116,11 @@ class SsmPlayState extends State<SsmPlay> {
           //set the current location to the obtained location
           currentLocation = location;
         });
-
         //call getPolyPoints after a obtaining the current location
         getPolyPoints();
       },
     );
+
     //waits for the google map controller to be available
     GoogleMapController googleMapController = await _controller.future;
 
@@ -126,6 +130,12 @@ class SsmPlayState extends State<SsmPlay> {
       setState(() {
         currentLocation = newLoc;
       });
+
+      addMarkers();
+
+      //trim the polyline
+      trimPolyline(LatLng(newLoc.latitude!, newLoc.longitude!));
+
       //checks the proximity everytime the location changes
       checkProximityAndNotify(
         context,
@@ -146,7 +156,7 @@ class SsmPlayState extends State<SsmPlay> {
       }
 
       //Recalculate the polyline with updated location
-      getPolyPoints();
+      // getPolyPoints();
 
       //call the waypoint distance and duration calculator using current locaton anf the first active waypoint
       getWaypointDistanceandDuration(currentLocation, activeWaypoints[0]);
@@ -202,7 +212,7 @@ class SsmPlayState extends State<SsmPlay> {
     //Define waypoints excluding reached ones
     activeWaypoints = waypoints
         .where((wp) =>
-            !reachedWaypoints.contains(wp)) // Filter out reached waypoints
+            !reachedWaypoints.contains(wp)) //Filter out reached waypoints
         .map((wp) => PolylineWayPoint(
               location: "${wp.latitude},${wp.longitude}",
             ))
@@ -218,7 +228,8 @@ class SsmPlayState extends State<SsmPlay> {
         PointLatLng(currentLocation!.latitude!, currentLocation!.longitude!),
         PointLatLng(destination!.latitude, destination!.longitude),
         travelMode: TravelMode.driving,
-        wayPoints: activeWaypoints);
+        wayPoints: activeWaypoints,
+        optimizeWaypoints: true);
 
     //if the results are not empty add the co-ordinates to the polylineCoordinates array containing lat and lang points
 
@@ -239,10 +250,9 @@ class SsmPlayState extends State<SsmPlay> {
       //Snap the route coordinates to the nearest road
       // await snapToRoads(routePoints);
     }
-
-    //call set state which has many functions
-    // setState(() {});
   }
+  //call set state which has many functions
+  // setState(() {});
 
   //distance matrix api request for the sightseeing route
   Future<void> getDistanceAndDuration() async {
@@ -250,10 +260,12 @@ class SsmPlayState extends State<SsmPlay> {
     LatLng currentLatLng =
         LatLng(currentLocation!.latitude!, currentLocation!.longitude!);
 
-    //url with location coorindates
-    //get distancea and duration between the current location and the destination
+    //Prepare the waypoints string for the Directions API request
+    String waypointsString = activeWaypoints.map((wp) => wp.location).join('|');
+
+    //Directions API URL with current location, destination, and waypoints
     String url =
-        'https://maps.googleapis.com/maps/api/distancematrix/json?origins=${currentLatLng.latitude},${currentLatLng.longitude}&destinations=${destination!.latitude},${destination!.longitude}&key=AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0';
+        'https://maps.googleapis.com/maps/api/directions/json?origin=${currentLatLng.latitude},${currentLatLng.longitude}&destination=${destination!.latitude},${destination!.longitude}&waypoints=optimize:true|$waypointsString&key=AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0';
 
     //get request to distance matrix api
     var response = await http.get(Uri.parse(url));
@@ -261,14 +273,29 @@ class SsmPlayState extends State<SsmPlay> {
     if (response.statusCode == 200) {
       var data = json.decode(response.body);
 
-      //call set state
-      setState(() {
-        //extract the details from the response
-        distance = data['rows'][0]['elements'][0]['distance']['text'];
-        duration = data['rows'][0]['elements'][0]['duration']['text'];
-      });
-    } else {
-      print("Failed to get distance and duration");
+      if (data['routes'].isNotEmpty) {
+        //Extract the total distance and duration from the first route
+        var legs = data['routes'][0]['legs'];
+        double totalDistance = 0;
+        double totalDuration = 0;
+
+        for (var leg in legs) {
+          totalDistance += leg['distance']['value'];
+          totalDuration += leg['duration']['value'];
+        }
+
+        //Convert distance to kilometers and duration to minutes
+        String distanceText = '${(totalDistance / 1000).toStringAsFixed(1)} km';
+        String durationText = '${(totalDuration / 60).toStringAsFixed(0)} mins';
+
+        //call set state
+        setState(() {
+          distance = distanceText;
+          duration = durationText;
+        });
+      } else {
+        print("Failed to get distance and duration");
+      }
     }
   }
 
@@ -332,16 +359,31 @@ class SsmPlayState extends State<SsmPlay> {
     }
   }
 
+  //trim the polylines as the user moves
+  void trimPolyline(LatLng userLocation) {
+    if (polylineCoordinates.isEmpty) return;
+
+    int closestIndex = findClosestPointIndex(userLocation, polylineCoordinates);
+
+    setState(() {
+      polylineCoordinates = polylineCoordinates.sublist(closestIndex);
+    });
+  }
+
   // Function to add markers for waypoints and destination
   void addMarkers() {
     markers.clear();
+
+    //index for the destination
+    var destination_id = SightProvider().sights.length - 1;
+
     // Add markers for waypoints
     for (int i = 0; i < waypoints.length; i++) {
       markers.add(
         Marker(
-          markerId: MarkerId('waypoint_$i'),
+          markerId: MarkerId('$i'),
           position: waypoints[i],
-          infoWindow: InfoWindow(title: 'Waypoint ${i + 1}'),
+          infoWindow: InfoWindow(title: 'Waypoint $i'),
           icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
         ),
       );
@@ -350,7 +392,7 @@ class SsmPlayState extends State<SsmPlay> {
     // Add marker for destination
     markers.add(
       Marker(
-        markerId: MarkerId('destination'),
+        markerId: MarkerId('$destination_id'),
         position: destination!,
         infoWindow: InfoWindow(title: 'Destination'),
         icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
@@ -397,7 +439,6 @@ class SsmPlayState extends State<SsmPlay> {
     });
     getCurrentLocation();
     // setCustomMarkerIcon();
-
     // getPolyPoints();
     getDistanceAndDuration();
   }
@@ -471,6 +512,7 @@ class SsmPlayState extends State<SsmPlay> {
                       points: polylineCoordinates,
                       color: Colors.lightBlue,
                       width: 6,
+                      zIndex: -1,
                     )
                   },
                   onMapCreated: (mapController) {

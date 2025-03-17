@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:location/location.dart';
 import 'package:practice/SightSeeingMode/CameraPage/pages/camera_page.dart';
 import 'package:practice/SightSeeingMode/Services/SightsSend.dart';
 import 'package:practice/SightSeeingMode/Sightseeing_mode_page.dart';
+import 'package:practice/SightSeeingMode/Simulation/pages/Ella_test.dart';
+import 'package:practice/SightSeeingMode/location_select/models/location_info.dart';
 import 'package:practice/SightSeeingMode/location_select/pages/autoCwidget.dart';
 import 'package:practice/SightSeeingMode/CameraPage/providers/Image_provider.dart';
 import 'package:practice/SightSeeingMode/location_select/providers/selected_place_provider.dart';
 import 'package:practice/SightSeeingMode/models/sight.dart';
+import 'package:google_maps_flutter_platform_interface/src/types/location.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:io';
@@ -52,76 +56,76 @@ class _SightMenuState extends State<SightMenu> {
 
     //iterate through selected locations and create Sight objects
     for (var location in selectedPlaceProvider.selectedLocations) {
-      Sight sight = Sight(
-        id: DateTime.now()
-            .millisecondsSinceEpoch
-            .toString(), // Unique ID from the place API
-        name: location.prediction.mainText ?? "Unknown Place",
-        description:
-            location.prediction.secondaryText ?? "No details available",
-        tags: [
-          "dummyTag",
-          "dummyTag2"
-        ], // You can modify this to add tags if needed
-        lat: location.placeDetails.latitude,
-        long: location.placeDetails.longitude,
-        imageUrls: location.imageUrls.isNotEmpty ? location.imageUrls : [],
-      );
+      if (location is LocationInfo) {
+        Sight sight = Sight(
+          id: DateTime.now()
+              .millisecondsSinceEpoch
+              .toString(), // Unique ID from the place API
+          name: location.prediction.mainText ?? "Unknown Place",
+          description:
+              location.prediction.secondaryText ?? "No details available",
+          tags: [
+            "dummyTag",
+            "dummyTag2"
+          ], // You can modify this to add tags if needed
+          lat: location.placeDetails.latitude,
+          long: location.placeDetails.longitude,
+          imageUrls: location.imageUrls.isNotEmpty ? location.imageUrls : [],
+        );
 
-      print(sight.toString());
+        print(sight.toString());
 
-      Sights.add(sight);
-    }
+        Sights.add(sight);
+      }
 
-    for (var tripData in selectedImageProvider.selectedTrips) {
-      //Extracting image URLs
-      List<String> imagePaths = tripData
-          .where((imageData) =>
-              imageData.containsKey('photo') && imageData['photo'] != null)
-          .map<String>((imageData) => imageData['photo'] as String)
-          .toList();
+      if (location is List<Map<String, dynamic>>) {
+        //Extracting image URLs
+        List<String> imagePaths = location
+            .where((imageData) =>
+                imageData.containsKey('photo') && imageData['photo'] != null)
+            .map<String>((imageData) => imageData['photo'] as String)
+            .toList();
 
-    
+        //store the uploaded Urls (jpgs uploaded to the firestorage and google map links)
+        List<String> uploadedUrls = [];
+        for (String path in imagePaths) {
+          if (path.endsWith('.jpg')) {
+            //upload the image to firestorage
+            String downloadUrl = await uploadImage(path);
 
-      //store the uploaded Urls (jpgs uploaded to the firestorage and google map links)
-      List<String> uploadedUrls = [];
-      for (String path in imagePaths) {
-        if (path.endsWith('.jpg')) {
-          //upload the image to firestorage
-          String downloadUrl = await uploadImage(path);
-
-          //add the firestorage url to the uploaded urls
-          uploadedUrls.add(downloadUrl);
+            //add the firestorage url to the uploaded urls
+            uploadedUrls.add(downloadUrl);
+          }
         }
+
+        //Extract lat and long from the first image in the trip
+        var firstImage = location.first;
+
+        double? lat;
+        double? long;
+
+        if (firstImage.containsKey('latitude') &&
+            firstImage.containsKey('longitude')) {
+          lat = firstImage['latitude'] as double?;
+          long = firstImage['longitude'] as double?;
+        }
+
+        Sight sight = Sight(
+          id: DateTime.now().millisecondsSinceEpoch.toString(),
+          name: "Captured Image",
+          description: "Sightseeing image",
+          tags: ["dummy tag1", "dummy tag2"],
+          lat: lat,
+          long: long,
+          imageUrls: uploadedUrls,
+        );
+
+        print(sight.toString());
+
+        Sights.add(sight);
       }
-
-      //Extract lat and long from the first image in the trip
-      var firstImage = tripData.first;
-
-      double? lat;
-      double? long;
-
-      if (firstImage.containsKey('latitude') &&
-          firstImage.containsKey('longitude')) {
-        lat = firstImage['latitude'] as double?;
-        long = firstImage['longitude'] as double?;
-      }
-
-      Sight sight = Sight(
-        id: DateTime.now().millisecondsSinceEpoch.toString(),
-        name: "Captured Image",
-        description: "Sightseeing image",
-        tags: ["dummy tag1", "dummy tag2"],
-        lat: lat,
-        long: long,
-        imageUrls: uploadedUrls,
-      );
-
-      print(sight.toString());
-
-      Sights.add(sight);
     }
-
+    
     //Print the entire Sights array after adding all objects
     print("Sights Array: $Sights");
 
@@ -132,104 +136,93 @@ class _SightMenuState extends State<SightMenu> {
   @override
   Widget build(BuildContext context) {
     final selectedPlaceProvider = Provider.of<SelectedPlaceProvider>(context);
-    final selectedImageProvider = Provider.of<SelectedImageProvider>(context);
 
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
-            Text("Create your own sightseeing mode",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            Text(
+              "Create your own sightseeing mode",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
             SizedBox(height: 10),
 
-            // Toggle switch
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Locations", style: TextStyle(fontSize: 16)),
-                Switch(
-                  value: showLocations,
-                  onChanged: (value) {
-                    setState(() {
-                      showLocations = value;
-                    });
-                  },
-                ),
-                Text("Images", style: TextStyle(fontSize: 16)),
-              ],
-            ),
-
+            // Reorderable list for image trips
             Expanded(
-              child: showLocations
-                  ? ListView.builder(
-                      itemCount: selectedPlaceProvider.selectedLocations.length,
-                      itemBuilder: (context, index) {
-                        final location =
-                            selectedPlaceProvider.selectedLocations[index];
+              child: ReorderableListView(
+                onReorder: (oldIndex, newIndex) {
+                  // Handle reordering logic here
+                  selectedPlaceProvider.reorderTrips(oldIndex, newIndex);
+                },
+                children: selectedPlaceProvider.selectedLocations
+                    .map<Widget>((dynamic item) {
+                  final key =
+                      ValueKey(item.hashCode); // Unique key for each item
 
-                        // Get the first image URL from the Images list
-                        final firstImageUrl = location.imageUrls.isNotEmpty
-                            ? location.imageUrls[0]
-                            : null;
-
-                        return ListTile(
-                          leading: firstImageUrl != null
-                              ? Image.network(firstImageUrl,
-                                  width: 40,
-                                  height: 40,
-                                  fit: BoxFit.cover) // Smaller image size
-                              : Icon(Icons.location_on,
-                                  color: Colors
-                                      .blue), // Fallback icon if no image is available
-                          title: Text(
-                              location.prediction.mainText ?? "Unknown Place",
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold)),
-                          subtitle: Text(location.prediction.secondaryText ??
+                  if (item is LocationInfo) {
+                    // Handle LocationInfo type
+                    return ListTile(
+                      key: key,
+                      title: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(item.prediction.mainText ?? "Unknown Place"),
+                          Text(item.prediction.secondaryText ??
                               "No details available"),
-                        );
-                      },
-                    )
-                  : selectedImageProvider.selectedTrips.isEmpty
-                      ? Center(
-                          child: Text("No images added yet",
-                              style:
-                                  TextStyle(fontSize: 16, color: Colors.grey)))
-                      : ListView.builder(
-                          itemCount: selectedImageProvider.selectedTrips.length,
-                          itemBuilder: (context, index) {
-                            final tripData =
-                                selectedImageProvider.selectedTrips[index];
-
-                            if (tripData.isEmpty) {
-                              return SizedBox.shrink();
-                            }
-
-                            final imageDataList = tripData;
-
-                            return ListTile(
-                              title: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children:
-                                        imageDataList.map<Widget>((imageData) {
-                                      return Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Image.file(
-                                          File(imageData['photo']),
-                                          width: 150, // Smaller image size
-                                          height: 150,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      );
-                                    }).toList(),
+                          if (item.imageUrls.isNotEmpty)
+                            Row(
+                              children: item.imageUrls.map<Widget>((imageUrl) {
+                                return Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Image.network(
+                                    imageUrl,
+                                    width: 150,
+                                    height: 150,
+                                    fit: BoxFit.cover,
                                   ),
-                                ],
-                              ),
-                            );
-                          },
-                        ),
+                                );
+                              }).toList(),
+                            ),
+                        ],
+                      ),
+                    );
+                  } else if (item is List<Map<String, dynamic>>) {
+                    // Handle List<Map<String, dynamic>> type
+                    return ListTile(
+                      key: key,
+                      title: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: item.map<Widget>((imageData) {
+                              if (imageData.containsKey('photo') &&
+                                  imageData['photo'] != null) {
+                                return Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Image.file(
+                                    File(imageData['photo']),
+                                    width: 150,
+                                    height: 150,
+                                    fit: BoxFit.cover,
+                                  ),
+                                );
+                              } else {
+                                return Container(); // Handle missing photo data
+                              }
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                    );
+                  } else {
+                    // Handle unexpected types (optional)
+                    return ListTile(
+                      key: key,
+                      title: Text("Unknown item type"),
+                    );
+                  }
+                }).toList(),
+              ),
             ),
           ],
         ),
@@ -277,6 +270,18 @@ class _SightMenuState extends State<SightMenu> {
               );
             },
             child: Icon(Icons.save),
+          ),
+           SizedBox(height: 10),
+          FloatingActionButton(
+            heroTag: 'saveButton',
+            onPressed: () {
+              onSightSave();
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MapScreen()),
+              );
+            },
+            child: Icon(Icons.train),
           ),
         ],
       ),

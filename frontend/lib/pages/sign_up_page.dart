@@ -32,7 +32,7 @@ class _SignUpPageState extends State<SignUpPage> {
       _isLoading = true;
     });
 
-    final url = Uri.parse('http://192.168.100.14:8000/signup');
+    final url = Uri.parse('http://10.0.2.2:8000/signup');
     final Map<String, String> requestBody = {
       "username": _usernameController.text,
       "email": _emailController.text,

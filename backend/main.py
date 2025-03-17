@@ -1,4 +1,4 @@
-from fastapi import FastAPI,HTTPException
+from fastapi import FastAPI,HTTPException,Query
 from typing import List
 from Sight_info import Sight
 from firebase_admin import credentials,firestore, initialize_app
@@ -14,7 +14,7 @@ from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from fastapi import Depends
 
 #Initialize Firebase Admin SDK with your credentials
-cred = credentials.Certificate(r'C:\Users\Mindula\Desktop\ROAMEO\backend\private key\roameo-f3ab0-firebase-adminsdk-ss40k-1e1297f52f.json') 
+cred = credentials.Certificate(r'C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\backend\private key\roameo-f3ab0-firebase-adminsdk-ss40k-1e1297f52f.json') 
 initialize_app(cred)
 
 #Firestore client initialization
@@ -81,7 +81,8 @@ async def get_sight_by_id(docId: str):
         return {"id": doc.id, "sights": sight_data}
     else:
         raise HTTPException(status_code=404, detail="Sight not found")  
-    
+
+
 
 def hash_password(password: str) -> str:
     salt = bcrypt.gensalt()
@@ -174,3 +175,6 @@ async def get_user(credentials: HTTPAuthorizationCredentials = Depends(security)
         return {"user": user_data}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+

@@ -9,15 +9,22 @@ class LocationInfo {
 
   final List<String> imageUrls;
 
+  final String description;
+
+  final List<String> tags;
+
   //constructor
   LocationInfo({
     required this.prediction,
     required this.placeDetails,
     required this.imageUrls,
+    required this.description,
+    required this.tags,
   });
 
   //Method to fetch image URLs from photo references
-  static List<String> getImageUrlsFromPhotos(List<String> photos, String apiKey) {
+  static List<String> getImageUrlsFromPhotos(
+      List<String> photos, String apiKey) {
     return photos.map((photoReference) {
       return 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=$photoReference&key=$apiKey';
     }).toList();
@@ -34,7 +41,6 @@ class LocationInfo {
         'Description: ${prediction.description},'
         'Images: ${placeDetails.images},'
         'Images: ${imageUrls.join(', ')}'
-
         '}';
   }
 }

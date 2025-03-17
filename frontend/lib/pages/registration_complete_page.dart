@@ -33,7 +33,7 @@ class _RegistrationCompletePageState extends State<RegistrationCompletePage> {
         throw Exception('No token found');
       }
 
-      final url = Uri.parse('http://192.168.100.14:8000/user');
+      final url = Uri.parse('http://10.0.2.2:8000/user');
       final response = await http.get(
         url,
         headers: {

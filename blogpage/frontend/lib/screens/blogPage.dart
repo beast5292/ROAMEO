@@ -335,13 +335,7 @@ class _BlogPageState extends State<BlogPage> {
                       onPressed: () => _showComments(blog.id),
                     ),
                     Spacer(),
-                    /*
-                    IconButton(
-                      icon: Icon(Icons.share, color: Colors.white),
-                      onPressed: () {},
-                    ),
-
-                     */
+                    
                   ],
                 ),
                 Divider(color: Colors.white24, thickness: 1),

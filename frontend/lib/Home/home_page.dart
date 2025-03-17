@@ -1,5 +1,9 @@
-import "package:flutter/material.dart";
-import "package:practice/SightSeeingMode/Sightseeing_mode_page.dart";
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:practice/SightSeeingMode/Sightseeing_mode_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -9,23 +13,71 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  bool isPillSwitchOn = false; // State for the pill switch
-  int _selectedIndex = 0; // To keep track of selected icon
+  bool isPillSwitchOn = false;
+  int _selectedIndex = 0;
+  final storage = FlutterSecureStorage();
+  Map<String, dynamic>? userData;
+  String? profileImageUrl;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  // Method to get greeting based on the time of day
+  @override
+  void initState() {
+    super.initState();
+    fetchUserData();
+  }
+
+  Future<void> fetchUserData() async {
+    try {
+      final String? token = await storage.read(key: 'jwt_token');
+      if (token == null) {
+        print("No token found");
+        return;
+      }
+
+      final url = Uri.parse('http://192.168.100.14:8000/user');
+      final response = await http.get(
+        url,
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer $token",
+        },
+      );
+
+      if (response.statusCode == 200) {
+        final responseBody = jsonDecode(response.body);
+        final userEmail = responseBody["user"]["email"]; // Get user email
+
+        // Fetch profile image URL from Firestore
+        DocumentSnapshot userDoc =
+            await _firestore.collection('users').doc(userEmail).get();
+        if (userDoc.exists) {
+          setState(() {
+            userData = responseBody["user"];
+            profileImageUrl = userDoc['profileImage']; // Fetch the image URL
+          });
+        } else {
+          print("User data not found in Firestore");
+        }
+      } else {
+        print("Failed to fetch user data: ${response.statusCode}");
+      }
+    } catch (error) {
+      print("Error fetching user data: $error");
+    }
+  }
+
   String getGreeting() {
     final hour = DateTime.now().hour;
 
     if (hour >= 6 && hour < 12) {
-      return 'Good Morning, Sulaiman!';
+      return 'Good Morning, ${userData?["username"] ?? "User"}!';
     } else if (hour >= 12 && hour < 15) {
-      return 'Good Afternoon, Sulaiman!';
+      return 'Good Afternoon, ${userData?["username"] ?? "User"}!';
     } else {
-      return 'Good Evening, Sulaiman!';
+      return 'Good Evening, ${userData?["username"] ?? "User"}!';
     }
   }
 
-  // Handle tap on a navigation icon
   void _onNavBarItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -40,13 +92,11 @@ class _HomePageState extends State<HomePage> {
       body: SafeArea(
         child: Stack(
           children: [
-            // World Image behind the content
             Positioned.fill(
               child: Align(
                 alignment: Alignment.center,
                 child: GestureDetector(
                   onTap: () {
-                    // Navigate to SsmPage when the world image is tapped
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => SsmPage()),
@@ -66,14 +116,11 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-
-            // Content on top of the world image
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Greeting Section
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -144,17 +191,37 @@ class _HomePageState extends State<HomePage> {
                       ),
                       GestureDetector(
                         onTap: () => print("Profile picture tapped"),
-                        child: CircleAvatar(
-                          radius: 40,
-                          backgroundImage:
-                              AssetImage('assets/images/profile.jpg'),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              BoxShadow(
+                                color: const Color.fromARGB(255, 20, 52, 66)
+                                    .withOpacity(0.6),
+                                blurRadius: 5,
+                                spreadRadius: 20,
+                              ),
+                              BoxShadow(
+                                color: const Color.fromARGB(255, 149, 200, 243)
+                                    .withOpacity(0.2),
+                                blurRadius: 4,
+                                spreadRadius: 8,
+                              ),
+                            ],
+                          ),
+                          child: CircleAvatar(
+                            radius: 40,
+                            backgroundImage: profileImageUrl != null
+                                ? NetworkImage(
+                                    profileImageUrl!) // Use NetworkImage for Firebase URL
+                                : AssetImage('assets/images/profile.jpg')
+                                    as ImageProvider,
+                          ),
                         ),
                       ),
                     ],
                   ),
                   SizedBox(height: 220),
-
-                  // Categories Section with Glassmorphism
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -173,11 +240,8 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                   SizedBox(height: 8),
-
-                  // Grid Section
                   Row(
                     children: [
-                      // Left card
                       Expanded(
                         child: _buildGridCard(
                           "Ella",
@@ -188,8 +252,6 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       SizedBox(width: 8),
-
-                      // Right side container with two smaller cards
                       Column(
                         children: [
                           _buildGridCard(
@@ -249,8 +311,7 @@ class _HomePageState extends State<HomePage> {
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 15, vertical: 9),
         decoration: BoxDecoration(
-          color:
-              Color.fromARGB(192, 103, 102, 118), // Apply transparency (18.5%)
+          color: Color.fromARGB(192, 103, 102, 118),
           borderRadius: BorderRadius.circular(90),
           boxShadow: [
             BoxShadow(
@@ -279,8 +340,7 @@ class _HomePageState extends State<HomePage> {
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 15, vertical: 9),
         decoration: BoxDecoration(
-          color:
-              Color.fromARGB(192, 103, 102, 118), // Apply transparency (18.5%)
+          color: Color.fromARGB(192, 103, 102, 118),
           borderRadius: BorderRadius.circular(18.7),
           boxShadow: [
             BoxShadow(
@@ -342,9 +402,7 @@ class _HomePageState extends State<HomePage> {
                 right: 10,
                 child: Row(
                   children: [
-                    // Rotating Compass Image Icon
                     SizedBox(width: 20),
-                    // Custom Switch Thumb with GestureDetector
                     GestureDetector(
                       onTap: () {
                         setState(() {
@@ -368,12 +426,10 @@ class _HomePageState extends State<HomePage> {
                                 ? Alignment.centerRight
                                 : Alignment.centerLeft,
                             child: AnimatedRotation(
-                              turns: isPillSwitchOn
-                                  ? 0.5
-                                  : 0, // Rotate 180 degrees (0.5 turn)
+                              turns: isPillSwitchOn ? 0.5 : 0,
                               duration: Duration(milliseconds: 300),
                               child: Image.asset(
-                                'assets/icons/compass.png', // Custom thumb icon
+                                'assets/icons/compass.png',
                                 width: 20,
                                 height: 20,
                               ),
@@ -393,7 +449,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildNavIconWithImage(String iconPath, String activePath, int index) {
     bool isSelected = _selectedIndex == index;
-    double iconSize = (index == 2) ? 60 : 35; // AI orb icon larger size
+    double iconSize = (index == 2) ? 60 : 35;
     return GestureDetector(
       onTap: () => _onNavBarItemTapped(index),
       child: AnimatedScale(

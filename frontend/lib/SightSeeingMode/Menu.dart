@@ -125,54 +125,7 @@ class _SightMenuState extends State<SightMenu> {
         Sights.add(sight);
       }
     }
-
-    // for (var tripData in selectedImageProvider.selectedTrips) {
-    //   //Extracting image URLs
-    //   List<String> imagePaths = tripData
-    //       .where((imageData) =>
-    //           imageData.containsKey('photo') && imageData['photo'] != null)
-    //       .map<String>((imageData) => imageData['photo'] as String)
-    //       .toList();
-
-    //   //store the uploaded Urls (jpgs uploaded to the firestorage and google map links)
-    //   List<String> uploadedUrls = [];
-    //   for (String path in imagePaths) {
-    //     if (path.endsWith('.jpg')) {
-    //       //upload the image to firestorage
-    //       String downloadUrl = await uploadImage(path);
-
-    //       //add the firestorage url to the uploaded urls
-    //       uploadedUrls.add(downloadUrl);
-    //     }
-    //   }
-
-    //   //Extract lat and long from the first image in the trip
-    //   var firstImage = tripData.first;
-
-    //   double? lat;
-    //   double? long;
-
-    //   if (firstImage.containsKey('latitude') &&
-    //       firstImage.containsKey('longitude')) {
-    //     lat = firstImage['latitude'] as double?;
-    //     long = firstImage['longitude'] as double?;
-    //   }
-
-    //   Sight sight = Sight(
-    //     id: DateTime.now().millisecondsSinceEpoch.toString(),
-    //     name: "Captured Image",
-    //     description: "Sightseeing image",
-    //     tags: ["dummy tag1", "dummy tag2"],
-    //     lat: lat,
-    //     long: long,
-    //     imageUrls: uploadedUrls,
-    //   );
-
-    //   print(sight.toString());
-
-    //   Sights.add(sight);
-    // }
-
+    
     //Print the entire Sights array after adding all objects
     print("Sights Array: $Sights");
 

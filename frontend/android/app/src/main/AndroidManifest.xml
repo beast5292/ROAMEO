@@ -1,23 +1,23 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.example.homepage">
-    
+    package="com.example.homepage">
+
     <!-- Permissions for location access -->
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-feature android:name="android.hardware.location.gps" android:required="true"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-feature android:name="android.hardware.location.gps" android:required="true" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
 
     <application
         android:label="homepage"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
-        
-        
+
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -27,7 +27,7 @@
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize">
-            
+
             <!-- Intent filter to launch the MainActivity -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,9 +43,8 @@
         <!-- Google Maps API Key -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value= "AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0" />
+            android:value="AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0" />
 
-       
 
         <!--locations-->
         <meta-data
@@ -53,7 +52,7 @@
             android:value="@integer/google_play_services_version" />
 
         <!-- Add this line -->
-       <meta-data
+        <meta-data
             android:name="com.mapbox.AccessToken"
             android:value="pk.eyJ1IjoibWFoaWlyaiIsImEiOiJjbTdqZmF0emkwNjVyMmtzZGx4aDZzdzA1In0.Nv0r2tE031cLt0tI1aBFDQ" />
 

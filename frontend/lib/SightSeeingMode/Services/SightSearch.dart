@@ -10,7 +10,7 @@ Future<List<Map<String, dynamic>>> searchLocations(String keyword) async {
 
   try {
     final response = await http.get(
-      Uri.parse('http://192.168.1.5:8000/search_sights/?name=$encodedKeyword'),
+      Uri.parse('http://192.168.1.5:8000/search_sights/?place=$encodedKeyword'),
       headers: {
         HttpHeaders.contentTypeHeader: 'application/json',
       },
@@ -22,8 +22,8 @@ Future<List<Map<String, dynamic>>> searchLocations(String keyword) async {
 
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
-      if (data['results'] != null) {
-        return List<Map<String, dynamic>>.from(data['results']);
+      if (data['data'] != null) {
+        return List<Map<String, dynamic>>.from(data['data']);
       } else {
         debugPrint("No results found.");
         return [];

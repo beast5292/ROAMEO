@@ -189,7 +189,7 @@ class _SightMenuState extends State<SightMenu> {
     return Scaffold(
       backgroundColor: const Color(0xFF030A0E),
       appBar: AppBar(
-        title: const Text('Create Sightseeing Mode', 
+        title: const Text('Sightseeing Menu', 
             style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -201,16 +201,20 @@ class _SightMenuState extends State<SightMenu> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                "Create your own sightseeing mode",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  letterSpacing: 1.1,
-                ),
-              ),
-              const SizedBox(height: 20),
+  SizedBox(
+    width: double.infinity, // Force full width
+    child: const Text(
+      "Create your own sightseeing mode",
+      textAlign: TextAlign.center, // Center text within container
+      style: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+        letterSpacing: 1.1,
+      ),
+    ),
+  ),
+  const SizedBox(height: 20),
               // Reorderable list for image trips
               Expanded(
                 child: ReorderableListView(
@@ -250,53 +254,142 @@ class _SightMenuState extends State<SightMenu> {
         ),
       ),
       // Floating buttons
-      floatingActionButton: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          FloatingActionButton(
-            heroTag: 'locationButton',
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Scaffold(
-                    body: PlacesAutoCompleteField(
-                      apiKey: "AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0",
-                    ),
-                  ),
+     floatingActionButton: Column(
+  mainAxisAlignment: MainAxisAlignment.end,
+  crossAxisAlignment: CrossAxisAlignment.end,
+  children: [
+    // Map Button
+    Padding(
+      padding: const EdgeInsets.only(bottom: 15),
+      child: Align(
+        alignment: Alignment.bottomRight,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+            child: Container(
+              height: 60,
+              width: 60,
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(
+                  color: Colors.white.withOpacity(0.2),
+                  width: 1.5,
                 ),
-              );
-            },
-            backgroundColor: Colors.tealAccent.withOpacity(0.9),
-            child: const Icon(Icons.map, color: Colors.black),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.blue.withOpacity(0.2),
+                    blurRadius: 10,
+                    spreadRadius: 2,
+                  )
+                ],
+              ),
+              child: IconButton(
+                icon: const Icon(Icons.map, size: 28),
+                color: Colors.white,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Scaffold(
+                        body: PlacesAutoCompleteField(
+                          apiKey: "AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0",
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
           ),
-          const SizedBox(height: 10),
-          FloatingActionButton(
-            heroTag: 'cameraButton',
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CameraPage()),
-              );
-            },
-            backgroundColor: Colors.tealAccent.withOpacity(0.9),
-            child: const Icon(Icons.camera_alt, color: Colors.black),
-          ),
-          const SizedBox(height: 10),
-          FloatingActionButton(
-            heroTag: 'saveButton',
-            onPressed: () {
-              onSightSave();
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => SsmPage()),
-              );
-            },
-            backgroundColor: Colors.tealAccent.withOpacity(0.9),
-            child: const Icon(Icons.save, color: Colors.black),
-          ),
-        ],
+        ),
       ),
+    ),
+    // Camera Button
+    Padding(
+      padding: const EdgeInsets.only(bottom: 15),
+      child: Align(
+        alignment: Alignment.bottomRight,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+            child: Container(
+              height: 60,
+              width: 60,
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(
+                  color: Colors.white.withOpacity(0.2),
+                  width: 1.5,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.blue.withOpacity(0.2),
+                    blurRadius: 10,
+                    spreadRadius: 2,
+                  )
+                ],
+              ),
+              child: IconButton(
+                icon: const Icon(Icons.camera_alt, size: 28),
+                color: Colors.white,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CameraPage()),
+                  );
+                },
+              ),
+            ),
+          ),
+        ),
+      ),
+    ),
+    // Save Button
+    Align(
+      alignment: Alignment.bottomRight,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+          child: Container(
+            height: 60,
+            width: 60,
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color: Colors.white.withOpacity(0.2),
+                width: 1.5,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.blue.withOpacity(0.2),
+                  blurRadius: 10,
+                  spreadRadius: 2,
+                )
+              ],
+            ),
+            child: IconButton(
+              icon: const Icon(Icons.save, size: 28),
+              color: Colors.white,
+              onPressed: () {
+                onSightSave();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SsmPage()),
+                );
+              },
+            ),
+          ),
+        ),
+      ),
+    ),
+  ],
+),
     );
   }
 

@@ -1,0 +1,2 @@
+D:/IIT/L5/SDGP/ROAMEOgit/frontend/android/app/.cxx/Debug/134l3r1i/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/IIT/L5/SDGP/ROAMEOgit/frontend/android/app/.cxx/Debug/134l3r1i/armeabi-v7a/CMakeFiles/rebuild_cache.dir

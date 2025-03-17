@@ -1,21 +1,21 @@
 -- Merging decision tree log ---
 application
-INJECTED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:15:5-60:19
-INJECTED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\debug\AndroidManifest.xml
-MERGED from [:location] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:5-16:19
-MERGED from [:location] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:5-16:19
-MERGED from [:geolocator_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
-MERGED from [:geolocator_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
+INJECTED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\main\AndroidManifest.xml:15:5-60:19
+INJECTED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\debug\AndroidManifest.xml
+MERGED from [:location] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:5-16:19
+MERGED from [:location] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:5-16:19
+MERGED from [:geolocator_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
+MERGED from [:geolocator_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
 MERGED from [com.google.android.gms:play-services-location:21.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\cd4ecbd59244f1992bd259654b6cba05\transformed\jetified-play-services-location-21.2.0\AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-location:21.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\cd4ecbd59244f1992bd259654b6cba05\transformed\jetified-play-services-location-21.2.0\AndroidManifest.xml:7:5-20
-MERGED from [:cloud_firestore] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
-MERGED from [:cloud_firestore] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
-MERGED from [:firebase_storage] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
-MERGED from [:firebase_storage] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
-MERGED from [:firebase_core] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
-MERGED from [:firebase_core] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
-MERGED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:5-32:19
-MERGED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:5-32:19
+MERGED from [:cloud_firestore] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
+MERGED from [:cloud_firestore] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
+MERGED from [:firebase_storage] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
+MERGED from [:firebase_storage] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
+MERGED from [:firebase_core] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
+MERGED from [:firebase_core] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-13:19
+MERGED from [:image_picker_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:5-32:19
+MERGED from [:image_picker_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:5-32:19
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\579b74b0c35c86a810935e5b44a03f8b\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:36:5-42:19
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\579b74b0c35c86a810935e5b44a03f8b\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:36:5-42:19
 MERGED from [com.google.firebase:firebase-firestore:25.1.2] C:\Users\sulai\.gradle\caches\8.9\transforms\12576f9b530b1aaae327ef30bfcb66fe\transformed\jetified-firebase-firestore-25.1.2\AndroidManifest.xml:13:5-24:19
@@ -53,28 +53,28 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\su
 MERGED from [com.google.maps.android:android-maps-utils:3.6.0] C:\Users\sulai\.gradle\caches\8.9\transforms\9d4841b04a342970dd512ab8527b92be\transformed\jetified-android-maps-utils-3.6.0\AndroidManifest.xml:7:5-11:19
 MERGED from [com.google.maps.android:android-maps-utils:3.6.0] C:\Users\sulai\.gradle\caches\8.9\transforms\9d4841b04a342970dd512ab8527b92be\transformed\jetified-android-maps-utils-3.6.0\AndroidManifest.xml:7:5-11:19
 	android:extractNativeLibs
-		INJECTED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\debug\AndroidManifest.xml
+		INJECTED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\debug\AndroidManifest.xml
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.13.1] C:\Users\sulai\.gradle\caches\8.9\transforms\6602b6343cf9be29207be3b5c8effb9c\transformed\core-1.13.1\AndroidManifest.xml:28:18-86
 	android:name
-		INJECTED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml
+		INJECTED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\main\AndroidManifest.xml
 manifest
-ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:1:1-69:12
-MERGED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:1:1-69:12
-INJECTED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\debug\AndroidManifest.xml:1:1-7:12
-INJECTED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\debug\AndroidManifest.xml:1:1-7:12
-INJECTED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\debug\AndroidManifest.xml:1:1-7:12
-MERGED from [:location] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-18:12
-MERGED from [:geolocator_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-15:12
+ADDED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\main\AndroidManifest.xml:1:1-69:12
+MERGED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\main\AndroidManifest.xml:1:1-69:12
+INJECTED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\debug\AndroidManifest.xml:1:1-7:12
+INJECTED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\debug\AndroidManifest.xml:1:1-7:12
+INJECTED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\debug\AndroidManifest.xml:1:1-7:12
+MERGED from [:location] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-18:12
+MERGED from [:geolocator_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-15:12
 MERGED from [com.google.android.gms:play-services-location:21.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\cd4ecbd59244f1992bd259654b6cba05\transformed\jetified-play-services-location-21.2.0\AndroidManifest.xml:2:1-9:12
-MERGED from [:cloud_firestore] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-15:12
-MERGED from [:connectivity_plus] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\connectivity_plus\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-9:12
-MERGED from [:firebase_storage] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-15:12
-MERGED from [:firebase_core] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-15:12
-MERGED from [:google_maps_flutter_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\google_maps_flutter_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
-MERGED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-34:12
-MERGED from [:flutter_plugin_android_lifecycle] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
-MERGED from [:path_provider_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\path_provider_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
+MERGED from [:cloud_firestore] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-15:12
+MERGED from [:connectivity_plus] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\connectivity_plus\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-9:12
+MERGED from [:firebase_storage] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-15:12
+MERGED from [:firebase_core] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-15:12
+MERGED from [:google_maps_flutter_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\google_maps_flutter_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
+MERGED from [:image_picker_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-34:12
+MERGED from [:flutter_plugin_android_lifecycle] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
+MERGED from [:path_provider_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\path_provider_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\579b74b0c35c86a810935e5b44a03f8b\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:17:1-44:12
 MERGED from [com.google.firebase:firebase-firestore:25.1.2] C:\Users\sulai\.gradle\caches\8.9\transforms\12576f9b530b1aaae327ef30bfcb66fe\transformed\jetified-firebase-firestore-25.1.2\AndroidManifest.xml:2:1-26:12
 MERGED from [com.google.firebase:firebase-storage:21.0.1] C:\Users\sulai\.gradle\caches\8.9\transforms\87e82ddb773091c5fab363eff7c7c738\transformed\jetified-firebase-storage-21.0.1\AndroidManifest.xml:15:1-39:12
@@ -119,20 +119,20 @@ MERGED from [com.getkeepsafe.relinker:relinker:1.4.5] C:\Users\sulai\.gradle\cac
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\81cdc4cf2e812250d61d3ddd2db099ed\transformed\jetified-protolite-well-known-types-18.0.0\AndroidManifest.xml:2:1-11:12
 MERGED from [io.grpc:grpc-android:1.62.2] C:\Users\sulai\.gradle\caches\8.9\transforms\fb407052d09babfc09dec898053015ef\transformed\jetified-grpc-android-1.62.2\AndroidManifest.xml:2:1-9:12
 	package
-		ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:2:3-33
-		INJECTED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\debug\AndroidManifest.xml
+		ADDED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\main\AndroidManifest.xml:2:3-33
+		INJECTED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\debug\AndroidManifest.xml
 	android:versionName
-		INJECTED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\debug\AndroidManifest.xml
+		INJECTED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\debug\AndroidManifest.xml
 	android:versionCode
-		INJECTED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\debug\AndroidManifest.xml
+		INJECTED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\debug\AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:1:11-69
+		ADDED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\main\AndroidManifest.xml:1:11-69
 uses-permission#android.permission.INTERNET
-ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:5:5-66
-MERGED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:5:5-66
-MERGED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:5:5-66
-MERGED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:12:5-66
-MERGED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:12:5-66
+ADDED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\main\AndroidManifest.xml:5:5-66
+MERGED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\main\AndroidManifest.xml:5:5-66
+MERGED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\main\AndroidManifest.xml:5:5-66
+MERGED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\main\AndroidManifest.xml:12:5-66
+MERGED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\main\AndroidManifest.xml:12:5-66
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\579b74b0c35c86a810935e5b44a03f8b\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:24:5-67
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\579b74b0c35c86a810935e5b44a03f8b\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:24:5-67
 MERGED from [com.google.firebase:firebase-firestore:25.1.2] C:\Users\sulai\.gradle\caches\8.9\transforms\12576f9b530b1aaae327ef30bfcb66fe\transformed\jetified-firebase-firestore-25.1.2\AndroidManifest.xml:11:5-67
@@ -140,31 +140,31 @@ MERGED from [com.google.firebase:firebase-firestore:25.1.2] C:\Users\sulai\.grad
 MERGED from [com.google.firebase:firebase-storage:21.0.1] C:\Users\sulai\.gradle\caches\8.9\transforms\87e82ddb773091c5fab363eff7c7c738\transformed\jetified-firebase-storage-21.0.1\AndroidManifest.xml:24:5-67
 MERGED from [com.google.firebase:firebase-storage:21.0.1] C:\Users\sulai\.gradle\caches\8.9\transforms\87e82ddb773091c5fab363eff7c7c738\transformed\jetified-firebase-storage-21.0.1\AndroidManifest.xml:24:5-67
 	android:name
-		ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:5:22-64
+		ADDED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\main\AndroidManifest.xml:5:22-64
 uses-permission#android.permission.FOREGROUND_SERVICE
-ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:6:5-77
+ADDED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\main\AndroidManifest.xml:6:5-77
 	android:name
-		ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:6:22-74
+		ADDED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\main\AndroidManifest.xml:6:22-74
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:7:5-78
-MERGED from [:location] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:5-79
-MERGED from [:location] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:5-79
+ADDED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\main\AndroidManifest.xml:7:5-78
+MERGED from [:location] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:5-79
+MERGED from [:location] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:5-79
 	android:name
-		ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:7:22-76
+		ADDED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\main\AndroidManifest.xml:7:22-76
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:8:5-80
-MERGED from [:location] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-81
-MERGED from [:location] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-81
+ADDED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\main\AndroidManifest.xml:8:5-80
+MERGED from [:location] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-81
+MERGED from [:location] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-81
 	android:name
-		ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:8:22-78
+		ADDED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\main\AndroidManifest.xml:8:22-78
 uses-permission#android.permission.ACCESS_BACKGROUND_LOCATION
-ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:9:5-84
+ADDED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\main\AndroidManifest.xml:9:5-84
 	android:name
-		ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:9:22-82
+		ADDED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\main\AndroidManifest.xml:9:22-82
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:10:5-79
-MERGED from [:connectivity_plus] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\connectivity_plus\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-79
-MERGED from [:connectivity_plus] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\connectivity_plus\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-79
+ADDED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\main\AndroidManifest.xml:10:5-79
+MERGED from [:connectivity_plus] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\connectivity_plus\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-79
+MERGED from [:connectivity_plus] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\connectivity_plus\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-79
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\579b74b0c35c86a810935e5b44a03f8b\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:23:5-79
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\579b74b0c35c86a810935e5b44a03f8b\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:23:5-79
 MERGED from [com.google.firebase:firebase-firestore:25.1.2] C:\Users\sulai\.gradle\caches\8.9\transforms\12576f9b530b1aaae327ef30bfcb66fe\transformed\jetified-firebase-firestore-25.1.2\AndroidManifest.xml:10:5-79
@@ -174,53 +174,53 @@ MERGED from [com.google.firebase:firebase-storage:21.0.1] C:\Users\sulai\.gradle
 MERGED from [io.grpc:grpc-android:1.62.2] C:\Users\sulai\.gradle\caches\8.9\transforms\fb407052d09babfc09dec898053015ef\transformed\jetified-grpc-android-1.62.2\AndroidManifest.xml:7:5-79
 MERGED from [io.grpc:grpc-android:1.62.2] C:\Users\sulai\.gradle\caches\8.9\transforms\fb407052d09babfc09dec898053015ef\transformed\jetified-grpc-android-1.62.2\AndroidManifest.xml:7:5-79
 	android:name
-		ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:10:22-76
+		ADDED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\main\AndroidManifest.xml:10:22-76
 uses-feature#android.hardware.location.gps
-ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:11:5-89
+ADDED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\main\AndroidManifest.xml:11:5-89
 	android:required
-		ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:11:64-87
+		ADDED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\main\AndroidManifest.xml:11:64-87
 	android:name
-		ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:11:19-63
+		ADDED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\main\AndroidManifest.xml:11:19-63
 queries
-ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:63:5-68:15
+ADDED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\main\AndroidManifest.xml:63:5-68:15
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\579b74b0c35c86a810935e5b44a03f8b\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:30:5-34:15
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\579b74b0c35c86a810935e5b44a03f8b\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:30:5-34:15
 intent#action:name:android.intent.action.PROCESS_TEXT+data:mimeType:text/plain
-ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:64:9-67:18
+ADDED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\main\AndroidManifest.xml:64:9-67:18
 action#android.intent.action.PROCESS_TEXT
-ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:65:13-73
+ADDED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\main\AndroidManifest.xml:65:13-73
 	android:name
-		ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:65:21-70
+		ADDED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\main\AndroidManifest.xml:65:21-70
 data
-ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:66:13-51
+ADDED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\main\AndroidManifest.xml:66:13-51
 	android:mimeType
-		ADDED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\main\AndroidManifest.xml:66:19-48
+		ADDED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\main\AndroidManifest.xml:66:19-48
 uses-sdk
-INJECTED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\debug\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\debug\AndroidManifest.xml
-INJECTED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\debug\AndroidManifest.xml
-MERGED from [:location] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:location] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:geolocator_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:geolocator_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+INJECTED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\debug\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\debug\AndroidManifest.xml
+INJECTED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\debug\AndroidManifest.xml
+MERGED from [:location] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:location] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:geolocator_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:geolocator_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-location:21.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\cd4ecbd59244f1992bd259654b6cba05\transformed\jetified-play-services-location-21.2.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-location:21.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\cd4ecbd59244f1992bd259654b6cba05\transformed\jetified-play-services-location-21.2.0\AndroidManifest.xml:5:5-44
-MERGED from [:cloud_firestore] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:cloud_firestore] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:connectivity_plus] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\connectivity_plus\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:connectivity_plus] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\connectivity_plus\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:firebase_storage] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:firebase_storage] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:firebase_core] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:firebase_core] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:google_maps_flutter_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\google_maps_flutter_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:google_maps_flutter_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\google_maps_flutter_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:6:5-44
-MERGED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:6:5-44
-MERGED from [:flutter_plugin_android_lifecycle] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:flutter_plugin_android_lifecycle] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:path_provider_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\path_provider_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:path_provider_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\path_provider_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:cloud_firestore] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:cloud_firestore] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:connectivity_plus] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\connectivity_plus\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:connectivity_plus] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\connectivity_plus\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_storage] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_storage] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_core] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_core] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:google_maps_flutter_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\google_maps_flutter_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:google_maps_flutter_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\google_maps_flutter_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:image_picker_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:6:5-44
+MERGED from [:image_picker_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:6:5-44
+MERGED from [:flutter_plugin_android_lifecycle] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_plugin_android_lifecycle] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:path_provider_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\path_provider_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:path_provider_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\path_provider_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\579b74b0c35c86a810935e5b44a03f8b\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\579b74b0c35c86a810935e5b44a03f8b\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.firebase:firebase-firestore:25.1.2] C:\Users\sulai\.gradle\caches\8.9\transforms\12576f9b530b1aaae327ef30bfcb66fe\transformed\jetified-firebase-firestore-25.1.2\AndroidManifest.xml:6:5-44
@@ -308,35 +308,35 @@ MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\sul
 MERGED from [io.grpc:grpc-android:1.62.2] C:\Users\sulai\.gradle\caches\8.9\transforms\fb407052d09babfc09dec898053015ef\transformed\jetified-grpc-android-1.62.2\AndroidManifest.xml:5:5-44
 MERGED from [io.grpc:grpc-android:1.62.2] C:\Users\sulai\.gradle\caches\8.9\transforms\fb407052d09babfc09dec898053015ef\transformed\jetified-grpc-android-1.62.2\AndroidManifest.xml:5:5-44
 	android:targetSdkVersion
-		INJECTED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\debug\AndroidManifest.xml
+		INJECTED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\debug\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\android\app\src\debug\AndroidManifest.xml
+		INJECTED from D:\IIT\L5\SDGP\ROAMEOgit\frontend\android\app\src\debug\AndroidManifest.xml
 service#com.lyokone.location.FlutterLocationService
-ADDED from [:location] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:9-15:56
+ADDED from [:location] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:9-15:56
 	android:enabled
-		ADDED from [:location] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:13:13-35
+		ADDED from [:location] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:13:13-35
 	android:exported
-		ADDED from [:location] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:14:13-37
+		ADDED from [:location] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:14:13-37
 	android:foregroundServiceType
-		ADDED from [:location] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:15:13-53
+		ADDED from [:location] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:15:13-53
 	android:name
-		ADDED from [:location] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:12:13-71
+		ADDED from [:location] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\location\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:12:13-71
 service#com.baseflow.geolocator.GeolocatorLocationService
-ADDED from [:geolocator_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:9-12:56
+ADDED from [:geolocator_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:9-12:56
 	android:enabled
-		ADDED from [:geolocator_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:13-35
+		ADDED from [:geolocator_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:13-35
 	android:exported
-		ADDED from [:geolocator_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:13-37
+		ADDED from [:geolocator_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:13-37
 	android:foregroundServiceType
-		ADDED from [:geolocator_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:12:13-53
+		ADDED from [:geolocator_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:12:13-53
 	android:name
-		ADDED from [:geolocator_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:9:13-77
+		ADDED from [:geolocator_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\geolocator_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:9:13-77
 service#com.google.firebase.components.ComponentDiscoveryService
-ADDED from [:cloud_firestore] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:9-12:19
-MERGED from [:firebase_storage] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:9-12:19
-MERGED from [:firebase_storage] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:9-12:19
-MERGED from [:firebase_core] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:9-12:19
-MERGED from [:firebase_core] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:9-12:19
+ADDED from [:cloud_firestore] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_storage] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_storage] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_core] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_core] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:9-12:19
 MERGED from [com.google.firebase:firebase-firestore:25.1.2] C:\Users\sulai\.gradle\caches\8.9\transforms\12576f9b530b1aaae327ef30bfcb66fe\transformed\jetified-firebase-firestore-25.1.2\AndroidManifest.xml:14:9-23:19
 MERGED from [com.google.firebase:firebase-firestore:25.1.2] C:\Users\sulai\.gradle\caches\8.9\transforms\12576f9b530b1aaae327ef30bfcb66fe\transformed\jetified-firebase-firestore-25.1.2\AndroidManifest.xml:14:9-23:19
 MERGED from [com.google.firebase:firebase-storage:21.0.1] C:\Users\sulai\.gradle\caches\8.9\transforms\87e82ddb773091c5fab363eff7c7c738\transformed\jetified-firebase-storage-21.0.1\AndroidManifest.xml:27:9-36:19
@@ -354,63 +354,63 @@ MERGED from [com.google.firebase:firebase-common:21.0.0] C:\Users\sulai\.gradle\
 	android:directBootAware
 		ADDED from [com.google.firebase:firebase-common:21.0.0] C:\Users\sulai\.gradle\caches\8.9\transforms\92ba69902e0c608552e1de52e9f7face\transformed\jetified-firebase-common-21.0.0\AndroidManifest.xml:32:13-43
 	android:name
-		ADDED from [:cloud_firestore] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:18-89
+		ADDED from [:cloud_firestore] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:18-89
 meta-data#com.google.firebase.components:io.flutter.plugins.firebase.firestore.FlutterFirebaseFirestoreRegistrar
-ADDED from [:cloud_firestore] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:9:13-11:85
+ADDED from [:cloud_firestore] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:9:13-11:85
 	android:value
-		ADDED from [:cloud_firestore] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:17-82
+		ADDED from [:cloud_firestore] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:17-82
 	android:name
-		ADDED from [:cloud_firestore] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:17-134
+		ADDED from [:cloud_firestore] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\cloud_firestore\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:17-134
 meta-data#com.google.firebase.components:io.flutter.plugins.firebase.storage.FlutterFirebaseAppRegistrar
-ADDED from [:firebase_storage] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:9:13-11:85
+ADDED from [:firebase_storage] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:9:13-11:85
 	android:value
-		ADDED from [:firebase_storage] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:17-82
+		ADDED from [:firebase_storage] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:17-82
 	android:name
-		ADDED from [:firebase_storage] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:17-126
+		ADDED from [:firebase_storage] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\firebase_storage\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:17-126
 meta-data#com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar
-ADDED from [:firebase_core] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:9:13-11:85
+ADDED from [:firebase_core] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:9:13-11:85
 	android:value
-		ADDED from [:firebase_core] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:17-82
+		ADDED from [:firebase_core] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:17-82
 	android:name
-		ADDED from [:firebase_core] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:17-124
+		ADDED from [:firebase_core] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\firebase_core\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:17-124
 provider#io.flutter.plugins.imagepicker.ImagePickerFileProvider
-ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:9:9-17:20
+ADDED from [:image_picker_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:9:9-17:20
 	android:grantUriPermissions
-		ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:13:13-47
+		ADDED from [:image_picker_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:13:13-47
 	android:authorities
-		ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:13-74
+		ADDED from [:image_picker_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:13-74
 	android:exported
-		ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:12:13-37
+		ADDED from [:image_picker_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:12:13-37
 	android:name
-		ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:13-82
+		ADDED from [:image_picker_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:13-82
 meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:14:13-16:75
+ADDED from [:image_picker_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:14:13-16:75
 	android:resource
-		ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:16:17-72
+		ADDED from [:image_picker_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:16:17-72
 	android:name
-		ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:15:17-67
+		ADDED from [:image_picker_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:15:17-67
 service#com.google.android.gms.metadata.ModuleDependencies
-ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:19:9-31:19
+ADDED from [:image_picker_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:19:9-31:19
 	android:enabled
-		ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:21:13-36
+		ADDED from [:image_picker_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:21:13-36
 	android:exported
-		ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:22:13-37
+		ADDED from [:image_picker_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:22:13-37
 	tools:ignore
-		ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:23:13-40
+		ADDED from [:image_picker_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:23:13-40
 	android:name
-		ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:20:13-78
+		ADDED from [:image_picker_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:20:13-78
 intent-filter#action:name:com.google.android.gms.metadata.MODULE_DEPENDENCIES
-ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:24:13-26:29
+ADDED from [:image_picker_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:24:13-26:29
 action#com.google.android.gms.metadata.MODULE_DEPENDENCIES
-ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:25:17-94
+ADDED from [:image_picker_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:25:17-94
 	android:name
-		ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:25:25-91
+		ADDED from [:image_picker_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:25:25-91
 meta-data#photopicker_activity:0:required
-ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:28:13-30:36
+ADDED from [:image_picker_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:28:13-30:36
 	android:value
-		ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:30:17-33
+		ADDED from [:image_picker_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:30:17-33
 	android:name
-		ADDED from [:image_picker_android] C:\Users\sulai\Downloads\ROAMEO-SightseeingMode2\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:29:17-63
+		ADDED from [:image_picker_android] D:\IIT\L5\SDGP\ROAMEOgit\frontend\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:29:17-63
 uses-feature#0x00020000
 ADDED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\sulai\.gradle\caches\8.9\transforms\579b74b0c35c86a810935e5b44a03f8b\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:26:5-28:35
 	android:glEsVersion

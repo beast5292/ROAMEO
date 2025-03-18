@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'detail_page.dart'; // Import the DetailPage
-import 'location_model.dart'; // Import the Location model
+import 'detail_page.dart'; 
+import 'location_model.dart'; 
 
 void main() {
   runApp(const MyApp());
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: DetailPage(
-        location: location, // Pass the location data to the DetailPage
+        location: location, // Pass the location data to the Detail Page
       ),
     );
   }

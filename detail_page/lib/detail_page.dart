@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'location_model.dart'; // Import the Location model
-import 'nav_bar.dart'; // Import the NavBar widget
+import 'location_model.dart'; 
+import 'nav_bar.dart'; 
 
 class DetailPage extends StatefulWidget {
   final Location location; // Accept a Location object
@@ -12,7 +12,7 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
-  int _selectedIndex = 3; // Default active tab
+  int _selectedIndex = 3; 
 
   void _onNavBarItemTapped(int index) {
     setState(() {
@@ -26,13 +26,13 @@ class _DetailPageState extends State<DetailPage> {
       backgroundColor: Colors.black, // Black background
       body: Stack(
         children: [
-          // Image Section with Gradient Overlay
+          // Image Section w gradient overlay
           Positioned(
             top: 0,
             left: 0,
             right: 0,
             child: Container(
-              height: 400, // Adjust height as needed
+              height: 400, // Adjust height 
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(widget.location.imageUrl),
@@ -45,7 +45,7 @@ class _DetailPageState extends State<DetailPage> {
                     begin: Alignment.bottomCenter, // Start from the bottom
                     end: Alignment.topCenter, // End at the top
                     colors: [
-                      Colors.black.withOpacity(0.9), // Semi-transparent black at the bottom
+                      Colors.black.withOpacity(0.9), // control transparency
                       Colors.transparent, // Fully transparent at the top
                     ],
                     stops: [0.0, 0.6], // Adjust the stops for the fade effect
@@ -74,15 +74,15 @@ class _DetailPageState extends State<DetailPage> {
             ),
           ),
 
-          // Rating Section with Rounded Box
+          // Rating Section 
           Positioned(
-            top: 275, // Adjust position as needed
+            top: 275, 
             left: 16,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 5), // Add padding
+              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 5), 
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 231, 184, 102).withOpacity(0.6), // Yellow background
-                borderRadius: BorderRadius.circular(20), // Rounded corners
+                color: const Color.fromARGB(255, 231, 184, 102).withOpacity(0.6), // Yellow background and transparency
+                borderRadius: BorderRadius.circular(20), 
               ),
               child: Row(
                 children: [
@@ -101,12 +101,12 @@ class _DetailPageState extends State<DetailPage> {
             ),
           ),
 
-          // Name of the Location with Rounded Box
+          // Name of the Location 
           Positioned(
-            top: 325, // Adjust position as needed
+            top: 325, 
             left: 16,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8), // Add padding
+              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8), 
               decoration: BoxDecoration(
                 color: Colors.black.withOpacity(0.5), // Black background
                 borderRadius: BorderRadius.circular(20), // Rounded corners
@@ -124,7 +124,7 @@ class _DetailPageState extends State<DetailPage> {
 
           // Description Section
           Positioned(
-            top: 430, // Adjust position as needed
+            top: 430, 
             left: 16,
             right: 16,
             child: SingleChildScrollView(

@@ -1,0 +1,610 @@
+[ 
+
+ {
+    "description": "Kandy Railway Station, built in 1867 during British rule, is a key transport hub with colonial-era architecture. It serves as a major stop on the scenic Main Line, connecting Colombo to Sri Lanka’s central highlands. Travelers often start the famous Kandy-to-Ella train journey here, enjoying breathtaking views of tea plantations and misty mountains.",
+    "id": "1741768214000",
+    "imageUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F1.1.jpg?alt=media&token=97f7d175-4a61-47bd-85b8-3d8f1b2bab40",
+        "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F1.2.jpg?alt=media&token=557e50cf-57f7-4e71-a34e-9b70c3d60625"
+    ],
+    "lat": 7.288602129556239,
+    "long": 80.6309981457889,
+    "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+    "modeName": "Ella-Odyssey-Right",
+    "name": "Kandy Railway Station",
+    "tags": ["station", "kandy"],
+    "username": "ROAMEO"
+  },
+
+    {
+        "description": "Peradeniya Railway Station, located near Kandy, is a historic station along Sri Lanka’s Main Line. It is known for its charming colonial architecture and as a key junction where the Main Line and Matale Line diverge. Surrounded by lush greenery, it provides easy access to the famous Peradeniya Botanical Gardens, one of Sri Lanka’s largest and most beautiful gardens.",
+        "id": "1741768514000",
+        "imageUrls": [
+            "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F2.1.jpg?alt=media&token=c6417b0b-b874-4eea-9ad7-2faf5a1bcd1c",
+            "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F2.2.jpg?alt=media&token=a48f3687-0137-432b-a9aa-e5f5f6e23088",
+            "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F2.3.jpg?alt=media&token=66c8d2d9-20df-4e59-bee4-1a6cd22761ee"
+        ],
+        "lat": 7.257397184148431,
+        "long": 80.59054766781628,
+        "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+        "modeName": "Ella-Odyssey-Right",
+        "name": "Peradeniya Railway Station",
+        "tags": ["station", "peradeniya"],
+        "username": "ROAMEO"
+    },
+
+    {
+        "description": "Nestled in the heart of Sri Lanka’s central highlands, Peradeniya Suburbs is a tranquil haven surrounded by lush greenery, where the gentle rustle of leaves and the cool mountain breeze create a perfect escape from the hustle and bustle of city life.",
+        "id": "1741768814000",
+        "imageUrls": [
+            "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F3.1.jpg?alt=media&token=687fa1a1-b062-424b-80e6-6bc54a92ce17",
+            "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F3.2.jpg?alt=media&token=dd4065c3-159a-4b07-90f4-e46cc6c40ff4"
+        ],
+        "lat": 7.250979328528047,
+        "long": 80.59088001027703,
+        "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+        "modeName": "Ella-Odyssey-Right",
+        "name": "Peradeniya Suburbs",
+        "tags": ["suburbs", "peradeniya"],
+        "username": "ROAMEO"
+    },
+
+    {
+        "description": "Gampola Suburbs, a charming blend of scenic beauty and rural tranquility, invites you to unwind amidst rolling hills, tea plantations, and the gentle whispers of the Mahaweli River.",
+        "id": "1741769114000",
+        "imageUrls": [
+            "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F4.1.jpg?alt=media&token=1ced8d65-16a2-4510-a71d-02c82299c4b0",
+            "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F4.2.jpg?alt=media&token=13945c17-0bde-4ef9-b0e3-799598f5b204",
+            "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F4.3.jpg?alt=media&token=fd1ab536-880b-4311-b59c-c34962d40dc3"
+        ],
+        "lat": 7.186540137075685,
+        "long": 80.59257832235525,
+        "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+        "modeName": "Ella-Odyssey-Right",
+        "name": "Gampola Suburbs",
+        "tags": ["suburbs", "gampola"],
+        "username": "ROAMEO"
+    },
+
+    {
+        "description": "Sri Gangathilaka Raja Maha Viharaya in Gampola is a unique Buddhist temple known for its striking stupa built in the shape of a bell tower. Located on a small hill, it offers panoramic views of the surrounding landscapes, including the Mahaweli River. The temple, with its serene atmosphere and historical significance, attracts both pilgrims and visitors seeking spiritual and architectural beauty.",
+        "id": "1741769414000",
+        "imageUrls": [
+            "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F5.jpg?alt=media&token=3936eaa2-2f5f-4e3f-8fa3-289a05af72db"
+        ],
+        "lat": 7.1747792372480035,
+        "long": 80.57968547567725,
+        "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+        "modeName": "Ella-Odyssey-Right",
+        "name": "Sri Gangathilaka Raja Maha Viharaya",
+        "tags": ["temple", "gampola"],
+        "username": "ROAMEO"
+    },
+
+    {
+        "description": "Gampola Suburbs, nestled in Sri Lanka’s central highlands, is a peaceful escape surrounded by lush tea estates, misty hills, and the serene flow of the Mahaweli River.",
+        "id": "1741769714000",
+        "imageUrls": [
+            "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F6.1.jpg?alt=media&token=64a18f9c-a257-4c27-bae5-5d43660dcc71",
+            "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F6.2.jpg?alt=media&token=0616772e-3aad-4390-8451-cc6eede2c7c7"
+        ],
+        "lat": 7.153291432186961,
+        "long": 80.55938643403351,
+        "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+        "modeName": "Ella-Odyssey-Right",
+        "name": "Gampola Suburbs",
+        "tags": ["suburbs", "gampola"],
+        "username": "ROAMEO"
+    },
+
+  {
+    "description": "Nawalapitiya Suburbs is a serene hill-country retreat with misty mountains, waterfalls, and lush greenery.",
+    "id": "1741770014000",
+    "imageUrls": [
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F7.1.jpg?alt=media&token=4ee03b00-2587-4635-8fc8-c69b94066316",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F7.2.jpg?alt=media&token=69049a04-8213-4678-9040-5fe6c0af3f4a"
+    ],
+    "lat": 7.12146694432199,
+    "long": 80.55832955986261,
+    "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+    "modeName": "Ella-Odyssey-Right",
+    "name": "Nawalapitiya Suburbs",
+    "tags": ["suburbs", "nawalapitiya"],
+    "username": "ROAMEO"
+  },
+
+  {
+    "description": "Kalugalhinna Buddhist Temple is a peaceful temple located in Sri Lanka’s central highlands, surrounded by lush greenery and misty hills. It is known for its serene atmosphere, traditional architecture, and spiritual significance to the local Buddhist community. The temple serves as a place for meditation and religious observance, offering visitors a tranquil retreat amidst nature.",
+    "id": "1741770314000",
+    "imageUrls": [
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F8.1.jpg?alt=media&token=77fd79a0-7386-42ac-a8b4-2372be45a755",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F8.2.jpg?alt=media&token=fd725e22-435b-4abd-bc34-81e8bd62e0b5"
+    ],
+    "lat": 7.056261054240167,
+    "long": 80.53406068123877,
+    "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+    "modeName": "Ella-Odyssey-Right",
+    "name": "Kalugalhinna Buddhist Temple",
+    "tags": ["temple", "nawalapitiya"],
+    "username": "ROAMEO"
+  },
+
+  {
+    "description": "Selam Bridge in Nawalapitiya is a historic railway bridge along Sri Lanka’s scenic Main Line. Surrounded by lush greenery and rolling hills, it is known for its colonial-era engineering and stunning views. The bridge is a popular spot for train enthusiasts and travelers capturing the beauty of Sri Lanka’s central highlands. On the right is River Mahaweli.",
+    "id": "1741770614000",
+    "imageUrls": [
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F9.1.jpg?alt=media&token=0d5601ba-c80c-471a-ac26-9ad133464637",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F9.2.jpg?alt=media&token=de97d18c-9aa1-4036-940c-407054c22482"
+    ],
+    "lat": 7.045713770203292,
+    "long": 80.52965976297855,
+    "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+    "modeName": "Ella-Odyssey-Right",
+    "name": "Selam Bridge",
+    "tags": ["bridge", "nawalapitiya"],
+    "username": "ROAMEO"
+  },
+
+  {
+    "description": "Forestry in Nawalapitiya is a lush, green paradise, where dense forests, vibrant wildlife, and tranquil trails create a perfect escape into nature’s embrace.",
+    "id": "1741770914000",
+    "imageUrls": [
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F10.1.jpg?alt=media&token=456e6b22-17d4-403f-bf73-7671af048e24",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F10.2.jpg?alt=media&token=389adcba-eeeb-4944-a6ec-fff6549ca7dd"
+    ],
+    "lat": 7.024486097507179,
+    "long": 80.54104138165712,
+    "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+    "modeName": "Ella-Odyssey-Right",
+    "name": "Forestry in Nawalapitiya",
+    "tags": ["forest", "nawalapitiya"],
+    "username": "ROAMEO"
+  },
+
+  {
+    "description": "A small stream passing by gently winds through the landscape, its crystal-clear waters reflecting the sunlight as it adds a soothing melody to the serene surroundings.",
+    "id": "1741771214000",
+    "imageUrls": [
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F11.jpg?alt=media&token=fb3822f2-d47e-4987-8d99-cb31c6608bf4"
+    ],
+    "lat": 7.0210124691948295,
+    "long": 80.54608611389995,
+    "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+    "modeName": "Ella-Odyssey-Right",
+    "name": "Small Stream",
+    "tags": ["stream", "nawalapitiya"],
+    "username": "ROAMEO"
+  },
+
+  {
+    "description": "Inguru Oya is a picturesque stream in Sri Lanka that flows through the central highlands, surrounded by lush greenery and tea plantations. Originating from the misty hills, it serves as a tributary of the Mahaweli River, the longest river in Sri Lanka. The stream is known for its clear waters and small cascades, making it a serene spot for nature lovers and those seeking a peaceful retreat.",
+    "id": "1741771514000",
+    "imageUrls": [
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F12.jpg?alt=media&token=8c6f4238-7f2c-41b4-9fcf-cd107f5fb194"
+    ],
+    "lat": 7.010607090778649,
+    "long": 80.53894255310297,
+    "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+    "modeName": "Ella-Odyssey-Right",
+    "name": "Inguru Oya",
+    "tags": ["stream", "nawalapitiya"],
+    "username": "ROAMEO"
+  },
+
+  {
+    "description": "Galboda Forest, located in Sri Lanka’s central highlands, is a lush rainforest known for its rich biodiversity and scenic beauty. It is home to the famous Galboda Waterfall, which is surrounded by dense greenery and diverse wildlife. The forest offers a serene escape for nature lovers, with hiking trails and a cool climate adding to its charm.",
+    "id": "1741771814000",
+    "imageUrls": [
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F13.1.jpg?alt=media&token=9c0345bb-8cf1-45f1-a8bd-b8a43ec946ac",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F13.2.jpg?alt=media&token=bfe84a05-9d1e-4613-bad1-d80e19bf6326"
+    ],
+    "lat": 6.9932552502018571,
+    "long": 80.5453209722042,
+    "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+    "modeName": "Ella-Odyssey-Right",
+    "name": "Galboda Forest",
+    "tags": ["forest", "galboda"],
+    "username": "ROAMEO"
+  },
+
+  {
+    "description": "Watawala Forest, located in Sri Lanka’s central highlands, is a lush and misty rainforest known for its rich biodiversity. It is home to diverse flora and fauna, including rare bird species, making it a popular spot for birdwatching and nature walks. The forest’s cool climate and dense greenery provide a peaceful retreat for visitors seeking tranquility and natural beauty.",
+    "id": "1741772114000",
+    "imageUrls": [
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F14.1.jpg?alt=media&token=87239dde-5762-42fe-a130-353542e7e610",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F14.2.jpg?alt=media&token=715256fa-8437-4647-a307-5b3b27bd7d94",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F14.3.jpg?alt=media&token=74e38747-b4ba-4932-a1b3-1b4dda6ca652"
+    ],
+    "lat": 6.968066752888262,
+    "long": 80.52329856902361,
+    "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+    "modeName": "Ella-Odyssey-Right",
+    "name": "Watawala Forest",
+    "tags": ["forest", "watawala"],
+    "username": "ROAMEO"
+  },
+
+  {
+    "description": "Templestowe Tea Factory, located in Sri Lanka’s central highlands, is known for producing high-quality Ceylon tea. Surrounded by scenic tea estates, the factory offers visitors insights into traditional tea processing methods. It provides a chance to experience the aroma of freshly processed tea while enjoying breathtaking views of the misty hills.",
+    "id": "1741772414000",
+    "imageUrls": [
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F15.jpg?alt=media&token=392f3b32-3431-432a-be65-4b6b2920b499"
+    ],
+    "lat": 6.951565174385905,
+    "long": 80.53503164090216,
+    "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+    "modeName": "Ella-Odyssey-Right",
+    "name": "Templestowe Tea Factory",
+    "tags": ["tea factory", "templestowe"],
+    "username": "ROAMEO"
+  },
+
+  {
+    "description": "Nuwara Eliya’s scenery is a breathtaking tapestry of misty hills, emerald tea plantations, and vibrant flowers, often called 'Little England' for its cool climate and enchanting beauty.",
+    "id": "1741772714000",
+    "imageUrls": [
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F16.1.jpg?alt=media&token=ecc546c8-576c-4653-a8d7-7c528382907a",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F16.2.jpg?alt=media&token=6a441f06-aeb9-46ec-85e8-4457d055efcb"
+    ],
+    "lat": 6.944615696556866,
+    "long": 80.54670796729624,
+    "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+    "modeName": "Ella-Odyssey-right",
+    "name": "Nuwara Eliya Scenery",
+    "tags": ["scenery", "nuwara eliya"],
+    "username": "ROAMEO"
+  },
+
+  {
+    "description": "Hatton Tea Plantation, located in Sri Lanka’s central highlands, is renowned for its vast tea estates producing premium Ceylon tea. Visitors can explore the plantations, witness the tea-picking process, and enjoy fresh brews while taking in the breathtaking scenery.",
+    "id": "1741773014000",
+    "imageUrls": [
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F17.1.jpg?alt=media&token=c8bdf5bf-0327-41b1-93d0-ce9b2fcb5c6c",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F17.2.jpg?alt=media&token=73e982d4-b035-427b-9859-7d58dc134837"
+    ],
+    "lat": 6.912171151489019,
+    "long": 80.57817696318516,
+    "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+    "modeName": "Ella-Odyssey-right",
+    "name": "Hatton Tea Plantation",
+    "tags": ["tea plantation", "hatton"],
+    "username": "ROAMEO"
+  },
+
+  {
+    "description": "Nuwara Eliya Tea Plantation is famous for its high-altitude tea estates that produce some of Sri Lanka’s finest Ceylon tea. Visitors can tour the plantations, observe the tea-making process, and enjoy a fresh cup while admiring the breathtaking landscapes.",
+    "id": "1741773314000",
+    "imageUrls": [
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F18.1.jpg?alt=media&token=2289d770-9c43-4b17-9fc1-6f0478b71254",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F18.2.jpg?alt=media&token=a7bedaad-3b03-40e2-84d8-f1e9fde9e6fd",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F18.3.jpg?alt=media&token=f0d691f8-f182-4195-aa11-cca7c4c1e339",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F18.4.jpg?alt=media&token=e4debfeb-fe8e-4431-be4f-0e887c7e16e3"
+    ],
+    "lat": 6.906007728539407,
+    "long": 80.61703984625638,
+    "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+    "modeName": "Ella-Odyssey-right",
+    "name": "Nuwara Eliya Tea Plantation",
+    "tags": ["tea plantation", "nuwara eliya"],
+    "username": "ROAMEO"
+  },
+
+  {
+    "description": "Kotagala Tea Plantation, nestled in Sri Lanka’s central highlands, is a picturesque estate known for its premium tea production. With its serene landscapes and rich heritage, the plantation offers visitors an authentic glimpse into Sri Lanka’s tea industry.",
+    "id": "1741773614000",
+    "imageUrls": [
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F19.1.jpg?alt=media&token=1b7297bd-df41-4e63-8fb9-8045aeee9cf0",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F19.2.jpg?alt=media&token=a3be5198-08ee-4988-807e-e7f3e6abeff3",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F19.3.jpg?alt=media&token=134d9c33-8132-46b5-85d3-c663ef27a063"
+    ],
+    "lat": 6.931386748328805,
+    "long": 80.62144629657269,
+    "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+    "modeName": "Ella-Odyssey-right",
+    "name": "Kotagala Tea Plantation",
+    "tags": ["tea plantation", "kotagala"],
+    "username": "ROAMEO"
+  },
+
+  {
+    "description": "A small waterfall in Talawakelle cascades gracefully through the lush greenery, its gentle flow creating a peaceful and picturesque spot amidst the hills.",
+    "id": "1741782614000",
+    "imageUrls": [
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F20.1.jpg?alt=media&token=53948539-4c8a-4b19-8be0-8ad8e4fef152",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F20.2.jpg?alt=media&token=98ea65ea-998a-431b-b495-35175fcd282e",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F20.3.jpg?alt=media&token=176b5032-cfd3-416e-9d95-a2240cc843f3"
+    ],
+    "lat": 6.945012956857681,
+    "long": 80.64370578154922,
+    "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+    "modeName": "Ella-Odyssey-right",
+    "name": "Small Waterfall in Talawakelle",
+    "tags": ["waterfall", "talawakelle"],
+    "username": "ROAMEO"
+  },
+
+[
+  {
+    "description": "Reaching Talawakelle",
+    "id": "1741782914000",
+    "imageUrls": ["https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F21.jpg?alt=media&token=9332f684-42ca-4282-9639-fc3c98043e54"],
+    "lat": 6.9403655687347054,
+    "long": 80.66074744798243,
+    "modeDescription": "Sightseeing Mode",
+    "modeName": "Ella-Odyssey-Right",
+    "name": "Reaching Talawakelle",
+    "tags": ["talawakelle"],
+    "username": "ROAMEO"
+  },
+  {
+    "description": "Kotmale Oya is a scenic river located in the central highlands of Sri Lanka, flowing through lush forests and mountainous terrain. It is a tributary of the Mahaweli River, contributing to the region's natural beauty. The river is known for its serene atmosphere, with clear waters and stunning surroundings, making it a popular spot for nature lovers and photographers.",
+    "id": "1741783214000",
+    "imageUrls": ["https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F22.1.jpg?alt=media&token=88164b09-0a7f-41b2-943f-dbc8a854f6e3","https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F22.2.jpg?alt=media&token=756dd0a8-477e-4531-854c-bdd1ad64c557"],
+    "lat": 6.939456718973815,
+    "long": 80.6629853323102,
+    "modeDescription": "Sightseeing Mode",
+    "modeName": "Ella-Odyssey-Right",
+    "name": "Kotmale Oya",
+    "tags": ["river", "kotmale"],
+    "username": "ROAMEO"
+  },
+
+  {
+    "description": "Talawakelle Tea Plantation, situated in Sri Lanka’s picturesque central highlands, is famous for its pristine tea estates and cool climate. The lush green hills provide an idyllic setting for tea cultivation, producing some of the finest Ceylon tea. Visitors can experience the traditional methods of tea production while soaking in the stunning views of the plantation’s expansive fields.",
+    "id": "1741783514000",
+    "imageUrls": ["https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F23.1.jpg?alt=media&token=ecc035af-bcf7-4f19-8704-f9f6d95fa9e7","https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F23.2.jpg?alt=media&token=b9fafb4d-98b0-48db-8a20-f3f295f0b8a9","https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F23.3.jpg?alt=media&token=22ff2ca2-e1af-4dbb-b742-4483c7106e6b","https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F23.4.jpg?alt=media&token=d2ba3492-383e-4f2f-bc5c-8776e7774eee"],
+    "lat": 6.954496200196445,
+    "long": 80.65671399235725,
+    "modeDescription": "Sightseeing Mode",
+    "modeName": "Ella-Odyssey-Right",
+    "name": "Talawakelle Tea Plantation",
+    "tags": ["tea plantation", "talawakelle"],
+    "username": "ROAMEO"
+  },
+
+  {
+    "description": "Great Western is a stunning mountain peak in Sri Lanka’s central highlands, standing at 2,216 meters. It offers breathtaking views of misty valleys, tea plantations, and nearby peaks, making it a popular hiking destination. The area is also home to Great Western Railway Station, one of the highest railway stops in the country.",
+    "id": "1741783814000",
+    "imageUrls": ["https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F24.1.jpg?alt=media&token=415bb43f-9e84-4f96-9969-f48921d0e752","https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F24.2.jpg?alt=media&token=db060d22-8b9a-4c1b-869f-476e95df8165"],
+    "lat": 6.957217804156244,
+    "long": 80.68904098123312,
+    "modeDescription": "Sightseeing Mode",
+    "modeName": "Ella-Odyssey-Right",
+    "name": "Great Western",
+    "tags": ["mountain", "great western"],
+    "username": "ROAMEO"
+  },
+
+  {
+    "description": "Nanu Oya is a picturesque town in Sri Lanka’s central highlands, known as the gateway to Nuwara Eliya. Surrounded by tea estates and rolling hills, it features the Nanu Oya River, which feeds Lake Gregory. The Nanu Oya Railway Station is a key stop on the scenic Main Line, offering breathtaking views of misty mountains and lush landscapes.",
+    "id": "1741784114000",
+    "imageUrls": ["https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F25.1.jpg?alt=media&token=223f1244-fd70-46f8-a668-4b44f6f0ccc9","https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F25.2.jpg?alt=media&token=a9f75738-0767-4d93-b950-3168e46934b8","https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F25.3.jpg?alt=media&token=e5fa4f14-2063-4d3f-a3c0-7a0ab99a585d","https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F25.4.jpg?alt=media&token=24107a82-a6dd-4d0d-aacd-778bb89e2956"],
+    "lat": 6.944348565302789,
+    "long": 80.7433703656733,
+    "modeDescription": "Sightseeing Mode",
+    "modeName": "Ella-Odyssey-Right",
+    "name": "Nanu Oya",
+    "tags": ["town", "nanu oya"],
+    "username": "ROAMEO"
+  },
+
+  {
+    "description": "The vegetation in Nuwara Eliya is a vibrant mix of lush tea plantations, colorful flowers, and dense forests, painting the landscape in shades of green and splashes of floral brilliance.",
+    "id": "1741784414000",
+    "imageUrls": [
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F26.1.jpg?alt=media&token=e48d11be-1cac-4bff-8c88-2d25a58b23d6",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F26.2.jpg?alt=media&token=a89c74a9-7872-46c9-b3ab-24e64649903a",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F26.3.jpg?alt=media&token=5b99dfcf-e3d5-445e-aff0-b90638482919",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F26.4.jpg?alt=media&token=f328fdda-3136-4947-955f-ff875dd29bbe",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F26.5.jpg?alt=media&token=003c8c1e-4ad8-43eb-a92d-756727a7f76f"
+    ],
+    "lat": 6.945045352913439,
+    "long": 80.71709177456796,
+    "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+    "modeName": "Ella-Odyssey-right",
+    "name": "Vegetation in Nuwaraeliya",
+    "tags": ["vegetation", "nuwara eliya"],
+    "username": "ROAMEO"
+  },
+
+  {
+    "description": "Cultivations in Nuwara Eliya thrive in the cool, misty climate, with sprawling tea estates, vibrant vegetable farms, and fragrant flower gardens adding charm to the picturesque hills.",
+    "id": "1741784714000",
+    "imageUrls": [
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F27.1.jpg?alt=media&token=24be8b78-bfbd-463d-9caf-07b3e2b46f1a",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F27.2.jpg?alt=media&token=08201dcc-a42a-408b-b4c3-ad7fc9122d60",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F27.3.jpg?alt=media&token=788b8b03-d2d8-4229-b4ab-f8498ba2eb97",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F27.4.jpg?alt=media&token=7f89fc51-e6fd-47ac-8f02-36c1c82dd771"
+    ],
+    "lat": 6.9260392198339105,
+    "long": 80.74246186763148,
+    "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+    "modeName": "Ella-Odyssey-right",
+    "name": "Cultivations in Nuwaraeliya",
+    "tags": ["cultivations", "nuwara eliya"],
+    "username": "ROAMEO"
+  },
+
+  {
+    "description": "The manmade stream in Ambewela winds gracefully through the lush meadows, its gentle flow adding a touch of serenity to the idyllic countryside landscape.",
+    "id": "1741785014000",
+    "imageUrls": [
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F28.jpg?alt=media&token=7d36d427-32bd-4b57-80b4-f42c7aab0a27"
+    ],
+    "lat": 6.898237743251026,
+    "long": 80.76655799522996,
+    "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+    "modeName": "Ella-Odyssey-right",
+    "name": "Manmade Stream in Ambewela",
+    "tags": ["stream", "ambewela"],
+    "username": "ROAMEO"
+  },
+
+  {
+    "description": "Elgin Falls, located in the Nuwara Eliya District, is a stunning waterfall set amidst lush greenery and misty hills. The waterfall cascades down from a height of 25 meters, creating a serene and picturesque scene. Surrounded by tea plantations, it is a popular spot for nature enthusiasts and travelers seeking a peaceful escape in Sri Lanka's central highlands.",
+    "id": "1741785314000",
+    "imageUrls": [
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F29.1.jpg?alt=media&token=5ff05129-7a4d-443e-a7da-b7bc0f49f34e",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F29.2.jpg?alt=media&token=969dfa24-c44b-4d6f-babf-b0194e8b0441"
+    ],
+    "lat": 6.888582422398091,
+    "long": 80.7798318285495,
+    "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+    "modeName": "Ella-Odyssey-right",
+    "name": "Elgin Falls",
+    "tags": ["waterfall", "elgin"],
+    "username": "ROAMEO"
+  },
+
+  {
+    "description": "Ambewela’s cultivations are a patchwork of vibrant green pastures, dairy farms, and vegetable fields, set against the backdrop of rolling hills and crisp mountain air.",
+    "id": "1741785614000",
+    "imageUrls": [
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F30.1.jpg?alt=media&token=a374c6aa-9934-4501-a899-a79aed483fc7",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F30.2.jpg?alt=media&token=38ba735f-c1e1-4af2-adec-93173fa9f39d",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F30.3.jpg?alt=media&token=309a04e2-012c-43ec-aea5-d697c23cd732"
+    ],
+    "lat": 6.878955052234232,
+    "long": 80.80782361328602,
+    "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+    "modeName": "Ella-Odyssey-right",
+    "name": "Ambewela Cultivations",
+    "tags": ["cultivations", "ambewela"],
+    "username": "ROAMEO"
+  },
+
+  {
+    "description": "Nestled in the scenic central highlands of Sri Lanka, the Highland Milk Factory is a cornerstone of the region’s dairy industry. It plays a vital role in supporting local dairy farmers and producing fresh, high-quality milk, yogurt, and other dairy products. Surrounded by picturesque tea plantations, the factory offers a glimpse into the country’s agricultural heritage.",
+    "id": "1741785914000",
+    "imageUrls": [
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F31.1.jpg?alt=media&token=60015366-e4d8-46e6-b40d-4bc4517b1fd6",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F31.2.jpg?alt=media&token=ba3c0106-6af8-4140-9ff7-ec306b5740e8",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F31.3.jpg?alt=media&token=4fd7809d-63a6-4142-ae84-7b433990bc64",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F31.4.jpg?alt=media&token=efe0155f-bc1d-4576-81e3-3d4c7cc8c680",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F31.5.jpg?alt=media&token=dca43d41-a930-4984-8335-146e66f3a640"
+    ],
+    "lat": 6.877766037359834,
+    "long": 80.8139586634934,
+    "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+    "modeName": "Ella-Odyssey-right",
+    "name": "Highland Milk Factory",
+    "tags": ["factory", "ambewela", "dairy"],
+    "username": "ROAMEO"
+  },
+
+  {
+    "description": "Pattipola boasts an enchanting blend of montane forests, open plains, and vibrant wildflowers. Located in Sri Lanka’s highest-altitude region, the area thrives in a cool, misty climate, creating a lush, biodiverse landscape that captivates nature lovers and photographers alike.",
+    "id": "1741786214000",
+    "imageUrls": [
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F32.1.jpg?alt=media&token=22b17a5e-3d6d-4872-ab1c-2725ea2048c6",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F32.2.jpg?alt=media&token=e45f2e0d-f8e4-488a-a976-31a16323b1ec",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F32.3.jpg?alt=media&token=f49da9a0-ff25-49eb-9970-cb374927fc1e"
+    ],
+    "lat": 6.867139502428472,
+    "long": 80.8261572662741,
+    "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+    "modeName": "Ella-Odyssey-right",
+    "name": "Pattipola Vegetation",
+    "tags": ["vegetation", "pattipola", "nature"],
+    "username": "ROAMEO"
+  },
+
+  {
+    "description": "Overlooking the serene hills of Pattipola, this peaceful Buddha statue serves as a symbol of spirituality and tranquility. Set against a breathtaking misty landscape, it offers visitors a quiet space for reflection and a scenic backdrop for cultural appreciation.",
+    "id": "1741786514000",
+    "imageUrls": [
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F33.jpg?alt=media&token=78282c8a-271e-45bc-b672-b2e13cf9c99b"
+    ],
+    "lat": 6.855455255135894,
+    "long": 80.8318211248368,
+    "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+    "modeName": "Ella-Odyssey-right",
+    "name": "Buddha Statue",
+    "tags": ["statue", "pattipola", "buddhism"],
+    "username": "ROAMEO"
+  },
+
+  {
+    "description": "The journey to Pattipola is a mesmerizing experience, passing through misty mountain roads, lush greenery, and breathtaking landscapes. As Sri Lanka’s highest railway station, Pattipola marks an iconic stop for those venturing through the scenic highlands.",
+    "id": "1741786814000",
+    "imageUrls": [
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F34.jpg?alt=media&token=b683e2d8-d849-4b27-81de-7058e0ba3820"
+    ],
+    "lat": 6.855434509925544,
+    "long": 80.83084459416568,
+    "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+    "modeName": "Ella-Odyssey-right",
+    "name": "Reaching Pattipola",
+    "tags": ["pattipola", "travel", "scenic"],
+    "username": "ROAMEO"
+  },
+
+  {
+    "description": "Nanu Oya Railway Station, located at an elevation of approximately 1,907 meters (6,257 feet) above sea level. Situated in the central highlands, it serves as a key stop on the scenic Main Line, providing access to nearby destinations like Nuwara Eliya. The station is known for its cool climate and stunning views of the surrounding tea plantations and misty hills.",
+    "id": "1741787114000",
+    "imageUrls": [
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F35.1.jpg?alt=media&token=80d6d085-adac-440b-b9e7-0a3423514c91",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F35.2.jpg?alt=media&token=b16e8891-64f5-443c-82cc-2c4a3c0a5f8a",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F35.3.jpg?alt=media&token=1edce586-9aaf-4b40-8418-b726e28e7778"
+    ],
+    "lat": 6.84882328798993,
+    "long": 80.83311868831515,
+    "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+    "modeName": "Ella-Odyssey-right",
+    "name": "Nanu Oya Railway Station",
+    "tags": ["station", "nanu oya"],
+    "username": "ROAMEO"
+  },
+
+  {
+    "description": "Pattipola cultivations, located in Sri Lanka’s highest-altitude farming region, are known for their cool-climate crops like potatoes, carrots, and cabbage.",
+    "id": "1741787414000",
+    "imageUrls": [
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F36.1.jpg?alt=media&token=26753f68-40c4-4f02-b38d-b7e281ff746e",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F36.2.jpg?alt=media&token=49deb60e-04f1-4bd9-94da-f3ad15e0e595",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F36.3.jpg?alt=media&token=913fbf21-18f3-4431-808d-95954d23633f"
+    ],
+    "lat": 6.844758647494018,
+    "long": 80.8349278382957,
+    "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+    "modeName": "Ella-Odyssey-right",
+    "name": "Pattipola Cultivations",
+    "tags": ["cultivations", "pattipola"],
+    "username": "ROAMEO"
+  },
+
+  {
+    "description": "A small, scenic stream flows through Demodara, winding its way through lush tea plantations and misty hills.",
+    "id": "1741787714000",
+    "imageUrls": [
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F37.1.jpg?alt=media&token=e0f8eff7-acaa-4a98-a683-a440092d397a",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F37.2.jpg?alt=media&token=f4403d27-5ebf-4aeb-b65e-f216dd8a3562",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F37.3.jpg?alt=media&token=f433972d-f7d8-4830-bd5e-4f5d06148b15",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F37.4.jpg?alt=media&token=d14c56f4-ab96-41eb-a3b2-511706d0fceb"
+    ],
+    "lat": 6.904459004290402,
+    "long": 81.0642696171999,
+    "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+    "modeName": "Ella-Odyssey-right",
+    "name": "Stream in Demodara",
+    "tags": ["stream", "demodara"],
+    "username": "ROAMEO"
+  },
+
+  {
+    "description": "Hali Ela is home to a hidden stream that flows through dense greenery and rocky landscapes, offering a peaceful retreat for nature lovers.",
+    "id": "1741788014000",
+    "imageUrls": [
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F38.1.jpg?alt=media&token=c4f2f788-fcdd-412b-a5a3-b7cc6f3ebb50",
+      "https://firebasestorage.googleapis.com/v0/b/roameo-f3ab0.firebasestorage.app/o/Sightseeing_modes%2FROAMEO%2FElla%2FRight%2FImages%2F38.2.jpg?alt=media&token=912fb483-b21f-44cb-a094-83ebb14cd795"
+    ],
+    "lat": 6.932527064345777,
+    "long": 81.04204022325575,
+    "modeDescription": "Experience the beauty of Sri Lanka’s highlands with the Ella Odyssey. From Kandy, witness lush tea plantations, misty mountains, and breathtaking landscapes as you embark on this scenic railway journey.",
+    "modeName": "Ella-Odyssey-right",
+    "name": "Hidden Stream in Hali Ela",
+    "tags": ["stream", "hali ela"],
+    "username": "ROAMEO"
+  },
+
+]

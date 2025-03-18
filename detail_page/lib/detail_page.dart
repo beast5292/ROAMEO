@@ -69,36 +69,50 @@ class _DetailPageState extends State<DetailPage> {
             ),
           ),
 
-          // Rating Section
+          // Rating Section with Rounded Box
           Positioned(
             top: 275, // Adjust position as needed
             left: 16,
-            child: Row(
-              children: [
-                Icon(Icons.star, color: Colors.amber, size: 24),
-                SizedBox(width: 8),
-                Text(
-                  "${widget.location.rating}",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 5), // Add padding
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 231, 184, 102).withOpacity(0.6), // Yellow background
+                borderRadius: BorderRadius.circular(20), // Rounded corners
+              ),
+              child: Row(
+                children: [
+                  Icon(Icons.star, color: const Color.fromARGB(255, 254, 216, 65), size: 24), // Star icon
+                  SizedBox(width: 8), // Spacing
+                  Text(
+                    "${widget.location.rating}",
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 254, 216, 65),
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
 
-          // Name of the Location
+          // Name of the Location with Rounded Box
           Positioned(
             top: 325, // Adjust position as needed
             left: 16,
-            child: Text(
-              widget.location.name,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8), // Add padding
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.5), // Black background
+                borderRadius: BorderRadius.circular(20), // Rounded corners
+              ),
+              child: Text(
+                widget.location.name,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
@@ -111,6 +125,7 @@ class _DetailPageState extends State<DetailPage> {
             child: SingleChildScrollView(
               child: Text(
                 widget.location.description,
+                softWrap: true, // Automatically wraps text
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 17,

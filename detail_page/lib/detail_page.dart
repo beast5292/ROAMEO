@@ -32,7 +32,7 @@ class _DetailPageState extends State<DetailPage> {
             left: 0,
             right: 0,
             child: Container(
-              height: 400, // Adjust height 
+              height: 470, // Adjust height 
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(widget.location.imageUrl),
@@ -45,10 +45,10 @@ class _DetailPageState extends State<DetailPage> {
                     begin: Alignment.bottomCenter, // Start from the bottom
                     end: Alignment.topCenter, // End at the top
                     colors: [
-                      Colors.black.withOpacity(0.9), // control transparency
+                      Colors.black.withOpacity(1.0), // control transparency
                       Colors.transparent, // Fully transparent at the top
                     ],
-                    stops: [0.0, 0.6], // Adjust the stops for the fade effect
+                    stops: [0.0, 0.8], // Adjust the stops for the fade effect
                   ),
                 ),
               ),
@@ -79,10 +79,10 @@ class _DetailPageState extends State<DetailPage> {
             top: 275, 
             left: 16,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 5), 
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5), 
               decoration: BoxDecoration(
                 color: const Color.fromARGB(255, 231, 184, 102).withOpacity(0.6), // Yellow background and transparency
-                borderRadius: BorderRadius.circular(20), 
+                borderRadius: BorderRadius.circular(10), 
               ),
               child: Row(
                 children: [
@@ -109,14 +109,14 @@ class _DetailPageState extends State<DetailPage> {
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8), 
               decoration: BoxDecoration(
                 color: Colors.black.withOpacity(0.5), // Black background
-                borderRadius: BorderRadius.circular(20), // Rounded corners
+                borderRadius: BorderRadius.circular(10), // Rounded corners
               ),
               child: Text(
                 widget.location.name,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 28,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w900,
                 ),
               ),
             ),
@@ -133,7 +133,7 @@ class _DetailPageState extends State<DetailPage> {
                 softWrap: true, // Automatically wraps text
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 17,
+                  fontSize: 12,
                 ),
               ),
             ),

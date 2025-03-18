@@ -32,7 +32,7 @@ class _DetailPageState extends State<DetailPage> {
             left: 0,
             right: 0,
             child: Container(
-              height: 300, // Adjust height as needed
+              height: 380, // Adjust height as needed
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(widget.location.imageUrl),
@@ -52,22 +52,18 @@ class _DetailPageState extends State<DetailPage> {
 
           // Back Button
           Positioned(
-            top: 50,
-            left: 16,
+            top: 75,
+            left: 27,
             child: GestureDetector(
               onTap: () {
                 Navigator.pop(context); // Go back
               },
               child: Container(
                 padding: EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(20),
-                ),
                 child: Icon(
                   Icons.arrow_back_ios_new,
                   color: Colors.white,
-                  size: 24,
+                  size: 30,
                 ),
               ),
             ),
@@ -75,7 +71,7 @@ class _DetailPageState extends State<DetailPage> {
 
           // Rating Section
           Positioned(
-            top: 220, // Adjust position as needed
+            top: 275, // Adjust position as needed
             left: 16,
             child: Row(
               children: [
@@ -95,7 +91,7 @@ class _DetailPageState extends State<DetailPage> {
 
           // Name of the Location
           Positioned(
-            top: 250, // Adjust position as needed
+            top: 325, // Adjust position as needed
             left: 16,
             child: Text(
               widget.location.name,
@@ -109,7 +105,7 @@ class _DetailPageState extends State<DetailPage> {
 
           // Description Section
           Positioned(
-            top: 320, // Adjust position as needed
+            top: 430, // Adjust position as needed
             left: 16,
             right: 16,
             child: SingleChildScrollView(
@@ -117,7 +113,7 @@ class _DetailPageState extends State<DetailPage> {
                 widget.location.description,
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 16,
+                  fontSize: 17,
                 ),
               ),
             ),

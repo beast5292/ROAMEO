@@ -49,6 +49,12 @@ class SsmPlayState extends State<SsmPlay> {
   //Store reached waypoints to avoid duplicate alerts (when you reached a waypoint)
   Set<LatLng> reachedWaypoints = {};
 
+  //reached destination to avoid duplicate alerts
+  LatLng? reachedDestination;
+
+  //reached near destination
+  LatLng? reachedNearDestination;
+
   //track the internet connection status
   final String _connectionStatus = 'Unknown';
 
@@ -110,6 +116,31 @@ class SsmPlayState extends State<SsmPlay> {
       isDataLoaded = loaded;
     });
   }
+  
+  //functions to keep track of reached waypoints and destinations
+  void updateReachedNearWaypoints(LatLng waypoint) {
+    setState(() {
+      reachedNearWaypoints.add(waypoint);
+    });
+  }
+
+  void updateReachedWaypoints(LatLng waypoint) {
+    setState(() {
+      reachedWaypoints.add(waypoint);
+    });
+  }
+
+  void updateReachedDestination() {
+    setState(() {
+      reachedDestination = destination;
+    });
+  }
+
+  void updateReachedNearDestination() {
+    setState(() {
+      reachedNearDestination = destination;
+    });
+  }
 
   //function to get the current location (using the location package)
   void getCurrentLocation() async {
@@ -149,8 +180,14 @@ class SsmPlayState extends State<SsmPlay> {
         waypoints,
         reachedNearWaypoints,
         reachedWaypoints,
+        reachedNearDestination,
+        reachedDestination,
         destination,
         getPolyPoints,
+        updateReachedNearWaypoints,
+        updateReachedWaypoints,
+        updateReachedDestination,
+        updateReachedNearDestination,
       );
 
       // Check if the current location is within the polyline threshold
@@ -560,10 +597,9 @@ class SsmPlayState extends State<SsmPlay> {
                   // Do nothing here
                 },
                 child: DestinationInfoBox(
-                  name: currentpointDetails!['name'],
-                  description: currentpointDetails!['description'],
-                  imageurl: currentpointDetails!['imageUrls'][0]
-                ),
+                    name: currentpointDetails!['name'],
+                    description: currentpointDetails!['description'],
+                    imageurl: currentpointDetails!['imageUrls'][0]),
               ),
             ),
           Positioned(

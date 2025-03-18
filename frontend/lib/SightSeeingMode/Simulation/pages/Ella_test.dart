@@ -12,7 +12,7 @@ class _MapScreenState extends State<MapScreen> {
 
   // Define the initial camera position
   final CameraPosition _initialCameraPosition = CameraPosition(
-    target: routePoints.first, // Use the first point as the initial target
+    target: EllaroutePoints.first, // Use the first point as the initial target
     zoom: 14,
   );
 
@@ -26,7 +26,7 @@ class _MapScreenState extends State<MapScreen> {
     _polylines.add(
       Polyline(
         polylineId: PolylineId('route'),
-        points: routePoints,
+        points: EllaroutePoints,
         color: Colors.blue,
         width: 5,
       ),

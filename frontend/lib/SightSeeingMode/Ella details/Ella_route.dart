@@ -1,6 +1,6 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-List<LatLng> routePoints = [
+List<LatLng> EllaroutePoints = [
   LatLng(7.28985, 80.63173),
   LatLng(7.2890500000000005, 80.63165000000001),
   LatLng(7.287300000000001, 80.63040000000001),

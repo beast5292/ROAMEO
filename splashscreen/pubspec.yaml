@@ -100,3 +100,9 @@ flutter:
   assets:
     - lib/assets/images/
     - lib/assets/icons/
+    - assets/images/
+    - assets/images/top_part.png
+    - assets/images/left_part.png
+    - assets/images/right_part.png
+    - assets/images/text.png
+

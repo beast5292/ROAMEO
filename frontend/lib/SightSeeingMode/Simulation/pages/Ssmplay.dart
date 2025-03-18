@@ -232,7 +232,6 @@ class SsmPlayState extends State<SsmPlay> {
         optimizeWaypoints: true);
 
     //if the results are not empty add the co-ordinates to the polylineCoordinates array containing lat and lang points
-
     if (result.points.isNotEmpty) {
       List<LatLng> routePoints = [];
       for (var point in result.points) {

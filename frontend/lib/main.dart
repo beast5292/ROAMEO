@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:practice/Home/home_page.dart';
 import 'package:practice/SightSeeingMode/CameraPage/providers/Image_provider.dart';
 import 'package:practice/SightSeeingMode/Simulation/providers/SightProvider.dart';
 import 'package:practice/SightSeeingMode/location_select/pages/autoCwidget.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: OpeningScreen(),
+      home: HomePage(),
     );
   }
 }

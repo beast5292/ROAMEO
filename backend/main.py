@@ -38,11 +38,18 @@ async def add_sights(sights:List[Sight]): #type: ignore
     doc_ref = db.collection("sights").document()  #Firestore will auto-generate the document ID
     doc_ref.set({"sights": sight_dicts})  
 
+    
+
 
     # Add to the local array
     sights_db.append(sight_dicts)
     print("Current sights_db:", sights_db)
+    # Get the generated document ID
+    doc_id = doc_ref.id
+    print("Document ID:", doc_id)
     return {"message": "Sightseeing mode added successfully"}
+
+    
 
 
 #get all the sights from the db
@@ -81,7 +88,6 @@ async def get_sight_by_id(docId: str):
         return {"id": doc.id, "sights": sight_data}
     else:
         raise HTTPException(status_code=404, detail="Sight not found")  
-
 
 
 def hash_password(password: str) -> str:

@@ -1,17 +1,24 @@
 
 //Sight object holding all the sights
 class Sight {
-
+  
+  String modeName;
+  String modeDescription;
+  final String username;
   final String id;
-  final String name;
-  final String description;
-  final List<String> tags;
+  String? name;
+  String? description;
+  List<String>? tags;
   final double? lat;
   final double? long;
-  final List<String> imageUrls;
+  List<String> imageUrls;
+
 
   //constructor
   Sight({
+      required this.modeName,
+      required this.modeDescription,
+      required this.username,
       required this.id,
       required this.name,
       required this.description,
@@ -25,10 +32,13 @@ class Sight {
   @override
   String toString() {
     return 'Sight Info: {'
+        'modeName: $modeName,'
+        'modeDescription: $modeDescription,'
+        'username: $username,'
         'id: $id, '
         'name: $name, '
         'description: $description, '
-        'tags: ${tags.join(', ')}, '
+        'tags: ${tags!.join(', ')}, '
         'lat: $lat, '
         'long: $long, '
         'imageUrls: ${imageUrls.join(', ')}'

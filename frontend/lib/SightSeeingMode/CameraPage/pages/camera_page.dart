@@ -39,9 +39,9 @@ class _CameraPageState extends State<CameraPage> {
           'photo': pickedImage.path,
           'latitude': position.latitude,
           'longitude': position.longitude,
-          'name': "dummy name",
-          'description': "dummy description",
-          'tags': ["dummy tag1","dummy tag2"]
+          'name': "Unknown",
+          'description': "describe this location",
+          'tags': ["capturedLocations", "SriLanka"]
         };
 
         print(imageData);
@@ -159,7 +159,6 @@ class _CameraPageState extends State<CameraPage> {
           FloatingActionButton(
             onPressed: () {
               if (tempImages.isNotEmpty) {
-
                 //adds the temp images array to the provider as an array object
                 Provider.of<SelectedPlaceProvider>(context, listen: false)
                     .addImageInfo(List.from(tempImages));

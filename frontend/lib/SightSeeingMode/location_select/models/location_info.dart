@@ -9,9 +9,11 @@ class LocationInfo {
 
   final List<String> imageUrls;
 
-  final String description;
+  String description;
 
-  final List<String> tags;
+  List<String> tags;
+
+  String name;
 
   //constructor
   LocationInfo({
@@ -20,6 +22,7 @@ class LocationInfo {
     required this.imageUrls,
     required this.description,
     required this.tags,
+    required this.name,
   });
 
   //Method to fetch image URLs from photo references
@@ -43,4 +46,5 @@ class LocationInfo {
         'Images: ${imageUrls.join(', ')}'
         '}';
   }
+ 
 }

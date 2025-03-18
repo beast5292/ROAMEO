@@ -29,6 +29,7 @@ class PlaceAutoCompleteService {
       final params = {
         'input': input,
         'key': apiKey,
+        'components': 'country:lk',
         if (sessionToken != null) 'sessiontoken': sessionToken,
         if (language != null) 'language': language,
         if (components != null) 'components': components,

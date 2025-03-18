@@ -27,6 +27,8 @@ class _SightMenuState extends State<SightMenu> {
   //Toggle switch state
   bool showLocations = true;
 
+
+
   Future<String> uploadImage(String filePath) async {
     File file = File(filePath);
     try {
@@ -41,7 +43,102 @@ class _SightMenuState extends State<SightMenu> {
     }
   }
 
-  onSightSave() async {
+  void _deleteItem(dynamic item) {
+    final selectedPlaceProvider =
+        Provider.of<SelectedPlaceProvider>(context, listen: false);
+    selectedPlaceProvider.removeItem(item);
+  }
+
+  void _showEditDialog(BuildContext context, String title, int index) {
+    TextEditingController _controller = TextEditingController();
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("Edit $title"),
+          content: TextField(
+            controller: _controller,
+            decoration: InputDecoration(
+              hintText: "Enter new $title",
+              border: OutlineInputBorder(),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                String enteredText = _controller.text;
+                Provider.of<SelectedPlaceProvider>(context, listen: false)
+                    .editItemByIndex(index, enteredText, title);
+                Navigator.pop(context, enteredText);
+              },
+              child: const Text('Save'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showSaveDialog(BuildContext context) {
+    TextEditingController _nameController = TextEditingController();
+    TextEditingController _descriptionController = TextEditingController();
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text("Edit Sight Mode"),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text("Enter Sight Mode Name"),
+              TextField(
+                controller: _nameController,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: "Sight Mode Name",
+                ),
+              ),
+              const SizedBox(height: 10),
+              const Text("Enter Description"),
+              TextField(
+                controller: _descriptionController,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: "Description",
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                String sightModeName = _nameController.text;
+                String description = _descriptionController.text;
+                print('Sight Mode Name: $sightModeName');
+                print('Description: $description');
+                Navigator.pop(context);
+                onSightSave(_nameController.text,_descriptionController.text);
+              },
+              child: const Text('Save'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  onSightSave(String sightModeName, String sightDescription) async {
+
+    
     final selectedPlaceProvider =
         Provider.of<SelectedPlaceProvider>(context, listen: false);
 
@@ -58,16 +155,15 @@ class _SightMenuState extends State<SightMenu> {
     for (var location in selectedPlaceProvider.selectedLocations) {
       if (location is LocationInfo) {
         Sight sight = Sight(
+          modeName:sightModeName,
+          modeDescription:sightDescription,
+          username: "ROAMEO",
           id: DateTime.now()
               .millisecondsSinceEpoch
               .toString(), // Unique ID from the place API
-          name: location.prediction.mainText ?? "Unknown Place",
-          description:
-              location.prediction.secondaryText ?? "No details available",
-          tags: [
-            "dummyTag",
-            "dummyTag2"
-          ], // You can modify this to add tags if needed
+          name: location.name,
+          description: location.description,
+          tags: location.tags, // You can modify this to add tags if needed
           lat: location.placeDetails.latitude,
           long: location.placeDetails.longitude,
           imageUrls: location.imageUrls.isNotEmpty ? location.imageUrls : [],
@@ -110,11 +206,35 @@ class _SightMenuState extends State<SightMenu> {
           long = firstImage['longitude'] as double?;
         }
 
+        //Extract name from the first image in the trip
+        String? name;
+
+        if (firstImage.containsKey('name')) {
+          name = firstImage['name'] as String?;
+        }
+
+        //Extract tags from the first image in the trip
+        List<String>? tags;
+
+        if (firstImage.containsKey('tags')) {
+          tags = firstImage['tags'] as List<String>?;
+        }
+
+        //Extract description from the first image in the trip
+        String? description;
+
+        if (firstImage.containsKey('description')) {
+          description = firstImage['description'] as String?;
+        }
+
         Sight sight = Sight(
+          modeName:sightModeName,
+          modeDescription:sightDescription,
+          username: "ROAMEO",
           id: DateTime.now().millisecondsSinceEpoch.toString(),
-          name: "Captured Image",
-          description: "Sightseeing image",
-          tags: ["dummy tag1", "dummy tag2"],
+          name: name,
+          description: description,
+          tags: tags,
           lat: lat,
           long: long,
           imageUrls: uploadedUrls,
@@ -125,7 +245,7 @@ class _SightMenuState extends State<SightMenu> {
         Sights.add(sight);
       }
     }
-    
+
     //Print the entire Sights array after adding all objects
     print("Sights Array: $Sights");
 
@@ -151,76 +271,288 @@ class _SightMenuState extends State<SightMenu> {
             Expanded(
               child: ReorderableListView(
                 onReorder: (oldIndex, newIndex) {
-                  // Handle reordering logic here
                   selectedPlaceProvider.reorderTrips(oldIndex, newIndex);
                 },
                 children: selectedPlaceProvider.selectedLocations
-                    .map<Widget>((dynamic item) {
+                    .asMap() // Convert the list to a map of index-value pairs
+                    .entries
+                    .map<Widget>((entry) {
+                  final index = entry.key; // Get the index
+                  final item = entry.value; // Get the item
                   final key =
                       ValueKey(item.hashCode); // Unique key for each item
 
                   if (item is LocationInfo) {
-                    // Handle LocationInfo type
                     return ListTile(
                       key: key,
+                      contentPadding: const EdgeInsets.all(8.0),
+                      leading: item.imageUrls.isNotEmpty
+                          ? ClipRRect(
+                              borderRadius: BorderRadius.circular(8),
+                              child: Image.network(
+                                item.imageUrls.first,
+                                width: 80,
+                                height: 80,
+                                fit: BoxFit.cover,
+                              ),
+                            )
+                          : null,
                       title: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(item.prediction.mainText ?? "Unknown Place"),
-                          Text(item.prediction.secondaryText ??
-                              "No details available"),
-                          if (item.imageUrls.isNotEmpty)
-                            Row(
-                              children: item.imageUrls.map<Widget>((imageUrl) {
-                                return Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Image.network(
-                                    imageUrl,
-                                    width: 150,
-                                    height: 150,
-                                    fit: BoxFit.cover,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  item.name,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                );
-                              }).toList(),
-                            ),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                              IconButton(
+                                icon: const Icon(Icons.edit, size: 18),
+                                onPressed: () {
+                                  _showEditDialog(
+                                      context, "Name", index); // Pass the index
+                                },
+                              ),
+                              IconButton(
+                                icon: const Icon(Icons.clear, size: 18),
+                                onPressed: () {
+                                  _deleteItem(item);
+                                },
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 4),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  item.prediction.secondaryText ??
+                                      "No details available",
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.grey[600],
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                              IconButton(
+                                icon: const Icon(Icons.edit, size: 18),
+                                onPressed: () {
+                                  _showEditDialog(context, "Description",
+                                      index); // Pass the index
+                                },
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 6),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Wrap(
+                                spacing: 6,
+                                children: item.tags.map((tag) {
+                                  return Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 8,
+                                      vertical: 4,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Colors.blue[100],
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    child: Text(
+                                      '#$tag',
+                                      style: const TextStyle(
+                                        color: Colors.blue,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  );
+                                }).toList(),
+                              ),
+                              const SizedBox(height: 6),
+                              GestureDetector(
+                                onTap: () {
+                                  _showEditDialog(context, "Tag", index);
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8, vertical: 4),
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey[300],
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  child: const Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Icon(Icons.add,
+                                          size: 16, color: Colors.black),
+                                      SizedBox(width: 4),
+                                      Text(
+                                        'Add Tag',
+                                        style: TextStyle(
+                                            color: Colors.black, fontSize: 12),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     );
                   } else if (item is List<Map<String, dynamic>>) {
                     // Handle List<Map<String, dynamic>> type
-                    return ListTile(
-                      key: key,
-                      title: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: item.map<Widget>((imageData) {
-                              if (imageData.containsKey('photo') &&
-                                  imageData['photo'] != null) {
-                                return Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Image.file(
-                                    File(imageData['photo']),
-                                    width: 150,
-                                    height: 150,
-                                    fit: BoxFit.cover,
+                    final firstItem = item.isNotEmpty ? item.first : null;
+
+                    if (firstItem != null) {
+                      return ListTile(
+                        key: key,
+                        contentPadding: const EdgeInsets.all(8.0),
+                        leading: firstItem.containsKey('photo') &&
+                                firstItem['photo'] != null
+                            ? ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Image.file(
+                                  File(firstItem['photo']),
+                                  width: 80,
+                                  height: 80,
+                                  fit: BoxFit.cover,
+                                ),
+                              )
+                            : null,
+                        title: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    firstItem['name'] ?? '',
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
                                   ),
-                                );
-                              } else {
-                                return Container(); // Handle missing photo data
-                              }
-                            }).toList(),
-                          ),
-                        ],
-                      ),
-                    );
-                  } else {
-                    // Handle unexpected types (optional)
-                    return ListTile(
-                      key: key,
-                      title: Text("Unknown item type"),
-                    );
+                                ),
+                                IconButton(
+                                  icon: const Icon(Icons.edit, size: 18),
+                                  onPressed: () {
+                                    _showEditDialog(context, "Name",
+                                        index); // Pass the index
+                                  },
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 4),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    firstItem['description'] ??
+                                        'No details available',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.grey[600],
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                IconButton(
+                                  icon: const Icon(Icons.edit, size: 18),
+                                  onPressed: () {
+                                    _showEditDialog(context, "Description",
+                                        index); // Pass the index
+                                  },
+                                ),
+                                IconButton(
+                                  icon: const Icon(Icons.clear, size: 18),
+                                  onPressed: () {
+                                    _deleteItem(item);
+                                  },
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 6),
+                            if (firstItem.containsKey('tags') &&
+                                firstItem['tags'] is List)
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Wrap(
+                                    spacing: 6,
+                                    children: (firstItem['tags'] as List)
+                                        .map<Widget>((tag) {
+                                      return Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 8,
+                                          vertical: 4,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: Colors.blue[100],
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                        ),
+                                        child: Text(
+                                          '#$tag',
+                                          style: const TextStyle(
+                                            color: Colors.blue,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      );
+                                    }).toList(),
+                                  ),
+                                  const SizedBox(height: 6),
+                                  GestureDetector(
+                                    onTap: () {
+                                      _showEditDialog(context, "Tag", index);
+                                    },
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 8, vertical: 4),
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey[300],
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                      child: const Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Icon(Icons.add,
+                                              size: 16, color: Colors.black),
+                                          SizedBox(width: 4),
+                                          Text(
+                                            'Add Tag',
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 12),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                          ],
+                        ),
+                      );
+                    }
                   }
+                  return Container(); // Fallback for unexpected types
                 }).toList(),
               ),
             ),
@@ -263,19 +595,19 @@ class _SightMenuState extends State<SightMenu> {
           FloatingActionButton(
             heroTag: 'saveButton',
             onPressed: () {
-              onSightSave();
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => SsmPage()),
-              );
+              _showSaveDialog(context);
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(builder: (context) => SsmPage()),
+              // );
             },
             child: Icon(Icons.save),
           ),
-           SizedBox(height: 10),
+          SizedBox(height: 10),
           FloatingActionButton(
             heroTag: 'saveButton',
             onPressed: () {
-              onSightSave();
+              
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => MapScreen()),

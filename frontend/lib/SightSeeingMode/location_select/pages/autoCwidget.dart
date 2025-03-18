@@ -11,7 +11,6 @@ import 'package:provider/provider.dart';
 import 'package:practice/SightSeeingMode/location_select/services/placeDetailService.dart';
 
 class PlacesAutoCompleteField extends StatefulWidget {
-  
   //api key
   final String apiKey;
 
@@ -123,8 +122,13 @@ class _PlacesAutoCompleteFieldState extends State<PlacesAutoCompleteField> {
     }
 
     //creating location info object
-    final locationinfo =
-        LocationInfo(prediction: prediction, placeDetails: placeDetails,imageUrls: imageUrls, description: "dummy description", tags: ["dummy tag", "dummy tag"]);
+    final locationinfo = LocationInfo(
+        prediction: prediction,
+        placeDetails: placeDetails,
+        imageUrls: imageUrls,
+        description: "Describe this location",
+        tags: ["selectedLocation", "SriLanka"],
+        name: prediction.mainText);
 
     //Assigning the selected location object to selectedPlace
     _selectedPlace = locationinfo;

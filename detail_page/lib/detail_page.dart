@@ -32,19 +32,24 @@ class _DetailPageState extends State<DetailPage> {
             left: 0,
             right: 0,
             child: Container(
-              height: 380, // Adjust height as needed
+              height: 400, // Adjust height as needed
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(widget.location.imageUrl),
                   fit: BoxFit.cover,
                 ),
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Colors.black.withOpacity(0.7),
-                    Colors.transparent,
-                  ],
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.bottomCenter, // Start from the bottom
+                    end: Alignment.topCenter, // End at the top
+                    colors: [
+                      Colors.black.withOpacity(0.9), // Semi-transparent black at the bottom
+                      Colors.transparent, // Fully transparent at the top
+                    ],
+                    stops: [0.0, 0.6], // Adjust the stops for the fade effect
+                  ),
                 ),
               ),
             ),

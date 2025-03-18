@@ -20,9 +20,9 @@ void assignPoints(
   List<dynamic> sights = sightMode['sights'];
 
   if (sights.isEmpty) {
-    print('No sights available');
+    showAlertDialog2(context, 'No sights available');
     return;
-  }
+  } 
 
   //Save the sights in the provider
   final sightProvider = Provider.of<SightProvider>(context, listen: false);

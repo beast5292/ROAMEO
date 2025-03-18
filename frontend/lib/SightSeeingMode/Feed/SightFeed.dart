@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:practice/SightSeeingMode/Services/SightGet.dart';
 import 'package:practice/SightSeeingMode/Simulation/pages/Ssmplay.dart';
+import 'package:practice/SightSeeingMode/Simulation/pages/Ssmview.dart';
 
 class SightFeed extends StatefulWidget {
   const SightFeed({super.key});
@@ -78,6 +79,15 @@ Widget build(BuildContext context) {
                         ElevatedButton(
                           onPressed: () {
                             print("View button pressed for docId $docId");
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SsmView(
+                                  index: index,
+                                  docId: docId,
+                                ),
+                              ),
+                            );
                             // Handle view action here
                           },
                           style: ElevatedButton.styleFrom(

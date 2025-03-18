@@ -1,8 +1,8 @@
 //To store and provide the sight object that's currently running
 import 'package:flutter/material.dart';
+import 'package:practice/SightSeeingMode/Simulation/services/alertDialog.dart';
 
 class SightProvider with ChangeNotifier {
-
   //array to hold sights
   List<dynamic> _sights = [];
 
@@ -16,12 +16,12 @@ class SightProvider with ChangeNotifier {
   }
 
   //Method to get a specific sight by index
-  dynamic getSight(int index) {
-    if (index >= 0 && index < _sights.length) {
-      return _sights[index];
-    }
-    return null; //Return null if the index is out of bounds
+  void getSight(BuildContext context, int index) {
+  if (index >= 0 && index < _sights.length) {
+    // Example usage of context in the alert dialog
+    showAlertDialog2(context, "Sight found: ${_sights[index]['modeName']}");
+  } else {
+    showAlertDialog2(context, "Invalid index");
   }
-
-  
+ }
 }

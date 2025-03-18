@@ -8,26 +8,31 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:http/http.dart' as http;
 import 'package:practice/SightSeeingMode/Services/SightGet.dart';
+import 'package:practice/SightSeeingMode/Simulation/pages/Navigation.dart';
+import 'package:practice/SightSeeingMode/Simulation/pages/mapbox.dart';
+import 'package:practice/SightSeeingMode/Simulation/providers/SightProvider.dart';
+import 'package:practice/SightSeeingMode/Simulation/services/Haversine_formula.dart';
+import 'package:practice/SightSeeingMode/Simulation/services/TrimPolyline.dart';
 import 'package:practice/SightSeeingMode/Simulation/services/assignPoints.dart';
 import 'package:practice/SightSeeingMode/Simulation/services/alertDialog.dart';
+import 'package:practice/SightSeeingMode/Simulation/services/checkProximity.dart';
+import 'package:practice/SightSeeingMode/Simulation/services/PolylineThresholdCheck.dart';
+import 'package:practice/SightSeeingMode/Simulation/services/readCoordinatesfromfile.dart';
 
-
-class SsmPlay extends StatefulWidget {
-
+class SsmView extends StatefulWidget {
   //widget takes the index as a parameter to figure out the sightseeing mode id
   final int index;
 
   //widget takes the doc id of the sight
   final String docId;
 
-  const SsmPlay({Key? key, required this.index, required this.docId})
-      : super(key: key);
+  const SsmView({super.key, required this.index, required this.docId});
 
   @override
-  State<SsmPlay> createState() => SsmPlayState();
+  State<SsmView> createState() => SsmViewState();
 }
 
-class SsmPlayState extends State<SsmPlay> {
+class SsmViewState extends State<SsmView> {
   //loading state variable
   bool isLoading = true;
 
@@ -42,9 +47,6 @@ class SsmPlayState extends State<SsmPlay> {
 
   //Store reached waypoints to avoid duplicate alerts (when you reached a waypoint)
   Set<LatLng> reachedWaypoints = {};
-
-  //track the internet connection status
-  String _connectionStatus = 'Unknown';
 
   //Google map instance as a completer
   final Completer<GoogleMapController> _controller = Completer();
@@ -66,21 +68,15 @@ class SsmPlayState extends State<SsmPlay> {
   //define only the active way points
   late List<PolylineWayPoint> activeWaypoints;
 
-  //stores the current location as in lat and lang (Location package)
-  LocationData? currentLocation;
 
-  //distance and duration holders (for the distanced matrix api response)
+  //distance and duration holders (for the directions api response)
   String distance = '';
   String duration = '';
-
-  //distance and duration holders (for the direction api request for waypoints)
-  String waypointDistance = "";
-  String waypointDuration = "";
 
   //custom marker variables (Bitmap descriptor)
   BitmapDescriptor sourceIcon = BitmapDescriptor.defaultMarker;
   BitmapDescriptor destinationIcon = BitmapDescriptor.defaultMarker;
-  BitmapDescriptor currentLocationIcon = BitmapDescriptor.defaultMarker;
+
 
   //Set to hold markers
   Set<Marker> markers = {};
@@ -100,6 +96,7 @@ class SsmPlayState extends State<SsmPlay> {
     });
   }
 
+  
 
   //function to get the polypoints
   void getPolyPoints() async {
@@ -122,51 +119,46 @@ class SsmPlayState extends State<SsmPlay> {
 
     // showAlertDialog2(alertMessage3);
 
-      //receieve polylines using getRoutebetween function of directions api
-      PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-          'AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0',
-          PointLatLng(sourceLocation!.latitude!, sourceLocation!.longitude!),
-          PointLatLng(destination!.latitude, destination!.longitude),
-          travelMode: TravelMode.driving,
-          wayPoints: activeWaypoints,
-          optimizeWaypoints: true);
+    //receieve polylines using getRoutebetween function of directions api
+    PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
+        'AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0',
+        PointLatLng(sourceLocation!.latitude, sourceLocation!.longitude),
+        PointLatLng(destination!.latitude, destination!.longitude),
+        travelMode: TravelMode.driving,
+        wayPoints: activeWaypoints,
+        optimizeWaypoints: true);
 
-      //if the results are not empty add the co-ordinates to the polylineCoordinates array containing lat and lang points
-
-      if (result.points.isNotEmpty) {
-        List<LatLng> routePoints = [];
-        result.points.forEach((PointLatLng point) {
-          routePoints.add(LatLng(point.latitude, point.longitude));
-        });
-
-        var alertMessage3 = routePoints.toString();
-
-        setState(() {
-          polylineCoordinates = routePoints;
-        });
-
-        // showAlertDialog2(alertMessage3);
-
-        //Snap the route coordinates to the nearest road
-        // await snapToRoads(routePoints);
+    //if the results are not empty add the co-ordinates to the polylineCoordinates array containing lat and lang points
+    if (result.points.isNotEmpty) {
+      List<LatLng> routePoints = [];
+      for (var point in result.points) {
+        routePoints.add(LatLng(point.latitude, point.longitude));
       }
+
+      var alertMessage3 = routePoints.toString();
+
+      setState(() {
+        polylineCoordinates = routePoints;
+      });
+
+      // showAlertDialog2(alertMessage3);
+
+      //Snap the route coordinates to the nearest road
+      // await snapToRoads(routePoints);
     }
-    //call set state which has many functions
-    // setState(() {});
-  
+  }
+  //call set state which has many functions
+  // setState(() {});
 
-  //distance matrix api request for the sightseeing route
+  //directions api request for the sightseeing route
   Future<void> getDistanceAndDuration() async {
-    //convert current location into a lat lang object
-    LatLng currentLatLng =
-        LatLng(currentLocation!.latitude!, currentLocation!.longitude!);
-
+    
     //Prepare the waypoints string for the Directions API request
     String waypointsString = activeWaypoints.map((wp) => wp.location).join('|');
 
     //Directions API URL with current location, destination, and waypoints
     String url =
-        'https://maps.googleapis.com/maps/api/directions/json?origin=${currentLatLng.latitude},${currentLatLng.longitude}&destination=${destination!.latitude},${destination!.longitude}&waypoints=optimize:true|$waypointsString&key=AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0';
+        'https://maps.googleapis.com/maps/api/directions/json?origin=${sourceLocation!.latitude},${sourceLocation!.longitude}&destination=${destination!.latitude},${destination!.longitude}&waypoints=optimize:true|$waypointsString&key=AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0';
 
     //get request to distance matrix api
     var response = await http.get(Uri.parse(url));
@@ -200,17 +192,22 @@ class SsmPlayState extends State<SsmPlay> {
     }
   }
 
+
   // Function to add markers for waypoints and destination
   void addMarkers() {
+
     markers.clear();
+
+    //index for the destination
+    var destination_id = SightProvider().sights.length - 1;
 
     // Add markers for waypoints
     for (int i = 0; i < waypoints.length; i++) {
       markers.add(
         Marker(
-          markerId: MarkerId('waypoint_$i'),
+          markerId: MarkerId('$i'),
           position: waypoints[i],
-          infoWindow: InfoWindow(title: 'Waypoint ${i + 1}'),
+          infoWindow: InfoWindow(title: 'Waypoint $i'),
           icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
         ),
       );
@@ -218,28 +215,18 @@ class SsmPlayState extends State<SsmPlay> {
 
     // Add marker for destination
     markers.add(
+      
       Marker(
-        markerId: MarkerId('destination'),
+        markerId: MarkerId('$destination_id'),
         position: destination!,
         infoWindow: InfoWindow(title: 'Destination'),
         icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
       ),
     );
 
-    var locationString = currentLocation!.latitude.toString();
+    // var locationString = currentLocation!.latitude.toString();
 
-    showAlertDialog2(context, locationString);
-
-    //add marker for current location
-    markers.add(
-      Marker(
-        markerId: MarkerId('current_location'),
-        position:
-            LatLng(sourceLocation!.latitude!, sourceLocation!.longitude!),
-        infoWindow: InfoWindow(title: 'Origin'),
-        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
-      ),
-    );
+    // showAlertDialog2(context, locationString);
   }
 
   //init state
@@ -248,32 +235,22 @@ class SsmPlayState extends State<SsmPlay> {
     super.initState();
     // Fetch sight mode data
     fetchSightMode(widget.docId).then((data) {
-      if (data != null) {
-        setState(() {
-          sightMode = data;
-          isLoading = false; // Data fetched, set loading to false
-          print("sightMode: $sightMode");
-        });
-        assignPoints(sightMode!, updateAssignPointsState, context);
-        addMarkers();
-        setState(() {
-          isDataLoaded = true;
-        });
-      } else {
-        setState(() {
-          isLoading = false; // Data is null, set loading to false
-        });
-        print("Fetched data is null");
-      }
+      setState(() {
+        sightMode = data;
+        isLoading = false; // Data fetched, set loading to false
+        print("sightMode: $sightMode");
+      });
+      assignPoints(sightMode!, updateAssignPointsState, context);
+      addMarkers();
+      setState(() {
+        isDataLoaded = true;
+      });
     }).catchError((error) {
       setState(() {
         isLoading = false; // Error occurred, set loading to false
       });
       print("Error fetching sight mode: $error");
     });
-   
-    // setCustomMarkerIcon();
-    // getPolyPoints();
     getDistanceAndDuration();
   }
 
@@ -331,12 +308,12 @@ class SsmPlayState extends State<SsmPlay> {
       ),
       body: Stack(
         children: [
-          currentLocation == null
+          sourceLocation == null
               ? const Center(child: Text("Loading"))
               : GoogleMap(
                   initialCameraPosition: CameraPosition(
-                    target: LatLng(currentLocation!.latitude!,
-                        currentLocation!.longitude!),
+                    target: LatLng(sourceLocation!.latitude,
+                        sourceLocation!.longitude),
                     zoom: 13.5,
                   ),
                   markers: markers,
@@ -353,57 +330,32 @@ class SsmPlayState extends State<SsmPlay> {
                     _controller.complete(mapController);
                   },
                 ),
-          Positioned(
-            bottom: 10,
-            left: 0,
-            child: Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 4,
-                    offset: Offset(2, 2),
-                  ),
-                ],
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    _connectionStatus,
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  Text("Distance: $distance", style: TextStyle(fontSize: 16)),
-                  Text("Duration: $duration", style: TextStyle(fontSize: 16)),
-                  Divider(),
-                  
-                ],
-              ),
-            ),
-          ),
-          Positioned(
-            bottom:
-                750, //You can adjust the position to not overlap with the other widget
-            left: 0,
-            right: 20,
-            child: Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 4,
-                    offset: Offset(2, 2),
-                  ),
-                ],
-              ),
-            ),
-          )
+          // Positioned(
+          //   bottom: 10,
+          //   left: 0,
+          //   child: Container(
+          //     padding: const EdgeInsets.all(8),
+          //     decoration: BoxDecoration(
+          //       color: Colors.white,
+          //       borderRadius: BorderRadius.circular(8),
+          //       boxShadow: [
+          //         BoxShadow(
+          //           color: Colors.black26,
+          //           blurRadius: 4,
+          //           offset: Offset(2, 2),
+          //         ),
+          //       ],
+          //     ),
+          //     child: Column(
+          //       crossAxisAlignment: CrossAxisAlignment.start,
+          //       children: [
+          //         Text("Distance: $distance", style: TextStyle(fontSize: 16)),
+          //         Text("Duration: $duration", style: TextStyle(fontSize: 16)),
+          //         Divider(),
+          //       ],
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );

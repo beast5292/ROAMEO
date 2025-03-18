@@ -8,6 +8,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:http/http.dart' as http;
 import 'package:practice/SightSeeingMode/Services/SightGet.dart';
+import 'package:practice/SightSeeingMode/Simulation/models/DetailWidget.dart';
 import 'package:practice/SightSeeingMode/Simulation/pages/Navigation.dart';
 import 'package:practice/SightSeeingMode/Simulation/pages/mapbox.dart';
 import 'package:practice/SightSeeingMode/Simulation/providers/SightProvider.dart';
@@ -89,6 +90,11 @@ class SsmPlayState extends State<SsmPlay> {
 
   //Set to hold markers
   Set<Marker> markers = {};
+
+  bool showDestinationInfo = false;
+
+  //current point detais
+  Map<String, dynamic>? currentpointDetails;
 
   //setState of assignPoints function
   void updateAssignPointsState(
@@ -373,34 +379,52 @@ class SsmPlayState extends State<SsmPlay> {
   void addMarkers() {
     markers.clear();
 
-    //index for the destination
-    var destination_id = SightProvider().sights.length - 1;
-
     // Add markers for waypoints
     for (int i = 0; i < waypoints.length; i++) {
+      // Get the waypoint details from sightMode
+      var waypointDetails = sightMode!['sights'][i];
+
       markers.add(
         Marker(
-          markerId: MarkerId('$i'),
-          position: waypoints[i],
-          infoWindow: InfoWindow(title: 'Waypoint $i'),
-          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
-        ),
+            markerId: MarkerId('$i'),
+            position: waypoints[i],
+            infoWindow: InfoWindow(title: 'Waypoint $i'),
+            icon:
+                BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+            onTap: () {
+              setState(() {
+                showDestinationInfo = true;
+                // Store the waypoint details to display in the info box
+                currentpointDetails = waypointDetails;
+              });
+            }),
       );
     }
+
+    //index for the destination
+    int destination_id = sightMode!.length;
+
+    // var length = SightProvider().sights.length.toString();
+
+    var destination_details = sightMode!['sights'][destination_id];
 
     // Add marker for destination
     markers.add(
       Marker(
-        markerId: MarkerId('$destination_id'),
-        position: destination!,
-        infoWindow: InfoWindow(title: 'Destination'),
-        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
-      ),
+          markerId: MarkerId('$destination_id'),
+          position: destination!,
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+          onTap: () {
+            setState(() {
+              showDestinationInfo = true;
+              currentpointDetails = destination_details;
+            });
+          }),
     );
 
-    var locationString = currentLocation!.latitude.toString();
+    // var locationString = currentLocation!.latitude.toString();
 
-    showAlertDialog2(context, locationString);
+    // showAlertDialog2(context, locationString);
 
     //add marker for current location
     markers.add(
@@ -496,28 +520,52 @@ class SsmPlayState extends State<SsmPlay> {
       ),
       body: Stack(
         children: [
-          currentLocation == null
-              ? const Center(child: Text("Loading"))
-              : GoogleMap(
-                  initialCameraPosition: CameraPosition(
-                    target: LatLng(currentLocation!.latitude!,
-                        currentLocation!.longitude!),
-                    zoom: 13.5,
+          GestureDetector(
+            onTap: () {
+              // Hide the destination info box when tapping elsewhere on the map
+              setState(() {
+                showDestinationInfo = false;
+              });
+            },
+            child: currentLocation == null
+                ? const Center(child: Text("Loading"))
+                : GoogleMap(
+                    initialCameraPosition: CameraPosition(
+                      target: LatLng(currentLocation!.latitude!,
+                          currentLocation!.longitude!),
+                      zoom: 13.5,
+                    ),
+                    markers: markers,
+                    polylines: {
+                      Polyline(
+                        polylineId: PolylineId("route"),
+                        points: polylineCoordinates,
+                        color: Colors.lightBlue,
+                        width: 6,
+                        zIndex: -1,
+                      )
+                    },
+                    onMapCreated: (mapController) {
+                      _controller.complete(mapController);
+                    },
                   ),
-                  markers: markers,
-                  polylines: {
-                    Polyline(
-                      polylineId: PolylineId("route"),
-                      points: polylineCoordinates,
-                      color: Colors.lightBlue,
-                      width: 6,
-                      zIndex: -1,
-                    )
-                  },
-                  onMapCreated: (mapController) {
-                    _controller.complete(mapController);
-                  },
+          ),
+          if (showDestinationInfo && currentpointDetails != null)
+            Positioned(
+              top: 100, // Adjust this value to position the box correctly
+              left: 20, // Adjust this value to position the box correctly
+              child: GestureDetector(
+                onTap: () {
+                  // Prevent the box from disappearing when tapping on it
+                  // Do nothing here
+                },
+                child: DestinationInfoBox(
+                  name: currentpointDetails!['name'],
+                  description: currentpointDetails!['description'],
+                  imageurl: currentpointDetails!['imageUrls'][0]
                 ),
+              ),
+            ),
           Positioned(
             bottom: 10,
             left: 0,

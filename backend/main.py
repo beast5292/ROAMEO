@@ -14,7 +14,7 @@ from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from fastapi import Depends
 
 #Initialize Firebase Admin SDK with your credentials
-cred = credentials.Certificate(r'C:\IIT\2nd year\SDGP\Project\ROAMEO Sulaiman\ROAMEO\backend\private key\roameo-f3ab0-firebase-adminsdk-ss40k-1e1297f52f.json') 
+cred = credentials.Certificate(r'F:\GITHUB\ROAMEO\backend\private key\roameo-f3ab0-firebase-adminsdk-ss40k-1e1297f52f.json') 
 initialize_app(cred)
 
 #Firestore client initialization
@@ -183,4 +183,30 @@ async def get_user(credentials: HTTPAuthorizationCredentials = Depends(security)
         raise HTTPException(status_code=500, detail=str(e))
 
 
+# ADDED------------------------------------------------------
 
+# Search Sightseeing modes by ModeName
+@app.get("/sights/search/")
+async def search_sights(query: str = Query(..., min_length=1)):
+  
+    print(f"Searching for sightseeing modes with query: {query}")
+    
+    matching_sights = []
+    docs = db.collection("sights").stream()
+
+    for doc in docs:
+        sight_data = doc.to_dict().get("sights", [])
+
+        # Check each sight's modeName
+        filtered_sights = [sight for sight in sight_data if query.lower() in sight.get("modeName", "").lower()]
+
+        if filtered_sights:
+            matching_sights.append({
+                "id": doc.id,
+                "sights": filtered_sights
+            })
+
+    if not matching_sights:
+        raise HTTPException(status_code=404, detail="No matching sights found")
+
+    return {"sights": matching_sights}

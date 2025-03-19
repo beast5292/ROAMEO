@@ -29,7 +29,3 @@ Future<Map<String, dynamic>> fetchSightMode(String docId) async {
     throw Exception('Failed to load sight mode');
   }
 }
-
-
-//fetch all the sights of sightseeing modes
-

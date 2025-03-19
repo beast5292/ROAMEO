@@ -1,27 +1,23 @@
-from fastapi import FastAPI, HTTPException, Query, Depends
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from fastapi import FastAPI,HTTPException,Query
 from typing import List
-from backend.Sight_info import Sight
-from backend.user_model import User
-from backend.login_model import LoginRequest
+from Sight_info import Sight
+from firebase_admin import credentials,firestore, initialize_app
+from typing import List
+import asyncio
+import firebase_admin
+from user_model import User
+from login_model import LoginRequest
 import bcrypt
 import jwt
 import datetime
-import os
-import json
-from firebase_admin import credentials, firestore, initialize_app
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from fastapi import Depends
 
-# Load Firebase credentials from environment variable
-firebase_credentials = os.getenv("FIREBASE_CREDENTIALS")
-if not firebase_credentials:
-    raise ValueError("FIREBASE_CREDENTIALS environment variable is not set")
-
-# Parse JSON credentials
-cred_dict = json.loads(firebase_credentials)
-cred = credentials.Certificate(cred_dict)
+#Initialize Firebase Admin SDK with your credentials
+cred = credentials.Certificate(r'C:\Users\Mindula\Desktop\ROAMEO\backend\private key\roameo-f3ab0-firebase-adminsdk-ss40k-1e1297f52f.json') 
 initialize_app(cred)
 
-# Firestore client initialization
+#Firestore client initialization
 db = firestore.client()
 
 app = FastAPI()
@@ -29,51 +25,88 @@ app = FastAPI()
 security = HTTPBearer()
 JWT_SECRET = "CItLOTX5KLDS2VLeitv2n5tsftt5m9SwJNIrQsQsyjc="
 
-# Temporary storage for sights
+#temporary storage for sights
 sights_db = []
 
-# Add a sight to the database
+#add a sight to the db
 @app.post("/sights/")
-async def add_sights(sights: List[Sight]):
-    sight_dicts = [sight.dict() for sight in sights]
-    doc_ref = db.collection("sights").document()
-    doc_ref.set({"sights": sight_dicts})
-    sights_db.append(sight_dicts)
-    return {"message": "Sightseeing mode added successfully", "document_id": doc_ref.id}
+async def add_sights(sights:List[Sight]): #type: ignore
 
-# Get all sights from the database
+    sight_dicts = [sight.dict() for sight in sights]
+
+    # Save the whole array as one record in Firestore
+    doc_ref = db.collection("sights").document()  #Firestore will auto-generate the document ID
+    doc_ref.set({"sights": sight_dicts})  
+
+    
+
+
+    # Add to the local array
+    sights_db.append(sight_dicts)
+    print("Current sights_db:", sights_db)
+    # Get the generated document ID
+    doc_id = doc_ref.id
+    print("Document ID:", doc_id)
+    return {"message": "Sightseeing mode added successfully"}
+
+    
+
+
+#get all the sights from the db
 @app.get("/sights/")
 async def get_sights():
+
+    print("Recieved sights")
+
     return_sights = []
     docs = db.collection("sights").stream()
+
     for doc in docs:
+
+        #Include document ID and the data
         sight_data = doc.to_dict().get("sights", [])
-        return_sights.append({"id": doc.id, "sights": sight_data})
+
+        return_sights.append({
+            #model the response
+            "id": doc.id,  
+            "sights": sight_data
+        })
+
     return {"sights": return_sights}
 
-# Get a sight by document ID
+
+#get selected sight by index
 @app.get("/sights/{docId}")
 async def get_sight_by_id(docId: str):
+    # Fetch the specific document from Firestore using the docId
     doc = db.collection("sights").document(docId).get()
-    if doc.exists:
-        return {"id": doc.id, "sights": doc.to_dict().get("sights", [])}
-    raise HTTPException(status_code=404, detail="Sight not found")
 
-# Password hashing and verification
+    if doc.exists:
+        sight_data = doc.to_dict().get("sights", [])
+        #Print the received sight data
+        print("Received sight data:", sight_data)
+        return {"id": doc.id, "sights": sight_data}
+    else:
+        raise HTTPException(status_code=404, detail="Sight not found")  
+
+
 def hash_password(password: str) -> str:
-    return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+    salt = bcrypt.gensalt()
+    hashed_password = bcrypt.hashpw(password.encode('utf-8'), salt)
+    return hashed_password.decode('utf-8')
 
 def verify_password(password: str, hashed_password: str) -> bool:
     return bcrypt.checkpw(password.encode('utf-8'), hashed_password.encode('utf-8'))
 
-# JWT Token Handling
 def create_jwt_token(email: str):
-    payload = {"sub": email, "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=1)}
+    expiration = datetime.datetime.utcnow() + datetime.timedelta(hours=1)
+    payload = {"sub": email, "exp": expiration}
     return jwt.encode(payload, JWT_SECRET, algorithm="HS256")
 
 def verify_jwt_token(credentials: HTTPAuthorizationCredentials = Depends(security)):
     try:
-        return jwt.decode(credentials.credentials, JWT_SECRET, algorithms=["HS256"])
+        payload = jwt.decode(credentials.credentials, JWT_SECRET, algorithms=["HS256"])
+        return payload
     except jwt.ExpiredSignatureError:
         raise HTTPException(status_code=401, detail="Token expired")
     except jwt.InvalidTokenError:
@@ -83,18 +116,20 @@ def verify_jwt_token(credentials: HTTPAuthorizationCredentials = Depends(securit
 @app.post("/signup")
 async def signup(user: User):
     try:
+        hashed_password = hash_password(user.password)
         user_ref = db.collection("users").document()
         user_ref.set({
             "username": user.username,
             "email": user.email,
             "dob": user.dob,
-            "password": hash_password(user.password)
+            "password": hashed_password
         })
-        return {"message": "User registered successfully", "token": create_jwt_token(user.email)}
+        # Generate JWT token after successful signup
+        token = create_jwt_token(user.email)
+        return {"message": "User registered successfully", "token": token}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-# Login endpoint
 @app.post("/login")
 async def login(user: LoginRequest):
     try:
@@ -105,21 +140,47 @@ async def login(user: LoginRequest):
         user_data = user_doc.to_dict()
         if not verify_password(user.password, user_data["password"]):
             raise HTTPException(status_code=400, detail="Invalid email or password")
+
+        # Checking if the token exists and is valid
+        if "token" in user_data:
+            try:
+                jwt.decode(user_data["token"], JWT_SECRET, algorithms=["HS256"])
+                # If the token is valid, reuse it
+                return {"message": "Login successful", "token": user_data["token"]}
+            except jwt.ExpiredSignatureError:
+                # If the token has expired, return 401
+                raise HTTPException(status_code=401, detail="Token expired")
+            except jwt.InvalidTokenError:
+                # If the token is invalid, return 401
+                raise HTTPException(status_code=401, detail="Invalid token")
+
+        # Creating a new token
         token = create_jwt_token(user.email)
         user_doc.reference.update({"token": token})
         return {"message": "Login successful", "token": token}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-# Get user endpoint
+# User endpoint
 @app.get("/user")
 async def get_user(credentials: HTTPAuthorizationCredentials = Depends(security)):
     try:
-        user_email = verify_jwt_token(credentials).get("sub")
+        # Verify the JWT token
+        payload = verify_jwt_token(credentials)
+        # Extract the email from the token
+        user_email = payload.get("sub")
+
+        # Fetch user data from Firestore
         user_ref = db.collection("users").where("email", "==", user_email).stream()
         user_doc = next(user_ref, None)
+
         if not user_doc:
             raise HTTPException(status_code=404, detail="User not found")
-        return {"user": user_doc.to_dict()}
+
+        user_data = user_doc.to_dict()
+        return {"user": user_data}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+

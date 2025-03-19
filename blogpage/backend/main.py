@@ -166,7 +166,17 @@ async def get_blogs():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-
+# Endpoint to fetch a single blog by ID
+@app.get("/blog/{blog_id}")
+async def get_blog(blog_id: str):
+    try:
+        blog = db.collection("blogs").document(blog_id).get()
+        if blog.exists:
+            return {"id": blog.id, **blog.to_dict()}
+        else:
+            raise HTTPException(status_code=404, detail="Blog not found")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
     
 
 if __name__ == "__main__":

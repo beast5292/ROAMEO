@@ -81,8 +81,16 @@ class _DetailPageState extends State<DetailPage> {
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5), 
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 231, 184, 102).withOpacity(0.6), // Yellow background and transparency
-                borderRadius: BorderRadius.circular(10), 
+                color: const Color.fromARGB(255, 231, 184, 102).withOpacity(0.7), // Yellow background and transparency
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.5), // Shadow color
+                    offset: Offset(0, 4), // Shadow position (x, y)
+                    blurRadius: 10, // Blur effect
+                    spreadRadius: 4, // Spread of the shadow
+                  ),
+                ], 
               ),
               child: Row(
                 children: [
@@ -107,10 +115,6 @@ class _DetailPageState extends State<DetailPage> {
             left: 16,
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8), 
-              decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.5), // Black background
-                borderRadius: BorderRadius.circular(10), // Rounded corners
-              ),
               child: Text(
                 widget.location.name,
                 style: TextStyle(

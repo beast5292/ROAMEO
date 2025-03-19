@@ -1,7 +1,0 @@
-fastapi
-uvicorn
-firebase-admin
-bcrypt
-jwt
-pytest
-httpx

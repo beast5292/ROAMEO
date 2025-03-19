@@ -26,9 +26,11 @@ class _SightFeedState extends State<SightFeed> {
   // Function to handle search based on user input----------------
   void performSearch() {
     setState(() {
-      String query = searchController.text.trim();
-      print("Search query for: $query");
       try {
+        String query = searchController.text.trim();
+        print("Search button prssed");
+        print("Search query for: $query");
+
         if (query.isEmpty) {
           print("Fetching all sights");
           sightsFuture = fetchSights();

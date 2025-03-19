@@ -147,7 +147,7 @@ async def login(user: LoginRequest):
             try:
                 jwt.decode(user_data["token"], JWT_SECRET, algorithms=["HS256"])
                 # If the token is valid, reuse it
-                return {"message": "Login successful", "token": user_data["token"]}
+                return {"message": "Login  successful", "token": user_data["token"]}
             except jwt.ExpiredSignatureError:
                 # If the token has expired, return 401
                 raise HTTPException(status_code=401, detail="Token expired")
@@ -187,7 +187,7 @@ async def get_user(credentials: HTTPAuthorizationCredentials = Depends(security)
 # ADDED------------------------------------------------------
 
 # Search Sightseeing modes by ModeName
-@app.get("/sights/search/")
+@app.get("/search")
 async def search_sights(query: str = Query(..., min_length=1)):
   
     print(f"Searching for sightseeing modes with query: {query}")

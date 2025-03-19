@@ -24,17 +24,24 @@ class _SightFeedState extends State<SightFeed> {
   }
 
   // Function to handle search based on user input----------------
-  void performmSearch() {
+  void performSearch() {
     setState(() {
-      if (searchController.text.isEmpty) {
-        sightsFuture =
-            fetchSights(); //  Fetch all sights if search query is empty
-      } else {
-        sightsFuture =
-            searchSights(searchController.text); // Fetch Search Results
+      String query = searchController.text.trim();
+      print("Search query for: $query");
+      try {
+        if (query.isEmpty) {
+          print("Fetching all sights");
+          sightsFuture = fetchSights();
+        } else {
+          print("Fetching search results");
+          sightsFuture = searchSights(query);
+        }
+      } catch (e) {
+        print("Search error: $e");
       }
     });
   }
+
   //-----------------------------------------------------------
 
   @override
@@ -51,7 +58,13 @@ class _SightFeedState extends State<SightFeed> {
               decoration: InputDecoration(
                 hintText:
                     "Search sightseeing modes", // Placeholder text -------------
-                prefixIcon: const Icon(Icons.search), // Search Icon
+                prefixIcon: IconButton(
+                  icon: const Icon(Icons.search),
+                  onPressed: () {
+                    print("Search button pressed");
+                    performSearch();
+                  },
+                ), // Search Icon
 
                 /// Search icon
                 border: OutlineInputBorder(
@@ -60,8 +73,9 @@ class _SightFeedState extends State<SightFeed> {
                 filled: true,
                 fillColor: Colors.white,
               ),
-              onChanged: (value) {
-                performmSearch(); // Call search function when user types
+              onSubmitted: (value) {
+                print("Enter key pressed");
+                performSearch(); // Call search function when user types
               },
             ),
           ),
@@ -70,15 +84,18 @@ class _SightFeedState extends State<SightFeed> {
       body: FutureBuilder<List<dynamic>>(
         future: sightsFuture,
         builder: (context, snapshot) {
+          print("Snapshot state: ${snapshot.connectionState}");
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
+            print("Error: ${snapshot.error}");
             return Center(child: Text('Error: ${snapshot.error}'));
-          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+          } else if (!snapshot.hasData || (snapshot.data?.isEmpty ?? true)) {
             return const Center(child: Text("No sightseeing modes available"));
           }
 
           List<dynamic> modes = snapshot.data!; // Extract sightseeing mode data
+          print("Fetched ${modes.length} results");
 
           return ListView.builder(
             itemCount: modes.length, // Number of items in the list
@@ -109,10 +126,11 @@ class _SightFeedState extends State<SightFeed> {
                       ),
                       const SizedBox(height: 5),
                       Text(
-                        sight['modeDescription'] ?? 'No Description',
-                        style: const TextStyle(fontSize: 14),
+                        "Created by: ${sight['username'] ?? 'Unknown'}",
+                        style:
+                            const TextStyle(fontSize: 12, color: Colors.grey),
                       ),
-                      const SizedBox(height: 5),
+                      const SizedBox(height: 10),
                       Text(
                         "Created by: ${sight['username'] ?? 'Unknown'}",
                         style:

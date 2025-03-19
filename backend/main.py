@@ -12,6 +12,7 @@ import jwt
 import datetime
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from fastapi import Depends
+from fastapi.middleware.cors import CORSMiddleware
 
 #Initialize Firebase Admin SDK with your credentials
 cred = credentials.Certificate(r'F:\GITHUB\ROAMEO\backend\private key\roameo-f3ab0-firebase-adminsdk-ss40k-1e1297f52f.json') 
@@ -210,3 +211,11 @@ async def search_sights(query: str = Query(..., min_length=1)):
         raise HTTPException(status_code=404, detail="No matching sights found")
 
     return {"sights": matching_sights}
+
+    app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins for testing
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)

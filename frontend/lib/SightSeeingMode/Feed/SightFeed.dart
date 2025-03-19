@@ -42,6 +42,11 @@ class _SightFeedState extends State<SightFeed> {
         print("Search error: $e");
       }
     });
+
+    // Force UI update after fetching results
+    Future.delayed(Duration(milliseconds: 500), () {
+      setState(() {});
+    });
   }
 
   //-----------------------------------------------------------
@@ -86,13 +91,14 @@ class _SightFeedState extends State<SightFeed> {
       body: FutureBuilder<List<dynamic>>(
         future: sightsFuture,
         builder: (context, snapshot) {
-          print("Snapshot state: ${snapshot.connectionState}");
+          print("Snapshot state: ${snapshot.connectionState}"); // Debugging
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             print("Error: ${snapshot.error}");
             return Center(child: Text('Error: ${snapshot.error}'));
-          } else if (!snapshot.hasData || (snapshot.data?.isEmpty ?? true)) {
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            print("No sightseeing modes found in response");
             return const Center(child: Text("No sightseeing modes available"));
           }
 
@@ -107,7 +113,8 @@ class _SightFeedState extends State<SightFeed> {
                   ? modes[index]['sights'][0]
                   : null;
 
-              if (sight == null) return const SizedBox();
+              if (sight == null || !sight.containsKey('modeName'))
+                return const SizedBox();
 
               return Card(
                 margin: const EdgeInsets.all(10),

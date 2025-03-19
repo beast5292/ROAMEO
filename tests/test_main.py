@@ -1,6 +1,7 @@
 import pytest
 from httpx import AsyncClient
 from backend.main import app 
+from backend.Sight_info import Sight
 
 @pytest.mark.asyncio
 async def test_add_sights():

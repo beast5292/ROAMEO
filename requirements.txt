@@ -1,3 +1,4 @@
 pytest
 fastapi[test]
 httpx
+firebase_admin

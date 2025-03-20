@@ -45,6 +45,10 @@ Widget build(BuildContext context) {
 
             if (sight == null) return const SizedBox();
 
+            // Check if the modeName is "Ella-Odyssey-Left" or "Ella-Odyssey-Right"
+            bool isEllaMode = sight['modeName'] == "Ella-Odyssey-Left" || 
+                              sight['modeName'] == "Ella-Odyssey-Right";
+
             return Card(
               margin: const EdgeInsets.all(10),
               shape: RoundedRectangleBorder(
@@ -99,20 +103,22 @@ Widget build(BuildContext context) {
                           ),
                         ),
                         const SizedBox(width: 8), // Space between buttons
-                        ElevatedButton(
-                          onPressed: () {
-                            print("Play button pressed for docId $docId");
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SsmPlay(
-                                  index: index,
-                                  docId: docId,
+                        // Conditionally show the "Play" button
+                        if (!isEllaMode)
+                          ElevatedButton(
+                            onPressed: () {
+                              print("Play button pressed for docId $docId");
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SsmPlay(
+                                    index: index,
+                                    docId: docId,
+                                  ),
                                 ),
-                              ),
-                            );
-                          },
-                          child: const Text("Play"),
+                              );
+                            },
+                            child: const Text("Play"),
                         ),
                       ],
                     ),

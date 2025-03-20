@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
@@ -35,6 +36,10 @@ class SsmView extends StatefulWidget {
 }
 
 class SsmViewState extends State<SsmView> {
+
+  //api key
+  final apiKey = dotenv.env['GOOGLE_MAPS_API_KEY'];
+
   //loading state variable
   bool isLoading = true;
 
@@ -118,31 +123,6 @@ class SsmViewState extends State<SsmView> {
     });
   }
 
-  //functions to keep track of reached waypoints and destinations
-  void updateReachedNearWaypoints(LatLng waypoint) {
-    setState(() {
-      reachedNearWaypoints.add(waypoint);
-    });
-  }
-
-  void updateReachedWaypoints(LatLng waypoint) {
-    setState(() {
-      reachedWaypoints.add(waypoint);
-    });
-  }
-
-  void updateReachedDestination() {
-    setState(() {
-      reachedDestination = destination;
-    });
-  }
-
-  void updateReachedNearDestination() {
-    setState(() {
-      reachedNearDestination = destination;
-    });
-  }
-
   //function to get the current location (using the location package)
   void getCurrentLocation() async {
     //hold the current location
@@ -165,11 +145,11 @@ class SsmViewState extends State<SsmView> {
 
   //function to get the polypoints
   void getPolyPoints() async {
-    //new polyline object (polyline)
-    PolylinePoints polylinePoints = PolylinePoints();
-
     //clear exsiting polylines
     polylineCoordinates.clear();
+
+    //new polyline object (polyline)
+    PolylinePoints polylinePoints = PolylinePoints();
 
     //Define waypoints excluding reached ones
     activeWaypoints = waypoints
@@ -188,17 +168,22 @@ class SsmViewState extends State<SsmView> {
     var sightModeFirst = sightMode!['sights'][0];
 
     String sightModeName = sightModeFirst['modeName'];
-    
+
+    showAlertDialog2(context, sightModeName);
+
     //if name is ella display the ella route points
-    // if (sightModeName == "Ella-Odyssey-Left" ||
-    //     sightModeName == "Ella-Odyssey-Right") {
-    //   setState(() {
-    //     polylineCoordinates = EllaroutePoints;
-    //   });
-    // } else {
+    if (sightModeName == "Ella-Odyssey-Left" ||
+        sightModeName == "Ella-Odyssey-Right") {
+      showAlertDialog2(context, EllaroutePoints.toString());
+      setState(() {
+        polylineCoordinates = [...EllaroutePoints];
+        
+      });
+      // showAlertDialog2(context, polylineCoordinates.toString());
+    } else {
       //receieve polylines using getRoutebetween function of directions api
       PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-          'AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0',
+          apiKey!,
           PointLatLng(currentLocation!.latitude!, currentLocation!.longitude!),
           PointLatLng(destination!.latitude, destination!.longitude),
           travelMode: TravelMode.driving,
@@ -222,7 +207,7 @@ class SsmViewState extends State<SsmView> {
         //Snap the route coordinates to the nearest road
         // await snapToRoads(routePoints);
       }
-    
+    }
   }
   //call set state which has many functions
   // setState(() {});
@@ -238,7 +223,7 @@ class SsmViewState extends State<SsmView> {
 
     //Directions API URL with current location, destination, and waypoints
     String url =
-        'https://maps.googleapis.com/maps/api/directions/json?origin=${sourceLocation!.latitude},${sourceLocation!.longitude}&destination=${destination!.latitude},${destination!.longitude}&waypoints=optimize:true|$waypointsString&key=AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0';
+        'https://maps.googleapis.com/maps/api/directions/json?origin=${sourceLocation!.latitude},${sourceLocation!.longitude}&destination=${destination!.latitude},${destination!.longitude}&waypoints=optimize:true|$waypointsString&key=$apiKey';
 
     //get request to distance matrix api
     var response = await http.get(Uri.parse(url));
@@ -287,7 +272,7 @@ class SsmViewState extends State<SsmView> {
 
     //directions api request
     final String url =
-        'https://maps.googleapis.com/maps/api/directions/json?origin=${currentLatLng.latitude},${currentLatLng.longitude}&destination=${WaypointlatLng.latitude},${WaypointlatLng.longitude}&mode=driving&key=AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0';
+        'https://maps.googleapis.com/maps/api/directions/json?origin=${currentLatLng.latitude},${currentLatLng.longitude}&destination=${WaypointlatLng.latitude},${WaypointlatLng.longitude}&mode=driving&key=$apiKey';
 
     final response = await http.get(Uri.parse(url));
 
@@ -488,9 +473,8 @@ class SsmViewState extends State<SsmView> {
                 ? const Center(child: Text("Loading"))
                 : GoogleMap(
                     initialCameraPosition: CameraPosition(
-                      target: LatLng(currentLocation!.latitude!,
-                          currentLocation!.longitude!),
-                      zoom: 13.5,
+                      target: polylineCoordinates.first,
+                      zoom: 10,
                     ),
                     markers: markers,
                     polylines: {
@@ -556,33 +540,33 @@ class SsmViewState extends State<SsmView> {
               // ),
             ),
           ),
-          Positioned(
-            bottom:
-                750, //You can adjust the position to not overlap with the other widget
-            left: 0,
-            right: 20,
-            child: Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 4,
-                    offset: Offset(2, 2),
-                  ),
-                ],
-              ),
-              // child: Text(
-              //   navigationSteps.isNotEmpty &&
-              //           currentStepIndex < navigationSteps.length
-              //       ? "${navigationSteps[currentStepIndex]['instruction']} in ${navigationSteps[currentStepIndex]['distance'].toInt()}m"
-              //       : "Arrived at destination",
-              //   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              // ),
-            ),
-          )
+          // Positioned(
+          //   bottom:
+          //       750, //You can adjust the position to not overlap with the other widget
+          //   left: 0,
+          //   right: 20,
+          //   child: Container(
+          //     padding: const EdgeInsets.all(8),
+          //     decoration: BoxDecoration(
+          //       color: Colors.white,
+          //       borderRadius: BorderRadius.circular(8),
+          //       boxShadow: [
+          //         BoxShadow(
+          //           color: Colors.black26,
+          //           blurRadius: 4,
+          //           offset: Offset(2, 2),
+          //         ),
+          //       ],
+          //     ),
+          //     // child: Text(
+          //     //   navigationSteps.isNotEmpty &&
+          //     //           currentStepIndex < navigationSteps.length
+          //     //       ? "${navigationSteps[currentStepIndex]['instruction']} in ${navigationSteps[currentStepIndex]['distance'].toInt()}m"
+          //     //       : "Arrived at destination",
+          //     //   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          //     // ),
+          //   ),
+          // )
         ],
       ),
     );

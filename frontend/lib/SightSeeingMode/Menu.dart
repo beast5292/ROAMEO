@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:location/location.dart';
 import 'package:practice/SightSeeingMode/CameraPage/pages/camera_page.dart';
 import 'package:practice/SightSeeingMode/Services/SightsSend.dart';
 import 'package:practice/SightSeeingMode/Sightseeing_mode_page.dart';
 import 'package:practice/SightSeeingMode/Simulation/pages/Ella_test.dart';
+import 'package:practice/SightSeeingMode/Simulation/services/alertDialog.dart';
 import 'package:practice/SightSeeingMode/location_select/models/location_info.dart';
 import 'package:practice/SightSeeingMode/location_select/pages/autoCwidget.dart';
 import 'package:practice/SightSeeingMode/CameraPage/providers/Image_provider.dart';
@@ -26,7 +28,9 @@ class SightMenu extends StatefulWidget {
 class _SightMenuState extends State<SightMenu> {
   //Toggle switch state
   bool showLocations = true;
-
+  
+  //api key
+  final apiKey = dotenv.env['GOOGLE_MAPS_API_KEY'];
 
 
   Future<String> uploadImage(String filePath) async {
@@ -71,9 +75,11 @@ class _SightMenuState extends State<SightMenu> {
             TextButton(
               onPressed: () {
                 String enteredText = _controller.text;
+
                 Provider.of<SelectedPlaceProvider>(context, listen: false)
-                    .editItemByIndex(index, enteredText, title);
+                    .editItemByIndex(index, enteredText, title,context);
                 Navigator.pop(context, enteredText);
+               
               },
               child: const Text('Save'),
             ),
@@ -126,7 +132,7 @@ class _SightMenuState extends State<SightMenu> {
                 print('Sight Mode Name: $sightModeName');
                 print('Description: $description');
                 Navigator.pop(context);
-                onSightSave(_nameController.text,_descriptionController.text);
+                onSightSave(_nameController.text, _descriptionController.text);
               },
               child: const Text('Save'),
             ),
@@ -137,8 +143,6 @@ class _SightMenuState extends State<SightMenu> {
   }
 
   onSightSave(String sightModeName, String sightDescription) async {
-
-    
     final selectedPlaceProvider =
         Provider.of<SelectedPlaceProvider>(context, listen: false);
 
@@ -155,8 +159,8 @@ class _SightMenuState extends State<SightMenu> {
     for (var location in selectedPlaceProvider.selectedLocations) {
       if (location is LocationInfo) {
         Sight sight = Sight(
-          modeName:sightModeName,
-          modeDescription:sightDescription,
+          modeName: sightModeName,
+          modeDescription: sightDescription,
           username: "ROAMEO",
           id: DateTime.now()
               .millisecondsSinceEpoch
@@ -228,8 +232,8 @@ class _SightMenuState extends State<SightMenu> {
         }
 
         Sight sight = Sight(
-          modeName:sightModeName,
-          modeDescription:sightDescription,
+          modeName: sightModeName,
+          modeDescription: sightDescription,
           username: "ROAMEO",
           id: DateTime.now().millisecondsSinceEpoch.toString(),
           name: name,
@@ -334,7 +338,7 @@ class _SightMenuState extends State<SightMenu> {
                             children: [
                               Expanded(
                                 child: Text(
-                                  item.prediction.secondaryText ??
+                                  item.description ??
                                       "No details available",
                                   style: TextStyle(
                                     fontSize: 14,
@@ -572,7 +576,7 @@ class _SightMenuState extends State<SightMenu> {
                 MaterialPageRoute(
                   builder: (context) => Scaffold(
                     body: PlacesAutoCompleteField(
-                      apiKey: "AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0",
+                      apiKey: apiKey,
                     ),
                   ),
                 ),
@@ -607,7 +611,6 @@ class _SightMenuState extends State<SightMenu> {
           FloatingActionButton(
             heroTag: 'saveButton',
             onPressed: () {
-              
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => MapScreen()),

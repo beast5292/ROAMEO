@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:practice/SightSeeingMode/CameraPage/pages/camera_page.dart';
 import 'package:practice/SightSeeingMode/location_select/pages/autoCwidget.dart';
 
@@ -10,6 +11,10 @@ class SightMenu extends StatefulWidget {
 }
 
 class _SightMenuState extends State<SightMenu> {
+  
+  //api key
+  final apiKey = dotenv.env['GOOGLE_MAPS_API_KEY'];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +36,7 @@ class _SightMenuState extends State<SightMenu> {
                     context,
                     MaterialPageRoute(
                        builder: (context) => PlacesAutoCompleteField(
-                                apiKey: 'AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0', // Pass the actual API key here
+                                apiKey: apiKey, // Pass the actual API key here
                      ),
                     )
                   );

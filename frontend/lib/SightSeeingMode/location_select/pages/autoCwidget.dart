@@ -12,7 +12,7 @@ import 'package:practice/SightSeeingMode/location_select/services/placeDetailSer
 
 class PlacesAutoCompleteField extends StatefulWidget {
   //api key
-  final String apiKey;
+  final String? apiKey;
 
   final String? hint;
   final double? latitude;
@@ -62,11 +62,12 @@ class _PlacesAutoCompleteFieldState extends State<PlacesAutoCompleteField> {
   //hold the selected place
   var _selectedPlace;
 
+
   //instantiating the class by making a new ServiceObject
   @override
   void initState() {
     super.initState();
-    _placesService = PlaceAutoCompleteService(apiKey: widget.apiKey);
+    _placesService = PlaceAutoCompleteService(apiKey: widget.apiKey!);
   }
 
   //cleaning up text controller and widget state
@@ -106,13 +107,13 @@ class _PlacesAutoCompleteFieldState extends State<PlacesAutoCompleteField> {
 
     //fetch the place details for the selected prediction
     try {
-      placeDetails = await Placedetailservice(apiKey: widget.apiKey)
+      placeDetails = await Placedetailservice(apiKey: widget.apiKey!)
           .getPlaceDetails(prediction.placeId);
 
       // Fetch the image URLs
       imageUrls = LocationInfo.getImageUrlsFromPhotos(
         placeDetails.images,
-        widget.apiKey,
+        widget.apiKey!,
       );
 
       print(
@@ -126,7 +127,7 @@ class _PlacesAutoCompleteFieldState extends State<PlacesAutoCompleteField> {
         prediction: prediction,
         placeDetails: placeDetails,
         imageUrls: imageUrls,
-        description: "Describe this location",
+        description: 'describe this location',
         tags: ["selectedLocation", "SriLanka"],
         name: prediction.mainText);
 

@@ -50,17 +50,18 @@ void checkProximityAndNotify(
     destination!,
   );
 
-  if (distanceToDestination <= 50 && !areLatLngEqual(reachedDestination, destination)) {
+  if (distanceToDestination <= 50 &&
+      !areLatLngEqual(reachedDestination, destination)) {
     showAlertDialog2(context, "You have arrived at your destination!");
     updateReachedDestination();
   }
 
-  if (distanceToDestination <= 200 && !areLatLngEqual(reachedDestination, destination)) {
+  if (distanceToDestination <= 200 &&
+      !areLatLngEqual(reachedDestination, destination)) {
     showAlertDialog2(context, "You are near the destination!");
     updateReachedNearDestination();
   }
 }
-
 
 //Lat lang object comparison helper function
 bool areLatLngEqual(LatLng? a, LatLng? b) {

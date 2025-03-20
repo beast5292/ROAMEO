@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice/SightSeeingMode/Simulation/services/alertDialog.dart';
 import 'package:practice/SightSeeingMode/location_select/models/autoCmodal.dart';
 import 'package:practice/SightSeeingMode/location_select/models/location_info.dart';
 
@@ -55,20 +56,22 @@ class SelectedPlaceProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void editItemByIndex(int index, String text, String title) {
+  void editItemByIndex(
+      int index, String text, String title, BuildContext context) {
     if (index >= 0 && index < _selectedLocations.length) {
       if (title == "Name") {
-        // If the object is LocationInfo
+        //If the object is LocationInfo
         if (_selectedLocations[index] is LocationInfo) {
           (_selectedLocations[index] as LocationInfo).name = text;
         } else if (_selectedLocations[index] is List<Map<String, dynamic>>) {
-          // Update the first entry for image data as an example
+          //Update the first entry for image data as an example
           _selectedLocations[index][0]['name'] = text;
         }
       } else if (title == "Description") {
-        // Handle description editing if needed
+        //Handle description editing if needed
         if (_selectedLocations[index] is LocationInfo) {
           (_selectedLocations[index] as LocationInfo).description = text;
+          print((_selectedLocations[index] as LocationInfo).description);
         } else if (_selectedLocations[index] is List<Map<String, dynamic>>) {
           _selectedLocations[index][0]['description'] = text;
         }
@@ -76,16 +79,15 @@ class SelectedPlaceProvider with ChangeNotifier {
         if (_selectedLocations[index] is LocationInfo) {
           (_selectedLocations[index] as LocationInfo).tags.add(text);
         } else if (_selectedLocations[index] is List<Map<String, dynamic>>) {
-          // Ensure the 'tags' key exists in the first map of the list
-        if (!_selectedLocations[index][0].containsKey('tags')) {
-          // If 'tags' key doesn't exist, initialize it as an empty list
-          _selectedLocations[index][0]['tags'] = [];
+          //Ensure the 'tags' key exists in the first map of the list
+          if (!_selectedLocations[index][0].containsKey('tags')) {
+            //If 'tags' key doesn't exist, initialize it as an empty list
+            _selectedLocations[index][0]['tags'] = [];
+          }
+          //Add the new tag to the list
+          (_selectedLocations[index][0]['tags'] as List).add(text);
         }
-        // Add the new tag to the list
-        (_selectedLocations[index][0]['tags'] as List).add(text);
       }
-     }
-      
 
       notifyListeners(); // Notify UI about the change
     } else {

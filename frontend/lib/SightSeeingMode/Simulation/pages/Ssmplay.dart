@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
@@ -34,6 +35,10 @@ class SsmPlay extends StatefulWidget {
 }
 
 class SsmPlayState extends State<SsmPlay> {
+
+  //api key
+  final apiKey = dotenv.env['GOOGLE_MAPS_API_KEY'];
+
   //loading state variable
   bool isLoading = true;
 
@@ -267,7 +272,7 @@ class SsmPlayState extends State<SsmPlay> {
 
     //receieve polylines using getRoutebetween function of directions api
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-        'AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0',
+        apiKey!,
         PointLatLng(currentLocation!.latitude!, currentLocation!.longitude!),
         PointLatLng(destination!.latitude, destination!.longitude),
         travelMode: TravelMode.driving,
@@ -307,7 +312,7 @@ class SsmPlayState extends State<SsmPlay> {
 
     //Directions API URL with current location, destination, and waypoints
     String url =
-        'https://maps.googleapis.com/maps/api/directions/json?origin=${currentLatLng.latitude},${currentLatLng.longitude}&destination=${destination!.latitude},${destination!.longitude}&waypoints=optimize:true|$waypointsString&key=AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0';
+        'https://maps.googleapis.com/maps/api/directions/json?origin=${currentLatLng.latitude},${currentLatLng.longitude}&destination=${destination!.latitude},${destination!.longitude}&waypoints=optimize:true|$waypointsString&key=$apiKey';
 
     //get request to distance matrix api
     var response = await http.get(Uri.parse(url));
@@ -356,7 +361,7 @@ class SsmPlayState extends State<SsmPlay> {
 
     //directions api request
     final String url =
-        'https://maps.googleapis.com/maps/api/directions/json?origin=${currentLatLng.latitude},${currentLatLng.longitude}&destination=${WaypointlatLng.latitude},${WaypointlatLng.longitude}&mode=driving&key=AIzaSyC3G2HDD7YggkkwOPXbp_2sBnUFR3xCBU0';
+        'https://maps.googleapis.com/maps/api/directions/json?origin=${currentLatLng.latitude},${currentLatLng.longitude}&destination=${WaypointlatLng.latitude},${WaypointlatLng.longitude}&mode=driving&key=$apiKey';
 
     final response = await http.get(Uri.parse(url));
 

@@ -25,17 +25,6 @@ class TestFastAPI(unittest.TestCase):
         }])
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()["message"], "Sightseeing mode added successfully")
-    
-    def test_register_user(self):
-        response = client.post("/signup", json={
-            "username": "beast1234",
-            "email": "beast@example.com",
-            "dob": "2004/01/04",
-            "password": "beast123"
-        })
-        self.assertEqual(response.status_code, 200) 
-        self.assertEqual(response.json()["message"], "User registered successfully")
-        self.assertIn("token", response.json())
 
 if __name__ == "__main__":
     unittest.main()

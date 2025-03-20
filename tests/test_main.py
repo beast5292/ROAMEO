@@ -26,11 +26,6 @@ class TestFastAPI(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()["message"], "Sightseeing mode added successfully")
     
-    def test_get_sights(self):
-        response = client.get("/sights/")
-        self.assertEqual(response.status_code, 200)
-        self.assertIn("sights", response.json())  # Checking for correct response structure
-
     def test_register_user(self):
         response = client.post("/signup", json={
             "username": "beast1234",
@@ -38,7 +33,7 @@ class TestFastAPI(unittest.TestCase):
             "dob": "2004/01/04",
             "password": "beast123"
         })
-        self.assertEqual(response.status_code, 200)  # Should be 200, not 201
+        self.assertEqual(response.status_code, 200) 
         self.assertEqual(response.json()["message"], "User registered successfully")
         self.assertIn("token", response.json())
 

@@ -6,22 +6,23 @@ from fastapi.testclient import TestClient
 # Ensure the backend folder is in the path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from backend.main import app  
+from backend.main import app  # Import FastAPI app
 
 client = TestClient(app)
 
 class TestFastAPI(unittest.TestCase):
     def test_add_sights(self):
         response = client.post("/sights/", json=[{
-            "name": "Statue of Liberty",
-            "description": "Symbol of freedom and democracy.",
-            "modeName": "Historical Landmark",
-            "modeDescription": "A significant monument in the USA.",
+            "id": "1",
+            "name": "Eiffel Tower",
+            "description": "Famous landmark.",
+            "modeName": "Tourist Spot",
+            "modeDescription": "Iconic place to visit.",
             "username": "testuser",
-            "tags": ["monument", "USA", "history"],
-            "lat": 40.6892,
-            "long": -74.0445,
-            "imageUrls": ["https://example.com/statueofliberty.jpg"]
+            "tags": ["historical", "popular"],
+            "lat": 48.8584,
+            "long": 2.2945,
+            "imageUrls": ["https://example.com/eiffel.jpg"]
         }])
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()["message"], "Sightseeing mode added successfully")

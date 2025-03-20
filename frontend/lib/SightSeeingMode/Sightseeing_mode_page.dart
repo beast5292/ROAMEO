@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:practice/SightSeeingMode/Feed/SightFeed.dart';
 import 'package:practice/SightSeeingMode/Menu.dart';
+import 'package:google_places_flutter/google_places_flutter.dart';
 
 class SsmPage extends StatefulWidget {
   const SsmPage({super.key});
@@ -16,6 +17,8 @@ class _SsmPageState extends State<SsmPage> {
   final Set<Marker> _markers = {};
   bool _showDetails = false;
   String _selectedScenery = 'temporary'; // Default to 'temporary'
+  TextEditingController searchController =
+      TextEditingController(); //----------------------
 
   @override
   void initState() {
@@ -109,6 +112,18 @@ class _SsmPageState extends State<SsmPage> {
     );
   }
 
+// ---------------Map moving-----------------------
+  void _moveCameraToLocation(double lat, double lng) {
+    mapController.animateCamera(
+      CameraUpdate.newCameraPosition(
+        CameraPosition(
+          target: LatLng(lat, lng),
+          zoom: 15, // Adjust zoom level as needed
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -141,8 +156,35 @@ class _SsmPageState extends State<SsmPage> {
                   color: Colors.black54,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: const TextField(
-                  decoration: InputDecoration(
+                child: GooglePlaceAutoCompleteTextField(
+                  textEditingController: searchController,
+                  googleAPIKey:
+                      "AIzaSyA8FUHiCBPxLASAN3za5TQLm-XubzrVR5M", // Google Maps API key
+                  debounceTime: 800,
+                  isLatLngRequired: true,
+
+                  getPlaceDetailWithLatLng: (place) {
+                    if (place.lat != null && place.lng != null) {
+                      double lat = double.tryParse(place.lat!) ?? 0.0;
+                      double lng = double.tryParse(place.lng!) ?? 0.0;
+
+                      if (lat != 0.0 && lng != 0.0) {
+                        _moveCameraToLocation(lat, lng);
+                      } else {
+                        print("Invalid coordinates received.");
+                      }
+                    } else {
+                      print("Place details are null.");
+                    }
+                  },
+                  itemClick: (place) {
+                    searchController.text = place.description!;
+                    searchController.selection = TextSelection.fromPosition(
+                      TextPosition(offset: searchController.text.length),
+                    );
+                  },
+
+                  inputDecoration: const InputDecoration(
                     hintText: "Search...",
                     hintStyle: TextStyle(color: Colors.white54),
                     border: InputBorder.none,

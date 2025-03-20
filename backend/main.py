@@ -188,7 +188,7 @@ async def get_user(credentials: HTTPAuthorizationCredentials = Depends(security)
 
 # Search Sightseeing modes by ModeName
 @app.get("/search")
-async def search_sights(query: str = Query(..., min_length=1)):
+async def search_sights(query: str = Query ):
   
     print(f"Searching for sightseeing modes with query: {query}")
     

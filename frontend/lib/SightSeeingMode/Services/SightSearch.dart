@@ -4,7 +4,7 @@ import 'dart:convert';
 // Fetch sights by keyword search
 Future<List<dynamic>> searchSights(String keyword) async {
   final response = await http.get(
-    Uri.parse('http://192.168.1.5:8000/sights/search/?query=$keyword'),
+    Uri.parse('http://192.168.1.5:8000/search/?query=$keyword'),
   );
 
   print("API Response Code: ${response.statusCode}");

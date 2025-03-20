@@ -26,52 +26,55 @@ class TestFastAPI(unittest.TestCase):
         }])
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()["message"], "Sightseeing mode added successfully")
-
+    
     def test_get_sights(self):
         response = client.get("/sights/")
         self.assertEqual(response.status_code, 200)
-        self.assertIn("sights", response.json())
+        self.assertIsInstance(response.json(), list)
 
     def test_get_sight_by_id(self):
-        doc_id = "some_valid_doc_id" 
-        response = client.get(f"/sights/{doc_id}")
-        if response.status_code == 200:
-            self.assertIn("sights", response.json())
-        else:
-            self.assertEqual(response.status_code, 404)
+        response = client.get("/sights/1")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["id"], "1")
 
-    def test_signup(self):
-        response = client.post("/signup", json={
+    def test_update_sight(self):
+        response = client.put("/sights/1", json={
+            "id": "1",
+            "name": "Updated Tower",
+            "description": "Updated description.",
+            "modeName": "Updated Mode",
+            "modeDescription": "Updated details.",
+            "username": "testuser",
+            "tags": ["updated", "popular"],
+            "lat": 48.8584,
+            "long": 2.2945,
+            "imageUrls": ["https://example.com/updated.jpg"]
+        })
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["message"], "Sightseeing mode updated successfully")
+
+    def test_delete_sight(self):
+        response = client.delete("/sights/1")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["message"], "Sightseeing mode deleted successfully")
+
+    def test_register_user(self):
+        response = client.post("/users/register", json={
             "username": "testuser",
             "email": "test@example.com",
             "dob": "2000-01-01",
             "password": "securepassword"
         })
+        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.json()["message"], "User registered successfully")
+
+    def test_login_user(self):
+        response = client.post("/users/login", json={
+            "email": "test@example.com",
+            "password": "securepassword"
+        })
         self.assertEqual(response.status_code, 200)
         self.assertIn("token", response.json())
-
-    def test_login(self):
-        response = client.post("/login", json={
-            "email": "test@example.com",
-            "password": "securepassword"
-        })
-        self.assertIn(response.status_code, [200, 400, 401])  
-        if response.status_code == 200:
-            self.assertIn("token", response.json())
-
-    def test_get_user(self):
-        login_response = client.post("/login", json={
-            "email": "test@example.com",
-            "password": "securepassword"
-        })
-        if login_response.status_code == 200:
-            token = login_response.json()["token"]
-            headers = {"Authorization": f"Bearer {token}"}
-            response = client.get("/user", headers=headers)
-            self.assertEqual(response.status_code, 200)
-            self.assertIn("user", response.json())
-        else:
-            self.assertIn(login_response.status_code, [400, 401])  
 
 if __name__ == "__main__":
     unittest.main()

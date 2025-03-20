@@ -3,8 +3,6 @@ from typing import List
 from Sight_info import Sight
 from firebase_admin import credentials,firestore, initialize_app
 from typing import List
-import asyncio
-import firebase_admin
 from user_model import User
 from login_model import LoginRequest
 import bcrypt

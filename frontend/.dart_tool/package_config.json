@@ -110,6 +110,18 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "dio",
+      "rootUri": "file:///C:/Users/CNN%20COMPUTERS/AppData/Local/Pub/Cache/hosted/pub.dev/dio-5.8.0+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "dio_web_adapter",
+      "rootUri": "file:///C:/Users/CNN%20COMPUTERS/AppData/Local/Pub/Cache/hosted/pub.dev/dio_web_adapter-2.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
       "name": "fake_async",
       "rootUri": "file:///C:/Users/CNN%20COMPUTERS/AppData/Local/Pub/Cache/hosted/pub.dev/fake_async-1.3.1",
       "packageUri": "lib/",
@@ -344,6 +356,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "google_places_flutter",
+      "rootUri": "file:///C:/Users/CNN%20COMPUTERS/AppData/Local/Pub/Cache/hosted/pub.dev/google_places_flutter-2.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "html",
       "rootUri": "file:///C:/Users/CNN%20COMPUTERS/AppData/Local/Pub/Cache/hosted/pub.dev/html-0.15.5",
       "packageUri": "lib/",
@@ -566,6 +584,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "rxdart",
+      "rootUri": "file:///C:/Users/CNN%20COMPUTERS/AppData/Local/Pub/Cache/hosted/pub.dev/rxdart-0.27.7",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "sanitize_html",
       "rootUri": "file:///C:/Users/CNN%20COMPUTERS/AppData/Local/Pub/Cache/hosted/pub.dev/sanitize_html-2.1.0",
       "packageUri": "lib/",
@@ -680,7 +704,7 @@
       "languageVersion": "3.6"
     }
   ],
-  "generated": "2025-03-20T10:37:38.057821Z",
+  "generated": "2025-03-20T10:46:09.491810Z",
   "generator": "pub",
   "generatorVersion": "3.6.0",
   "flutterRoot": "file:///C:/flutter",

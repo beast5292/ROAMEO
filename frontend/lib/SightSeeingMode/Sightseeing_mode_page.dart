@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:practice/SightSeeingMode/Feed/SightFeed.dart';
 import 'package:practice/SightSeeingMode/Menu.dart';
+import 'package:google_places_flutter/google_places_flutter.dart';
 
 class SsmPage extends StatefulWidget {
   const SsmPage({super.key});
@@ -16,6 +17,7 @@ class _SsmPageState extends State<SsmPage> {
   final Set<Marker> _markers = {};
   bool _showDetails = false;
   String _selectedScenery = 'temporary'; // Default to 'temporary'
+  TextEditingController searchController = TextEditingController();
 
   @override
   void initState() {
@@ -109,6 +111,18 @@ class _SsmPageState extends State<SsmPage> {
     );
   }
 
+  // ---------------Map moving-----------------------
+  void _moveCameraToLocation(double lat, double lng) {
+    mapController.animateCamera(
+      CameraUpdate.newCameraPosition(
+        CameraPosition(
+          target: LatLng(lat, lng),
+          zoom: 15,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -141,13 +155,23 @@ class _SsmPageState extends State<SsmPage> {
                   color: Colors.black54,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: const TextField(
-                  decoration: InputDecoration(
+                child: GooglePlaceAutoCompleteTextField(
+                  textEditingController: searchController,
+                  googleAPIKey:
+                      "YOUR_GOOGLE_API_KEY", // 🔑 Replace with your API Key
+                  inputDecoration: const InputDecoration(
                     hintText: "Search...",
                     hintStyle: TextStyle(color: Colors.white54),
                     border: InputBorder.none,
                     icon: Icon(Icons.search, color: Colors.white),
                   ),
+                  debounceTime: 800,
+                  isLatLngRequired: true,
+                  getPlaceDetailWithLatLng: (place) {
+                    double lat = double.parse(place.lat!);
+                    double lng = double.parse(place.lng!);
+                    _moveCameraToLocation(lat, lng);
+                  },
                 ),
               ),
             ),

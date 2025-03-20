@@ -11,9 +11,13 @@ import datetime
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from fastapi import Depends
 
-#Initialize Firebase Admin SDK with your credentials
-cred = credentials.Certificate(r'C:\Users\Mindula\Desktop\t\ROAMEO\backend\private_key\roameo-f3ab0-firebase-adminsdk-ss40k-1e1297f52f.json') 
-initialize_app(cred)
+import os
+from firebase_admin import credentials
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Get current file directory
+cred_path = os.path.join(BASE_DIR, 'private_key', 'roameo-f3ab0-firebase-adminsdk-ss40k-1e1297f52f.json')
+
+cred = credentials.Certificate(cred_path)
 
 #Firestore client initialization
 db = firestore.client()

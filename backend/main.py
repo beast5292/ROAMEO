@@ -19,6 +19,8 @@ cred_path = os.path.join(BASE_DIR, 'private_key', 'roameo-f3ab0-firebase-adminsd
 
 cred = credentials.Certificate(cred_path)
 
+initialize_app(cred)
+
 #Firestore client initialization
 db = firestore.client()
 

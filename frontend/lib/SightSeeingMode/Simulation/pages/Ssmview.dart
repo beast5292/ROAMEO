@@ -36,7 +36,6 @@ class SsmView extends StatefulWidget {
 }
 
 class SsmViewState extends State<SsmView> {
-
   //api key
   final apiKey = dotenv.env['GOOGLE_MAPS_API_KEY'];
 
@@ -177,7 +176,6 @@ class SsmViewState extends State<SsmView> {
       showAlertDialog2(context, EllaroutePoints.toString());
       setState(() {
         polylineCoordinates = [...EllaroutePoints];
-        
       });
       // showAlertDialog2(context, polylineCoordinates.toString());
     } else {
@@ -355,7 +353,7 @@ class SsmViewState extends State<SsmView> {
     }
 
     //index for the destination
-    int destination_id = sightMode!.length;
+    int destination_id = sightMode!.length + 1;
 
     // var length = SightProvider().sights.length.toString();
 

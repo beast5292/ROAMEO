@@ -35,7 +35,6 @@ class SsmPlay extends StatefulWidget {
 }
 
 class SsmPlayState extends State<SsmPlay> {
-
   //api key
   final apiKey = dotenv.env['GOOGLE_MAPS_API_KEY'];
 
@@ -121,7 +120,7 @@ class SsmPlayState extends State<SsmPlay> {
       isDataLoaded = loaded;
     });
   }
-  
+
   //functions to keep track of reached waypoints and destinations
   void updateReachedNearWaypoints(LatLng waypoint) {
     setState(() {
@@ -444,7 +443,7 @@ class SsmPlayState extends State<SsmPlay> {
     }
 
     //index for the destination
-    int destination_id = sightMode!.length;
+    int destination_id = sightMode!.length + 1;
 
     // var length = SightProvider().sights.length.toString();
 

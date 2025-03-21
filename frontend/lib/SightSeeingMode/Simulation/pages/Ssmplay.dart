@@ -106,6 +106,15 @@ class SsmPlayState extends State<SsmPlay> {
   //current point detais
   Map<String, dynamic>? currentpointDetails;
 
+  //Method to reset static variables
+  void resetStaticVariables() {
+    isDataLoaded = true;
+    sourceLocation = null;
+    destination = null;
+    waypoints.clear();
+    polylineCoordinates.clear();
+  }
+
   //setState of assignPoints function
   void updateAssignPointsState(
     LatLng source,
@@ -119,6 +128,12 @@ class SsmPlayState extends State<SsmPlay> {
       waypoints = wps;
       isDataLoaded = loaded;
     });
+  }
+
+  @override
+  void dispose() {
+    resetStaticVariables(); // Reset static variables when the widget is disposed
+    super.dispose();
   }
 
   //functions to keep track of reached waypoints and destinations
@@ -194,7 +209,7 @@ class SsmPlayState extends State<SsmPlay> {
         updateReachedNearDestination,
       );
 
-      // Check if the current location is within the polyline threshold
+      //Check if the current location is within the polyline threshold
       LatLng currentLatLng = LatLng(newLoc.latitude!, newLoc.longitude!);
       if (!isLocationWithinPolylineThreshold(
           currentLatLng, polylineCoordinates, 50.0)) {
@@ -309,9 +324,16 @@ class SsmPlayState extends State<SsmPlay> {
     //Prepare the waypoints string for the Directions API request
     String waypointsString = activeWaypoints.map((wp) => wp.location).join('|');
 
-    //Directions API URL with current location, destination, and waypoints
-    String url =
-        'https://maps.googleapis.com/maps/api/directions/json?origin=${currentLatLng.latitude},${currentLatLng.longitude}&destination=${destination!.latitude},${destination!.longitude}&waypoints=optimize:true|$waypointsString&key=$apiKey';
+    String url;
+
+    if (waypointsString != "") {
+      //Directions API URL with current location, destination, and waypoints
+      url =
+          'https://maps.googleapis.com/maps/api/directions/json?origin=${currentLatLng.latitude},${currentLatLng.longitude}&destination=${destination!.latitude},${destination!.longitude}&waypoints=optimize:true|$waypointsString&key=$apiKey';
+    } else {
+      url =
+          'https://maps.googleapis.com/maps/api/directions/json?origin=${currentLatLng.latitude},${currentLatLng.longitude}&destination=${destination!.latitude},${destination!.longitude}&key=$apiKey';
+    }
 
     //get request to distance matrix api
     var response = await http.get(Uri.parse(url));
@@ -416,67 +438,94 @@ class SsmPlayState extends State<SsmPlay> {
     });
   }
 
-  // Function to add markers for waypoints and destination
-  void addMarkers() {
+  //Function to add markers for waypoints and destination
+  void addMarkers() async {
     markers.clear();
 
-    // Add markers for waypoints
+    //Ensure sightMode and sights are not null or empty
+    if (sightMode == null ||
+        sightMode!['sights'] == null ||
+        sightMode!['sights'].isEmpty) {
+      showAlertDialog2(context, "No sights available to display markers.");
+      return;
+    }
+
+    List<dynamic> sights = sightMode!['sights'];
+
+    //Ensure waypoints are not null or empty
+    if (waypoints.isEmpty) {
+      showAlertDialog2(context, "No waypoints available to display markers.");
+      return;
+    }
+
+    //Add markers for waypoints
     for (int i = 0; i < waypoints.length; i++) {
-      // Get the waypoint details from sightMode
-      var waypointDetails = sightMode!['sights'][i];
+      // Ensure the index is within bounds of the sights list
+      if (i >= sights.length) {
+        showAlertDialog2(context, "Waypoint index out of bounds.");
+        continue;
+      }
+
+      var waypointDetails = sights[i];
 
       markers.add(
         Marker(
-            markerId: MarkerId('$i'),
-            position: waypoints[i],
-            infoWindow: InfoWindow(title: 'Waypoint $i'),
-            icon:
-                BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
-            onTap: () {
-              setState(() {
-                showDestinationInfo = true;
-                // Store the waypoint details to display in the info box
-                currentpointDetails = waypointDetails;
-              });
-            }),
+          markerId: MarkerId('waypoint_$i'),
+          position: waypoints[i],
+          infoWindow: InfoWindow(
+              title: waypointDetails['description'] ?? 'Waypoint $i'),
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+          onTap: () {
+            showAlertDialog2(
+                context, "Waypoint $i: ${waypointDetails['description']}");
+            setState(() {
+              showDestinationInfo = true;
+              currentpointDetails = waypointDetails;
+            });
+          },
+        ),
       );
     }
 
-    //index for the destination
-    int destination_id = sightMode!.length + 1;
-
-    // var length = SightProvider().sights.length.toString();
-
-    var destination_details = sightMode!['sights'][destination_id];
-
     // Add marker for destination
-    markers.add(
-      Marker(
-          markerId: MarkerId('$destination_id'),
+    if (destination != null && sights.isNotEmpty) {
+      var destinationDetails = sights.last; // Last element is the destination
+      int destinationId =
+          sights.length - 1; // Correct index for the destination
+
+      markers.add(
+        Marker(
+          markerId: MarkerId('destination_$destinationId'),
           position: destination!,
           icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
           onTap: () {
+            showAlertDialog2(
+                context, "Destination: ${destinationDetails['description']}");
             setState(() {
               showDestinationInfo = true;
-              currentpointDetails = destination_details;
+              currentpointDetails = destinationDetails;
             });
-          }),
-    );
+          },
+        ),
+      );
+    }
 
-    // var locationString = currentLocation!.latitude.toString();
+    // Add marker for current location
+    if (currentLocation != null) {
+      markers.add(
+        Marker(
+          markerId: MarkerId('current_location'),
+          position:
+              LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
+          infoWindow: InfoWindow(title: 'You are here'),
+          icon:
+              BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
+        ),
+      );
+    }
 
-    // showAlertDialog2(context, locationString);
-
-    //add marker for current location
-    markers.add(
-      Marker(
-        markerId: MarkerId('current_location'),
-        position:
-            LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
-        infoWindow: InfoWindow(title: 'You are here'),
-        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
-      ),
-    );
+    // Log markers for debugging
+    print("Markers added: ${markers.length}");
   }
 
   //init state

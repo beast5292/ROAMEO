@@ -8,9 +8,9 @@ import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:http/http.dart' as http;
+import 'package:practice/SightSeeingMode/Ella%20details/Ella_route.dart';
 import 'package:practice/SightSeeingMode/Services/SightGet.dart';
 import 'package:practice/SightSeeingMode/Simulation/models/DetailWidget.dart';
-import 'package:practice/SightSeeingMode/Ella details/Ella_route.dart';
 import 'package:practice/SightSeeingMode/Simulation/pages/Navigation.dart';
 import 'package:practice/SightSeeingMode/Simulation/pages/mapbox.dart';
 import 'package:practice/SightSeeingMode/Simulation/providers/SightProvider.dart';
@@ -107,6 +107,15 @@ class SsmViewState extends State<SsmView> {
   //current point detais
   Map<String, dynamic>? currentpointDetails;
 
+  // Method to reset static variables
+  void resetStaticVariables() {
+    isDataLoaded = true;
+    sourceLocation = null;
+    destination = null;
+    waypoints.clear();
+    polylineCoordinates.clear();
+  }
+
   //setState of assignPoints function
   void updateAssignPointsState(
     LatLng source,
@@ -119,6 +128,37 @@ class SsmViewState extends State<SsmView> {
       destination = dest;
       waypoints = wps;
       isDataLoaded = loaded;
+    });
+  }
+
+  @override
+  void dispose() {
+    resetStaticVariables(); // Reset static variables when the widget is disposed
+    super.dispose();
+  }
+
+  //functions to keep track of reached waypoints and destinations
+  void updateReachedNearWaypoints(LatLng waypoint) {
+    setState(() {
+      reachedNearWaypoints.add(waypoint);
+    });
+  }
+
+  void updateReachedWaypoints(LatLng waypoint) {
+    setState(() {
+      reachedWaypoints.add(waypoint);
+    });
+  }
+
+  void updateReachedDestination() {
+    setState(() {
+      reachedDestination = destination;
+    });
+  }
+
+  void updateReachedNearDestination() {
+    setState(() {
+      reachedNearDestination = destination;
     });
   }
 
@@ -144,11 +184,11 @@ class SsmViewState extends State<SsmView> {
 
   //function to get the polypoints
   void getPolyPoints() async {
-    //clear exsiting polylines
-    polylineCoordinates.clear();
-
     //new polyline object (polyline)
     PolylinePoints polylinePoints = PolylinePoints();
+
+    //clear exsiting polylines
+    polylineCoordinates.clear();
 
     //Define waypoints excluding reached ones
     activeWaypoints = waypoints
@@ -163,7 +203,6 @@ class SsmViewState extends State<SsmView> {
 
     // showAlertDialog2(alertMessage3);
 
-    //details wanted to display the ella sightseeing mode
     var sightModeFirst = sightMode!['sights'][0];
 
     String sightModeName = sightModeFirst['modeName'];
@@ -182,7 +221,7 @@ class SsmViewState extends State<SsmView> {
       //receieve polylines using getRoutebetween function of directions api
       PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
           apiKey!,
-          PointLatLng(currentLocation!.latitude!, currentLocation!.longitude!),
+          PointLatLng(sourceLocation!.latitude, sourceLocation!.longitude),
           PointLatLng(destination!.latitude, destination!.longitude),
           travelMode: TravelMode.driving,
           wayPoints: activeWaypoints,
@@ -202,6 +241,7 @@ class SsmViewState extends State<SsmView> {
         });
 
         // showAlertDialog2(alertMessage3);
+
         //Snap the route coordinates to the nearest road
         // await snapToRoads(routePoints);
       }
@@ -221,7 +261,7 @@ class SsmViewState extends State<SsmView> {
 
     //Directions API URL with current location, destination, and waypoints
     String url =
-        'https://maps.googleapis.com/maps/api/directions/json?origin=${sourceLocation!.latitude},${sourceLocation!.longitude}&destination=${destination!.latitude},${destination!.longitude}&waypoints=optimize:true|$waypointsString&key=$apiKey';
+        'https://maps.googleapis.com/maps/api/directions/json?origin=${currentLatLng.latitude},${currentLatLng.longitude}&destination=${destination!.latitude},${destination!.longitude}&waypoints=optimize:true|$waypointsString&key=$apiKey';
 
     //get request to distance matrix api
     var response = await http.get(Uri.parse(url));
@@ -315,67 +355,61 @@ class SsmViewState extends State<SsmView> {
     }
   }
 
-  //trim the polylines as the user moves
-  void trimPolyline(LatLng userLocation) {
-    if (polylineCoordinates.isEmpty) return;
-
-    int closestIndex = findClosestPointIndex(userLocation, polylineCoordinates);
-
-    setState(() {
-      polylineCoordinates = polylineCoordinates.sublist(closestIndex);
-    });
-  }
-
   // Function to add markers for waypoints and destination
   void addMarkers() {
     markers.clear();
 
+    // Ensure sightMode and sights are not null or empty
+    if (sightMode == null ||
+        sightMode!['sights'] == null ||
+        sightMode!['sights'].isEmpty) {
+      showAlertDialog2(context, "No sights available to display markers.");
+      return;
+    }
+
+    List<dynamic> sights = sightMode!['sights'];
+
     // Add markers for waypoints
-    for (int i = 0; i < waypoints.length; i++) {
-      // Get the waypoint details from sightMode
-      var waypointDetails = sightMode!['sights'][i];
+    for (int i = 0; i < sights.length - 1; i++) {
+      // Exclude the last element (destination)
+      var waypoint = sights[i];
 
       markers.add(
         Marker(
-            markerId: MarkerId('$i'),
-            position: waypoints[i],
-            infoWindow: InfoWindow(title: 'Waypoint $i'),
-            icon:
-                BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
-            onTap: () {
-              setState(() {
-                showDestinationInfo = true;
-                // Store the waypoint details to display in the info box
-                currentpointDetails = waypointDetails;
-              });
-            }),
-      );
-    }
-
-    //index for the destination
-    int destination_id = sightMode!.length + 1;
-
-    // var length = SightProvider().sights.length.toString();
-
-    var destination_details = sightMode!['sights'][destination_id];
-
-    // Add marker for destination
-    markers.add(
-      Marker(
-          markerId: MarkerId('$destination_id'),
-          position: destination!,
-          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+          markerId: MarkerId('waypoint_$i'),
+          position: LatLng(waypoint['lat'], waypoint['long']),
+          infoWindow: InfoWindow(title: waypoint['description']),
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
           onTap: () {
             setState(() {
               showDestinationInfo = true;
-              currentpointDetails = destination_details;
+              currentpointDetails = waypoint;
             });
-          }),
+          },
+        ),
+      );
+    }
+
+    // Add marker for destination
+    var destinationDetails = sights.last; // Last element is the destination
+    int destinationId = sights.length - 1; // Correct index for the destination
+
+    markers.add(
+      Marker(
+        markerId: MarkerId('destination_$destinationId'),
+        position: LatLng(destinationDetails['lat'], destinationDetails['long']),
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+        onTap: () {
+          setState(() {
+            showDestinationInfo = true;
+            currentpointDetails = destinationDetails;
+          });
+        },
+      ),
     );
 
-    // var locationString = currentLocation!.latitude.toString();
-
-    // showAlertDialog2(context, locationString);
+    // Log markers for debugging
+    print("Markers added: ${markers.length}");
   }
 
   //init state
@@ -471,8 +505,9 @@ class SsmViewState extends State<SsmView> {
                 ? const Center(child: Text("Loading"))
                 : GoogleMap(
                     initialCameraPosition: CameraPosition(
-                      target: polylineCoordinates.first,
-                      zoom: 10,
+                      target: LatLng(currentLocation!.latitude!,
+                          currentLocation!.longitude!),
+                      zoom: 13.5,
                     ),
                     markers: markers,
                     polylines: {
@@ -520,51 +555,51 @@ class SsmViewState extends State<SsmView> {
                   ),
                 ],
               ),
-              // child: Column(
-              //   crossAxisAlignment: CrossAxisAlignment.start,
-              //   children: [
-              //     Text(
-              //       _connectionStatus,
-              //       style: TextStyle(fontSize: 20),
-              //     ),
-              //     Text("Distance: $distance", style: TextStyle(fontSize: 16)),
-              //     Text("Duration: $duration", style: TextStyle(fontSize: 16)),
-              //     Divider(),
-              //     Text("Waypoint Distance: $waypointDistance",
-              //         style: TextStyle(fontSize: 16, color: Colors.blue)),
-              //     Text("Waypoint Duration: $waypointDuration",
-              //         style: TextStyle(fontSize: 16, color: Colors.blue)),
-              //   ],
-              // ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    _connectionStatus,
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  Text("Distance: $distance", style: TextStyle(fontSize: 16)),
+                  Text("Duration: $duration", style: TextStyle(fontSize: 16)),
+                  Divider(),
+                  Text("Waypoint Distance: $waypointDistance",
+                      style: TextStyle(fontSize: 16, color: Colors.blue)),
+                  Text("Waypoint Duration: $waypointDuration",
+                      style: TextStyle(fontSize: 16, color: Colors.blue)),
+                ],
+              ),
             ),
           ),
-          // Positioned(
-          //   bottom:
-          //       750, //You can adjust the position to not overlap with the other widget
-          //   left: 0,
-          //   right: 20,
-          //   child: Container(
-          //     padding: const EdgeInsets.all(8),
-          //     decoration: BoxDecoration(
-          //       color: Colors.white,
-          //       borderRadius: BorderRadius.circular(8),
-          //       boxShadow: [
-          //         BoxShadow(
-          //           color: Colors.black26,
-          //           blurRadius: 4,
-          //           offset: Offset(2, 2),
-          //         ),
-          //       ],
-          //     ),
-          //     // child: Text(
-          //     //   navigationSteps.isNotEmpty &&
-          //     //           currentStepIndex < navigationSteps.length
-          //     //       ? "${navigationSteps[currentStepIndex]['instruction']} in ${navigationSteps[currentStepIndex]['distance'].toInt()}m"
-          //     //       : "Arrived at destination",
-          //     //   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          //     // ),
-          //   ),
-          // )
+          Positioned(
+            bottom:
+                750, //You can adjust the position to not overlap with the other widget
+            left: 0,
+            right: 20,
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(8),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black26,
+                    blurRadius: 4,
+                    offset: Offset(2, 2),
+                  ),
+                ],
+              ),
+              child: Text(
+                navigationSteps.isNotEmpty &&
+                        currentStepIndex < navigationSteps.length
+                    ? "${navigationSteps[currentStepIndex]['instruction']} in ${navigationSteps[currentStepIndex]['distance'].toInt()}m"
+                    : "Arrived at destination",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+            ),
+          )
         ],
       ),
     );

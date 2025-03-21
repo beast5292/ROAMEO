@@ -3,8 +3,6 @@ from typing import List
 from Sight_info import Sight
 from firebase_admin import credentials,firestore, initialize_app
 from typing import List
-import asyncio
-import firebase_admin
 from user_model import User
 from login_model import LoginRequest
 import bcrypt
@@ -14,8 +12,14 @@ from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from fastapi import Depends
 from fastapi.middleware.cors import CORSMiddleware
 
-#Initialize Firebase Admin SDK with your credentials
-cred = credentials.Certificate(r'F:\GITHUB\ROAMEO\backend\private key\roameo-f3ab0-firebase-adminsdk-ss40k-1e1297f52f.json') 
+import os
+from firebase_admin import credentials
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Get current file directory
+cred_path = os.path.join(BASE_DIR, 'private_key', 'roameo-f3ab0-firebase-adminsdk-ss40k-1e1297f52f.json')
+
+cred = credentials.Certificate(cred_path)
+
 initialize_app(cred)
 
 #Firestore client initialization

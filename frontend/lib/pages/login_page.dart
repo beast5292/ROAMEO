@@ -27,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
     }
 
     setState(() => _isLoading = true);
-    final url = Uri.parse('http://10.0.2.2:8000/login');
+    final url = Uri.parse('https://roameo-449418.uc.r.appspot.com/login');
     final requestBody = {
       "email": _emailController.text,
       "password": _passwordController.text,

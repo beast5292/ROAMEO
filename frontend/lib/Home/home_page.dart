@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
         return;
       }
 
-      final url = Uri.parse('http://10.0.2.2:8000/user');
+      final url = Uri.parse('https://roameo-449418.uc.r.appspot.com/user');
       final response = await http.get(
         url,
         headers: {

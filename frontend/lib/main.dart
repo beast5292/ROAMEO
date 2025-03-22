@@ -12,7 +12,6 @@ import 'package:provider/provider.dart';
 import 'pages/open_page.dart';
 
 void main() async {
-  
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
@@ -33,7 +32,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: OpeningScreen(),
     );
   }
 }

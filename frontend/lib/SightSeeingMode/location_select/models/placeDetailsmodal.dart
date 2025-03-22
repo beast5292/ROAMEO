@@ -1,20 +1,17 @@
-import 'dart:ffi';
-
 class PlaceDetails {
   final String name;
   final double latitude;
   final double longitude;
   final String address;
-  final List<String> images; 
+  final List<String> images;
 
   //constructor
-  PlaceDetails({
-    required this.name,
-    required this.latitude,
-    required this.longitude,
-    required this.address,
-    required this.images
-  });
+  PlaceDetails(
+      {required this.name,
+      required this.latitude,
+      required this.longitude,
+      required this.address,
+      required this.images});
 
   //factory constructor parsing json data
   factory PlaceDetails.fromJson(Map<String, dynamic> json) {

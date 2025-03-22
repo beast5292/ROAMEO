@@ -2,11 +2,14 @@ from pydantic import BaseModel
 from typing import List,Optional
 
 class Sight(BaseModel):
-    id:str
-    name: str
-    description: str
-    tags: List[str]
+    modeName: Optional[str] = None
+    modeDescription: Optional[str] = None
+    username: Optional[str] = None
+    id: str
+    name: Optional[str] = None
+    description: Optional[str] = None
+    tags: Optional[List[str]] = None
     lat: Optional[float] = None
     long: Optional[float] = None
-    imageUrls: List[str]
+    imageUrls: Optional[List[str]] = None
 

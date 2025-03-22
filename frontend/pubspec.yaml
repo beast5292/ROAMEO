@@ -32,6 +32,7 @@ dependencies:
     sdk: flutter
   carousel_slider: ^4.0.0
   
+  
     # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
@@ -47,6 +48,8 @@ dependencies:
   firebase_storage: 12.4.4
   connectivity_plus: 6.1.3
   web_socket_channel: ^2.4.0
+  flutter_secure_storage: ^7.0.0
+ 
   
  
  
@@ -69,7 +72,7 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-  
+
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -97,10 +100,11 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   # fonts:
-  #   - family: Montserrat
+  #   - family: Schyler
   #     fonts:
-  #       - asset: assets/fonts/Montserrat-Regular.ttf
-  #       - asset: assets/fonts/Montserrat-Bold.ttf
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

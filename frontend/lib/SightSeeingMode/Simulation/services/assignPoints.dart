@@ -35,13 +35,13 @@ void assignPoints(
   var destin = sights.last;
 
   //Get the waypoints (all intermediate sights including first and last)
-  var waypoints_list = sights.sublist(0, sights.length - 1);
+  var waypointsList = sights.sublist(0, sights.length - 1);
 
   //set the state variables
   upatStateCallback(
     LatLng(source['lat'], source['long']),
     LatLng(destin['lat'], destin['long']),
-    waypoints_list.map((wp) => LatLng(wp['lat'], wp['long'])).toList(),
+    waypointsList.map((wp) => LatLng(wp['lat'], wp['long'])).toList(),
     true,
   );
 
@@ -49,7 +49,7 @@ void assignPoints(
   var alertMessage2 =
       "source ${SsmPlayState.sourceLocation}, destination ${SsmPlayState.destination}, waypoints ${SsmPlayState.waypoints}, isDataLoaded ${SsmPlayState.isDataLoaded}";
 
-  showAlertDialog2(context,"recieved $alertMessage2");
+  showAlertDialog2(context, "recieved $alertMessage2");
 
   //Output source, destination, and waypoints
   print('Source:');
@@ -60,9 +60,9 @@ void assignPoints(
   print('Name: ${destin['description']}');
   print('Latitude: ${destin['lat']}, Longitude: ${destin['long']}');
 
-  if (waypoints_list.isNotEmpty) {
+  if (waypointsList.isNotEmpty) {
     print('\nWaypoints:');
-    for (var waypoint in waypoints_list) {
+    for (var waypoint in waypointsList) {
       print('Name: ${waypoint['description']}');
       print('Latitude: ${waypoint['lat']}, Longitude: ${waypoint['long']}');
     }
@@ -80,7 +80,7 @@ void assignPoints(
 
   if (SsmPlayState.waypoints.isNotEmpty) {
     alertMessage += 'Waypoints:\n';
-    for (var waypoint in waypoints_list) {
+    for (var waypoint in waypointsList) {
       alertMessage +=
           'Name: ${waypoint['description']}\nLatitude: ${waypoint['lat']}, Longitude: ${waypoint['long']}\n';
     }
@@ -88,5 +88,5 @@ void assignPoints(
     alertMessage += 'No waypoints available.';
   }
   // Show the alert dialog
-  showAlertDialog2(context,alertMessage);
+  showAlertDialog2(context, alertMessage);
 }

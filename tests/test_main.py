@@ -14,10 +14,10 @@ class TestFastAPI(unittest.TestCase):
     def test_signup(self):
         # Change this data when making push request, as it will be stored in firestore db
         user_data = {
-            "username": "testuser",
-            "email": "testuser@example.com",
+            "username": "test1234",
+            "email": "test1234@example.com",
             "dob": "1990-01-01",
-            "password": "password123"
+            "password": "test1234"
         }
         
         response = client.post("/signup", json=user_data)

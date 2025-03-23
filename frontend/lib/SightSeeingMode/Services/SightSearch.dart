@@ -1,10 +1,13 @@
+
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-// Fetch sights by keyword search
+
+//Fetch sights by keyword search
 Future<List<dynamic>> searchSights(String keyword) async {
+  print("Searching for sights with keyword: $keyword");
   final response = await http.get(
-    Uri.parse('http://192.168.226.212:8000/search/?query=$keyword'),
+    Uri.parse('http://192.168.125.74:8000/search/?query=$keyword'),
   );
 
   print("API Response Code: ${response.statusCode}");
@@ -25,9 +28,5 @@ Future<List<dynamic>> searchSights(String keyword) async {
     throw Exception("Failed to fetch sights: ${response.statusCode}");
   }
 
-  //   final data = json.decode(response.body);
-  //   return data['sights']; // List of matched sightseeing modes
-  // } else {
-  //   throw Exception('No matching sights found');
-  // }
+ 
 }

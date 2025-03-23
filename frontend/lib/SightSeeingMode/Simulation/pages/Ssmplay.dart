@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
@@ -10,22 +9,18 @@ import 'package:location/location.dart';
 import 'package:http/http.dart' as http;
 import 'package:practice/SightSeeingMode/Services/SightGet.dart';
 import 'package:practice/SightSeeingMode/Simulation/models/DetailWidget.dart';
-import 'package:practice/SightSeeingMode/Simulation/pages/Navigation.dart';
-import 'package:practice/SightSeeingMode/Simulation/pages/mapbox.dart';
-import 'package:practice/SightSeeingMode/Simulation/providers/SightProvider.dart';
 import 'package:practice/SightSeeingMode/Simulation/services/Haversine_formula.dart';
 import 'package:practice/SightSeeingMode/Simulation/services/TrimPolyline.dart';
 import 'package:practice/SightSeeingMode/Simulation/services/assignPoints.dart';
 import 'package:practice/SightSeeingMode/Simulation/services/alertDialog.dart';
 import 'package:practice/SightSeeingMode/Simulation/services/checkProximity.dart';
 import 'package:practice/SightSeeingMode/Simulation/services/PolylineThresholdCheck.dart';
-import 'package:practice/SightSeeingMode/Simulation/services/readCoordinatesfromfile.dart';
+
 
 class SsmPlay extends StatefulWidget {
-  //widget takes the index as a parameter to figure out the sightseeing mode id
-  final int index;
 
-  //widget takes the doc id of the sight
+
+  final int index;
   final String docId;
 
   const SsmPlay({super.key, required this.index, required this.docId});
@@ -35,78 +30,42 @@ class SsmPlay extends StatefulWidget {
 }
 
 class SsmPlayState extends State<SsmPlay> {
-  //api key
+
+  //declare the google maps api key
   final apiKey = dotenv.env['GOOGLE_MAPS_API_KEY'];
 
-  //loading state variable
+  ///declare other varuables needed for the simulation
   bool isLoading = true;
-
-  //Add a flag to track if data is loaded
   static bool isDataLoaded = true;
-
-  //store the recieved sightseeing data in a Map
   Map<String, dynamic>? sightMode;
-
-  //Store reached near waypoints to avoid duplicate alerts (when you are near a waypoint)
   Set<LatLng> reachedNearWaypoints = {};
-
-  //Store reached waypoints to avoid duplicate alerts (when you reached a waypoint)
   Set<LatLng> reachedWaypoints = {};
-
-  //reached destination to avoid duplicate alerts
   LatLng? reachedDestination;
-
-  //reached near destination
   LatLng? reachedNearDestination;
-
-  //track the internet connection status
   final String _connectionStatus = 'Unknown';
-
-  //Google map instance as a completer
   final Completer<GoogleMapController> _controller = Completer();
-
-  //temporary holders for the sourcelocation and destination
   static LatLng? sourceLocation;
   static LatLng? destination;
   static List<LatLng> waypoints = [];
-
-  //store the navigation steps recieved from the Directions waypoint api request
   List<Map<String, dynamic>> navigationSteps = [];
-
-  //track the current step
   int currentStepIndex = 0;
-
-  //list of lat and lang co-ordinates to hold the polyline coordinates
   static List<LatLng> polylineCoordinates = [];
-
-  //define only the active way points
   late List<PolylineWayPoint> activeWaypoints;
-
-  //stores the current location as in lat and lang (Location package)
   LocationData? currentLocation;
-
-  //distance and duration holders (for the distanced matrix api response)
   String distance = '';
   String duration = '';
-
-  //distance and duration holders (for the direction api request for waypoints)
   String waypointDistance = "";
   String waypointDuration = "";
-
-  //custom marker variables (Bitmap descriptor)
   BitmapDescriptor sourceIcon = BitmapDescriptor.defaultMarker;
   BitmapDescriptor destinationIcon = BitmapDescriptor.defaultMarker;
   BitmapDescriptor currentLocationIcon = BitmapDescriptor.defaultMarker;
-
-  //Set to hold markers
   Set<Marker> markers = {};
-
+  String _mapStyle = '';
   bool showDestinationInfo = false;
-
-  //current point detais
   Map<String, dynamic>? currentpointDetails;
-
-  //Method to reset static variables
+  final Duration _animationDuration = const Duration(milliseconds: 300);
+  
+  //reset the static variables
   void resetStaticVariables() {
     isDataLoaded = true;
     sourceLocation = null;
@@ -114,14 +73,9 @@ class SsmPlayState extends State<SsmPlay> {
     waypoints.clear();
     polylineCoordinates.clear();
   }
-
-  //setState of assignPoints function
-  void updateAssignPointsState(
-    LatLng source,
-    LatLng dest,
-    List<LatLng> wps,
-    bool loaded,
-  ) {
+  
+  //state to update the assign points
+  void updateAssignPointsState(LatLng source, LatLng dest, List<LatLng> wps, bool loaded) {
     setState(() {
       sourceLocation = source;
       destination = dest;
@@ -130,13 +84,14 @@ class SsmPlayState extends State<SsmPlay> {
     });
   }
 
+  //dispose the state
   @override
   void dispose() {
-    resetStaticVariables(); // Reset static variables when the widget is disposed
+    resetStaticVariables();
     super.dispose();
   }
-
-  //functions to keep track of reached waypoints and destinations
+  
+  //set States of check proximity function
   void updateReachedNearWaypoints(LatLng waypoint) {
     setState(() {
       reachedNearWaypoints.add(waypoint);
@@ -160,39 +115,33 @@ class SsmPlayState extends State<SsmPlay> {
       reachedNearDestination = destination;
     });
   }
-
-  //function to get the current location (using the location package)
+  
+  //get the current location and set state
   void getCurrentLocation() async {
-    //hold the current location
     Location location = Location();
-    //get the current location using getlocation and uses then to handle the result (Location package)
-    location.getLocation().then(
-      (location) {
-        setState(() {
-          //set the current location to the obtained location
-          currentLocation = location;
-        });
-        //call getPolyPoints after a obtaining the current location
-        getPolyPoints();
-      },
-    );
-
-    //waits for the google map controller to be available
+    location.getLocation().then((location) {
+      setState(() {
+        currentLocation = location;
+      });
+      getPolyPoints();
+    });
+    
+    //get the google map controller
     GoogleMapController googleMapController = await _controller.future;
-
-    //listens to the stream function onLocationChanged in location package and a callback function everytime location changes
+    
+    //listen to the location changes
     location.onLocationChanged.listen((newLoc) {
-      //current Location changes to newLocation
       setState(() {
         currentLocation = newLoc;
       });
-
+      
+      //add markers
       addMarkers();
 
       //trim the polyline
       trimPolyline(LatLng(newLoc.latitude!, newLoc.longitude!));
-
-      //checks the proximity everytime the location changes
+      
+      //check proximity and notify
       checkProximityAndNotify(
         context,
         currentLocation,
@@ -209,178 +158,128 @@ class SsmPlayState extends State<SsmPlay> {
         updateReachedNearDestination,
       );
 
-      //Check if the current location is within the polyline threshold
+      //check if the location is within the polyline threshold
       LatLng currentLatLng = LatLng(newLoc.latitude!, newLoc.longitude!);
-      if (!isLocationWithinPolylineThreshold(
-          currentLatLng, polylineCoordinates, 50.0)) {
-        // Redraw the polyline if the location is outside the threshold
+      if (!isLocationWithinPolylineThreshold(currentLatLng, polylineCoordinates, 50.0)) {
         getPolyPoints();
       }
-
-      //Recalculate the polyline with updated location
-      // getPolyPoints();
-
-      //call the waypoint distance and duration calculator using current locaton anf the first active waypoint
+      
+      //get the distance and duration
       getWaypointDistanceandDuration(currentLocation, activeWaypoints[0]);
-
-      //call the current locaton to destination distance matrix api request (full sightseeing mode duration and distance)
+      //get the distance and duration
       getDistanceAndDuration();
-
-      //dynamically update the navigation steps
-      if (navigationSteps.isEmpty ||
-          currentStepIndex >= navigationSteps.length) {
+      
+      if (navigationSteps.isEmpty || currentStepIndex >= navigationSteps.length) {
         return;
       }
+      
 
       LatLng userLatLng = LatLng(newLoc.latitude!, newLoc.longitude!);
 
-      //Update current step's distance
-      double distanceToStep = calculateDistance(
-          userLatLng, navigationSteps[currentStepIndex]['distance']);
+      //calculate the distance to the next step
+      double distanceToStep = calculateDistance(userLatLng, navigationSteps[currentStepIndex]['distance']);
 
       setState(() {
         navigationSteps[currentStepIndex]['distance'] = distanceToStep;
       });
-
-      //If user reaches the step, move to the next step
+      
+      //check if the distance to the next step is less than 10
       if (distanceToStep < 10) {
         setState(() {
-          //Move to the next instruction
           currentStepIndex++;
         });
       }
-
-      //change the animate Camera of the controller to the new location
+      
+      //animate the camera to the new location
       googleMapController.animateCamera(CameraUpdate.newCameraPosition(
         CameraPosition(
-            target: LatLng(newLoc.latitude!, newLoc.longitude!),
-            zoom: 15.5 //fixed zoom level
-            ),
+          target: LatLng(newLoc.latitude!, newLoc.longitude!),
+          zoom: 15.5,
+        ),
       ));
-
-      //call the setState which includes a set of functions
-      // setState(() {});
     });
   }
 
-  //function to get the polypoints
   void getPolyPoints() async {
-    //new polyline object (polyline)
-    PolylinePoints polylinePoints = PolylinePoints();
 
-    //clear exsiting polylines
+    //get the polyline points
+    PolylinePoints polylinePoints = PolylinePoints();
     polylineCoordinates.clear();
 
-    //Define waypoints excluding reached ones
     activeWaypoints = waypoints
-        .where((wp) =>
-            !reachedWaypoints.contains(wp)) //Filter out reached waypoints
-        .map((wp) => PolylineWayPoint(
-              location: "${wp.latitude},${wp.longitude}",
-            ))
+        .where((wp) => !reachedWaypoints.contains(wp))
+        .map((wp) => PolylineWayPoint(location: "${wp.latitude},${wp.longitude}"))
         .toList();
-
-    // var alertMessage3 = activeWaypoints[0].toString();
-
-    // showAlertDialog2(alertMessage3);
-
-    //receieve polylines using getRoutebetween function of directions api
+    
+    //get the route between the coordinates
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-        apiKey!,
-        PointLatLng(currentLocation!.latitude!, currentLocation!.longitude!),
-        PointLatLng(destination!.latitude, destination!.longitude),
-        travelMode: TravelMode.driving,
-        wayPoints: activeWaypoints,
-        optimizeWaypoints: true);
+      apiKey!,
+      PointLatLng(currentLocation!.latitude!, currentLocation!.longitude!),
+      PointLatLng(destination!.latitude, destination!.longitude),
+      travelMode: TravelMode.driving,
+      wayPoints: activeWaypoints,
+      optimizeWaypoints: true,
+    );
 
-    //if the results are not empty add the co-ordinates to the polylineCoordinates array containing lat and lang points
     if (result.points.isNotEmpty) {
       List<LatLng> routePoints = [];
       for (var point in result.points) {
         routePoints.add(LatLng(point.latitude, point.longitude));
       }
-
-      var alertMessage3 = routePoints.toString();
-
+      
+      //set the state of the polyline coordinates
       setState(() {
         polylineCoordinates = routePoints;
       });
-
-      // showAlertDialog2(alertMessage3);
-
-      //Snap the route coordinates to the nearest road
-      // await snapToRoads(routePoints);
     }
   }
-  //call set state which has many functions
-  // setState(() {});
 
-  //distance matrix api request for the sightseeing route
+  //get the distance and duration
   Future<void> getDistanceAndDuration() async {
-    //convert current location into a lat lang object
-    LatLng currentLatLng =
-        LatLng(currentLocation!.latitude!, currentLocation!.longitude!);
-
-    //Prepare the waypoints string for the Directions API request
+    LatLng currentLatLng = LatLng(currentLocation!.latitude!, currentLocation!.longitude!);
     String waypointsString = activeWaypoints.map((wp) => wp.location).join('|');
+    
+    //directions api url
+    String url = waypointsString.isNotEmpty
+        ? 'https://maps.googleapis.com/maps/api/directions/json?origin=${currentLatLng.latitude},${currentLatLng.longitude}&destination=${destination!.latitude},${destination!.longitude}&waypoints=optimize:true|$waypointsString&key=$apiKey'
+        : 'https://maps.googleapis.com/maps/api/directions/json?origin=${currentLatLng.latitude},${currentLatLng.longitude}&destination=${destination!.latitude},${destination!.longitude}&key=$apiKey';
 
-    String url;
-
-    if (waypointsString != "") {
-      //Directions API URL with current location, destination, and waypoints
-      url =
-          'https://maps.googleapis.com/maps/api/directions/json?origin=${currentLatLng.latitude},${currentLatLng.longitude}&destination=${destination!.latitude},${destination!.longitude}&waypoints=optimize:true|$waypointsString&key=$apiKey';
-    } else {
-      url =
-          'https://maps.googleapis.com/maps/api/directions/json?origin=${currentLatLng.latitude},${currentLatLng.longitude}&destination=${destination!.latitude},${destination!.longitude}&key=$apiKey';
-    }
-
-    //get request to distance matrix api
     var response = await http.get(Uri.parse(url));
 
     if (response.statusCode == 200) {
       var data = json.decode(response.body);
 
       if (data['routes'].isNotEmpty) {
-        //Extract the total distance and duration from the first route
         var legs = data['routes'][0]['legs'];
         double totalDistance = 0;
         double totalDuration = 0;
 
+        //get the total distance and duration
         for (var leg in legs) {
           totalDistance += leg['distance']['value'];
           totalDuration += leg['duration']['value'];
         }
 
-        //Convert distance to kilometers and duration to minutes
         String distanceText = '${(totalDistance / 1000).toStringAsFixed(1)} km';
         String durationText = '${(totalDuration / 60).toStringAsFixed(0)} mins';
 
-        //call set state
         setState(() {
           distance = distanceText;
           duration = durationText;
         });
-      } else {
-        print("Failed to get distance and duration");
       }
     }
   }
-
-  //distance and duration to the nearest waypoint using directions api*
-  Future<void> getWaypointDistanceandDuration(
-      LocationData? currentLocation, PolylineWayPoint waypoint) async {
-    //convert current location into a lat lang object
-    LatLng currentLatLng =
-        LatLng(currentLocation!.latitude!, currentLocation.longitude!);
-
-    //convert the PolylineWaypoint object into a lat lang object
+  
+  //get the waypoint distance and duration
+  Future<void> getWaypointDistanceandDuration(LocationData? currentLocation, PolylineWayPoint waypoint) async {
+    LatLng currentLatLng = LatLng(currentLocation!.latitude!, currentLocation.longitude!);
     LatLng WaypointlatLng = LatLng(
       double.parse(waypoint.location.split(',')[0]),
       double.parse(waypoint.location.split(',')[1]),
     );
-
-    //directions api request
+    
+    //directions api url
     final String url =
         'https://maps.googleapis.com/maps/api/directions/json?origin=${currentLatLng.latitude},${currentLatLng.longitude}&destination=${WaypointlatLng.latitude},${WaypointlatLng.longitude}&mode=driving&key=$apiKey';
 
@@ -388,7 +287,8 @@ class SsmPlayState extends State<SsmPlay> {
 
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
-
+      
+      //get distance and duration
       if (data['routes'].isNotEmpty) {
         final legs = data['routes'][0]['legs'][0];
 
@@ -396,16 +296,11 @@ class SsmPlayState extends State<SsmPlay> {
           waypointDistance = legs['distance']['text'];
           waypointDuration = legs['duration']['text'];
         });
-
-        print('Distance: $waypointDistance, Duration: $waypointDuration');
-
-        //Extract step-by-step navigation instructions
+        
+        //filter the next steps
         List<Map<String, dynamic>> stepsList = [];
         for (var step in legs['steps']) {
-          //Remove HTML tags
-          String instruction =
-              step['html_instructions'].replaceAll(RegExp(r'<[^>]*>'), '');
-          //Distance in meters
+          String instruction = step['html_instructions'].replaceAll(RegExp(r'<[^>]*>'), '');
           double distance = step['distance']['value'].toDouble();
 
           stepsList.add({
@@ -413,21 +308,17 @@ class SsmPlayState extends State<SsmPlay> {
             'distance': distance,
           });
         }
-        //Store navigation steps
+        
+        
         setState(() {
           navigationSteps = stepsList;
-          //Start from first step
           currentStepIndex = 0;
         });
-
-        print("Navigation Steps: $navigationSteps");
-      } else {
-        print("Failed to fetch waypoint distance & duration.");
       }
     }
   }
-
-  //trim the polylines as the user moves
+  
+  //function to trim the polyline
   void trimPolyline(LatLng userLocation) {
     if (polylineCoordinates.isEmpty) return;
 
@@ -438,106 +329,119 @@ class SsmPlayState extends State<SsmPlay> {
     });
   }
 
-  //Function to add markers for waypoints and destination
-  void addMarkers() async {
-    markers.clear();
+//function to add markers
+void addMarkers() async {
+  markers.clear();
 
-    //Ensure sightMode and sights are not null or empty
-    if (sightMode == null ||
-        sightMode!['sights'] == null ||
-        sightMode!['sights'].isEmpty) {
-      showAlertDialog2(context, "No sights available to display markers.");
-      return;
-    }
-
-    List<dynamic> sights = sightMode!['sights'];
-
-    //Ensure waypoints are not null or empty
-    if (waypoints.isEmpty) {
-      showAlertDialog2(context, "No waypoints available to display markers.");
-      return;
-    }
-
-    //Add markers for waypoints
-    for (int i = 0; i < waypoints.length; i++) {
-      // Ensure the index is within bounds of the sights list
-      if (i >= sights.length) {
-        showAlertDialog2(context, "Waypoint index out of bounds.");
-        continue;
-      }
-
-      var waypointDetails = sights[i];
-
-      markers.add(
-        Marker(
-          markerId: MarkerId('waypoint_$i'),
-          position: waypoints[i],
-          infoWindow: InfoWindow(
-              title: waypointDetails['description'] ?? 'Waypoint $i'),
-          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
-          onTap: () {
-            showAlertDialog2(
-                context, "Waypoint $i: ${waypointDetails['description']}");
-            setState(() {
-              showDestinationInfo = true;
-              currentpointDetails = waypointDetails;
-            });
-          },
-        ),
-      );
-    }
-
-    // Add marker for destination
-    if (destination != null && sights.isNotEmpty) {
-      var destinationDetails = sights.last; // Last element is the destination
-      int destinationId =
-          sights.length - 1; // Correct index for the destination
-
-      markers.add(
-        Marker(
-          markerId: MarkerId('destination_$destinationId'),
-          position: destination!,
-          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
-          onTap: () {
-            showAlertDialog2(
-                context, "Destination: ${destinationDetails['description']}");
-            setState(() {
-              showDestinationInfo = true;
-              currentpointDetails = destinationDetails;
-            });
-          },
-        ),
-      );
-    }
-
-    // Add marker for current location
-    if (currentLocation != null) {
-      markers.add(
-        Marker(
-          markerId: MarkerId('current_location'),
-          position:
-              LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
-          infoWindow: InfoWindow(title: 'You are here'),
-          icon:
-              BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
-        ),
-      );
-    }
-
-    // Log markers for debugging
-    print("Markers added: ${markers.length}");
+  if (sightMode == null || sightMode!['sights'] == null || sightMode!['sights'].isEmpty) {
+    showAlertDialog2(context, "No sights available to display markers.");
+    return;
   }
 
-  //init state
+  List<dynamic> sights = sightMode!['sights'];
+
+  if (waypoints.isEmpty) {
+    showAlertDialog2(context, "No waypoints available to display markers.");
+    return;
+  }
+
+  for (int i = 0; i < waypoints.length; i++) {
+    if (i >= sights.length) {
+      showAlertDialog2(context, "Waypoint index out of bounds.");
+      continue;
+    }
+
+    var waypointDetails = sights[i];
+
+    markers.add(
+      Marker(
+        markerId: MarkerId('waypoint_$i'),
+        position: waypoints[i],
+        infoWindow: InfoWindow(title:'Waypoint $i'),
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+        onTap: () async {
+          // Zoom in on the tapped marker
+          final GoogleMapController controller = await _controller.future;
+          controller.animateCamera(
+            CameraUpdate.newCameraPosition(
+              CameraPosition(
+                target: waypoints[i],
+                zoom: 18, 
+              ),
+            ),
+          );
+
+          //Show the DestinationInfoBox
+          setState(() {
+            showDestinationInfo = true;
+            currentpointDetails = waypointDetails;
+          });
+        },
+      ),
+    );
+  }
+
+  if (destination != null && sights.isNotEmpty) {
+    var destinationDetails = sights.last;
+    int destinationId = sights.length - 1;
+
+    markers.add(
+      Marker(
+        markerId: MarkerId('destination_$destinationId'),
+        position: destination!,
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+        onTap: () async {
+          // Zoom in on the tapped marker
+          final GoogleMapController controller = await _controller.future;
+          controller.animateCamera(
+            CameraUpdate.newCameraPosition(
+              CameraPosition(
+                target: destination!,
+                zoom: 18, // Adjust the zoom level as needed
+              ),
+            ),
+          );
+
+          // Show the DestinationInfoBox
+          setState(() {
+            showDestinationInfo = true;
+            currentpointDetails = destinationDetails;
+          });
+        },
+      ),
+    );
+  }
+
+  if (currentLocation != null) {
+    markers.add(
+      Marker(
+        markerId: MarkerId('current_location'),
+        position: LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
+        infoWindow: InfoWindow(title: 'You are here'),
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
+      ),
+    );
+  }
+}
+  //set init state with assigned points (sightMode)
   @override
   void initState() {
     super.initState();
-    // Fetch sight mode data
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      DefaultAssetBundle.of(context)
+          .loadString('assets/map_styles/dark_mode.json')
+          .then((string) {
+        setState(() {
+          _mapStyle = string;
+        });
+      });
+    });
+    
+    //fetches the selected sightmode and call assignpoints function
     fetchSightMode(widget.docId).then((data) {
       setState(() {
         sightMode = data;
-        isLoading = false; // Data fetched, set loading to false
-        print("sightMode: $sightMode");
+        isLoading = false;
       });
       assignPoints(sightMode!, updateAssignPointsState, context);
       addMarkers();
@@ -546,176 +450,248 @@ class SsmPlayState extends State<SsmPlay> {
       });
     }).catchError((error) {
       setState(() {
-        isLoading = false; // Error occurred, set loading to false
+        isLoading = false;
       });
       print("Error fetching sight mode: $error");
     });
+
     getCurrentLocation();
-    // setCustomMarkerIcon();
-    // getPolyPoints();
     getDistanceAndDuration();
   }
 
-  //Function to add markers for waypoints and destination
-  @override
-  Widget build(BuildContext context) {
-    if (isLoading) {
-      return Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
-    }
-
-    if (sightMode == null) {
-      return Scaffold(
-        body: Center(
-          child: Text("Failed to load sight mode data."),
-        ),
-      );
-    }
-
-    // Show loading indicator until sourceLocation and destination are initialized
-    if (!isDataLoaded || sourceLocation == null || destination == null) {
-      print("Data not fully loaded - showing progress indicator");
-      return Scaffold(
-        body: Center(
+@override
+Widget build(BuildContext context) {
+  if (isLoading) {
+    return Scaffold(
+      body: Container(
+        decoration: const BoxDecoration(color: Color(0xFF030A0E)),
+        child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CircularProgressIndicator(), // Loading indicator
-              SizedBox(height: 20), // Spacing
-              // Show details if available
+              _buildLoadingIndicator(),
+              const SizedBox(height: 20),
+              const Text(
+                "Initializing Navigation",
+                style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  if (sightMode == null) {
+    return Scaffold(
+      body: Container(
+        decoration: const BoxDecoration(color: Color(0xFF030A0E)),
+        child: Center(
+          child: Text(
+            "Failed to load sight mode data.",
+            style: TextStyle(color: Colors.white.withOpacity(0.8)),
+          ),
+        ),
+      ),
+    );
+  }
+
+  if (!isDataLoaded || sourceLocation == null || destination == null) {
+    return Scaffold(
+      body: Container(
+        decoration: const BoxDecoration(color: Color(0xFF030A0E)),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _buildLoadingIndicator(),
+              const SizedBox(height: 20),
               Column(
                 children: [
-                  Text("Source Location: ${sourceLocation ?? "Loading..."}"),
-                  Text("Destination: ${destination ?? "Loading..."}"),
                   Text(
-                      "Waypoints: ${waypoints.isNotEmpty ? waypoints : "Loading..."}"),
-                  Text("isDataLoaded: $isDataLoaded"),
+                    "Source Location: ${sourceLocation ?? "Loading..."}",
+                    style: TextStyle(color: Colors.white.withOpacity(0.8)),
+                  ),
+                  Text(
+                    "Destination: ${destination ?? "Loading..."}",
+                    style: TextStyle(color: Colors.white.withOpacity(0.8)),
+                  ),
                 ],
               ),
             ],
           ),
         ),
-      );
-    }
+      ),
+    );
+  }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Sightseeing mode",
-          style: TextStyle(color: Colors.black, fontSize: 16),
+  return Scaffold(
+    extendBodyBehindAppBar: true,
+    appBar: AppBar(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      leading: Container(
+        margin: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: Colors.black.withOpacity(0.5),
+          shape: BoxShape.circle,
+        ),
+        child: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.pop(context),
         ),
       ),
-      body: Stack(
-        children: [
-          GestureDetector(
-            onTap: () {
-              // Hide the destination info box when tapping elsewhere on the map
+    ),
+    body: Stack(
+      children: [
+        if (currentLocation != null)
+          GoogleMap(
+            initialCameraPosition: CameraPosition(
+              target: LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
+              zoom: 15.5,
+            ),
+            markers: markers,
+            polylines: {
+              Polyline(
+                polylineId: const PolylineId("route"),
+                points: polylineCoordinates,
+                color: Colors.lightBlue,
+                width: 6,
+                zIndex: -1,
+              )
+            },
+            onMapCreated: (mapController) {
+              _controller.complete(mapController);
+              mapController.setMapStyle(_mapStyle);
+            },
+            onTap: (_) {
               setState(() {
                 showDestinationInfo = false;
               });
             },
-            child: currentLocation == null
-                ? const Center(child: Text("Loading"))
-                : GoogleMap(
-                    initialCameraPosition: CameraPosition(
-                      target: LatLng(currentLocation!.latitude!,
-                          currentLocation!.longitude!),
-                      zoom: 13.5,
-                    ),
-                    markers: markers,
-                    polylines: {
-                      Polyline(
-                        polylineId: PolylineId("route"),
-                        points: polylineCoordinates,
-                        color: Colors.lightBlue,
-                        width: 6,
-                        zIndex: -1,
-                      )
-                    },
-                    onMapCreated: (mapController) {
-                      _controller.complete(mapController);
-                    },
-                  ),
           ),
-          if (showDestinationInfo && currentpointDetails != null)
-            Positioned(
-              top: 100, // Adjust this value to position the box correctly
-              left: 20, // Adjust this value to position the box correctly
-              child: GestureDetector(
-                onTap: () {
-                  // Prevent the box from disappearing when tapping on it
-                  // Do nothing here
+        Positioned(
+          top: kToolbarHeight + 20,
+          left: 20,
+          right: 20,
+          child: _buildGlassPanel(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Next Instruction',
+                  style: TextStyle(color: Colors.white.withOpacity(0.8)),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  navigationSteps.isNotEmpty && currentStepIndex < navigationSteps.length
+                      ? "${navigationSteps[currentStepIndex]['instruction']} in ${navigationSteps[currentStepIndex]['distance'].toInt()}m"
+                      : "You have arrived!",
+                  style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+          ),
+        ),
+        Positioned(
+          bottom: 30,
+          left: 20,
+          right: 20,
+          child: _buildGlassPanel(
+            child: Column(
+              children: [
+                _buildInfoRow('Total Distance', distance),
+                _buildInfoRow('Estimated Duration', duration),
+                const Divider(color: Colors.white24),
+                _buildInfoRow('Next Waypoint Distance', waypointDistance),
+                _buildInfoRow('Next Waypoint ETA', waypointDuration),
+              ],
+            ),
+          ),
+        ),
+        if (showDestinationInfo && currentpointDetails != null)
+          AnimatedPositioned(
+            duration: _animationDuration,
+            top: kToolbarHeight + 140, // Position below the instructions bar
+            left: 20,
+            right: 190,
+            child: AnimatedOpacity(
+              duration: _animationDuration,
+              opacity: showDestinationInfo ? 1.0 : 0.0,
+              child: DestinationInfoBox(
+                name: currentpointDetails!['name'],
+                description: currentpointDetails!['description'],
+                imageurl: currentpointDetails!['imageUrls'][0],
+                onClose: () {
+                  setState(() {
+                    showDestinationInfo = false;
+                  });
                 },
-                child: DestinationInfoBox(
-                    name: currentpointDetails!['name'],
-                    description: currentpointDetails!['description'],
-                    imageurl: currentpointDetails!['imageUrls'][0]),
-              ),
-            ),
-          Positioned(
-            bottom: 10,
-            left: 0,
-            child: Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 4,
-                    offset: Offset(2, 2),
-                  ),
-                ],
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    _connectionStatus,
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  Text("Distance: $distance", style: TextStyle(fontSize: 16)),
-                  Text("Duration: $duration", style: TextStyle(fontSize: 16)),
-                  Divider(),
-                  Text("Waypoint Distance: $waypointDistance",
-                      style: TextStyle(fontSize: 16, color: Colors.blue)),
-                  Text("Waypoint Duration: $waypointDuration",
-                      style: TextStyle(fontSize: 16, color: Colors.blue)),
-                ],
               ),
             ),
           ),
-          Positioned(
-            bottom:
-                750, //You can adjust the position to not overlap with the other widget
-            left: 0,
-            right: 20,
-            child: Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 4,
-                    offset: Offset(2, 2),
-                  ),
-                ],
-              ),
-              child: Text(
-                navigationSteps.isNotEmpty &&
-                        currentStepIndex < navigationSteps.length
-                    ? "${navigationSteps[currentStepIndex]['instruction']} in ${navigationSteps[currentStepIndex]['distance'].toInt()}m"
-                    : "Arrived at destination",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
+      ],
+    ),
+  );
+}
+  Widget _buildLoadingIndicator() {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.black.withOpacity(0.4),
+        borderRadius: BorderRadius.circular(15),
+        border: Border.all(color: Colors.white.withOpacity(0.1)),
+      ),
+      child: const Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            width: 40,
+            height: 40,
+            child: CircularProgressIndicator(
+              strokeWidth: 3,
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.lightBlue),
             ),
-          )
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildGlassPanel({required Widget child}) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(15),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: Colors.black.withOpacity(0.4),
+            borderRadius: BorderRadius.circular(15),
+            border: Border.all(color: Colors.white.withOpacity(0.1)),
+          ),
+          child: child,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildInfoRow(String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            label,
+            style: TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 14),
+          ),
+          Text(
+            value,
+            style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
+          ),
         ],
       ),
     );

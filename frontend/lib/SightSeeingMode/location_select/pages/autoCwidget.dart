@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/places.dart';
@@ -40,6 +41,8 @@ class _PlacesAutoCompleteFieldState extends State<PlacesAutoCompleteField> {
   //to get the search bar text
   final TextEditingController _controller = TextEditingController();
 
+  //map styles 
+  String _mapStyle='';
   //store a list of placePrediction objects in a predictions array
   List<PlacePrediction> _predictions = [];
 
@@ -68,6 +71,13 @@ class _PlacesAutoCompleteFieldState extends State<PlacesAutoCompleteField> {
   void initState() {
     super.initState();
     _placesService = PlaceAutoCompleteService(apiKey: widget.apiKey!);
+    DefaultAssetBundle.of(context)
+        .loadString('assets/map_styles/dark_mode.json')
+        .then((string) {
+      setState(() {
+        _mapStyle = string;
+      });
+    });
   }
 
   //cleaning up text controller and widget state
@@ -151,105 +161,293 @@ class _PlacesAutoCompleteFieldState extends State<PlacesAutoCompleteField> {
         ?.animateCamera(CameraUpdate.newLatLngZoom(_selectedLocation!, 15));
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-        child: Column(
-      children: [
-        TextField(
-          controller: _controller,
-          decoration: InputDecoration(
-            hintText: widget.hint ?? 'Search for a place',
-            prefixIcon: const Icon(Icons.search),
-            border: const OutlineInputBorder(),
-          ),
-          onChanged: _onSearchChanged,
-        ),
-        if (_isSearchActive && _predictions.isNotEmpty)
-          Container(
-            margin: const EdgeInsets.only(top: 8),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border.all(color: Colors.grey),
-              borderRadius: BorderRadius.circular(4),
-            ),
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: _predictions.length,
-              itemBuilder: (context, index) {
-                final prediction = _predictions[index];
-                return ListTile(
-                  title: Text(prediction.mainText),
-                  subtitle: Text(prediction.secondaryText),
-                  onTap: () => _onPlaceSelected(prediction),
-                );
-              },
-            ),
-          ),
-        if (!_isSearchActive && _selectedLocation != null)
-          Expanded(
-            child: Stack(
-              children: [
-                GoogleMap(
-                  initialCameraPosition: CameraPosition(
-                    target: _selectedLocation!,
-                    zoom: 15,
-                  ),
-                  onMapCreated: (controller) {
-                    _mapController = controller;
-                  },
-                  markers: {
-                    Marker(
-                      markerId: MarkerId('selected_location'),
-                      position: _selectedLocation!,
-                      infoWindow: InfoWindow(title: 'Selected Location'),
-                    ),
-                  },
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    backgroundColor: const Color(0xFF030A0E),
+    body: SafeArea(
+      child: Stack(
+        children: [
+          // Map and Controls Section (when search is not active)
+          if (!_isSearchActive && _selectedLocation != null)
+            Positioned.fill(
+              child: GoogleMap(
+                initialCameraPosition: CameraPosition(
+                  target: _selectedLocation!,
+                  zoom: 15,
                 ),
-                if (_showCheckmark)
-                  Positioned(
-                    bottom: 20,
-                    right: 20,
-                    child: FloatingActionButton(
-                      onPressed: () {
-                        // Add location info to the provider
-                        final placeProvider =
-                            Provider.of<SelectedPlaceProvider>(context,
-                                listen: false);
-                        placeProvider.addLocationInfo(_selectedPlace);
-                        print(_selectedPlace.toString());
-                        setState(() {
-                          _showCheckmark = false;
-                        });
+                onMapCreated: (controller) {
+                  _mapController = controller;
+                  controller.setMapStyle(_mapStyle);
+                },
+                markers: {
+                  Marker(
+                    markerId: const MarkerId('selected_location'),
+                    position: _selectedLocation!,
+                    infoWindow: const InfoWindow(title: 'Selected Location'),
+                    icon: BitmapDescriptor.defaultMarkerWithHue(
+                        BitmapDescriptor.hueAzure),
+                  ),
+                },
+              ),
+            ),
 
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => SightMenu()),
+          // Predictions List (when search is active)
+          if (_isSearchActive && _predictions.isNotEmpty)
+            Positioned(
+              // Position it below the search bar
+              top: MediaQuery.of(context).padding.top + 80,
+              left: 20,
+              right: 20,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.3),
+                  borderRadius: BorderRadius.circular(15),
+                  border: Border.all(
+                    color: Colors.white.withOpacity(0.1),
+                  ),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      physics: const ClampingScrollPhysics(),
+                      itemCount: _predictions.length,
+                      itemBuilder: (context, index) {
+                        final prediction = _predictions[index];
+                        return Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: () => _onPlaceSelected(prediction),
+                            splashColor: Colors.white.withOpacity(0.1),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 16),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    prediction.mainText,
+                                    style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    prediction.secondaryText,
+                                    style: TextStyle(
+                                        color: Colors.white.withOpacity(0.7),
+                                        fontSize: 14),
+                                  ),
+                                  if (index != _predictions.length - 1)
+                                    Divider(
+                                        height: 24,
+                                        color: Colors.white.withOpacity(0.1)),
+                                ],
+                              ),
+                            ),
+                          ),
                         );
                       },
-                      child: Icon(Icons.check),
                     ),
                   ),
-                // Displaying images below the map
-                if (_selectedPlace != null)
-                  Positioned(
-                    bottom: 100,
-                    left: 20,
-                    right: 20,
-                    child: Column(
-                      children: (_selectedPlace.imageUrls as List<String>)
-                          .map((imageUrl) {
-                        return Padding(
-                          padding: const EdgeInsets.only(bottom: 8),
-                          child: Image.network(imageUrl, fit: BoxFit.cover),
-                        );
-                      }).toList(),
+                ),
+              ),
+            ),
+
+          // Confirm Button & Image Carousel (over the map)
+          if (!_isSearchActive && _selectedLocation != null)
+            Positioned.fill(
+              child: Stack(
+                children: [
+                  // Confirm Button
+                  if (_showCheckmark)
+                    Positioned(
+                      bottom: 140,
+                      right: 20,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.3),
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(
+                                color: Colors.white.withOpacity(0.2),
+                                width: 1.5,
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.blue.withOpacity(0.1),
+                                  blurRadius: 15,
+                                  spreadRadius: 2,
+                                )
+                              ],
+                            ),
+                            child: IconButton(
+                              icon: const Icon(
+                                Icons.check_rounded,
+                                color: Colors.white,
+                                size: 28,
+                              ),
+                              onPressed: () {
+                                Provider.of<SelectedPlaceProvider>(context,
+                                        listen: false)
+                                    .addLocationInfo(_selectedPlace);
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const SightMenu(),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
-                  )
-              ],
+                  // Image Carousel
+                  if (_selectedPlace != null)
+                    Positioned(
+                      bottom: 20,
+                      left: 20,
+                      right: 20,
+                      child: SizedBox(
+                        height: 100,
+                        child: ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: _selectedPlace.imageUrls.length,
+                          separatorBuilder: (_, __) =>
+                              const SizedBox(width: 10),
+                          itemBuilder: (context, index) {
+                            return Container(
+                              width: 150,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(
+                                    color: Colors.white.withOpacity(0.2)),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.3),
+                                    blurRadius: 8,
+                                    spreadRadius: 2,
+                                  )
+                                ],
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: Image.network(
+                                  _selectedPlace.imageUrls[index],
+                                  fit: BoxFit.cover,
+                                  loadingBuilder: (context, child, progress) {
+                                    return progress == null
+                                        ? child
+                                        : Container(
+                                            color: Colors.black.withOpacity(0.3),
+                                            child: Center(
+                                              child: CircularProgressIndicator(
+                                                color: Colors.blue,
+                                              ),
+                                            ),
+                                          );
+                                  },
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+            ),
+
+          // Search Bar - Positioned at the top
+          Positioned(
+            top: MediaQuery.of(context).padding.top + 15,
+            left: 80,
+            right: 20,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(30),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                child: Container(
+                  height: 52,
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.25),
+                    borderRadius: BorderRadius.circular(30),
+                    border: Border.all(
+                      color: Colors.white.withOpacity(0.15),
+                      width: 1.5,
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(left: 16),
+                        child: Icon(
+                          Icons.search_rounded,
+                          color: Colors.white70,
+                          size: 24,
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 12),
+                          child: TextField(
+                            controller: _controller,
+                            onChanged: _onSearchChanged,
+                            decoration: InputDecoration(
+                              hintText: widget.hint ?? "Search for a place",
+                              hintStyle: const TextStyle(
+                                color: Colors.white54,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                              ),
+                              border: InputBorder.none,
+                              isCollapsed: true,
+                            ),
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
           ),
-      ],
-    ));
-  }
+
+          // Back Button - Positioned at the top left
+          Positioned(
+            top: MediaQuery.of(context).padding.top + 15,
+            left: 20,
+            child: FloatingActionButton.small(
+              backgroundColor: Colors.black.withOpacity(0.3),
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+                side: BorderSide(color: Colors.white.withOpacity(0.2)),
+              ),
+              onPressed: () => Navigator.pop(context),
+              child: const Icon(
+                Icons.arrow_back_rounded,
+                color: Colors.white,
+                size: 30,
+              ),
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
 }

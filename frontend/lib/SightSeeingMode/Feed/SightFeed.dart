@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:practice/SightSeeingMode/Services/SightGet.dart';
 import 'package:practice/SightSeeingMode/Simulation/pages/Ssmplay.dart';
@@ -12,192 +13,318 @@ class SightFeed extends StatefulWidget {
 }
 
 class _SightFeedState extends State<SightFeed> {
-  late Future<List<dynamic>> sightsFuture;
-  TextEditingController searchController =
-      TextEditingController(); // Controller for search bar-----------
-  String searchQuery = ""; // Stores the search query ----------------
 
+  //hold the recieving sights
+  late Future<List<dynamic>> sightsFuture;
+  TextEditingController searchController = TextEditingController();
+  String searchQuery = "";
+ 
+ //init states with calling the fetchSights() method
   @override
   void initState() {
     super.initState();
-    sightsFuture = fetchSights(); // Fetching sights from the API
+    sightsFuture = fetchSights();
   }
-
-  // Function to handle search based on user input----------------
+  
+  //perform the search and invoke search function
   void performSearch() {
     setState(() {
-      try {
-        String query = searchController.text.trim();
-        print("Search button prssed");
-        print("Search query for: $query");
-
-        if (query.isEmpty) {
-          print("Fetching all sights");
-          sightsFuture = fetchSights();
-        } else {
-          print("Fetching search results");
-          sightsFuture = searchSights(query);
-        }
-      } catch (e) {
-        print("Search error: $e");
+      searchQuery = searchController.text.trim();
+      if (searchQuery.isEmpty) {
+        sightsFuture = fetchSights();
+      } else {
+        sightsFuture = searchSights(searchQuery);
       }
-    });
-
-    // Force UI update after fetching results
-    Future.delayed(Duration(milliseconds: 500), () {
-      setState(() {});
     });
   }
 
-  //-----------------------------------------------------------
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Sightseeing Feed"),
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(50.0),
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: TextField(
-              controller: searchController,
-              decoration: InputDecoration(
-                hintText:
-                    "Search sightseeing modes", // Placeholder text -------------
-                prefixIcon: IconButton(
-                  icon: const Icon(Icons.search),
-                  onPressed: () {
-                    print("Search button pressed");
-                    performSearch();
-                  },
-                ), // Search Icon
-
-                /// Search icon
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                filled: true,
-                fillColor: Colors.white,
-              ),
-              onSubmitted: (value) {
-                print("Enter key pressed");
-                performSearch(); // Call search function when user types
-              },
+  Widget _buildIconButton({required IconData icon, required VoidCallback onPressed}) {
+    return Container(
+      height: 45,
+      width: 45,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: const Color.fromARGB(255, 50, 153, 255).withOpacity(0.3),
+            blurRadius: 15,
+            spreadRadius: 2,
+          ),
+        ],
+      ),
+      child: IconButton(
+        icon: Icon(icon, size: 24),
+        color: Colors.white,
+        onPressed: onPressed,
+        style: IconButton.styleFrom(
+          backgroundColor: Colors.white.withOpacity(0.1),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+            side: BorderSide(
+              color: Colors.white.withOpacity(0.3),
+              width: 1,
             ),
           ),
         ),
       ),
-      body: FutureBuilder<List<dynamic>>(
-        future: sightsFuture,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(child: Text("No sightseeing modes available"));
-          }
+    );
+  }
 
-          List<dynamic> modes = snapshot.data!; // Extract sightseeing mode data
-
-          return ListView.builder(
-            itemCount: modes.length,
-            itemBuilder: (context, index) {
-              String docId = modes[index]['id']; // Firestore Document ID
-              var sight = modes[index]['sights'].isNotEmpty
-                  ? modes[index]['sights'][0]
-                  : null;
-
-              if (sight == null || !sight.containsKey('modeName'))
-                return const SizedBox();
-
-              // Check if the modeName is "Ella-Odyssey-Left" or "Ella-Odyssey-Right"
-              bool isEllaMode = sight['modeName'] == "Ella-Odyssey-Left" ||
-                  sight['modeName'] == "Ella-Odyssey-Right";
-
-              return Card(
-                margin: const EdgeInsets.all(10),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFF030A0E),
+      body: Stack(
+        children: [
+          // Back Button
+          Positioned(
+            top: MediaQuery.of(context).padding.top + 15,
+            left: 20,
+            child: FloatingActionButton.small(
+              backgroundColor: Colors.black.withOpacity(0.3),
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+                side: BorderSide(color: Colors.white.withOpacity(0.2)),
+              ),
+              onPressed: () => Navigator.pop(context),
+              child: const Icon(
+                Icons.arrow_back_rounded,
+                color: Colors.white,
+                size: 30,
+              ),
+            ),
+          ),
+          // Search Bar
+          Positioned(
+            top: MediaQuery.of(context).padding.top + 15,
+            left: 80,
+            right: 20,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(30),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                child: Container(
+                  height: 52,
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.25),
+                    borderRadius: BorderRadius.circular(30),
+                    border: Border.all(
+                      color: Colors.white.withOpacity(0.15),
+                      width: 1.5,
+                    ),
+                  ),
+                  child: Row(
                     children: [
-                      Text(
-                        sight['modeName'] ?? 'No Name',
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
+                      const Padding(
+                        padding: EdgeInsets.only(left: 16),
+                        child: Icon(
+                          Icons.search_rounded,
+                          color: Colors.white70,
+                          size: 24,
                         ),
                       ),
-                      const SizedBox(height: 5),
-                      Text(
-                        sight['modeDescription'] ?? 'No Description',
-                        style: const TextStyle(fontSize: 14),
-                      ),
-                      const SizedBox(height: 5),
-                      Text(
-                        "Created by: ${sight['username'] ?? 'Unknown'}",
-                        style:
-                            const TextStyle(fontSize: 12, color: Colors.grey),
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          ElevatedButton(
-                            onPressed: () {
-                              print("View button pressed for docId $docId");
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SsmView(
-                                    index: index,
-                                    docId: docId,
-                                  ),
-                                ),
-                              );
-                              // Handle view action here
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  Colors.grey[300], // Optional color change
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 12),
+                          child: TextField(
+                            controller: searchController,
+                            decoration: InputDecoration(
+                              hintText: "Search sightseeing modes",
+                              hintStyle: TextStyle(
+                                color: Colors.white54,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                              ),
+                              border: InputBorder.none,
+                              isCollapsed: true,
                             ),
-                            child: const Text(
-                              "View",
-                              style: TextStyle(color: Colors.black),
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
                             ),
+                            onSubmitted: (value) => performSearch(),
                           ),
-                          const SizedBox(width: 8), // Space between buttons
-                          // Conditionally show the "Play" button
-                          if (!isEllaMode)
-                            ElevatedButton(
-                              onPressed: () {
-                                print("Play button pressed for docId $docId");
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => SsmPlay(
-                                      index: index,
-                                      docId: docId,
-                                    ),
-                                  ),
-                                );
-                              },
-                              child: const Text("Play"),
-                            ),
-                        ],
+                        ),
                       ),
+
                     ],
                   ),
                 ),
-              );
-            },
-          );
-        },
+              ),
+            ),
+          ),
+          // Main Content
+          Padding(
+            padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top + 80),
+            child: FutureBuilder<List<dynamic>>(
+              future: sightsFuture,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(
+                    child: Container(
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.4),
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(color: Colors.white.withOpacity(0.1)),
+                      ),
+                      child: const Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(
+                            width: 40,
+                            height: 40,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 3,
+                              valueColor: AlwaysStoppedAnimation<Color>(Colors.lightBlue),
+                            ),
+                          ),
+                          SizedBox(height: 15),
+                          Text(
+                            "Loading Roams",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                }
+
+                if (snapshot.hasError) {
+                  return Center(
+                    child: Text('Error: ${snapshot.error}',
+                        style: const TextStyle(color: Colors.white)),
+                  );
+                }
+
+                if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                  return const Center(
+                    child: Text("No sightseeing modes available",
+                        style: TextStyle(color: Colors.white)),
+                  );
+                }
+
+                List<dynamic> modes = snapshot.data!;
+
+                return ListView.builder(
+                  padding: const EdgeInsets.all(16),
+                  itemCount: modes.length,
+                  itemBuilder: (context, index) {
+                    String docId = modes[index]['id'];
+                    var sight = modes[index]['sights'].isNotEmpty
+                        ? modes[index]['sights'][0]
+                        : null;
+
+                    if (sight == null || !sight.containsKey('modeName')) 
+                      return const SizedBox();
+
+                    bool isEllaMode = sight['modeName'] == "Ella-Odyssey-Left" ||
+                        sight['modeName'] == "Ella-Odyssey-Right";
+
+                    return Container(
+                      margin: const EdgeInsets.only(bottom: 20),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Colors.white.withOpacity(0.05),
+                        border: Border.all(color: Colors.white.withOpacity(0.1)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            blurRadius: 10,
+                            spreadRadius: 2,
+                          ),
+                        ],
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+                          child: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  sight['modeName'] ?? 'No Name',
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                Text(
+                                  sight['modeDescription'] ?? 'No Description',
+                                  style: TextStyle(
+                                    color: Colors.white.withOpacity(0.7),
+                                    fontSize: 14,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                Text(
+                                  "Created by: ${sight['username'] ?? 'Unknown'}",
+                                  style: TextStyle(
+                                    color: Colors.white.withOpacity(0.5),
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                const SizedBox(height: 15),
+                                Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      _buildIconButton(
+                                        icon: Icons.visibility,
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => SsmView(
+                                                index: index,
+                                                docId: docId,
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                      if (!isEllaMode) const SizedBox(width: 15),
+                                      if (!isEllaMode)
+                                        _buildIconButton(
+                                          icon: Icons.play_arrow,
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) => SsmPlay(
+                                                  index: index,
+                                                  docId: docId,
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

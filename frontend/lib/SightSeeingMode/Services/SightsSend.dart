@@ -4,7 +4,7 @@ import 'package:practice/SightSeeingMode/models/sight.dart';
 
 //function to send sights to the backend
 Future<void> sendSights(List<Sight> sights) async {
-  final url = Uri.parse('http://192.168.226.212:8000/sights/');
+  final url = Uri.parse('http://192.168.125.74:8000/sights/');
   final headers = {'Content-Type': 'application/json'};
   final body = jsonEncode(sights
       .map((sight) => {

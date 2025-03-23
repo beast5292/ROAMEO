@@ -4,6 +4,8 @@ import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:practice/SightSeeingMode/Sightseeing_mode_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/services.dart'; // Add this import
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -96,7 +98,8 @@ class _HomePageState extends State<HomePage> {
               child: Align(
                 alignment: Alignment.center,
                 child: GestureDetector(
-                  onTap: () {
+                  onTap: () async{
+                    await HapticFeedback.heavyImpact();
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => SsmPage()),
@@ -192,23 +195,6 @@ class _HomePageState extends State<HomePage> {
                       GestureDetector(
                         onTap: () => print("Profile picture tapped"),
                         child: Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            boxShadow: [
-                              BoxShadow(
-                                color: const Color.fromARGB(255, 20, 52, 66)
-                                    .withOpacity(0.6),
-                                blurRadius: 5,
-                                spreadRadius: 20,
-                              ),
-                              BoxShadow(
-                                color: const Color.fromARGB(255, 149, 200, 243)
-                                    .withOpacity(0.2),
-                                blurRadius: 4,
-                                spreadRadius: 8,
-                              ),
-                            ],
-                          ),
                           child: CircleAvatar(
                             radius: 40,
                             backgroundImage: profileImageUrl != null

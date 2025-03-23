@@ -1,11 +1,10 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import 'package:practice/SightSeeingMode/Simulation/services/alertDialog.dart';
 
 //fetch all the sightseeing modes
 Future<List<dynamic>> fetchSights() async {
-  final response = await http.get(Uri.parse('http://192.168.226.212/sights/'));
+  final response = await http.get(Uri.parse('http://192.168.125.74:8000/sights/'));
 
   if (response.statusCode == 200) {
     final data = json.decode(response.body);
@@ -18,18 +17,18 @@ Future<List<dynamic>> fetchSights() async {
 //fetch sightseeing modes by docId
 Future<Map<String, dynamic>> fetchSightMode(String docId) async {
   final response =
-      await http.get(Uri.parse('http://192.168.226.212/sights/$docId'));
+      await http.get(Uri.parse('http://192.168.125.74:8000/sights/$docId'));
 
   if (response.statusCode == 200) {
     final data = json.decode(response.body);
     print("Recieved sight mode - ");
     print(data);
-    return data; //Returns the entire sight data including "id" and "sights"
+    return data; 
   } else {
     throw Exception('Failed to load sight mode');
   }
 }
 
 
-//fetch all the sights of sightseeing modes
+
 

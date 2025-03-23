@@ -34,7 +34,7 @@ void assignPoints(
   var destin = sights.last;
 
   // Get the waypoints (exclude the destination)
-  var waypointsList = sights.sublist(1, sights.length - 1);
+  var waypointsList = sights.sublist(0, sights.length - 1);
 
   // Set the state variables
   updateStateCallback(

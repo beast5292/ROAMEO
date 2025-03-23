@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:practice/detailPage/detail_page.dart';
+import 'package:practice/detailPage/location_model.dart';
 
 class ExplorePage extends StatefulWidget {
   const ExplorePage({super.key});
@@ -10,7 +12,8 @@ class ExplorePage extends StatefulWidget {
 class _ExplorePageState extends State<ExplorePage> {
   int _selectedIndex = 3; // Default active tab
   int _currentPage = 0;
-  final PageController _pageController = PageController(viewportFraction: 0.72); //adjust width of travel card
+  final PageController _pageController =
+      PageController(viewportFraction: 0.72); // Adjust card width
 
   final List<Map<String, dynamic>> travelCards = [
     {"name": "Galle", "image": "assets/images/Galle.png", "rating": 4.6},
@@ -33,7 +36,7 @@ class _ExplorePageState extends State<ExplorePage> {
   @override
   void initState() {
     super.initState();
-    _filteredTravelCards = List.from(travelCards); // Initialize with all cards
+    _filteredTravelCards = List.from(travelCards);
   }
 
   void _onNavBarItemTapped(int index) {
@@ -45,10 +48,8 @@ class _ExplorePageState extends State<ExplorePage> {
   void _filterTravelCards(String query) {
     setState(() {
       if (query.isEmpty) {
-        // If the search query is empty, show all travel cards
         _filteredTravelCards = List.from(travelCards);
       } else {
-        // Filter the travel cards based on the query
         _filteredTravelCards = travelCards
             .where((card) =>
                 card["name"].toLowerCase().contains(query.toLowerCase()))
@@ -60,21 +61,21 @@ class _ExplorePageState extends State<ExplorePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true, //Ensure the screen resizes when the keyboard appears
+      resizeToAvoidBottomInset: true, // Resize when keyboard appears
       backgroundColor: Colors.black,
       body: SafeArea(
-        child: SingleChildScrollView( //Make the screen scrollable
+        child: SingleChildScrollView( // Make the screen scrollable
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 20),
-
-              //Back Button & Search Bar 
+              // Back Button & Search Bar
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
                 child: Row(
                   children: [
-                    //Back Button 
+                    // Back Button
                     GestureDetector(
                       onTap: () {
                         Navigator.pop(context);
@@ -86,25 +87,26 @@ class _ExplorePageState extends State<ExplorePage> {
                           color: Colors.white.withOpacity(0.2),
                           borderRadius: BorderRadius.circular(25),
                         ),
-                        child: const Center( 
-                          child: Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 30),
+                        child: const Center(
+                          child: Icon(Icons.arrow_back_ios_new,
+                              color: Colors.white, size: 30),
                         ),
                       ),
                     ),
                     const SizedBox(width: 12),
-
-                    //Search Bar 
+                    // Search Bar
                     Expanded(
                       child: Container(
                         height: 60,
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.2), 
+                          color: Colors.white.withOpacity(0.2),
                           borderRadius: BorderRadius.circular(25),
                         ),
                         child: Row(
                           children: [
                             const SizedBox(width: 10),
-                            const Icon(Icons.search, color: Colors.white, size: 30),
+                            const Icon(Icons.search,
+                                color: Colors.white, size: 30),
                             const SizedBox(width: 10),
                             Expanded(
                               child: TextField(
@@ -117,9 +119,9 @@ class _ExplorePageState extends State<ExplorePage> {
                                     fontSize: 18,
                                   ),
                                 ),
-                                style: const TextStyle(color: Colors.white, fontSize: 18),
+                                style: const TextStyle(
+                                    color: Colors.white, fontSize: 18),
                                 onChanged: (query) {
-                                  // Call a method to filter the travel cards
                                   _filterTravelCards(query);
                                 },
                               ),
@@ -132,9 +134,10 @@ class _ExplorePageState extends State<ExplorePage> {
                 ),
               ),
 
-              //Category Chips
+              // Category Chips
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -145,48 +148,40 @@ class _ExplorePageState extends State<ExplorePage> {
                 ),
               ),
 
-              //Travel Cards with PageView
+              // Travel Cards with PageView
               const SizedBox(height: 40),
               SizedBox(
-                height: 451, //adjust travel card height
+                height: 451, // Adjust travel card height
                 child: PageView.builder(
                   controller: _pageController,
-                  itemCount: _filteredTravelCards.length, // Use filtered list
+                  itemCount: _filteredTravelCards.length,
                   onPageChanged: (index) {
                     setState(() {
                       _currentPage = index;
                     });
                   },
                   itemBuilder: (context, index) {
-                    final travel = _filteredTravelCards[index]; // Use filtered list
+                    final travel = _filteredTravelCards[index];
                     final isSelected = index == _currentPage;
 
                     return AnimatedOpacity(
                       duration: const Duration(milliseconds: 300),
                       opacity: isSelected ? 1.0 : 0.5,
                       child: TravelCard(
-                        name: travel["name"],
-                        imagePath: travel["image"],
-                        rating: travel["rating"],
+                        travel: travel,
                         isSelected: isSelected,
-                        onTap: () {
-                          setState(() {
-                            _currentPage = index;
-                          });
-                        },
                       ),
                     );
                   },
                 ),
               ),
-
-              const SizedBox(height: 40), 
+              const SizedBox(height: 40),
             ],
           ),
         ),
       ),
 
-      //Bottom Navigation Bar 
+      // Bottom Navigation Bar
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(bottom: 26.0),
         child: Container(
@@ -212,14 +207,14 @@ class _ExplorePageState extends State<ExplorePage> {
     );
   }
 
-  //Category Chip Widget
+  // Category Chip Widget
   Widget _buildCategoryChip(String text) {
     return GestureDetector(
       onTap: () => print("$text tapped"),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 12),
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.1), 
+          color: Colors.white.withOpacity(0.1),
           borderRadius: BorderRadius.circular(25),
         ),
         child: Text(
@@ -234,10 +229,10 @@ class _ExplorePageState extends State<ExplorePage> {
     );
   }
 
-  //Bottom Navigation Bar Icon Widget
+  // Bottom Navigation Bar Icon Widget
   Widget _buildNavIconWithImage(String iconPath, String activePath, int index) {
     bool isSelected = _selectedIndex == index;
-    double iconSize = (index == 2) ? 60 : 35; // AI icon larger size
+    double iconSize = (index == 2) ? 60 : 35;
 
     return GestureDetector(
       onTap: () => _onNavBarItemTapped(index),
@@ -255,48 +250,85 @@ class _ExplorePageState extends State<ExplorePage> {
   }
 }
 
-//TravelCard Component
+// TravelCard Component adjusted to pass location data to DetailPage
 class TravelCard extends StatelessWidget {
-  final String name;
-  final String imagePath;
-  final double rating;
+  final Map<String, dynamic> travel;
   final bool isSelected;
-  final VoidCallback onTap;
 
   const TravelCard({
-    required this.name,
-    required this.imagePath,
-    required this.rating,
-    required this.isSelected,
-    required this.onTap,
     Key? key,
+    required this.travel,
+    required this.isSelected,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {
+        // Create a Location object using travel card data
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DetailPage(
+              location: Location(
+                imageUrl: travel["image"],
+                name: travel["name"],
+                description: "Description for ${travel["name"]}",
+                rating: travel["rating"],
+              ),
+            ),
+          ),
+        );
+      },
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 10),
-        width: 220, 
+        width: 220,
         height: 320,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          image: DecorationImage(image: AssetImage(imagePath), fit: BoxFit.cover),
+          image: DecorationImage(
+            image: AssetImage(travel["image"]),
+            fit: BoxFit.cover,
+          ),
         ),
         child: Stack(
           children: [
-            Positioned(top: 25, left: 25, child: _buildRatingBadge(rating)),
-            Positioned(top: 25, right: 25, child: Icon(Icons.bookmark, color: Colors.white, size: 30)),
-            Positioned(bottom: 25, left: 25, child: _buildNameLabel(name)),
-            Positioned(bottom: 25, right: 25, child: Icon(Icons.arrow_forward_ios, color: Colors.white, size: 30)),
+            Positioned(
+              top: 25,
+              left: 25,
+              child: _buildRatingBadge(travel["rating"]),
+            ),
+            const Positioned(
+              top: 25,
+              right: 25,
+              child: Icon(Icons.bookmark, color: Colors.white, size: 30),
+            ),
+            Positioned(
+              bottom: 25,
+              left: 25,
+              child: _buildNameLabel(travel["name"]),
+            ),
+            const Positioned(
+              bottom: 25,
+              right: 25,
+              child: Icon(Icons.arrow_forward_ios,
+                  color: Colors.white, size: 30),
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildRatingBadge(double rating) => Container(padding: const EdgeInsets.all(6), decoration: BoxDecoration(color: Colors.amber, borderRadius: BorderRadius.circular(10)), child: Text("$rating ⭐", style: const TextStyle(color: Colors.black)));
+  Widget _buildRatingBadge(double rating) => Container(
+        padding: const EdgeInsets.all(6),
+        decoration: BoxDecoration(
+            color: Colors.amber, borderRadius: BorderRadius.circular(10)),
+        child: Text("$rating ⭐",
+            style: const TextStyle(color: Colors.black)),
+      );
 
-  Widget _buildNameLabel(String name) => Text(name, style: const TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold));
+  Widget _buildNameLabel(String name) => Text(name,
+      style: const TextStyle(
+          color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold));
 }

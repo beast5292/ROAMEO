@@ -60,21 +60,21 @@ class _ExplorePageState extends State<ExplorePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true, // Ensure the screen resizes when the keyboard appears
+      resizeToAvoidBottomInset: true, //Ensure the screen resizes when the keyboard appears
       backgroundColor: Colors.black,
       body: SafeArea(
-        child: SingleChildScrollView( // Make the screen scrollable
+        child: SingleChildScrollView( //Make the screen scrollable
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 20),
 
-              //  Back Button & Search Bar 
+              //Back Button & Search Bar 
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
                 child: Row(
                   children: [
-                    //  Back Button 
+                    //Back Button 
                     GestureDetector(
                       onTap: () {
                         print("Back button tapped");
@@ -93,7 +93,7 @@ class _ExplorePageState extends State<ExplorePage> {
                     ),
                     const SizedBox(width: 12),
 
-                    //  Search Bar 
+                    //Search Bar 
                     Expanded(
                       child: Container(
                         height: 60,
@@ -132,7 +132,7 @@ class _ExplorePageState extends State<ExplorePage> {
                 ),
               ),
 
-              //  Category Chips
+              //Category Chips
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
                 child: Row(
@@ -145,7 +145,7 @@ class _ExplorePageState extends State<ExplorePage> {
                 ),
               ),
 
-              // Travel Cards with PageView
+              //Travel Cards with PageView
               const SizedBox(height: 40),
               SizedBox(
                 height: 451, //adjust travel card height
@@ -186,7 +186,7 @@ class _ExplorePageState extends State<ExplorePage> {
         ),
       ),
 
-      // Bottom Navigation Bar 
+      //Bottom Navigation Bar 
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(bottom: 26.0),
         child: Container(
@@ -207,7 +207,7 @@ class _ExplorePageState extends State<ExplorePage> {
     );
   }
 
-  //  Category Chip Widget
+  //Category Chip Widget
   Widget _buildCategoryChip(String text) {
     return GestureDetector(
       onTap: () => print("$text tapped"),
@@ -229,7 +229,7 @@ class _ExplorePageState extends State<ExplorePage> {
     );
   }
 
-  // Bottom Navigation Bar Icon Widget
+  //Bottom Navigation Bar Icon Widget
   Widget _buildNavIconWithImage(String iconPath, String activePath, int index) {
     bool isSelected = _selectedIndex == index;
     double iconSize = (index == 2) ? 60 : 35; // AI icon larger size
@@ -250,7 +250,7 @@ class _ExplorePageState extends State<ExplorePage> {
   }
 }
 
-// TravelCard Component
+//TravelCard Component
 class TravelCard extends StatelessWidget {
   final String name;
   final String imagePath;

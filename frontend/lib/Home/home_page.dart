@@ -4,7 +4,8 @@ import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:practice/SightSeeingMode/Sightseeing_mode_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/services.dart'; // Add this import
+import 'package:flutter/services.dart';
+import 'package:practice/explore_page/explore_page.dart'; // Add this import
 
 
 class HomePage extends StatefulWidget {
@@ -293,7 +294,12 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildGlassSearchIcon() {
     return GestureDetector(
-      onTap: () => print("Search button tapped"),
+      onTap: () {
+        Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ExplorePage()),  
+        );
+      },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 15, vertical: 9),
         decoration: BoxDecoration(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:practice/pages/Account_Setup_Page.dart';
+import 'package:practice/pages/SignUp_Page.dart';
 
 class OpeningScreen extends StatelessWidget {
   const OpeningScreen({super.key});
@@ -32,7 +32,7 @@ class OpeningScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const SetupAccountPage(),
+                      builder: (context) => SignUpPage(),
                     ),
                   );
                 },

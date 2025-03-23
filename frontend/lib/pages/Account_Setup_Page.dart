@@ -7,6 +7,7 @@ import 'Register_Completion_Page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
+// Stateful widget to setting up user account
 class SetupAccountPage extends StatefulWidget {
   const SetupAccountPage({super.key});
 
@@ -15,23 +16,26 @@ class SetupAccountPage extends StatefulWidget {
 }
 
 class _SetupAccountPageState extends State<SetupAccountPage> {
-  File? _image;
-  final ImagePicker _picker = ImagePicker();
-  final FirebaseStorage _storage = FirebaseStorage.instance;
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
-  bool _isLoading = false;
-  String? userEmail;
+  File? _image; // Stores selected image
+  final ImagePicker _picker = ImagePicker(); // Image picker
+  final FirebaseStorage _storage = FirebaseStorage.instance; // Firebase storage
+  final FirebaseFirestore _firestore =
+      FirebaseFirestore.instance; // Firebase Firestore
+  final FlutterSecureStorage _secureStorage =
+      const FlutterSecureStorage(); // Secure storage
+  bool _isLoading = false; // Loading state indicator
+  String? userEmail; // Thsi is where user email is stored
 
   @override
   void initState() {
     super.initState();
-    _loadUserEmail();
+    _loadUserEmail(); //  Load user email
   }
 
   /// Load user email from secure storage
   Future<void> _loadUserEmail() async {
-    final String? email = await _secureStorage.read(key: 'user_email');
+    final String? email =
+        await _secureStorage.read(key: 'user_email'); // Fetch user email
     debugPrint("Stored user email: $email");
     setState(() {
       userEmail = email;
@@ -47,7 +51,7 @@ class _SetupAccountPageState extends State<SetupAccountPage> {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
-        _image = File(pickedFile.path);
+        _image = File(pickedFile.path); // Store the selected image
       });
     }
   }
@@ -55,7 +59,8 @@ class _SetupAccountPageState extends State<SetupAccountPage> {
   /// Upload image to Firebase Storage and update Firestore
   Future<void> _uploadImage() async {
     if (_image == null) {
-      _showSnackBar('Please select an image');
+      _showSnackBar(
+          'Please select an image'); // Error message to if image is not selected
       return;
     }
     if (userEmail == null) {
@@ -63,33 +68,39 @@ class _SetupAccountPageState extends State<SetupAccountPage> {
       return;
     }
 
-    setState(() => _isLoading = true);
+    setState(() => _isLoading = true); // Loading indicator
 
     try {
-      final String fileName = 'profile_$userEmail.jpg';
-      final Reference storageRef =
-          _storage.ref().child('profile_images/$fileName');
-      await storageRef.putFile(_image!);
-      final String downloadURL = await storageRef.getDownloadURL();
+      final String fileName = 'profile_$userEmail.jpg'; // Set image file name
+      final Reference storageRef = _storage
+          .ref()
+          .child('profile_images/$fileName'); // Firebase storage reference
+      await storageRef.putFile(_image!); // Upload image to firebase
+      final String downloadURL =
+          await storageRef.getDownloadURL(); // Get uploaded image URL
 
       DocumentReference userDoc = _firestore.collection('users').doc(userEmail);
       DocumentSnapshot docSnapshot = await userDoc.get();
 
       if (docSnapshot.exists) {
-        await userDoc.update({'profileImage': downloadURL});
+        await userDoc
+            .update({'profileImage': downloadURL}); // Update profile image URL
       } else {
-        await userDoc.set({'profileImage': downloadURL});
+        await userDoc.set({
+          'profileImage': downloadURL
+        }); //  Create new user document(with profile image)
       }
 
+      // Navigate to Registration Completion Page
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => RegistrationCompletePage()),
       );
     } catch (e) {
       debugPrint("Error uploading image: $e");
-      _showSnackBar('Error: $e');
+      _showSnackBar('Error: $e'); // Error message
     } finally {
-      setState(() => _isLoading = false);
+      setState(() => _isLoading = false); // Hide loading indicator
     }
   }
 
@@ -146,7 +157,7 @@ class _SetupAccountPageState extends State<SetupAccountPage> {
               // Create Account Button
               Center(
                 child: ElevatedButton(
-                  onPressed: _isLoading ? null : _uploadImage,
+                  onPressed: _isLoading ? null : _uploadImage, // button disable
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF02202E),
                     padding: const EdgeInsets.symmetric(
@@ -155,7 +166,8 @@ class _SetupAccountPageState extends State<SetupAccountPage> {
                         borderRadius: BorderRadius.circular(10)),
                   ),
                   child: _isLoading
-                      ? const CircularProgressIndicator(color: Colors.white)
+                      ? const CircularProgressIndicator(
+                          color: Colors.white) // Loadng spinner
                       : const Text(
                           "Create account",
                           style: TextStyle(
@@ -184,6 +196,8 @@ class _SetupAccountPageState extends State<SetupAccountPage> {
                 : const AssetImage('assets/profile_placeholder.png')
                     as ImageProvider,
           ),
+
+          // Camera icon
           Positioned(
             bottom: 0,
             right: 0,

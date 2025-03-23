@@ -13,65 +13,77 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  // Form key for validation
   final _formKey = GlobalKey<FormState>();
+
+  // Text editing controllers
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  bool _isLoading = false;
-  final storage = FlutterSecureStorage();
 
+  // Loading state
+  bool _isLoading = false;
+  final storage = FlutterSecureStorage(); // Store authentication token
+
+  // User login process
   Future<void> _login() async {
     if (!_formKey.currentState!.validate()) {
       return; // Stops login if fields are invalid
     }
 
-    setState(() => _isLoading = true);
+    setState(() => _isLoading = true); // Loading animation
 
-    final url = Uri.parse('https://roameo-449418.uc.r.appspot.com/login');
+    final url = Uri.parse(
+        'https://roameo-449418.uc.r.appspot.com/login'); // API endpoint for login
     final requestBody = {
       "email": _emailController.text.trim(),
       "password": _passwordController.text,
-    };
+    }; // Request body for login
 
     try {
+      // HTTP POST request to login endpoint
       final response = await http.post(
         url,
         headers: {"Content-Type": "application/json"},
         body: jsonEncode(requestBody),
       );
 
+      // Decode JSON body
       final responseBody = Map<String, dynamic>.from(jsonDecode(response.body));
 
       if (response.statusCode == 200) {
+        // Store JWT token(secured)
         await storage.write(key: 'jwt_token', value: responseBody["token"]);
 
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Login successful!')),
-        );
+        ); // Success message
 
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => HomePage()),
-        );
+        ); // Navigate to home
       } else if (response.statusCode == 401) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Token expired. Please sign up again.')),
-        );
+        ); // Handle token expiration
 
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => SignUpPage()),
-        );
+        ); // Redirect to signup
       } else {
+        // Invalid login handling
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
               content: Text(responseBody["detail"] ?? "Invalid credentials")),
         );
       }
     } catch (_) {
+      // Handle connection errors
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Error: Unable to connect to the server')),
       );
     }
 
-    setState(() => _isLoading = false);
+    setState(() => _isLoading = false); // Stop loading animation
   }
 
   @override
@@ -85,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
           child: Padding(
             padding: const EdgeInsets.all(18.0),
             child: Form(
-              key: _formKey, // Added Form key
+              key: _formKey, // Form key
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -208,7 +220,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  // Reusable method for text fields with error handling
+  // text fields with error handling
   Widget _buildTextField({
     required IconData icon,
     required String hintText,

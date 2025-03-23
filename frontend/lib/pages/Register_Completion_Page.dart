@@ -25,7 +25,7 @@ class _RegistrationCompletePageState extends State<RegistrationCompletePage> {
     _fetchUserDataFuture = _fetchUserData();
   }
 
-  /// Fetch user data from API and Firestore
+  // Fetch user data from API and Firestore
   Future<void> _fetchUserData() async {
     try {
       final String? token = await _secureStorage.read(key: 'jwt_token');
@@ -43,11 +43,13 @@ class _RegistrationCompletePageState extends State<RegistrationCompletePage> {
         final responseBody = jsonDecode(response.body);
         final userEmail = responseBody["user"]["email"];
 
+        // Fetch user data from Firestore
         final DocumentSnapshot userDoc =
             await _firestore.collection('users').doc(userEmail).get();
         if (!userDoc.exists)
           throw Exception('User data not found in Firestore');
 
+        // Update state with fetched data
         setState(() {
           _username = responseBody["user"]["username"];
           _profileImageUrl = userDoc['profileImage'];
@@ -60,7 +62,7 @@ class _RegistrationCompletePageState extends State<RegistrationCompletePage> {
     }
   }
 
-  /// Show snackbar message
+  // Show snackbar message
   void _showSnackBar(String message) {
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(message)));
@@ -96,7 +98,7 @@ class _RegistrationCompletePageState extends State<RegistrationCompletePage> {
     );
   }
 
-  /// Title Section
+  // Title Section
   Widget _buildTitleSection() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,7 +123,7 @@ class _RegistrationCompletePageState extends State<RegistrationCompletePage> {
     );
   }
 
-  /// Profile Image Section
+  // Profile Image Section
   Widget _buildProfileImage() {
     return Center(
       child: Stack(
@@ -156,7 +158,7 @@ class _RegistrationCompletePageState extends State<RegistrationCompletePage> {
     );
   }
 
-  /// Username Display
+  // Username Display
   Widget _buildUsernameText() {
     return Center(
       child: _username == null
@@ -171,7 +173,7 @@ class _RegistrationCompletePageState extends State<RegistrationCompletePage> {
     );
   }
 
-  /// Explore Button
+  // Explore Button
   Widget _buildExploreButton() {
     return Center(
       child: ElevatedButton(

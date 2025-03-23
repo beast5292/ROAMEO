@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import './sign_up_page.dart';
+import './SignUp_Page.dart';
 import './setup_account_page.dart';
 import '../Home/home_page.dart';
 

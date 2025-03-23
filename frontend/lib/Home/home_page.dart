@@ -6,7 +6,6 @@ import 'package:practice/SightSeeingMode/Sightseeing_mode_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart'; // Add this import
 
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -36,7 +35,7 @@ class _HomePageState extends State<HomePage> {
         return;
       }
 
-      final url = Uri.parse('https://roameo-449418.uc.r.appspot.com/user');
+      final url = Uri.parse('http://192.168.100.14:8000/user');
       final response = await http.get(
         url,
         headers: {
@@ -98,7 +97,7 @@ class _HomePageState extends State<HomePage> {
               child: Align(
                 alignment: Alignment.center,
                 child: GestureDetector(
-                  onTap: () async{
+                  onTap: () async {
                     await HapticFeedback.heavyImpact();
                     Navigator.push(
                       context,

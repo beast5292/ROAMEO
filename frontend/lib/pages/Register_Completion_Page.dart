@@ -32,7 +32,7 @@ class _RegistrationCompletePageState extends State<RegistrationCompletePage> {
       if (token == null) throw Exception('No token found');
 
       final response = await http.get(
-        Uri.parse('https://roameo-449418.uc.r.appspot.com/user'),
+        Uri.parse('http://192.168.100.14:8000/user'),
         headers: {
           "Content-Type": "application/json",
           "Authorization": "Bearer $token"

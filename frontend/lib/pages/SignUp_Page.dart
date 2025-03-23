@@ -32,7 +32,8 @@ class _SignUpPageState extends State<SignUpPage> {
 
     setState(() => _isLoading = true);
 
-    final url = Uri.parse('http://172.27.8.92:8000/signup'); // API endpoint URL
+    final url =
+        Uri.parse('http://192.168.100.14:8000/signup'); // API endpoint URL
 
     // Prepare request body
     final requestBody = jsonEncode({

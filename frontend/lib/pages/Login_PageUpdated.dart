@@ -32,8 +32,8 @@ class _LoginPageState extends State<LoginPage> {
 
     setState(() => _isLoading = true); // Loading animation
 
-    final url = Uri.parse(
-        'https://roameo-449418.uc.r.appspot.com/login'); // API endpoint for login
+    final url =
+        Uri.parse('http://192.168.100.14:8000/login'); // API endpoint for login
     final requestBody = {
       "email": _emailController.text.trim(),
       "password": _passwordController.text,

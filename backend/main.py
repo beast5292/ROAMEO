@@ -16,7 +16,7 @@ import os
 from firebase_admin import credentials
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Get current file directory
-cred_path = os.path.join(BASE_DIR, 'private_key', 'roameo-f3ab0-firebase-adminsdk-ss40k-c7cb888b61.json')
+cred_path = os.path.join(BASE_DIR, 'private_key', 'roameo-f3ab0-firebase-adminsdk-ss40k-4cb207715c.json')
 
 cred = credentials.Certificate(cred_path)
 

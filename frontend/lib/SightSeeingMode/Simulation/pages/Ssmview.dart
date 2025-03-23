@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +37,10 @@ class SsmView extends StatefulWidget {
 }
 
 class SsmViewState extends State<SsmView> {
+  //map styles 
+  String _mapStyle= "";
+  //animation duration 
+  final Duration _animationDuration = const Duration(milliseconds: 300);
   //api key
   final apiKey = dotenv.env['GOOGLE_MAPS_API_KEY'];
 
@@ -106,6 +111,9 @@ class SsmViewState extends State<SsmView> {
 
   //current point detais
   Map<String, dynamic>? currentpointDetails;
+
+  //polylyline variables 
+  bool isFetchingPolyline = false;
 
   // Method to reset static variables
   void resetStaticVariables() {
@@ -183,70 +191,61 @@ class SsmViewState extends State<SsmView> {
   }
 
   //function to get the polypoints
-  void getPolyPoints() async {
-    //new polyline object (polyline)
-    PolylinePoints polylinePoints = PolylinePoints();
+void getPolyPoints() async {
+  if (isFetchingPolyline) return;
+  isFetchingPolyline = true;
 
-    //clear exsiting polylines
-    polylineCoordinates.clear();
+  if (sourceLocation == null || destination == null) {
+    print("Source or destination is null. Cannot fetch polyline.");
+    isFetchingPolyline = false;
+    return;
+  }
 
-    //Define waypoints excluding reached ones
-    activeWaypoints = waypoints
-        .where((wp) =>
-            !reachedWaypoints.contains(wp)) //Filter out reached waypoints
-        .map((wp) => PolylineWayPoint(
-              location: "${wp.latitude},${wp.longitude}",
-            ))
-        .toList();
+  PolylinePoints polylinePoints = PolylinePoints();
+  polylineCoordinates.clear();
 
-    // var alertMessage3 = activeWaypoints[0].toString();
+  activeWaypoints = waypoints
+      .where((wp) => !reachedWaypoints.contains(wp))
+      .map((wp) => PolylineWayPoint(location: "${wp.latitude},${wp.longitude}"))
+      .toList();
 
-    // showAlertDialog2(alertMessage3);
+  var sightModeFirst = sightMode!['sights'][0];
+  String sightModeName = sightModeFirst['modeName'];
 
-    var sightModeFirst = sightMode!['sights'][0];
-
-    String sightModeName = sightModeFirst['modeName'];
-
-    showAlertDialog2(context, sightModeName);
-
-    //if name is ella display the ella route points
-    if (sightModeName == "Ella-Odyssey-Left" ||
-        sightModeName == "Ella-Odyssey-Right") {
-      showAlertDialog2(context, EllaroutePoints.toString());
-      setState(() {
-        polylineCoordinates = [...EllaroutePoints];
-      });
-      // showAlertDialog2(context, polylineCoordinates.toString());
-    } else {
-      //receieve polylines using getRoutebetween function of directions api
+  if (sightModeName == "Ella-Odyssey-Left" || sightModeName == "Ella-Odyssey-Right") {
+    setState(() {
+      polylineCoordinates = [...EllaroutePoints];
+    });
+  } else {
+    try {
       PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-          apiKey!,
-          PointLatLng(sourceLocation!.latitude, sourceLocation!.longitude),
-          PointLatLng(destination!.latitude, destination!.longitude),
-          travelMode: TravelMode.driving,
-          wayPoints: activeWaypoints,
-          optimizeWaypoints: true);
+        apiKey!,
+        PointLatLng(sourceLocation!.latitude, sourceLocation!.longitude),
+        PointLatLng(destination!.latitude, destination!.longitude),
+        travelMode: TravelMode.driving,
+        wayPoints: activeWaypoints,
+        optimizeWaypoints: true,
+      );
 
-      //if the results are not empty add the co-ordinates to the polylineCoordinates array containing lat and lang points
       if (result.points.isNotEmpty) {
         List<LatLng> routePoints = [];
         for (var point in result.points) {
           routePoints.add(LatLng(point.latitude, point.longitude));
         }
 
-        var alertMessage3 = routePoints.toString();
-
         setState(() {
           polylineCoordinates = routePoints;
         });
-
-        // showAlertDialog2(alertMessage3);
-
-        //Snap the route coordinates to the nearest road
-        // await snapToRoads(routePoints);
+      } else {
+        print("No points returned from the API.");
       }
+    } catch (e) {
+      print("Error fetching polyline: $e");
     }
   }
+
+  isFetchingPolyline = false;
+}
   //call set state which has many functions
   // setState(() {});
 
@@ -355,67 +354,102 @@ class SsmViewState extends State<SsmView> {
     }
   }
 
-  // Function to add markers for waypoints and destination
-  void addMarkers() {
-    markers.clear();
+ // Function to add markers for waypoints and destination
+void addMarkers() {
+  markers.clear();
 
-    // Ensure sightMode and sights are not null or empty
-    if (sightMode == null ||
-        sightMode!['sights'] == null ||
-        sightMode!['sights'].isEmpty) {
-      showAlertDialog2(context, "No sights available to display markers.");
-      return;
-    }
+  // Ensure sightMode and sights are not null or empty
+  if (sightMode == null ||
+      sightMode!['sights'] == null ||
+      sightMode!['sights'].isEmpty) {
+    showAlertDialog2(context, "No sights available to display markers.");
+    return;
+  }
 
-    List<dynamic> sights = sightMode!['sights'];
+  List<dynamic> sights = sightMode!['sights'];
 
-    // Add markers for waypoints
-    for (int i = 0; i < sights.length - 1; i++) {
-      // Exclude the last element (destination)
-      var waypoint = sights[i];
-
-      markers.add(
-        Marker(
-          markerId: MarkerId('waypoint_$i'),
-          position: LatLng(waypoint['lat'], waypoint['long']),
-          infoWindow: InfoWindow(title: waypoint['description']),
-          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
-          onTap: () {
-            setState(() {
-              showDestinationInfo = true;
-              currentpointDetails = waypoint;
-            });
-          },
-        ),
-      );
-    }
-
-    // Add marker for destination
-    var destinationDetails = sights.last; // Last element is the destination
-    int destinationId = sights.length - 1; // Correct index for the destination
+  // Add markers for waypoints
+  for (int i = 0; i < sights.length - 1; i++) {
+    // Exclude the last element (destination)
+    var waypoint = sights[i];
 
     markers.add(
       Marker(
-        markerId: MarkerId('destination_$destinationId'),
-        position: LatLng(destinationDetails['lat'], destinationDetails['long']),
-        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
-        onTap: () {
+        markerId: MarkerId('waypoint_$i'),
+        position: LatLng(waypoint['lat'], waypoint['long']),
+        infoWindow: InfoWindow(title: waypoint['description']),
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+        onTap: () async {
+          // Zoom in on the tapped marker
+          final GoogleMapController controller = await _controller.future;
+          controller.animateCamera(
+            CameraUpdate.newCameraPosition(
+              CameraPosition(
+                target: LatLng(waypoint['lat'], waypoint['long']), // Use waypoint coordinates
+                zoom: 18, // Adjust the zoom level as needed
+              ),
+            ),
+          );
+
           setState(() {
             showDestinationInfo = true;
-            currentpointDetails = destinationDetails;
+            currentpointDetails = waypoint;
           });
         },
       ),
     );
-
-    // Log markers for debugging
-    print("Markers added: ${markers.length}");
   }
 
-  //init state
+  // Add marker for destination
+  var destinationDetails = sights.last; // Last element is the destination
+  int destinationId = sights.length - 1; // Correct index for the destination
+
+  markers.add(
+    Marker(
+      markerId: MarkerId('destination_$destinationId'),
+      position: LatLng(destinationDetails['lat'], destinationDetails['long']),
+      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+      onTap: () async {
+        // Zoom in on the tapped marker
+        final GoogleMapController controller = await _controller.future;
+        controller.animateCamera(
+          CameraUpdate.newCameraPosition(
+            CameraPosition(
+              target: LatLng(destinationDetails['lat'], destinationDetails['long']), // Use destination coordinates
+              zoom: 18, // Adjust the zoom level as needed
+            ),
+          ),
+        );
+
+        setState(() {
+          showDestinationInfo = true;
+          currentpointDetails = destinationDetails;
+        });
+      },
+    ),
+  );
+
+  // Log markers for debugging
+  print("Markers added: ${markers.length}");
+}
+
+
+   //init state
   @override
   void initState() {
     super.initState();
+    
+    // Load map style
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      DefaultAssetBundle.of(context)
+          .loadString('assets/map_styles/dark_mode.json')
+          .then((string) {
+        setState(() {
+          _mapStyle = string;
+        });
+      });
+    });
+    
     // Fetch sight mode data
     fetchSightMode(widget.docId).then((data) {
       setState(() {
@@ -435,171 +469,226 @@ class SsmViewState extends State<SsmView> {
       print("Error fetching sight mode: $error");
     });
     getCurrentLocation();
-    // setCustomMarkerIcon();
-    // getPolyPoints();
     getDistanceAndDuration();
   }
 
-  //Function to add markers for waypoints and destination
-  @override
-  Widget build(BuildContext context) {
-    if (isLoading) {
-      return Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
-    }
-
-    if (sightMode == null) {
-      return Scaffold(
-        body: Center(
-          child: Text("Failed to load sight mode data."),
-        ),
-      );
-    }
-
-    // Show loading indicator until sourceLocation and destination are initialized
-    if (!isDataLoaded || sourceLocation == null || destination == null) {
-      print("Data not fully loaded - showing progress indicator");
-      return Scaffold(
-        body: Center(
+@override
+Widget build(BuildContext context) {
+  if (isLoading) {
+    return Scaffold(
+      body: Container(
+        decoration: const BoxDecoration(color: Color(0xFF030A0E)),
+        child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CircularProgressIndicator(), // Loading indicator
-              SizedBox(height: 20), // Spacing
-              // Show details if available
+              _buildLoadingIndicator(),
+              const SizedBox(height: 20),
+              const Text(
+                "Loading Route Preview",
+                style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  if (sightMode == null) {
+    return Scaffold(
+      body: Container(
+        decoration: const BoxDecoration(color: Color(0xFF030A0E)),
+        child: Center(
+          child: Text(
+            "Failed to load sight mode data.",
+            style: TextStyle(color: Colors.white.withOpacity(0.8)),
+          ),
+        ),
+      ),
+    );
+  }
+
+  // Show loading indicator until sourceLocation and destination are initialized
+  if (!isDataLoaded || sourceLocation == null || destination == null) {
+    return Scaffold(
+      body: Container(
+        decoration: const BoxDecoration(color: Color(0xFF030A0E)),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _buildLoadingIndicator(),
+              const SizedBox(height: 20),
               Column(
                 children: [
-                  Text("Source Location: ${sourceLocation ?? "Loading..."}"),
-                  Text("Destination: ${destination ?? "Loading..."}"),
                   Text(
-                      "Waypoints: ${waypoints.isNotEmpty ? waypoints : "Loading..."}"),
-                  Text("isDataLoaded: $isDataLoaded"),
+                    "Source Location: ${sourceLocation ?? "Loading..."}",
+                    style: TextStyle(color: Colors.white.withOpacity(0.8)),
+                  ),
+                  Text(
+                    "Destination: ${destination ?? "Loading..."}",
+                    style: TextStyle(color: Colors.white.withOpacity(0.8)),
+                  ),
                 ],
               ),
             ],
           ),
         ),
-      );
-    }
+      ),
+    );
+  }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Sightseeing mode",
-          style: TextStyle(color: Colors.black, fontSize: 16),
+  return Scaffold(
+    extendBodyBehindAppBar: true,
+    appBar: AppBar(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      leading: Container(
+        margin: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: Colors.black.withOpacity(0.5),
+          shape: BoxShape.circle,
+        ),
+        child: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.pop(context),
         ),
       ),
-      body: Stack(
-        children: [
-          GestureDetector(
-            onTap: () {
-              // Hide the destination info box when tapping elsewhere on the map
-              setState(() {
-                showDestinationInfo = false;
-              });
-            },
-            child: currentLocation == null
-                ? const Center(child: Text("Loading"))
-                : GoogleMap(
-                    initialCameraPosition: CameraPosition(
-                      target: LatLng(currentLocation!.latitude!,
-                          currentLocation!.longitude!),
-                      zoom: 13.5,
-                    ),
-                    markers: markers,
-                    polylines: {
-                      Polyline(
-                        polylineId: PolylineId("route"),
-                        points: polylineCoordinates,
-                        color: Colors.lightBlue,
-                        width: 6,
-                        zIndex: -1,
-                      )
-                    },
-                    onMapCreated: (mapController) {
-                      _controller.complete(mapController);
-                    },
-                  ),
+      title: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        decoration: BoxDecoration(
+          color: Colors.black.withOpacity(0.5),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: const Text(
+          "Route Preview",
+          style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500),
+        ),
+      ),
+      centerTitle: true,
+    ),
+    body: Stack(
+      children: [
+        GoogleMap(
+          initialCameraPosition: CameraPosition(
+            target: sourceLocation!, // Center map on the source location
+            zoom: 16, // Adjust zoom level for better visibility
           ),
-          if (showDestinationInfo && currentpointDetails != null)
-            Positioned(
-              top: 100, // Adjust this value to position the box correctly
-              left: 20, // Adjust this value to position the box correctly
-              child: GestureDetector(
-                onTap: () {
-                  // Prevent the box from disappearing when tapping on it
-                  // Do nothing here
+          markers: markers, // Display markers for waypoints and destination
+          polylines: {
+            Polyline(
+              polylineId: const PolylineId("route"),
+              points: polylineCoordinates, // Display the route
+              color: Colors.lightBlue, // Route color
+              width: 6, // Route thickness
+            ),
+          },
+          onMapCreated: (mapController) {
+            _controller.complete(mapController); // Initialize map controller
+            mapController.setMapStyle(_mapStyle); // Apply the dark mode style
+          },
+          onTap: (_) {
+            setState(() {
+              showDestinationInfo = false; // Hide info on map tap
+            });
+          },
+        ),
+        Positioned(
+          bottom: 30,
+          left: 20,
+          right: 20,
+          child: _buildGlassPanel(
+            child: Column(
+              children: [
+                _buildInfoRow('Total Distance', distance),
+                _buildInfoRow('Estimated Duration', duration),
+              ],
+            ),
+          ),
+        ),
+        if (showDestinationInfo && currentpointDetails != null)
+          AnimatedPositioned(
+            duration: _animationDuration,
+            top: kToolbarHeight + 20,
+            left: 20,
+            right: 190,
+            child: AnimatedOpacity(
+              duration: _animationDuration,
+              opacity: showDestinationInfo ? 1.0 : 0.0,
+              child: DestinationInfoBox(
+                name: currentpointDetails!['name'],
+                description: currentpointDetails!['description'],
+                imageurl: currentpointDetails!['imageUrls'][0],
+                onClose: () {
+                  setState(() {
+                    showDestinationInfo = false; // Hide info box on close
+                  });
                 },
-                child: DestinationInfoBox(
-                    name: currentpointDetails!['name'],
-                    description: currentpointDetails!['description'],
-                    imageurl: currentpointDetails!['imageUrls'][0]),
-              ),
-            ),
-          Positioned(
-            bottom: 10,
-            left: 0,
-            child: Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 4,
-                    offset: Offset(2, 2),
-                  ),
-                ],
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    _connectionStatus,
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  Text("Distance: $distance", style: TextStyle(fontSize: 16)),
-                  Text("Duration: $duration", style: TextStyle(fontSize: 16)),
-                  Divider(),
-                  Text("Waypoint Distance: $waypointDistance",
-                      style: TextStyle(fontSize: 16, color: Colors.blue)),
-                  Text("Waypoint Duration: $waypointDuration",
-                      style: TextStyle(fontSize: 16, color: Colors.blue)),
-                ],
               ),
             ),
           ),
-          Positioned(
-            bottom:
-                750, //You can adjust the position to not overlap with the other widget
-            left: 0,
-            right: 20,
-            child: Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 4,
-                    offset: Offset(2, 2),
-                  ),
-                ],
-              ),
-              child: Text(
-                navigationSteps.isNotEmpty &&
-                        currentStepIndex < navigationSteps.length
-                    ? "${navigationSteps[currentStepIndex]['instruction']} in ${navigationSteps[currentStepIndex]['distance'].toInt()}m"
-                    : "Arrived at destination",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
+      ],
+    ),
+  );
+}
+
+  Widget _buildLoadingIndicator() {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.black.withOpacity(0.4),
+        borderRadius: BorderRadius.circular(15),
+        border: Border.all(color: Colors.white.withOpacity(0.1)),
+      ),
+      child: const Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            width: 40,
+            height: 40,
+            child: CircularProgressIndicator(
+              strokeWidth: 3,
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.lightBlue),
             ),
-          )
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildGlassPanel({required Widget child}) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(15),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: Colors.black.withOpacity(0.4),
+            borderRadius: BorderRadius.circular(15),
+            border: Border.all(color: Colors.white.withOpacity(0.1)),
+          ),
+          child: child,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildInfoRow(String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            label,
+            style: TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 14),
+          ),
+          Text(
+            value,
+            style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
+          ),
         ],
       ),
     );

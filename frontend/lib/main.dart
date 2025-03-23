@@ -16,7 +16,6 @@ void main() async {
   await Firebase.initializeApp();
 
   await dotenv.load(fileName: ".env");
-
   //providers
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => SelectedImageProvider()),
@@ -32,7 +31,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: OpeningScreen(),
+      home: HomePage(),
     );
   }
 }

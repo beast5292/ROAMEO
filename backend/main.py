@@ -187,9 +187,6 @@ async def get_user(credentials: HTTPAuthorizationCredentials = Depends(security)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-
-# ADDED------------------------------------------------------
-
 # Search Sightseeing modes by ModeName
 @app.get("/search")
 async def search_sights(query: str = Query ):

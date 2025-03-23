@@ -5,7 +5,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../Home/home_page.dart';
 import 'Login_PageUpdated.dart';
 import 'open_page.dart';
-import './setup_account_page.dart';
+import './Account_Setup_Page.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});

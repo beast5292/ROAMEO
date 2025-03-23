@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:practice/pages/Account_Setup_Page.dart';
 import 'package:practice/pages/setup_account_page.dart';
-import 'SignUp_Page.dart';
 
 class OpeningScreen extends StatelessWidget {
   const OpeningScreen({super.key});
@@ -8,56 +8,55 @@ class OpeningScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF020C0E), // Dark background color
+      backgroundColor: const Color(0xFF020C0E),
       body: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(height: 90),
+        child: Column(
+          children: [
+            const Spacer(flex: 3),
 
-              // Logo with motto
-              Image.asset(
+            // Logo with motto
+            Center(
+              child: Image.asset(
                 'assets/images/Logo&motto.png',
-                width: 300,
-                height: 250,
+                width: 280,
+                height: 230,
               ),
-              const SizedBox(height: 180), // Space between logo and button
+            ),
 
-              // Glowing button
-              GestureDetector(
-                onTap: () {
-                  // Navigate to the Register page
+            const Spacer(flex: 5),
+
+            // Glowing Button with ElevatedButton
+            Align(
+              alignment: Alignment.center,
+              child: ElevatedButton(
+                onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => SetupAccountPage(),
+                      builder: (context) => const SetupAccountPage(),
                     ),
                   );
                 },
-                child: Container(
-                  width: 70,
-                  height: 70,
-                  decoration: BoxDecoration(
-                    color: const Color.fromRGBO(68, 202, 233, 1),
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color.fromRGBO(43, 169, 198, 1).withOpacity(0.6),
-                        blurRadius: 10,
-                        spreadRadius: 2,
-                      ),
-                    ],
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
                   ),
-                  child: const Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    color: Colors.white,
-                    size: 35,
-                  ),
+                  backgroundColor: const Color.fromRGBO(68, 202, 233, 1),
+                  padding: const EdgeInsets.all(18),
+                  elevation: 10,
+                  shadowColor:
+                      const Color.fromRGBO(43, 169, 198, 1).withOpacity(0.6),
+                ),
+                child: const Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  color: Colors.white,
+                  size: 35,
                 ),
               ),
-            ],
-          ),
+            ),
+
+            const Spacer(flex: 3),
+          ],
         ),
       ),
     );

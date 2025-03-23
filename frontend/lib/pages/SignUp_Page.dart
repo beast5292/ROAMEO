@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../Home/home_page.dart';
-import 'login_page.dart';
+import 'Login_PageUpdated.dart';
 import 'open_page.dart';
 import './setup_account_page.dart';
 
@@ -29,7 +29,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
     setState(() => _isLoading = true);
 
-    final url = Uri.parse('https://roameo-449418.uc.r.appspot.com/signup');
+    final url = Uri.parse('http://172.27.8.92:8000/signup');
     final requestBody = jsonEncode({
       "username": _usernameController.text,
       "email": _emailController.text,
@@ -209,7 +209,7 @@ class _SignUpPageState extends State<SignUpPage> {
       hintText: hintText,
       hintStyle: const TextStyle(color: Colors.white70, fontSize: 14),
       filled: true,
-      fillColor: const Color.fromARGB(166, 103, 102, 118), // Fixed fillColor
+      fillColor: Color.fromARGB(166, 103, 102, 1118),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(22),
         borderSide: BorderSide.none,

@@ -109,6 +109,7 @@ class _SetupAccountPageState extends State<SetupAccountPage> {
           child: ListView(
             physics: const BouncingScrollPhysics(),
             children: [
+              const SizedBox(height: 40),
               // Back button
               Align(
                 alignment: Alignment.topLeft,
@@ -118,6 +119,7 @@ class _SetupAccountPageState extends State<SetupAccountPage> {
                   onPressed: () => Navigator.pop(context),
                 ),
               ),
+              const SizedBox(height: 40),
 
               // Title
               const Text(

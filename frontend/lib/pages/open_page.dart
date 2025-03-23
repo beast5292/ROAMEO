@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:practice/pages/Account_Setup_Page.dart';
-import 'package:practice/pages/setup_account_page.dart';
 
 class OpeningScreen extends StatelessWidget {
   const OpeningScreen({super.key});

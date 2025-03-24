@@ -10,6 +10,7 @@ import 'package:practice/SightSeeingMode/location_select/providers/selected_plac
 import 'package:practice/pages/open_page.dart';
 import 'package:provider/provider.dart';
 import 'pages/open_page.dart';
+import 'pages/SignUp_Page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: OpeningScreen(),
     );
   }
 }

@@ -7,6 +7,7 @@ import 'Login_PageUpdated.dart';
 import 'open_page.dart';
 import './Account_Setup_Page.dart';
 
+// SignUp pagescreen
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
 
@@ -15,7 +16,9 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  final _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>(); // Form key
+
+  // Controllers for text fields
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _dobController = TextEditingController();
@@ -29,7 +32,10 @@ class _SignUpPageState extends State<SignUpPage> {
 
     setState(() => _isLoading = true);
 
-    final url = Uri.parse('http://172.27.8.92:8000/signup');
+    final url =
+        Uri.parse('http://192.168.100.14:8000/signup'); // API endpoint URL
+
+    // Prepare request body
     final requestBody = jsonEncode({
       "username": _usernameController.text,
       "email": _emailController.text,
@@ -38,38 +44,41 @@ class _SignUpPageState extends State<SignUpPage> {
     });
 
     try {
+      // Send POST Request to API
       final response = await http.post(
         url,
         headers: {"Content-Type": "application/json"},
         body: requestBody,
       );
 
-      final responseBody = jsonDecode(response.body);
-      setState(() => _isLoading = false);
+      final responseBody = jsonDecode(response.body); // Decode JSON body
+
+      setState(() => _isLoading = false); // Hide loading indicator
 
       if (response.statusCode == 200) {
+        // Store authentication token secured
         await storage.write(key: 'jwt_token', value: responseBody["token"]);
         await storage.write(key: 'user_email', value: _emailController.text);
 
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('✔ Signup successful! Please log in.')),
+          const SnackBar(content: Text('Signup successful! Please log in.')),
         );
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => SetupAccountPage()));
       } else {
         final errorMessage = responseBody["detail"] ?? "Signup failed!";
         ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text("⚠ $errorMessage")));
+            .showSnackBar(SnackBar(content: Text("$errorMessage")));
       }
     } catch (_) {
       setState(() => _isLoading = false);
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('❌ Error: Server unreachable')),
+        const SnackBar(content: Text('Error: Server unreachable')),
       );
     }
   }
 
-  /// Function to pick date using a date picker
+  /// Function to date picker
   Future<void> _pickDate() async {
     DateTime? pickedDate = await showDatePicker(
       context: context,
@@ -100,6 +109,8 @@ class _SignUpPageState extends State<SignUpPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 30),
+
+                  // Back button
                   GestureDetector(
                     onTap: () => Navigator.pop(context),
                     child: Icon(Icons.arrow_back_ios_new_rounded,
@@ -110,6 +121,8 @@ class _SignUpPageState extends State<SignUpPage> {
                         ]),
                   ),
                   const SizedBox(height: 70),
+
+                  // Signup
                   const Text("Sign up",
                       style: TextStyle(
                           fontSize: 35,
@@ -117,7 +130,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           color: Color.fromRGBO(68, 202, 233, 1))),
                   const SizedBox(height: 10),
 
-                  /// Username Field
+                  // Username Field
                   TextFormField(
                     controller: _usernameController,
                     style: const TextStyle(color: Colors.white),
@@ -127,7 +140,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   const SizedBox(height: 15),
 
-                  /// Email Field
+                  // Email Field
                   TextFormField(
                     controller: _emailController,
                     style: const TextStyle(color: Colors.white),
@@ -137,7 +150,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   const SizedBox(height: 15),
 
-                  /// DOB Field with Date Picker
+                  // DOB Field with Date Picker
                   TextFormField(
                     controller: _dobController,
                     readOnly: true,
@@ -149,7 +162,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   const SizedBox(height: 15),
 
-                  /// Password Field
+                  // Password Field
                   TextFormField(
                     controller: _passwordController,
                     obscureText: true,
@@ -161,7 +174,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   const SizedBox(height: 15),
 
-                  /// Sign-up Button
+                  // Sign-up Button
                   Center(
                     child: ElevatedButton(
                       onPressed: _isLoading ? null : _signUp,
@@ -183,7 +196,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   const SizedBox(height: 20),
 
-                  /// Login Navigation
+                  // Login Navigation
                   Center(
                     child: TextButton(
                       onPressed: () => Navigator.push(context,
@@ -202,7 +215,7 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  /// Input Decoration Helper
+  // Input Decoration Helper
   InputDecoration _inputDecoration(IconData icon, String hintText) {
     return InputDecoration(
       prefixIcon: Icon(icon, color: Colors.white70),

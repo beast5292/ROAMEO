@@ -13,19 +13,18 @@ class SightFeed extends StatefulWidget {
 }
 
 class _SightFeedState extends State<SightFeed> {
-
   //hold the recieving sights
   late Future<List<dynamic>> sightsFuture;
   TextEditingController searchController = TextEditingController();
   String searchQuery = "";
- 
- //init states with calling the fetchSights() method
+
+  //init states with calling the fetchSights() method
   @override
   void initState() {
     super.initState();
     sightsFuture = fetchSights();
   }
-  
+
   //perform the search and invoke search function
   void performSearch() {
     setState(() {
@@ -38,7 +37,8 @@ class _SightFeedState extends State<SightFeed> {
     });
   }
 
-  Widget _buildIconButton({required IconData icon, required VoidCallback onPressed}) {
+  Widget _buildIconButton(
+      {required IconData icon, required VoidCallback onPressed}) {
     return Container(
       height: 45,
       width: 45,
@@ -95,7 +95,7 @@ class _SightFeedState extends State<SightFeed> {
               ),
             ),
           ),
-          // Search Bar
+          // Search Bar for search query
           Positioned(
             top: MediaQuery.of(context).padding.top + 15,
             left: 80,
@@ -148,7 +148,6 @@ class _SightFeedState extends State<SightFeed> {
                           ),
                         ),
                       ),
-
                     ],
                   ),
                 ),
@@ -157,7 +156,8 @@ class _SightFeedState extends State<SightFeed> {
           ),
           // Main Content
           Padding(
-            padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top + 80),
+            padding:
+                EdgeInsets.only(top: MediaQuery.of(context).padding.top + 80),
             child: FutureBuilder<List<dynamic>>(
               future: sightsFuture,
               builder: (context, snapshot) {
@@ -168,7 +168,8 @@ class _SightFeedState extends State<SightFeed> {
                       decoration: BoxDecoration(
                         color: Colors.black.withOpacity(0.4),
                         borderRadius: BorderRadius.circular(15),
-                        border: Border.all(color: Colors.white.withOpacity(0.1)),
+                        border:
+                            Border.all(color: Colors.white.withOpacity(0.1)),
                       ),
                       child: const Column(
                         mainAxisSize: MainAxisSize.min,
@@ -178,7 +179,8 @@ class _SightFeedState extends State<SightFeed> {
                             height: 40,
                             child: CircularProgressIndicator(
                               strokeWidth: 3,
-                              valueColor: AlwaysStoppedAnimation<Color>(Colors.lightBlue),
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                  Colors.lightBlue),
                             ),
                           ),
                           SizedBox(height: 15),
@@ -221,18 +223,20 @@ class _SightFeedState extends State<SightFeed> {
                         ? modes[index]['sights'][0]
                         : null;
 
-                    if (sight == null || !sight.containsKey('modeName')) 
+                    if (sight == null || !sight.containsKey('modeName'))
                       return const SizedBox();
 
-                    bool isEllaMode = sight['modeName'] == "Ella-Odyssey-Left" ||
-                        sight['modeName'] == "Ella-Odyssey-Right";
+                    bool isEllaMode =
+                        sight['modeName'] == "Ella-Odyssey-Left" ||
+                            sight['modeName'] == "Ella-Odyssey-Right";
 
                     return Container(
                       margin: const EdgeInsets.only(bottom: 20),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         color: Colors.white.withOpacity(0.05),
-                        border: Border.all(color: Colors.white.withOpacity(0.1)),
+                        border:
+                            Border.all(color: Colors.white.withOpacity(0.1)),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.black.withOpacity(0.2),
@@ -294,7 +298,8 @@ class _SightFeedState extends State<SightFeed> {
                                           );
                                         },
                                       ),
-                                      if (!isEllaMode) const SizedBox(width: 15),
+                                      if (!isEllaMode)
+                                        const SizedBox(width: 15),
                                       if (!isEllaMode)
                                         _buildIconButton(
                                           icon: Icons.play_arrow,

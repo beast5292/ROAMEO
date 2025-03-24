@@ -1,0 +1,20 @@
+Here's the breakdown:
+
+Before Start (Basic View):
+
+Use the Maps JavaScript API, Directions API, and Distance Matrix API to display the route with polylines, show markers for the locations, and provide the user with distance and estimated travel times between locations.
+After Start (Navigation Mode):
+
+When the user clicks Start, switch to using the Navigation SDK to provide real-time navigation, including:
+Voice instructions (turn-by-turn).
+Route adjustments based on real-time traffic.
+Re-routing if necessary.
+Real-time location updates on the map.
+The Navigation SDK will take over all navigation-related tasks, and you no longer need the Directions API or Distance Matrix API after that point. The Navigation SDK is designed to handle:
+
+Real-time routing and directions.
+Real-time traffic and re-routing.
+Voice guidance and turn-by-turn navigation.
+Route optimization for the best paths.
+In summary: Basic view = Directions API + Distance Matrix API + Maps API;
+Start Navigation = Navigation SDK.
